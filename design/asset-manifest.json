@@ -1,0 +1,351 @@
+{
+  "schema_version": "ontolens-brand-assets-1",
+  "design_version": "D1.0",
+  "generated_at_utc": "2026-10-08T10:20:10.282350+00:00",
+  "generator": "gpt-image-2 skill CLI through user-authorized provider API",
+  "provider_host": "s2api.top",
+  "requested_model": "gpt-image-2.5-sunburst",
+  "returned_model": "not recorded by generation CLI",
+  "requested_size": [
+    1024,
+    1024
+  ],
+  "actual_source_size": [
+    1247,
+    1261
+  ],
+  "source_sha256": "8bc00dc97beeff9da863c136397e0bf68595672ddb4d9665e8a2e2f2712e214d",
+  "source_archive": "project-local runtime generation archive; not a runtime dependency",
+  "original_alpha_extrema": [
+    0,
+    255
+  ],
+  "original_transparent_pixel_ratio": 0.814339,
+  "postprocess": {
+    "crop_bbox": [
+      207,
+      201,
+      1078,
+      1061
+    ],
+    "transparent_edge_padding": 74,
+    "small_noise_components_removed": 1,
+    "steps": [
+      "verified real input alpha",
+      "removed low-alpha noise and tiny disconnected artifacts",
+      "flattened generated texture into the approved cobalt/graphite inks",
+      "cropped the visible mark and added uniform transparent clear space",
+      "resized with Lanczos",
+      "wrote optimized PNG and lossless WebP without metadata"
+    ]
+  },
+  "outputs": [
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-16.png",
+      "size": [
+        16,
+        16
+      ],
+      "mime": "image/png",
+      "bytes": 775,
+      "sha256": "7c13f85e1e4587aa3a4b0ea070a2c1378a0ba1e139e3887de09277dce693cd3c",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-32.png",
+      "size": [
+        32,
+        32
+      ],
+      "mime": "image/png",
+      "bytes": 2280,
+      "sha256": "49f6723d2f603b50f21b30ba8663ca7ba6786b1739d13cf03acecdb514c6939e",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-48.png",
+      "size": [
+        48,
+        48
+      ],
+      "mime": "image/png",
+      "bytes": 3733,
+      "sha256": "d8abd387ffdd49158bc5976f88e824469c1cf571867ae44d9d2c07e8d60b90d4",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-64.png",
+      "size": [
+        64,
+        64
+      ],
+      "mime": "image/png",
+      "bytes": 5217,
+      "sha256": "50dd4376114149fbe551d6dd72529b06df50407eb2d637f93e1db736243792f4",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-256.png",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/png",
+      "bytes": 24543,
+      "sha256": "f26131cbf083c7bfd01a88a4cda4917b76bada521c81188e20f2b62f7a3c00b7",
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-256.webp",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/webp",
+      "bytes": 14250,
+      "sha256": "3b6aebfcc1ddb179c0d7d4342a0ded46d8162704229d7c2efb641e258eb93ab1"
+    },
+    {
+      "path": "src/peiwu/static/ontolens-symbol-d1-256-dark.png",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/png",
+      "bytes": 14990,
+      "sha256": "9b12ba10fefd7fda7f470d19e54b4cc78376d0a1d6a9e9d9e11e9a29dd7d2bc0",
+      "variant": "light action-surface ink on dark surfaces",
+      "derived_from": "postprocessed model silhouette"
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-source-d1-64.png",
+      "size": [
+        64,
+        64
+      ],
+      "mime": "image/png",
+      "bytes": 2537,
+      "sha256": "41cde453a83e9d30e1cb08ddc09b69438c2231895f1fb1b1cefa887d8d910bb3",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "source",
+      "source_region": [
+        0,
+        0,
+        724,
+        724
+      ],
+      "crop_bbox_in_region": [
+        179,
+        129,
+        563,
+        597
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-source-d1-256.png",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/png",
+      "bytes": 8954,
+      "sha256": "56705d6193d12c42eb0e32b1dcf05f107475438294f925b90934969e3b93ea83",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "source",
+      "source_region": [
+        0,
+        0,
+        724,
+        724
+      ],
+      "crop_bbox_in_region": [
+        179,
+        129,
+        563,
+        597
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-relations-d1-64.png",
+      "size": [
+        64,
+        64
+      ],
+      "mime": "image/png",
+      "bytes": 3769,
+      "sha256": "8f00718c44706a52a0b2e93c16dbc2aabe251cf8b352c459f067819e96736fd7",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "relations",
+      "source_region": [
+        724,
+        0,
+        1448,
+        724
+      ],
+      "crop_bbox_in_region": [
+        103,
+        123,
+        628,
+        551
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-relations-d1-256.png",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/png",
+      "bytes": 16932,
+      "sha256": "787b6e194b0bcf1674a25639c752f1611d51e75f0e725a76b8841a5860ffdd1b",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "relations",
+      "source_region": [
+        724,
+        0,
+        1448,
+        724
+      ],
+      "crop_bbox_in_region": [
+        103,
+        123,
+        628,
+        551
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-versions-d1-64.png",
+      "size": [
+        64,
+        64
+      ],
+      "mime": "image/png",
+      "bytes": 3449,
+      "sha256": "143984978d508f71d4a455546fa470e974eadec9ab1ead1c9b8a46bc865cba52",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "versions",
+      "source_region": [
+        1448,
+        0,
+        2172,
+        724
+      ],
+      "crop_bbox_in_region": [
+        97,
+        118,
+        603,
+        592
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    },
+    {
+      "path": "src/peiwu/static/ontolens-illustration-versions-d1-256.png",
+      "size": [
+        256,
+        256
+      ],
+      "mime": "image/png",
+      "bytes": 12596,
+      "sha256": "569aa88e00968162d37a7905e0891891ef20a09ca2a92203ff5eccb83f3bde3b",
+      "role": "explanatory illustration; no business state",
+      "asset_name": "versions",
+      "source_region": [
+        1448,
+        0,
+        2172,
+        724
+      ],
+      "crop_bbox_in_region": [
+        97,
+        118,
+        603,
+        592
+      ],
+      "alpha_extrema": [
+        0,
+        255
+      ]
+    }
+  ],
+  "legibility_check_sizes": [
+    16,
+    32,
+    48,
+    64,
+    128
+  ],
+  "legibility_visual_review": "32/48/64/128px reviewed;16px recognizable silhouette with reduced branch detail;dark surfaces use the light-ink variant",
+  "wordmark": "Real HTML text; no image text, approval symbols or safety seals",
+  "prompt": "Create one original compact flat brand symbol for OntoLens, a relationship-evidence inspection workbench. Combine an OPEN observation frame, a circular focusing segment and a branching index stroke ending in three substantial nodes into one distinctive simple silhouette. Solid cobalt blue #285FA1 and graphite #25323A on pure white background. Crisp geometric drawing with generous negative space, centered single mark occupying about 640px of 1024px canvas. No text, letters, numbers, gradients, shadows, 3D, check marks, shields, seals, badges, vessel or camera. Small-size legibility at 32px. One symbol only, not a sheet of options.",
+  "scope": "Generated brand illustration only; does not certify data or business decisions",
+  "illustrations": {
+    "generator": "gpt-image-2 skill CLI API fallback",
+    "requested_model": "gpt-image-2.5-flare",
+    "returned_model": "not recorded by generation CLI",
+    "requested_size": [
+      1536,
+      512
+    ],
+    "actual_source_size": [
+      2172,
+      724
+    ],
+    "source_sha256": "de0f5923b42231bf37def52e1210e881a03a992bb154516b4726711bf7bfc0e9",
+    "postprocess": [
+      "split three independent source regions",
+      "removed near-white matte while retaining edge alpha",
+      "flattened texture into canonical cobalt and graphite",
+      "cropped, padded and Lanczos resized",
+      "optimized PNG metadata stripped"
+    ],
+    "visual_review": "Three 64/256px symbols visually checked: clean matte, solid cobalt/graphite strokes, true alpha and recognizable source/relation/version subjects; no approval marks",
+    "prompt": "Create three matching flat utility illustration icons for OntoLens, arranged as three separate equally sized symbols in a single horizontal row with large blank space between them. Left: an original source document, one paper sheet with a folded corner and three thick abstract lines. Center: a relationship evidence index, three substantial linked nodes and an open inspection arc. Right: version comparison, two offset simple sheets with a branching revision line. Solid cobalt blue #285FA1 and graphite #25323A only, pure white background, crisp thick geometric drawing and clear negative space. No text, letters, numerals, labels, check marks, shields, seals, gradients, gloss, shadows, 3D or watermark. Each symbol must be useful at 64px. These are explanatory illustrations; they must not represent verified approval.",
+    "prompt_sha256": "0f808b0f38119de1219469a3a08c87a77e03f7453d36fa15ba3b3cc9fa462a81"
+  },
+  "prompt_sha256": "b0556b7326d38597e00fd1f16b4bbbfad6db9b31f00bb9df1798c3fe693745c5",
+  "model_smoke": {
+    "gpt-image-2.5-flare": {
+      "compatible_images_cli": "passed",
+      "source_sha256": "30ba2a64054dbdd4cf33c57c6e3439a3dcea4feaab9367cbd5ab6f737fef179f"
+    },
+    "gpt-image-2.5-sunburst": {
+      "compatible_images_cli": "passed",
+      "source_sha256": "8bc00dc97beeff9da863c136397e0bf68595672ddb4d9665e8a2e2f2712e214d"
+    },
+    "earlier_native_sdk_attempt": "403 received; retained as failed historical attempt, not a conclusion about all image models"
+  }
+}

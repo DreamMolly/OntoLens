@@ -1,0 +1,33 @@
+services:
+  nexent-elasticsearch:
+    volumes:
+      - "${PEIWU_NEXENT_ES_DATA:-${ROOT_DIR}/elasticsearch}:/usr/share/elasticsearch/data"
+  nexent-postgresql:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -t 15 -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 20s
+      retries: 24
+  nexent-data-process:
+    environment:
+      NEXENT_SQL_STARTUP_MODE: "wait"
+    depends_on:
+      nexent-postgresql:
+        condition: service_healthy
+    entrypoint: ["/opt/nexent/scripts/start-backend.sh", "python", "/opt/backend/data_process_service.py"]
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import json, urllib.request; data = json.load(urllib.request.urlopen('http://127.0.0.1:5012/tasks', timeout=4)); assert isinstance(data.get('tasks'), list)"
+      interval: 15s
+      timeout: 8s
+      retries: 4
+      start_period: 120s
+  nexent-web:
+    ports: !override
+      - "127.0.0.1:13000:3000"
+  nexent-northbound:
+    ports: !override
+      - "127.0.0.1:15013:5013"

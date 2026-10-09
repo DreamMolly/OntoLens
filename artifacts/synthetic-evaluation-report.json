@@ -1,0 +1,4716 @@
+{
+  "schema_version": "synthetic-evaluation.v2",
+  "generated_at": "2026-10-08T06:26:28.393511+00:00",
+  "scope": {
+    "mode": "synthetic_demo",
+    "claim_boundary": "Frozen checked-in cases only; not industry accuracy, safety rate, or deployment validation.",
+    "labels": "Gold labels are developer-authored expectations and are not independent blind evaluation.",
+    "model_output_in_metrics": false
+  },
+  "inputs": {
+    "files": {
+      "data/catalog.yaml": {
+        "sha256": "fbbdda9a66d1408958de7ac8a7b7e0111ffeb7c7981438935c9403dac3c96bf8",
+        "bytes": 2649
+      },
+      "data/rules/v1.yaml": {
+        "sha256": "05d7a7e319d16f92fd1430160dfd4ee54b9f861c93b6428502bfbe4cea28bfc1",
+        "bytes": 289
+      },
+      "data/rules/v2.yaml": {
+        "sha256": "750c4a7245f3dfec838182a5569782158fadf1bd6fbe567bef6bdd014b3dd47c",
+        "bytes": 288
+      },
+      "data/rules/v3.yaml": {
+        "sha256": "b72394da86f7aa461bd2ee2453b9944ed1b84fa000a6526ea9ab297c610f9e8c",
+        "bytes": 287
+      },
+      "data/cases/regression.yaml": {
+        "sha256": "9eec41c746d4eae2a4aee3c1a0903c2d7e49623ffa08781722c50552c5410863",
+        "bytes": 6600
+      },
+      "data/cases/incidents.yaml": {
+        "sha256": "079769764f9c757131d1fd39c07f48ae4454582d4c221d75ae810dcfc12074a3",
+        "bytes": 1850
+      },
+      "data/cases/heldout.yaml": {
+        "sha256": "ad43a331a74280408113da0ffdfa11a9aee35874cd222ca61f5a4ca1bb51b7e3",
+        "bytes": 16081
+      },
+      "data/evaluation/counterfactuals.yaml": {
+        "sha256": "5242e1c74390158b0651190d7841e7320bc61efa65f5b136f29025b89f139a92",
+        "bytes": 15653
+      }
+    },
+    "case_counts": {
+      "regression": 25,
+      "incidents": 5,
+      "heldout": 60
+    }
+  },
+  "evaluation": {
+    "v1": {
+      "regression": {
+        "rule_version": "v1",
+        "total": 25,
+        "exact_match": 25,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "ALLOW->ALLOW": 6,
+          "DENY->DENY": 12,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 4
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "incidents_gold_v1": {
+        "rule_version": "v1",
+        "total": 5,
+        "exact_match": 5,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "ALLOW->ALLOW": 5
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "incidents_gold_v2": {
+        "rule_version": "v1",
+        "total": 5,
+        "exact_match": 0,
+        "unsafe_release": 5,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 5,
+          "wrong_approved_quantity": 5,
+          "wrong_reason_code": 5,
+          "unsafe_release": 5,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "unsafe_release": 5
+        },
+        "action_matrix": {
+          "DENY->ALLOW": 5
+        },
+        "mismatch_count": 5,
+        "failures": [
+          {
+            "id": "I01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 50.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I03",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 40.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I04",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 40.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 50.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout": {
+        "rule_version": "v1",
+        "total": 60,
+        "exact_match": 46,
+        "unsafe_release": 13,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 13,
+          "wrong_approved_quantity": 13,
+          "wrong_reason_code": 14,
+          "unsafe_release": 13,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "unsafe_release": 13
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 17,
+          "DENY->ALLOW": 12,
+          "DENY->DENY": 14,
+          "DENY->LIMIT": 1,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 13
+        },
+        "mismatch_count": 14,
+        "failures": [
+          {
+            "id": "H01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 80.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 30.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "LIMIT",
+              "approved_quantity": 100.0,
+              "reason_code": "ISSUE_CAP",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H30",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H31",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H32",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H33",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H34",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H35",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H36",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H41",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 40.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H45",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "OUT_OF_STOCK",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H60",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 200.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          }
+        ]
+      }
+    },
+    "v2": {
+      "regression": {
+        "rule_version": "v2",
+        "total": 25,
+        "exact_match": 25,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "ALLOW->ALLOW": 6,
+          "DENY->DENY": 12,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 4
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "incidents_gold_v2": {
+        "rule_version": "v2",
+        "total": 5,
+        "exact_match": 5,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "DENY->DENY": 5
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "heldout": {
+        "rule_version": "v2",
+        "total": 60,
+        "exact_match": 60,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "ALLOW->ALLOW": 17,
+          "DENY->DENY": 27,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 13
+        },
+        "mismatch_count": 0,
+        "failures": []
+      }
+    },
+    "v3": {
+      "regression": {
+        "rule_version": "v3",
+        "total": 25,
+        "exact_match": 17,
+        "unsafe_release": 0,
+        "over_block": 3,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 5,
+          "wrong_approved_quantity": 5,
+          "wrong_reason_code": 8,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 3,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "over_block": 3
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 3,
+          "ALLOW->DENY": 3,
+          "DENY->DENY": 12,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->DENY": 2,
+          "LIMIT->LIMIT": 2
+        },
+        "mismatch_count": 8,
+        "failures": [
+          {
+            "id": "R02",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R03",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CABINET_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R11",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R18",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 50,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R19",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 30,
+              "reason_code": "STOCK_SHORT"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R21",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "R25",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "incidents_gold_v2": {
+        "rule_version": "v3",
+        "total": 5,
+        "exact_match": 2,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 3,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "DENY->DENY": 5
+        },
+        "mismatch_count": 3,
+        "failures": [
+          {
+            "id": "I01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I04",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout": {
+        "rule_version": "v3",
+        "total": 60,
+        "exact_match": 37,
+        "unsafe_release": 0,
+        "over_block": 8,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 15,
+          "wrong_approved_quantity": 15,
+          "wrong_reason_code": 23,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 8,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "over_block": 8
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 9,
+          "ALLOW->DENY": 8,
+          "DENY->DENY": 27,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->DENY": 7,
+          "LIMIT->LIMIT": 6
+        },
+        "mismatch_count": 23,
+        "failures": [
+          {
+            "id": "H02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H03",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H09",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H11",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H13",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 250,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H14",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H15",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H16",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H22",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 20,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H23",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 30,
+              "reason_code": "STOCK_SHORT"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H26",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H27",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H28",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H37",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H42",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 40,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H47",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CABINET_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H48",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H49",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H56",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 40,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H58",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H60",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  "gates": {
+    "v2": {
+      "accepted": true,
+      "baseline": "v1",
+      "candidate": "v2",
+      "reasons": [],
+      "checks": {
+        "no_heldout_id_leak": true,
+        "regression_unchanged": true,
+        "incidents_exact_match": true,
+        "heldout_exact_match": true,
+        "heldout_unsafe_not_increased": true
+      },
+      "regression_changes": [],
+      "incident_report": {
+        "rule_version": "v2",
+        "total": 5,
+        "exact_match": 5,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "DENY->DENY": 5
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "heldout_candidate_report": {
+        "rule_version": "v2",
+        "total": 60,
+        "exact_match": 60,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 0,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "ALLOW->ALLOW": 17,
+          "DENY->DENY": 27,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 13
+        },
+        "mismatch_count": 0,
+        "failures": []
+      },
+      "heldout_baseline_report": {
+        "rule_version": "v1",
+        "total": 60,
+        "exact_match": 46,
+        "unsafe_release": 13,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 13,
+          "wrong_approved_quantity": 13,
+          "wrong_reason_code": 14,
+          "unsafe_release": 13,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "unsafe_release": 13
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 17,
+          "DENY->ALLOW": 12,
+          "DENY->DENY": 14,
+          "DENY->LIMIT": 1,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 13
+        },
+        "mismatch_count": 14,
+        "failures": [
+          {
+            "id": "H01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 80.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 30.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "LIMIT",
+              "approved_quantity": 100.0,
+              "reason_code": "ISSUE_CAP",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H30",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H31",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H32",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H33",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H34",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H35",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H36",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H41",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 40.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H45",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "OUT_OF_STOCK",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H60",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 200.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout_baseline_unsafe": 13,
+      "heldout_candidate_unsafe": 0
+    },
+    "v3": {
+      "accepted": false,
+      "baseline": "v1",
+      "candidate": "v3",
+      "reasons": [
+        "regression R02 changed",
+        "regression R03 changed",
+        "regression R07 changed",
+        "regression R11 changed",
+        "regression R18 changed",
+        "regression R19 changed",
+        "regression R21 changed",
+        "regression R25 changed",
+        "incidents not fixed: I01, I02, I04",
+        "heldout mismatch: H02, H03, H05, H07, H09, H11, H13, H14, H15, H16, H22, H23, H26, H27, H28, H37, H42, H47, H48, H49, H56, H58, H60"
+      ],
+      "checks": {
+        "no_heldout_id_leak": true,
+        "regression_unchanged": false,
+        "incidents_exact_match": false,
+        "heldout_exact_match": false,
+        "heldout_unsafe_not_increased": true
+      },
+      "regression_changes": [
+        {
+          "id": "R02",
+          "before": {
+            "action": "LIMIT",
+            "approved_quantity": 250.0,
+            "reason_code": "ISSUE_CAP",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R03",
+          "before": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "CABINET_INCOMPATIBLE",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R07",
+          "before": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "CLASS_NOT_AUTHORIZED",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R11",
+          "before": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "CLASS_NOT_AUTHORIZED",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R18",
+          "before": {
+            "action": "ALLOW",
+            "approved_quantity": 50.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R19",
+          "before": {
+            "action": "LIMIT",
+            "approved_quantity": 30.0,
+            "reason_code": "STOCK_SHORT",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R21",
+          "before": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        },
+        {
+          "id": "R25",
+          "before": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v1"
+          },
+          "after": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "STUDENT_BLOCKED",
+            "rule_version": "v3"
+          }
+        }
+      ],
+      "incident_report": {
+        "rule_version": "v3",
+        "total": 5,
+        "exact_match": 2,
+        "unsafe_release": 0,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 0,
+          "wrong_approved_quantity": 0,
+          "wrong_reason_code": 3,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {},
+        "action_matrix": {
+          "DENY->DENY": 5
+        },
+        "mismatch_count": 3,
+        "failures": [
+          {
+            "id": "I01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "I04",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout_candidate_report": {
+        "rule_version": "v3",
+        "total": 60,
+        "exact_match": 37,
+        "unsafe_release": 0,
+        "over_block": 8,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 15,
+          "wrong_approved_quantity": 15,
+          "wrong_reason_code": 23,
+          "unsafe_release": 0,
+          "over_issue": 0,
+          "over_block": 8,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "over_block": 8
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 9,
+          "ALLOW->DENY": 8,
+          "DENY->DENY": 27,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->DENY": 7,
+          "LIMIT->LIMIT": 6
+        },
+        "mismatch_count": 23,
+        "failures": [
+          {
+            "id": "H02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H03",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H09",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H11",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H13",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 250,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H14",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H15",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H16",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H22",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 20,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H23",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 30,
+              "reason_code": "STOCK_SHORT"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H26",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H27",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H28",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H37",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H42",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 40,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H47",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CABINET_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H48",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H49",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CLASS_NOT_AUTHORIZED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H56",
+            "expected": {
+              "action": "ALLOW",
+              "approved_quantity": 40,
+              "reason_code": "ALLOWED"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H58",
+            "expected": {
+              "action": "LIMIT",
+              "approved_quantity": 100,
+              "reason_code": "ISSUE_CAP"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H60",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "STUDENT_BLOCKED",
+              "rule_version": "v3"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout_baseline_report": {
+        "rule_version": "v1",
+        "total": 60,
+        "exact_match": 46,
+        "unsafe_release": 13,
+        "over_block": 0,
+        "over_issue": 0,
+        "under_issue": 0,
+        "decision_coverage": 1.0,
+        "error_breakdown": {
+          "wrong_action": 13,
+          "wrong_approved_quantity": 13,
+          "wrong_reason_code": 14,
+          "unsafe_release": 13,
+          "over_issue": 0,
+          "over_block": 0,
+          "under_issue": 0
+        },
+        "failure_categories": {
+          "unsafe_release": 13
+        },
+        "action_matrix": {
+          "ALLOW->ALLOW": 17,
+          "DENY->ALLOW": 12,
+          "DENY->DENY": 14,
+          "DENY->LIMIT": 1,
+          "ISOLATE->ISOLATE": 3,
+          "LIMIT->LIMIT": 13
+        },
+        "mismatch_count": 14,
+        "failures": [
+          {
+            "id": "H01",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 80.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H02",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 30.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H05",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "LIMIT",
+              "approved_quantity": 100.0,
+              "reason_code": "ISSUE_CAP",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H07",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H30",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H31",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H32",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H33",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 4.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H34",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H35",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H36",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 20.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H41",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 40.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H45",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "OUT_OF_STOCK",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": false,
+              "approved_quantity": false,
+              "reason_code": true
+            }
+          },
+          {
+            "id": "H60",
+            "expected": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE"
+            },
+            "actual": {
+              "action": "ALLOW",
+              "approved_quantity": 200.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v1"
+            },
+            "mismatch": {
+              "action": true,
+              "approved_quantity": true,
+              "reason_code": true
+            }
+          }
+        ]
+      },
+      "heldout_baseline_unsafe": 13,
+      "heldout_candidate_unsafe": 0
+    }
+  },
+  "counterfactual": {
+    "schema_version": "synthetic-counterfactual.v1",
+    "scope": {
+      "mode": "synthetic_demo",
+      "claim_boundary": "Synthetic snapshot mutations only; this is not industry accuracy, safety rate, or professional review.",
+      "decision_contract": "Internal Workspace._calculate plus deterministic peiwu.checker.decide; no HTTP validation, model or network request.",
+      "http_boundary": "Invalid HTTP quantities are rejected by request validation before calculation; checker INVALID_QUANTITY is not an HTTP response.",
+      "gold_boundary": "Counterfactual expectations are a separate developer-authored metamorphic fixture; frozen data/cases gold is untouched."
+    },
+    "inputs": {
+      "fixture": {
+        "path": "data/evaluation/counterfactuals.yaml",
+        "sha256": "5242e1c74390158b0651190d7841e7320bc61efa65f5b136f29025b89f139a92",
+        "bytes": 15653
+      },
+      "catalog": {
+        "path": "data/catalog.yaml",
+        "sha256": "fbbdda9a66d1408958de7ac8a7b7e0111ffeb7c7981438935c9403dac3c96bf8",
+        "bytes": 2649
+      },
+      "rules": {
+        "path": "data/rules/v2.yaml",
+        "sha256": "750c4a7245f3dfec838182a5569782158fadf1bd6fbe567bef6bdd014b3dd47c",
+        "bytes": 288
+      },
+      "case_count": 21
+    },
+    "summary": {
+      "total": 21,
+      "passed": 21,
+      "failed": 0,
+      "all_pass": true,
+      "by_category": {
+        "unit": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "inventory": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "cabinet": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "today_unreturned_class": {
+          "total": 1,
+          "passed": 1,
+          "failed": 0
+        },
+        "unknown_entity": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        },
+        "quantity_boundary": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "authorization_validity": {
+          "total": 6,
+          "passed": 6,
+          "failed": 0
+        },
+        "lot_status": {
+          "total": 2,
+          "passed": 2,
+          "failed": 0
+        },
+        "invariance": {
+          "total": 3,
+          "passed": 3,
+          "failed": 0
+        }
+      }
+    },
+    "cases": [
+      {
+        "id": "CF-UNIT-001",
+        "category": "unit",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "baf3e95f71f2cec209a46414d63303d414246095e49872c78762ec50f3a13e26",
+        "changed_path": "request.unit",
+        "observed_changed_paths": [
+          "request.unit"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-UNIT-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.unit",
+            "value": "g"
+          },
+          "request": {
+            "request_id": "CF-UNIT-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "g",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "UNIT_MISMATCH"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "UNIT_MISMATCH"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVENTORY-001",
+        "category": "inventory",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "6fc6c7a2b7e7b0d9a09513b26dd6182a414ab5aa59400cc7d14a66b14dad9ab2",
+        "changed_path": "catalog.lots.lot_eth.on_hand",
+        "observed_changed_paths": [
+          "catalog.lots.lot_eth.on_hand"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVENTORY-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_eth.on_hand",
+            "value": 20
+          },
+          "request": {
+            "request_id": "CF-INVENTORY-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "LIMIT",
+              "approved_quantity": 20.0,
+              "reason_code": "STOCK_SHORT",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "LIMIT",
+              "approved_quantity": 20,
+              "reason_code": "STOCK_SHORT",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVENTORY-002",
+        "category": "inventory",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "31cce0bf266ddebc77c87770e4bfcfcdea08c99637818b5ef7e27b5ef943dbd3",
+        "changed_path": "catalog.lots.lot_eth.on_hand",
+        "observed_changed_paths": [
+          "catalog.lots.lot_eth.on_hand"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVENTORY-002",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_eth.on_hand",
+            "value": 0
+          },
+          "request": {
+            "request_id": "CF-INVENTORY-002",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "OUT_OF_STOCK",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "OUT_OF_STOCK",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-CABINET-001",
+        "category": "cabinet",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "d241fb0d0fa42c46a74714f11924817c59baa674ca8671701c5b451b77ffc458",
+        "changed_path": "request.destination_cabinet_id",
+        "observed_changed_paths": [
+          "request.destination_cabinet_id"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-CABINET-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.destination_cabinet_id",
+            "value": "cab_ox"
+          },
+          "request": {
+            "request_id": "CF-CABINET-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_ox",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CABINET_INCOMPATIBLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "CABINET_INCOMPATIBLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-UNRETURNED-001",
+        "category": "today_unreturned_class",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "05834eaf97a8a3060fc5c427a7633578c01969abeaecbf72c5bc7d24e004097d",
+        "changed_path": "issues.stu01",
+        "observed_changed_paths": [
+          "issues.stu01"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-UNRETURNED-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "issues.stu01",
+            "value": [
+              "OXIDIZER"
+            ]
+          },
+          "request": {
+            "request_id": "CF-UNRETURNED-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "SESSION_INCOMPATIBLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-UNKNOWN-REQUESTER-001",
+        "category": "unknown_entity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "8dc600c8b49b719e2e8cdafa859c69b79f4eb1b2a53be7bbb4f9493c0e7e7a09",
+        "changed_path": "request.requester_id",
+        "observed_changed_paths": [
+          "request.requester_id"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-UNKNOWN-REQUESTER-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.requester_id",
+            "value": "unknown_demo_person"
+          },
+          "request": {
+            "request_id": "CF-UNKNOWN-REQUESTER-001",
+            "requester_id": "unknown_demo_person",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-UNKNOWN-LOT-001",
+        "category": "unknown_entity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "009455408cf41011a60948cfbb1165c80fb98746d21aebc6d80460ba09cdb702",
+        "changed_path": "request.lot_id",
+        "observed_changed_paths": [
+          "request.lot_id"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-UNKNOWN-LOT-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.lot_id",
+            "value": "unknown_demo_lot"
+          },
+          "request": {
+            "request_id": "CF-UNKNOWN-LOT-001",
+            "requester_id": "stu01",
+            "lot_id": "unknown_demo_lot",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-UNKNOWN-CABINET-001",
+        "category": "unknown_entity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "338568ba682a8ae4c061e92dda25913cdebf7480daa3f01c0613deb246f59e12",
+        "changed_path": "request.destination_cabinet_id",
+        "observed_changed_paths": [
+          "request.destination_cabinet_id"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-UNKNOWN-CABINET-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.destination_cabinet_id",
+            "value": "unknown_demo_cabinet"
+          },
+          "request": {
+            "request_id": "CF-UNKNOWN-CABINET-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "unknown_demo_cabinet",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "MISSING_REFERENCE"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-QUANTITY-CAP-001",
+        "category": "quantity_boundary",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "064c7daae68691b4f52c85cc5f73aba56b998d8c9f96738eb3be03774f614325",
+        "changed_path": "request.quantity",
+        "observed_changed_paths": [
+          "request.quantity"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-QUANTITY-CAP-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 250,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 250.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.quantity",
+            "value": 251
+          },
+          "request": {
+            "request_id": "CF-QUANTITY-CAP-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 251,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "LIMIT",
+              "approved_quantity": 250.0,
+              "reason_code": "ISSUE_CAP",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 250,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "LIMIT",
+              "approved_quantity": 250,
+              "reason_code": "ISSUE_CAP",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVALID-QUANTITY-001",
+        "category": "quantity_boundary",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "b74f8509bab9a1bf53a17a519006a616cf898195a99ee54f7a9a1a824548a286",
+        "changed_path": "request.quantity",
+        "observed_changed_paths": [
+          "request.quantity"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVALID-QUANTITY-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.quantity",
+            "value": 0
+          },
+          "request": {
+            "request_id": "CF-INVALID-QUANTITY-001",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 0,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "INVALID_QUANTITY",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "DENY",
+              "approved_quantity": null,
+              "reason_code": "INVALID_QUANTITY",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-START-BEFORE",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "a2a8ae42e993293c514bf84b5ffb15441d4154fdcf5e3a6d41a0e638a8f79d05",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-START-BEFORE",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-09-24"
+          },
+          "request": {
+            "request_id": "CF-AUTH-START-BEFORE",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-24"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "AUTHORIZATION_NOT_ACTIVE"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "AUTHORIZATION_NOT_ACTIVE"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-START-ON",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "b51d5686dafee8577c4d26596d379b5729245b66dee516370d58651984337c5b",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-START-ON",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-09-25"
+          },
+          "request": {
+            "request_id": "CF-AUTH-START-ON",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-25"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-START-AFTER",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "d2dc7a038b86f5d7d7bf333f7e972af219a012ac79dbea925774fa6456888b1c",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-START-AFTER",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-09-26"
+          },
+          "request": {
+            "request_id": "CF-AUTH-START-AFTER",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-26"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-END-BEFORE",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "89a91d4ea2ee7b505a29759f03e2f90104271f610bd327e63d6b4c2b41933034",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-END-BEFORE",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-09-29"
+          },
+          "request": {
+            "request_id": "CF-AUTH-END-BEFORE",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-29"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-END-ON",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "cb559a50dab408764e1f6c0fd119401d10b92f09ae208cf30bd03968568272e9",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-END-ON",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-09-30"
+          },
+          "request": {
+            "request_id": "CF-AUTH-END-ON",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-30"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-AUTH-END-AFTER",
+        "category": "authorization_validity",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [
+          {
+            "path": "validity.stu01",
+            "value": {
+              "from": "2026-09-25",
+              "until": "2026-09-30"
+            },
+            "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+          }
+        ],
+        "observed_setup_paths": [
+          "validity.stu01"
+        ],
+        "input_hash": "2e5faea9c8b7dc255e1f4093785edd3695c0602ea3b86c274293edb24cc46a64",
+        "changed_path": "request.as_of",
+        "observed_changed_paths": [
+          "request.as_of"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-AUTH-END-AFTER",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.as_of",
+            "value": "2026-10-01"
+          },
+          "request": {
+            "request_id": "CF-AUTH-END-AFTER",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-10-01"
+          },
+          "outcome": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "AUTHORIZATION_EXPIRED"
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "needs_review",
+            "unit": null,
+            "decision": null,
+            "review_reason_code": "AUTHORIZATION_EXPIRED"
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": true,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-LOT-EXPIRED",
+        "category": "lot_status",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "2b6faf1e7e498c3b2f70c749420717d75835333b97f1036ad8c6f455e303ddaf",
+        "changed_path": "catalog.lots.lot_eth.status",
+        "observed_changed_paths": [
+          "catalog.lots.lot_eth.status"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-LOT-EXPIRED",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_eth.status",
+            "value": "expired"
+          },
+          "request": {
+            "request_id": "CF-LOT-EXPIRED",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ISOLATE",
+              "approved_quantity": null,
+              "reason_code": "LOT_NOT_ISSUABLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ISOLATE",
+              "approved_quantity": null,
+              "reason_code": "LOT_NOT_ISSUABLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-LOT-DAMAGED",
+        "category": "lot_status",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "changed",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "7ef3bbe08ee22b92609f318bdc97088cfd409f8deeb2dd2c3c513fd31b414fc9",
+        "changed_path": "catalog.lots.lot_eth.status",
+        "observed_changed_paths": [
+          "catalog.lots.lot_eth.status"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-LOT-DAMAGED",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_eth.status",
+            "value": "damaged"
+          },
+          "request": {
+            "request_id": "CF-LOT-DAMAGED",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ISOLATE",
+              "approved_quantity": null,
+              "reason_code": "LOT_NOT_ISSUABLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ISOLATE",
+              "approved_quantity": null,
+              "reason_code": "LOT_NOT_ISSUABLE",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": true,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVARIANT-REQUEST-ID",
+        "category": "invariance",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "04728f98dd9166d592fd7814e66c701c4bf6165db4b13d0bbe0772c6bf1f9fda",
+        "changed_path": "request.request_id",
+        "observed_changed_paths": [
+          "request.request_id"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVARIANT-REQUEST-ID",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "request.request_id",
+            "value": "CF-RENAMED-REQUEST"
+          },
+          "request": {
+            "request_id": "CF-RENAMED-REQUEST",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVARIANT-UNRELATED-STOCK",
+        "category": "invariance",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "842f896c1de1e8defca81a9bf7f83f004909fac129e927a54efa9c738c25811c",
+        "changed_path": "catalog.lots.lot_ox.on_hand",
+        "observed_changed_paths": [
+          "catalog.lots.lot_ox.on_hand"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVARIANT-UNRELATED-STOCK",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_ox.on_hand",
+            "value": 1
+          },
+          "request": {
+            "request_id": "CF-INVARIANT-UNRELATED-STOCK",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      },
+      {
+        "id": "CF-INVARIANT-SUFFICIENT-STOCK",
+        "category": "invariance",
+        "evaluation_layer": "internal_calculation",
+        "expected_relation": "invariant",
+        "setup": [],
+        "observed_setup_paths": [],
+        "input_hash": "e1902d100f90e5e08e8733f36498d35edcfc55dc91d7b7cd0e1f6e9cc29690ba",
+        "changed_path": "catalog.lots.lot_eth.on_hand",
+        "observed_changed_paths": [
+          "catalog.lots.lot_eth.on_hand"
+        ],
+        "base": {
+          "request": {
+            "request_id": "CF-INVARIANT-SUFFICIENT-STOCK",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "variant": {
+          "mutation": {
+            "path": "catalog.lots.lot_eth.on_hand",
+            "value": 2001
+          },
+          "request": {
+            "request_id": "CF-INVARIANT-SUFFICIENT-STOCK",
+            "requester_id": "stu01",
+            "lot_id": "lot_eth",
+            "quantity": 100,
+            "destination_cabinet_id": "cab_flam",
+            "unit": "mL",
+            "as_of": "2026-09-28"
+          },
+          "outcome": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100.0,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "expected": {
+          "base": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          },
+          "variant": {
+            "status": "ready",
+            "unit": "mL",
+            "decision": {
+              "action": "ALLOW",
+              "approved_quantity": 100,
+              "reason_code": "ALLOWED",
+              "rule_version": "v2"
+            }
+          }
+        },
+        "checks": {
+          "mutation_isolated": true,
+          "expected_base": true,
+          "expected_variant": true,
+          "decision_changed": false,
+          "status_changed": false,
+          "relation_holds": true,
+          "passed": true
+        }
+      }
+    ]
+  }
+}

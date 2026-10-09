@@ -1,0 +1,6 @@
+{
+  "name": "peiwu-local",
+  "transport": "streamable-http",
+  "url": "http://host.docker.internal:8765/mcp/",
+  "headers": {"Authorization": "Bearer REPLACE_WITH_PEIWU_MCP_TOKEN"}
+}

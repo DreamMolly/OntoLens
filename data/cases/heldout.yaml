@@ -1,0 +1,746 @@
+cases:
+- id: H01
+  request:
+    request_id: H01
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 80
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H02
+  request:
+    request_id: H02
+    requester_id: stu03
+    lot_id: lot_base
+    quantity: 30
+    destination_cabinet_id: cab_base
+    open_issue_classes:
+    - ACID
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H03
+  request:
+    request_id: H03
+    requester_id: stu03
+    lot_id: lot_eth
+    quantity: 100
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - GENERAL
+  gold:
+    action: ALLOW
+    approved_quantity: 100
+    reason_code: ALLOWED
+- id: H04
+  request:
+    request_id: H04
+    requester_id: tea01
+    lot_id: lot_base
+    quantity: 40
+    destination_cabinet_id: cab_base
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+- id: H05
+  request:
+    request_id: H05
+    requester_id: stu03
+    lot_id: lot_ox
+    quantity: 300
+    destination_cabinet_id: cab_ox
+    open_issue_classes:
+    - FLAMMABLE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H06
+  request:
+    request_id: H06
+    requester_id: tea01
+    lot_id: lot_eth_exp
+    quantity: 10
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: ISOLATE
+    approved_quantity: null
+    reason_code: LOT_NOT_ISSUABLE
+- id: H07
+  request:
+    request_id: H07
+    requester_id: stu01
+    lot_id: lot_eth
+    quantity: 100
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H08
+  request:
+    request_id: H08
+    requester_id: ghost
+    lot_id: lot_eth
+    quantity: 10
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: UNKNOWN_REQUESTER
+- id: H09
+  request:
+    request_id: H09
+    requester_id: stu03
+    lot_id: lot_eth
+    quantity: 100
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 100
+    reason_code: ALLOWED
+- id: H10
+  request:
+    request_id: H10
+    requester_id: tea01
+    lot_id: lot_ox
+    quantity: 500
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 200
+    reason_code: ISSUE_CAP
+- id: H11
+  request:
+    request_id: H11
+    requester_id: stu03
+    lot_id: lot_wr
+    quantity: 5
+    destination_cabinet_id: cab_wr
+    open_issue_classes:
+    - FLAMMABLE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: CLASS_NOT_AUTHORIZED
+- id: H12
+  request:
+    request_id: H12
+    requester_id: ban01
+    lot_id: lot_eth
+    quantity: 10
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: BANNED_REQUESTER
+- id: H13
+  request:
+    request_id: H13
+    requester_id: stu01
+    lot_id: lot_eth
+    quantity: 250
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 250
+    reason_code: ALLOWED
+- id: H14
+  request:
+    request_id: H14
+    requester_id: stu01
+    lot_id: lot_eth
+    quantity: 251
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 250
+    reason_code: ISSUE_CAP
+- id: H15
+  request:
+    request_id: H15
+    requester_id: stu03
+    lot_id: lot_ox
+    quantity: 100
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 100
+    reason_code: ALLOWED
+- id: H16
+  request:
+    request_id: H16
+    requester_id: stu03
+    lot_id: lot_ox
+    quantity: 101
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 100
+    reason_code: ISSUE_CAP
+- id: H17
+  request:
+    request_id: H17
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 500
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 500
+    reason_code: ALLOWED
+- id: H18
+  request:
+    request_id: H18
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 501
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 500
+    reason_code: ISSUE_CAP
+- id: H19
+  request:
+    request_id: H19
+    requester_id: tea01
+    lot_id: lot_gas
+    quantity: 1
+    destination_cabinet_id: cab_gas
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 1
+    reason_code: ALLOWED
+- id: H20
+  request:
+    request_id: H20
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 10
+    destination_cabinet_id: cab_wr
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 10
+    reason_code: ALLOWED
+- id: H21
+  request:
+    request_id: H21
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 12
+    destination_cabinet_id: cab_wr
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 10
+    reason_code: ISSUE_CAP
+- id: H22
+  request:
+    request_id: H22
+    requester_id: stu01
+    lot_id: lot_eth_low
+    quantity: 20
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 20
+    reason_code: ALLOWED
+- id: H23
+  request:
+    request_id: H23
+    requester_id: stu01
+    lot_id: lot_eth_low
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 30
+    reason_code: STOCK_SHORT
+- id: H24
+  request:
+    request_id: H24
+    requester_id: tea01
+    lot_id: lot_eth_low
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 30
+    reason_code: STOCK_SHORT
+- id: H25
+  request:
+    request_id: H25
+    requester_id: tea01
+    lot_id: lot_eth_low
+    quantity: 30
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 30
+    reason_code: ALLOWED
+- id: H26
+  request:
+    request_id: H26
+    requester_id: stu03
+    lot_id: lot_acid
+    quantity: 150
+    destination_cabinet_id: cab_acid
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 100
+    reason_code: ISSUE_CAP
+- id: H27
+  request:
+    request_id: H27
+    requester_id: stu03
+    lot_id: lot_base
+    quantity: 100
+    destination_cabinet_id: cab_base
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 100
+    reason_code: ALLOWED
+- id: H28
+  request:
+    request_id: H28
+    requester_id: stu03
+    lot_id: lot_base
+    quantity: 180
+    destination_cabinet_id: cab_base
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 100
+    reason_code: ISSUE_CAP
+- id: H29
+  request:
+    request_id: H29
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 100.5
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 100.5
+    reason_code: ALLOWED
+- id: H30
+  request:
+    request_id: H30
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 4
+    destination_cabinet_id: cab_wr
+    open_issue_classes:
+    - ACID
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H31
+  request:
+    request_id: H31
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 4
+    destination_cabinet_id: cab_wr
+    open_issue_classes:
+    - BASE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H32
+  request:
+    request_id: H32
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 4
+    destination_cabinet_id: cab_wr
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H33
+  request:
+    request_id: H33
+    requester_id: tea01
+    lot_id: lot_wr
+    quantity: 4
+    destination_cabinet_id: cab_wr
+    open_issue_classes:
+    - FLAMMABLE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H34
+  request:
+    request_id: H34
+    requester_id: tea01
+    lot_id: lot_acid
+    quantity: 20
+    destination_cabinet_id: cab_acid
+    open_issue_classes:
+    - WATER_REACTIVE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H35
+  request:
+    request_id: H35
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 20
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - WATER_REACTIVE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H36
+  request:
+    request_id: H36
+    requester_id: tea01
+    lot_id: lot_base
+    quantity: 20
+    destination_cabinet_id: cab_base
+    open_issue_classes:
+    - WATER_REACTIVE
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H37
+  request:
+    request_id: H37
+    requester_id: stu01
+    lot_id: lot_eth_tie
+    quantity: 300
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 250
+    reason_code: ISSUE_CAP
+- id: H38
+  request:
+    request_id: H38
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - TOXIC
+  gold:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+- id: H39
+  request:
+    request_id: H39
+    requester_id: tea01
+    lot_id: lot_tox_tie
+    quantity: 80
+    destination_cabinet_id: cab_tox
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 50
+    reason_code: ISSUE_CAP
+- id: H40
+  request:
+    request_id: H40
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - FLAMMABLE
+  gold:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+- id: H41
+  request:
+    request_id: H41
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - TOXIC
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H42
+  request:
+    request_id: H42
+    requester_id: stu01
+    lot_id: lot_eth
+    quantity: 40
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - ACID
+  gold:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+- id: H43
+  request:
+    request_id: H43
+    requester_id: stu02
+    lot_id: lot_eth_exp
+    quantity: 8
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: ISOLATE
+    approved_quantity: null
+    reason_code: LOT_NOT_ISSUABLE
+- id: H44
+  request:
+    request_id: H44
+    requester_id: stu01
+    lot_id: lot_acid_dmg
+    quantity: 12
+    destination_cabinet_id: cab_base
+    open_issue_classes: []
+  gold:
+    action: ISOLATE
+    approved_quantity: null
+    reason_code: LOT_NOT_ISSUABLE
+- id: H45
+  request:
+    request_id: H45
+    requester_id: tea01
+    lot_id: lot_eth_empty
+    quantity: 15
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: H46
+  request:
+    request_id: H46
+    requester_id: tea01
+    lot_id: lot_eth_empty
+    quantity: 15
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - TOXIC
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: OUT_OF_STOCK
+- id: H47
+  request:
+    request_id: H47
+    requester_id: stu01
+    lot_id: lot_eth
+    quantity: 60
+    destination_cabinet_id: cab_acid
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: CABINET_INCOMPATIBLE
+- id: H48
+  request:
+    request_id: H48
+    requester_id: stu02
+    lot_id: lot_acid
+    quantity: 20
+    destination_cabinet_id: cab_acid
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: CLASS_NOT_AUTHORIZED
+- id: H49
+  request:
+    request_id: H49
+    requester_id: stu01
+    lot_id: lot_base
+    quantity: 20
+    destination_cabinet_id: cab_base
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: CLASS_NOT_AUTHORIZED
+- id: H50
+  request:
+    request_id: H50
+    requester_id: nobody
+    lot_id: lot_ox
+    quantity: 12
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: UNKNOWN_REQUESTER
+- id: H51
+  request:
+    request_id: H51
+    requester_id: tea01
+    lot_id: missing
+    quantity: 25
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: UNKNOWN_LOT
+- id: H52
+  request:
+    request_id: H52
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: 15
+    destination_cabinet_id: missing_cab
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: UNKNOWN_CABINET
+- id: H53
+  request:
+    request_id: H53
+    requester_id: ban01
+    lot_id: lot_eth_exp
+    quantity: 10
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: BANNED_REQUESTER
+- id: H54
+  request:
+    request_id: H54
+    requester_id: ghost
+    lot_id: lot_eth
+    quantity: 0
+    destination_cabinet_id: cab_flam
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: INVALID_QUANTITY
+- id: H55
+  request:
+    request_id: H55
+    requester_id: tea01
+    lot_id: lot_eth
+    quantity: -5
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: INVALID_QUANTITY
+- id: H56
+  request:
+    request_id: H56
+    requester_id: stu03
+    lot_id: lot_ox
+    quantity: 40
+    destination_cabinet_id: cab_ox
+    open_issue_classes:
+    - BASE
+  gold:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+- id: H57
+  request:
+    request_id: H57
+    requester_id: tea01
+    lot_id: lot_acid
+    quantity: 250
+    destination_cabinet_id: cab_acid
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 200
+    reason_code: ISSUE_CAP
+- id: H58
+  request:
+    request_id: H58
+    requester_id: stu02
+    lot_id: lot_ox
+    quantity: 150
+    destination_cabinet_id: cab_ox
+    open_issue_classes: []
+  gold:
+    action: LIMIT
+    approved_quantity: 100
+    reason_code: ISSUE_CAP
+- id: H59
+  request:
+    request_id: H59
+    requester_id: tea01
+    lot_id: lot_tox
+    quantity: 50
+    destination_cabinet_id: cab_tox
+    open_issue_classes: []
+  gold:
+    action: ALLOW
+    approved_quantity: 50
+    reason_code: ALLOWED
+- id: H60
+  request:
+    request_id: H60
+    requester_id: stu03
+    lot_id: lot_eth
+    quantity: 200
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+    - TOXIC
+  gold:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE

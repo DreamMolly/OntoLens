@@ -1,0 +1,610 @@
+{
+  "schema_version": "peiwu-public-corpus-1",
+  "scope": "public_documents_with_synthetic_ledger",
+  "collected_at_utc": "2026-10-08T06:21:42.831919+00:00",
+  "documents": [
+    {
+      "id": "PUB-MOE-2023",
+      "title": "高等学校实验室安全规范",
+      "publisher": "教育部办公厅",
+      "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+      "published_at": "2023-02-20",
+      "source_family": "MOE-lab-safety",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-MOE-2023.txt",
+      "excerpt_sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。"
+        },
+        {
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。"
+        },
+        {
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，"
+        },
+        {
+          "locator": "L5",
+          "source_locator": "PDF第11页，第三十条",
+          "quote": "第三十条高校应根据本规范，结合本校实际情况，制定各项具体实施办法。各类实验室要符合国家行业相关实验室标准。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-original.pdf",
+          "sha256": "96f7c6e7ec93a09e9e4edd91e7038dd3d7a9c4c99fba0b097f62f1b6c380c920",
+          "artifact_kind": "original_pdf_bytes"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+          "sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+          "artifact_kind": "pypdf_page_text"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "notice_url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/t20230220_1045998.html",
+      "issued_at": "2023-02-08",
+      "normalization": "PDF排版空白删除；跨页引文中的印刷页码已删除",
+      "applicability": "2023规范原文；特定记录期限需与现行法及适用范围联读"
+    },
+    {
+      "id": "PUB-MOE-2024",
+      "title": "高等学校实验室安全分级分类管理办法（试行）",
+      "publisher": "教育部",
+      "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+      "published_at": "2024-04-22",
+      "source_family": "MOE-lab-safety",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-MOE-2024.txt",
+      "excerpt_sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第二条",
+          "quote": "第二条 本办法中的实验室，是指隶属于高校从事教学、科研等实验、实训活动的场所及其所属设施，以房间为管理单元。中试性质和工业化放大性质的试验场所及其所属设施不在本办法管理范围内，高校如涉及相关场所应根据相关法律法规及标准规范制定相关管理办法。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。"
+        },
+        {
+          "locator": "L3",
+          "source_locator": "第十五条",
+          "quote": "第十五条 学校党政主要负责人、学校实验室安全主管职能部门、二级单位、实验室等各级责任机构应根据学校、二级单位和本实验室实际情况，分级开展相应的安全检查工作。在重大隐患未完成整改前，不得在实验室中进行实验活动。"
+        },
+        {
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。"
+        },
+        {
+          "locator": "L5",
+          "source_locator": "第十七条",
+          "quote": "第十七条 在实验室开展的科研项目、学生课题，或其他实验活动应进行相应等级的安全风险评估。涉及重要危险源的实验活动，二级单位应进行审查、备案，学校应不定期抽查。Ⅰ级/红色级、Ⅱ级/橙色级实验室应针对重要危险源制定相应的管理办法和应急管控措施，责任到人。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/moe-2024.json",
+          "sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+          "artifact_kind": "browser_act_rendered_markdown"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "issued_at": "2024-03-26",
+      "document_number": "教科信〔2024〕4号",
+      "applicability": "高校教学科研实验室；中试和工业化放大试验场所排除在本办法范围外"
+    },
+    {
+      "id": "PUB-MOE-2013",
+      "title": "关于进一步加强高等学校实验室危险化学品安全管理工作的通知",
+      "publisher": "教育部办公厅",
+      "url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+      "published_at": "2013-05-23",
+      "source_family": "MOE-lab-safety",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-MOE-2013.txt",
+      "excerpt_sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第三项中五双管理片段",
+          "quote": "对于危险化学品中的毒害品，要参照对剧毒化学品的管理要求，落实“五双”即“双人保管、双人领取、双人使用、双把锁、双本帐”的管理制度。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2013-original.html",
+          "sha256": "e98bac14dd072c6465c5059e63ef79c18847d887cf467eb8f3ad32f9ffdca78e",
+          "artifact_kind": "original_http_html_bytes"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2013.md",
+          "sha256": "a8c27a62724f2a1b199eb00df325c5ff587df30291326ec50656bf1538ea98ff",
+          "artifact_kind": "browser_act_rendered_markdown"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "issued_at": "2013-05-10",
+      "document_number": "教技厅〔2013〕1号",
+      "applicability": "历史政策背景，不单独宣称2026现行法律适用"
+    },
+    {
+      "id": "PUB-MOE-2021",
+      "title": "关于开展加强高校实验室安全专项行动的通知",
+      "publisher": "教育部办公厅",
+      "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+      "published_at": "2021-12-31",
+      "source_family": "MOE-lab-safety",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-MOE-2021.txt",
+      "excerpt_sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "三（三）末句",
+          "quote": "实验室重大安全隐患排除前或排除过程中无法保证安全的，应停止实验活动，隐患排除后经审查通过方可恢复实验。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2021-original.html",
+          "sha256": "b145ce9956020b06e2167ad199ae7dd555da5bd3440532536e91bcf900c1f7b0",
+          "artifact_kind": "original_http_html_bytes"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2021.md",
+          "sha256": "b566d7cf88f244691f77e08c4e35425313e97681137bd1a204855b2f294ad666",
+          "artifact_kind": "browser_act_rendered_markdown"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "issued_at": "2021-12-08",
+      "document_number": "教科信厅函〔2021〕38号",
+      "applicability": "专项行动政策背景；未核对全部后续政策调整"
+    },
+    {
+      "id": "PUB-LAW-2026",
+      "title": "中华人民共和国危险化学品安全法",
+      "publisher": "全国人民代表大会常务委员会",
+      "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+      "published_at": "2026-01-15",
+      "source_family": "hazardous-chemical-safety-law",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-LAW-2026.txt",
+      "excerpt_sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第五条第二款人员培训片段",
+          "quote": "从业人员应当接受教育和培训，考核合格后上岗作业；对有资格要求的岗位，应当配备依法取得相应资格的人员。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第四十一条第一款",
+          "quote": "第四十一条　危险化学品应当储存在专用仓库、专用场地或者专用储存室、储存专柜（以下统称专用储存场所）内，并由专人负责管理；剧毒化学品以及储存数量构成重大危险源的其他危险化学品，应当在专用储存场所内单独存放，实行双人收发、双人保管制度，收发记录的保存期限不得少于三年。"
+        },
+        {
+          "locator": "L3",
+          "source_locator": "第四十二条第一款",
+          "quote": "第四十二条　储存危险化学品的单位应当建立危险化学品出入库核查、登记制度。"
+        },
+        {
+          "locator": "L4",
+          "source_locator": "第五十一条第一款",
+          "quote": "第五十一条　使用危险化学品的单位应当将其作业场所使用的化学品安全技术说明书和化学品安全标签提供给从业人员，并加强培训教育，告知从业人员正确使用的方法和在紧急情况下应当采取的措施。"
+        },
+        {
+          "locator": "L5",
+          "source_locator": "第一百二十七条",
+          "quote": "第一百二十七条　本法自2026年5月1日起施行。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+          "sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+          "artifact_kind": "original_http_html_bytes"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+          "sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+          "artifact_kind": "browser_act_rendered_markdown"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "adopted_at": "2025-12-27",
+      "effective_from": "2026-05-01",
+      "hosting_organization": "中华人民共和国深圳海事局",
+      "hosting_role": "政府部门转载，非人大原发站",
+      "applicability": "第四十一条的双人管理和三年期限有明确品类/数量条件；配套目录与全部法律适用尚待领域复核"
+    },
+    {
+      "id": "PUB-WYU-2026",
+      "title": "关于做好2026年度实验安全检查工作的通知",
+      "publisher": "五邑大学实验室与设备管理处",
+      "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+      "published_at": "2026-05-11",
+      "source_family": "WYU-local-implementation",
+      "kind": "public",
+      "external_model_allowed": false,
+      "excerpt_path": "excerpts/PUB-WYU-2026.txt",
+      "excerpt_sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第一项风险清单与台账片段",
+          "quote": "参照《高校实验室重要危险源主要风险清单（试行）》，以房间为单位，组织各实验室开展安全风险排查，填写主要风险点，形成实验室安全风险清单，摸清学院实验室风险情况底数，建立台账并动态调整，做到“一室一表，一院一台账”。"
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。"
+        }
+      ],
+      "acquisition": [
+        {
+          "local_archive": ".runtime/public-source-research/wyu-notice-2026.md",
+          "sha256": "87bf0da632a77ae0734197d4f6e36e1d9d95f1fddeb9785a86a185fb63d6f2db",
+          "artifact_kind": "browser_act_rendered_markdown"
+        }
+      ],
+      "quotation_scope": "注明来源的行政管理短引文；非网站全文再许可，未采集内部台账",
+      "issued_at": "2026-05-11",
+      "applicability": "五邑大学校内通知，只作公开机构实施例，不泛化为其他高校要求"
+    }
+  ],
+  "synthetic_ledger": [
+    {
+      "id": "LEDGER-ADMISSION-DEMO",
+      "path": "synthetic-ledgers/LEDGER-ADMISSION-DEMO.csv",
+      "sha256": "c4aee745038a14f76cf6dbc53ec3a5e31055d9c4bbb8332dd76f5847c752f04d",
+      "kind": "synthetic",
+      "notice": "开发者编造的管理缺件记录，无实际学校人员、库存或出库活动，不作行业效果证据"
+    },
+    {
+      "id": "LEDGER-VERSION-DEMO",
+      "path": "synthetic-ledgers/LEDGER-VERSION-DEMO.csv",
+      "sha256": "1fd999a6b826aee0e29ed69a7b19c933671086f185795de17cb620846ee498ad",
+      "kind": "synthetic",
+      "notice": "开发者编造的管理缺件记录，无实际学校人员、库存或出库活动，不作行业效果证据"
+    }
+  ],
+  "bundles": [
+    {
+      "id": "BUNDLE-ADMISSION",
+      "source_ids": [
+        "PUB-MOE-2023",
+        "PUB-MOE-2024",
+        "PUB-MOE-2021",
+        "PUB-LAW-2026"
+      ],
+      "ledger_id": "LEDGER-ADMISSION-DEMO"
+    },
+    {
+      "id": "BUNDLE-VERSION",
+      "source_ids": [
+        "PUB-MOE-2023",
+        "PUB-MOE-2024",
+        "PUB-MOE-2013",
+        "PUB-MOE-2021",
+        "PUB-LAW-2026",
+        "PUB-WYU-2026"
+      ],
+      "ledger_id": "LEDGER-VERSION-DEMO"
+    }
+  ],
+  "questions": [
+    {
+      "id": "PUB-Q01",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "question": "合成申请缺少培训考试证据，需要参考哪两份公开要求？",
+      "query": "培训 考核",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1"
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L1"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "实际培训记录",
+        "人员授权",
+        "领域复核"
+      ],
+      "synthetic_record_id": "DEMO-ADMISSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q02",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "question": "仅有口头培训说明时，应查找哪些考试和培训存档要求？",
+      "query": "培训 记录",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2"
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L4"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "可核验的培训考试记录",
+        "实际人员适用范围"
+      ],
+      "synthetic_record_id": "DEMO-ADMISSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q03",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "question": "未取得准入资格时，为什么不能将检索片段写成放行决定？",
+      "query": "考核",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1"
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "准入资格原件",
+        "审核意见"
+      ],
+      "synthetic_record_id": "DEMO-ADMISSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q04",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "question": "存在未整改隐患的合成申请，需要联读哪些停止实验活动条款？",
+      "query": "隐患 实验",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L3"
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L1"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "隐患整改及复查记录",
+        "实验项目范围"
+      ],
+      "synthetic_record_id": "DEMO-ADMISSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q05",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "question": "没有项目风险审查记录时，应联读培训准入与风险评估哪些证据？",
+      "query": "实验",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1"
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L5"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "项目风险评估",
+        "准入资格",
+        "领域审核"
+      ],
+      "synthetic_record_id": "DEMO-ADMISSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q06",
+      "bundle_id": "BUNDLE-VERSION",
+      "question": "2023的一年登记资料与2026法律的三年收发记录如何比较？",
+      "query": "记录 登记",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4"
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L2"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "品类与数量条件",
+        "记录类型",
+        "适用日期",
+        "专业法律复核"
+      ],
+      "synthetic_record_id": "DEMO-VERSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q07",
+      "bundle_id": "BUNDLE-VERSION",
+      "question": "库存台账与出入库登记分别由哪些公开条款支撑？",
+      "query": "台账 登记",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3"
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L3"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "实际出入库登记",
+        "库存盘点",
+        "规则适用确认"
+      ],
+      "synthetic_record_id": "DEMO-VERSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q08",
+      "bundle_id": "BUNDLE-VERSION",
+      "question": "危险源变化后，国家分类办法与公开校内通知要求更新哪些台账？",
+      "query": "台账",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2"
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L1"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "实际机构制度",
+        "变更危险源记录",
+        "备案确认"
+      ],
+      "synthetic_record_id": "DEMO-VERSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q09",
+      "bundle_id": "BUNDLE-VERSION",
+      "question": "账账相符、账实相符与最新出入库登记要求应如何交叉定位？",
+      "query": "记录 登记 台账",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2013",
+          "locator": "L1"
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L3"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "真实库存记录",
+        "现行本校制度",
+        "适用范围复核"
+      ],
+      "synthetic_record_id": "DEMO-VERSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    },
+    {
+      "id": "PUB-Q10",
+      "bundle_id": "BUNDLE-VERSION",
+      "question": "重大隐患未整改时，国家分类管理要求和公开校内整改通知有哪些依据？",
+      "query": "隐患",
+      "required_evidence": [
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L3"
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2"
+        }
+      ],
+      "expected": {
+        "status": "needs_review",
+        "decision": null
+      },
+      "label_status": "developer_authored_unreviewed",
+      "missing_requirements": [
+        "本校整改规则",
+        "复查证据",
+        "现场条件"
+      ],
+      "synthetic_record_id": "DEMO-VERSION-001",
+      "evaluation_boundary": "仅核对检索引文覆盖；未调用业务判定、未评估回答或法律适用正确性"
+    }
+  ],
+  "split": "development_only",
+  "independence_notice": "同一来源家族及通用制度跨包共享；6文件和2包不是独立盲测样本",
+  "professional_review_status": "unreviewed",
+  "external_model_allowed": false,
+  "reuse_notice_url": "http://www.moe.gov.cn/jyb_sy/s3634/201005/t20100504_87292.html",
+  "reuse_notice": "只收录注明来源的短引文及开发标签。未再发布网站全文/原版模板，未获得任何学校内部台账。"
+}

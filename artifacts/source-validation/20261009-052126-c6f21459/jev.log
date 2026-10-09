@@ -1,0 +1,14 @@
+{
+  "mode": "preflight",
+  "live_request_sent": false,
+  "configuration": {
+    "key_present": true,
+    "sdk_installed": true,
+    "model": "jev-1.13.0",
+    "live_verified": false,
+    "review_threshold": 0.75,
+    "threshold_status": "未在项目资料上校准，仅用于候选显示优先级",
+    "purpose": "证据相关性重排与引用复核提示，不作业务决定"
+  },
+  "next": "Set TYPESAFE_API_KEY and rerun with --live to verify one synthetic request."
+}

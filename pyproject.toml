@@ -1,0 +1,24 @@
+[project]
+name = "peiwu"
+version = "0.4.0"
+description = "OntoLens: auditable lab chemical issue decisions for Huawei ICT track 3."
+requires-python = ">=3.11"
+dependencies = ["PyYAML"]
+
+[project.optional-dependencies]
+workbench = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "python-multipart>=0.0.20", "pypdf>=5,<7", "httpx>=0.27,<1", "mcp>=1.20,<2"]
+jev = ["typesafe-sdk==0.7.1"]
+test = ["pytest>=8", "httpx>=0.27,<1", "playwright>=1.50,<2"]
+
+[project.scripts]
+peiwu = "peiwu.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+peiwu = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

@@ -1,0 +1,52 @@
+{
+  "format": "ontolens-ui-qa-1",
+  "status": "passed",
+  "observed_at": "2026-10-09T05:24:09.971056+00:00",
+  "scope": "Isolated synthetic Playwright fixtures; not live industry, real device or screen reader validation",
+  "tests": 6,
+  "failures": 0,
+  "errors": 0,
+  "page_errors": 0,
+  "external_browser_requests": 0,
+  "static_sha256": {
+    "app.js": "52322737d8012667fa2150cb4187290fc891c3c6c0225b600b30028b10f1e748",
+    "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924",
+    "index.html": "77fc117556d0f462a1cdf1533e9377b92a18a2f23a9cf4b376fd26b35300409e",
+    "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded"
+  },
+  "test_sha256": "7d6de0515bcee8f772cd64490299521457e43cfc4af8c3fcb08b8047a9787cba",
+  "validation_command": ".venv/Scripts/python.exe -m pytest -q",
+  "cases": [
+    {
+      "name": "test_native_iso_authority_and_all_date_fields",
+      "status": "passed",
+      "seconds": 3.819
+    },
+    {
+      "name": "test_panel_dialog_grid_header_navigation_and_keyboard",
+      "status": "passed",
+      "seconds": 3.461
+    },
+    {
+      "name": "test_bounds_required_invalid_input_and_focus_recovery",
+      "status": "passed",
+      "seconds": 2.815
+    },
+    {
+      "name": "test_leap_year_month_year_and_timezone_safe_calendar_value",
+      "status": "passed",
+      "seconds": 2.629
+    },
+    {
+      "name": "test_mobile_dismissal_resize_scroll_screenshots_and_motion",
+      "status": "passed",
+      "seconds": 3.468
+    },
+    {
+      "name": "test_date_interactions_make_no_api_writes",
+      "status": "passed",
+      "seconds": 2.811
+    }
+  ],
+  "api_write_requests": 0
+}

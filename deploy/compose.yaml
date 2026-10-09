@@ -1,0 +1,28 @@
+services:
+  ontolens:
+    build:
+      context: ..
+    image: ontolens:0.4.0
+    ports:
+      - "127.0.0.1:${ONTOLENS_PORT:-8768}:8768"
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      PEIWU_DB: /state/workbench.sqlite3
+      PEIWU_AUTH_FILE: /config/accounts.json
+      PEIWU_SESSION_DB: /state/access.sqlite3
+      PEIWU_WORKSPACE_MODE: operational
+    volumes:
+      - ontolens-state:/state
+      - ../.runtime/operational:/config:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+volumes:
+  ontolens-state:

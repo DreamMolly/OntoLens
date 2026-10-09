@@ -1,0 +1,12 @@
+{
+  "mode": "preflight",
+  "scope": "local workbench only; no model request",
+  "configuration": {
+    "configured": true,
+    "protocol": "responses",
+    "model": "gpt-5.6-terra",
+    "base_url_present": true,
+    "api_key_present": true,
+    "live_request_sent": false
+  }
+}

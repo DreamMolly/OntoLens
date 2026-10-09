@@ -1,0 +1,2 @@
+# Evidence source manifests hash exact bytes. Preserve CRLF/LF across clones.
+* -text

@@ -1,0 +1,16 @@
+{
+  "status": "already_present",
+  "time": "2026-09-24T11:57:42.523324+00:00",
+  "scope": "Repository starter import only; not model orchestration or deployment readiness",
+  "bundle_sha256": "9db87c630c2068b7ff0f85c7d93b5df47261a9d4a7945d759c7b8600695befb0",
+  "agent_id": 1,
+  "import_posts": 0,
+  "skill_names": [
+    "peiwu-decision",
+    "peiwu-evidence",
+    "peiwu-intake"
+  ],
+  "model_calls": 0,
+  "apply_requested": true,
+  "changed": false
+}

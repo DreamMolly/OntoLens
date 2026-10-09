@@ -1,0 +1,146 @@
+people:
+  tea01:
+    role: teacher
+    banned: false
+    classes:
+    - FLAMMABLE
+    - OXIDIZER
+    - ACID
+    - BASE
+    - WATER_REACTIVE
+    - TOXIC
+    - COMPRESSED_GAS
+    - GENERAL
+  stu01:
+    role: student
+    banned: false
+    classes:
+    - FLAMMABLE
+    - ACID
+    - GENERAL
+  stu02:
+    role: student
+    banned: false
+    classes:
+    - OXIDIZER
+    - GENERAL
+  stu03:
+    role: student
+    banned: false
+    classes:
+    - FLAMMABLE
+    - OXIDIZER
+    - ACID
+    - BASE
+  ban01:
+    role: student
+    banned: true
+    classes:
+    - GENERAL
+chemicals:
+  ethanol:
+    hazard_class: FLAMMABLE
+    per_issue_limit: 500
+    unit: mL
+  peroxide:
+    hazard_class: OXIDIZER
+    per_issue_limit: 200
+    unit: mL
+  acid:
+    hazard_class: ACID
+    per_issue_limit: 200
+    unit: mL
+  base:
+    hazard_class: BASE
+    per_issue_limit: 200
+    unit: g
+  water_reactive:
+    hazard_class: WATER_REACTIVE
+    per_issue_limit: 10
+    unit: g
+  toxic_salt:
+    hazard_class: TOXIC
+    per_issue_limit: 50
+    unit: g
+  inert_gas:
+    hazard_class: COMPRESSED_GAS
+    per_issue_limit: 1
+    unit: cylinder
+lots:
+  lot_eth:
+    chemical_id: ethanol
+    on_hand: 2000
+    status: available
+  lot_eth_low:
+    chemical_id: ethanol
+    on_hand: 30
+    status: available
+  lot_eth_tie:
+    chemical_id: ethanol
+    on_hand: 250
+    status: available
+  lot_eth_exp:
+    chemical_id: ethanol
+    on_hand: 100
+    status: expired
+  lot_eth_empty:
+    chemical_id: ethanol
+    on_hand: 0
+    status: available
+  lot_ox:
+    chemical_id: peroxide
+    on_hand: 1000
+    status: available
+  lot_acid:
+    chemical_id: acid
+    on_hand: 1000
+    status: available
+  lot_acid_dmg:
+    chemical_id: acid
+    on_hand: 100
+    status: damaged
+  lot_base:
+    chemical_id: base
+    on_hand: 1000
+    status: available
+  lot_wr:
+    chemical_id: water_reactive
+    on_hand: 100
+    status: available
+  lot_tox:
+    chemical_id: toxic_salt
+    on_hand: 200
+    status: available
+  lot_tox_tie:
+    chemical_id: toxic_salt
+    on_hand: 50
+    status: available
+  lot_gas:
+    chemical_id: inert_gas
+    on_hand: 3
+    status: available
+cabinets:
+  cab_flam:
+    allowed_classes:
+    - FLAMMABLE
+  cab_ox:
+    allowed_classes:
+    - OXIDIZER
+  cab_acid:
+    allowed_classes:
+    - ACID
+  cab_base:
+    allowed_classes:
+    - BASE
+  cab_wr:
+    allowed_classes:
+    - WATER_REACTIVE
+  cab_tox:
+    allowed_classes:
+    - TOXIC
+  cab_gas:
+    allowed_classes:
+    - COMPRESSED_GAS
+  cab_gen:
+    allowed_classes:
+    - GENERAL

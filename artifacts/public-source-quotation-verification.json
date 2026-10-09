@@ -1,0 +1,157 @@
+{
+  "schema_version": "peiwu-public-quotation-check-1",
+  "checked_at_utc": "2026-10-08T06:23:08.007288+00:00",
+  "manifest_sha256": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
+  "scope": "selected quotes compared with saved rendered markdown or pypdf page text; PDF whitespace and page headers normalized, no semantic/professional verification",
+  "quote_count": 21,
+  "passed": true,
+  "quotes": [
+    {
+      "source_id": "PUB-MOE-2023",
+      "locator": "L1",
+      "source_locator": "PDF第4—5页，第十条（二）",
+      "matched_normalized_original": true,
+      "quote_sha256": "6f02b408b742528816212bf5553e69f11debd82a3e1f6048aab8931d1c95e44a"
+    },
+    {
+      "source_id": "PUB-MOE-2023",
+      "locator": "L2",
+      "source_locator": "PDF第6页，第十一条（三）",
+      "matched_normalized_original": true,
+      "quote_sha256": "dd9bac049f27818d0b8213663607abc5eee3a3a8913dcf53474e89ac56be3e80"
+    },
+    {
+      "source_id": "PUB-MOE-2023",
+      "locator": "L3",
+      "source_locator": "PDF第9—10页，第二十四条首句",
+      "matched_normalized_original": true,
+      "quote_sha256": "623c15be83fd10dd9da649e3d56fda7e86b82150b71e20457efa0de833b6b26c"
+    },
+    {
+      "source_id": "PUB-MOE-2023",
+      "locator": "L4",
+      "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "14d6200f4cda26994ec180e9473a3d57fc63afc6e82a9c7f7b9692874a43cf63"
+    },
+    {
+      "source_id": "PUB-MOE-2023",
+      "locator": "L5",
+      "source_locator": "PDF第11页，第三十条",
+      "matched_normalized_original": true,
+      "quote_sha256": "a753f6b5e386d55e6e033e84fe11ead9ada7a241482d2da5c5f94da7a0047e05"
+    },
+    {
+      "source_id": "PUB-MOE-2024",
+      "locator": "L1",
+      "source_locator": "第二条",
+      "matched_normalized_original": true,
+      "quote_sha256": "08248f67b70183bc72f7101c9ba72305ae78f012f1c598616c60cabbd7d8b46e"
+    },
+    {
+      "source_id": "PUB-MOE-2024",
+      "locator": "L2",
+      "source_locator": "第十一条",
+      "matched_normalized_original": true,
+      "quote_sha256": "44055c7eb2fa803092f3ad902e4608a9ea466692e357597b7dad2cdd8fd59f90"
+    },
+    {
+      "source_id": "PUB-MOE-2024",
+      "locator": "L3",
+      "source_locator": "第十五条",
+      "matched_normalized_original": true,
+      "quote_sha256": "a07c7e62d624dc244718875dc7f675bf1f4d8d997cc9739ce9af214b3da30ad9"
+    },
+    {
+      "source_id": "PUB-MOE-2024",
+      "locator": "L4",
+      "source_locator": "第十六条",
+      "matched_normalized_original": true,
+      "quote_sha256": "9e39ed5aa253e3aa5dfdaf90a93d8337113eb825a311b98ebc771e5c37aca7f1"
+    },
+    {
+      "source_id": "PUB-MOE-2024",
+      "locator": "L5",
+      "source_locator": "第十七条",
+      "matched_normalized_original": true,
+      "quote_sha256": "1dc8a89061c0f469978f48135be9c9dc96b5b85bbcce095a7814f9a347dfe93d"
+    },
+    {
+      "source_id": "PUB-MOE-2013",
+      "locator": "L1",
+      "source_locator": "第二项中全过程记录与账实核对片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "b09d9fc681e1ba36c73615394988d3290464ad36498721fa648d8ed4154dcd8d"
+    },
+    {
+      "source_id": "PUB-MOE-2013",
+      "locator": "L2",
+      "source_locator": "第三项中五双管理片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "696c2f8b8b563d077e9a7e0bc3852e0ac15f43a86a0f73e75a5eafba3f61d718"
+    },
+    {
+      "source_id": "PUB-MOE-2021",
+      "locator": "L1",
+      "source_locator": "三（三）末句",
+      "matched_normalized_original": true,
+      "quote_sha256": "ee64129a1e6972571c5d51c85a718d6e11b04ee040a672245f7b4b7692d2305b"
+    },
+    {
+      "source_id": "PUB-MOE-2021",
+      "locator": "L2",
+      "source_locator": "三（五）人员准入片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "5de65adb5bcc29a5f2288f7dd49e5fdaab513566ed7db31e0d924f5d35b1753a"
+    },
+    {
+      "source_id": "PUB-LAW-2026",
+      "locator": "L1",
+      "source_locator": "第五条第二款人员培训片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "47cc196a1d9e19940ab0b3985b957a7bc9a2db3b471b7d442bd58e38c54680d9"
+    },
+    {
+      "source_id": "PUB-LAW-2026",
+      "locator": "L2",
+      "source_locator": "第四十一条第一款",
+      "matched_normalized_original": true,
+      "quote_sha256": "da5eb3d1c8fe00f3a51fceebc2079353c5bb1be6794664410a1f705ce65a5730"
+    },
+    {
+      "source_id": "PUB-LAW-2026",
+      "locator": "L3",
+      "source_locator": "第四十二条第一款",
+      "matched_normalized_original": true,
+      "quote_sha256": "e960987afab19ff3614748882a3227190cfd2d2baf1c6c0dc8dfc746b55b4d53"
+    },
+    {
+      "source_id": "PUB-LAW-2026",
+      "locator": "L4",
+      "source_locator": "第五十一条第一款",
+      "matched_normalized_original": true,
+      "quote_sha256": "c2a0b16e3a3518f66b22bd226951b979ff1f6a908d40c086897ed4da7fa7d078"
+    },
+    {
+      "source_id": "PUB-LAW-2026",
+      "locator": "L5",
+      "source_locator": "第一百二十七条",
+      "matched_normalized_original": true,
+      "quote_sha256": "eeecac5418500e8cf10fe609b7791f7b25c05fdb4fc55fcfd935765cd0aa0738"
+    },
+    {
+      "source_id": "PUB-WYU-2026",
+      "locator": "L1",
+      "source_locator": "第一项风险清单与台账片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "40ab826da1e9b09670a957dca0599d914eabae4e2d351392feb5898512dc0638"
+    },
+    {
+      "source_id": "PUB-WYU-2026",
+      "locator": "L2",
+      "source_locator": "第二项自查整改与备案片段",
+      "matched_normalized_original": true,
+      "quote_sha256": "e1dd439e69b753275a3ff7cac3ee22860a1b9d9401da22c60cab2cae9571596c"
+    }
+  ]
+}

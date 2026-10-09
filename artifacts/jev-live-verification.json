@@ -1,0 +1,21 @@
+{
+  "mode": "live",
+  "live_request_sent": true,
+  "scope": "one synthetic relevance query; no private or real industry data",
+  "model": "jev-1.13.0",
+  "resolved_model": "jev-1.13.0",
+  "question_version": "peiwu-evidence-support-v2",
+  "purpose": "relevance",
+  "request_count": 1,
+  "usage": {"input_tokens": 664, "output_tokens": 40},
+  "input_hash": "38d8da684bc122fecb0d6b2428d66200d8fb8b648609d6f662df377501535da3",
+  "review_required": true,
+  "review_threshold": 0.75,
+  "candidates": [
+    {"source_id": "doc_954309929289464c90f0", "locator": "$.stu03", "jev_probability": 0.85, "jev_review_priority": "high"},
+    {"source_id": "doc_544de3298e8e453bb7fb", "locator": "$.stu03", "jev_probability": 0.65, "jev_review_priority": "normal"}
+  ],
+  "status": "ready",
+  "code": "scored",
+  "notice": "Noul 概率只用于证据重排和复核优先级，不是事实准确率、独立置信度或业务决定。该文件保存一条代表性样本，不是稳定性或准确率报告。"
+}

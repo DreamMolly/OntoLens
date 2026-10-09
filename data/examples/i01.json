@@ -1,0 +1,10 @@
+{
+  "request_id": "I01",
+  "requester_id": "stu03",
+  "lot_id": "lot_eth",
+  "quantity": 100,
+  "destination_cabinet_id": "cab_flam",
+  "open_issue_classes": [
+    "OXIDIZER"
+  ]
+}

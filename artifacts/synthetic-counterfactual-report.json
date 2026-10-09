@@ -1,0 +1,1994 @@
+{
+  "schema_version": "synthetic-counterfactual.v1",
+  "scope": {
+    "mode": "synthetic_demo",
+    "claim_boundary": "Synthetic snapshot mutations only; this is not industry accuracy, safety rate, or professional review.",
+    "decision_contract": "Internal Workspace._calculate plus deterministic peiwu.checker.decide; no HTTP validation, model or network request.",
+    "http_boundary": "Invalid HTTP quantities are rejected by request validation before calculation; checker INVALID_QUANTITY is not an HTTP response.",
+    "gold_boundary": "Counterfactual expectations are a separate developer-authored metamorphic fixture; frozen data/cases gold is untouched."
+  },
+  "inputs": {
+    "fixture": {
+      "path": "data/evaluation/counterfactuals.yaml",
+      "sha256": "5242e1c74390158b0651190d7841e7320bc61efa65f5b136f29025b89f139a92",
+      "bytes": 15653
+    },
+    "catalog": {
+      "path": "data/catalog.yaml",
+      "sha256": "fbbdda9a66d1408958de7ac8a7b7e0111ffeb7c7981438935c9403dac3c96bf8",
+      "bytes": 2649
+    },
+    "rules": {
+      "path": "data/rules/v2.yaml",
+      "sha256": "750c4a7245f3dfec838182a5569782158fadf1bd6fbe567bef6bdd014b3dd47c",
+      "bytes": 288
+    },
+    "case_count": 21
+  },
+  "summary": {
+    "total": 21,
+    "passed": 21,
+    "failed": 0,
+    "all_pass": true,
+    "by_category": {
+      "unit": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "inventory": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "cabinet": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "today_unreturned_class": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "unknown_entity": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "quantity_boundary": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "authorization_validity": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0
+      },
+      "lot_status": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "invariance": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "CF-UNIT-001",
+      "category": "unit",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "baf3e95f71f2cec209a46414d63303d414246095e49872c78762ec50f3a13e26",
+      "changed_path": "request.unit",
+      "observed_changed_paths": [
+        "request.unit"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-UNIT-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.unit",
+          "value": "g"
+        },
+        "request": {
+          "request_id": "CF-UNIT-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "g",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "UNIT_MISMATCH"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "UNIT_MISMATCH"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVENTORY-001",
+      "category": "inventory",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "6fc6c7a2b7e7b0d9a09513b26dd6182a414ab5aa59400cc7d14a66b14dad9ab2",
+      "changed_path": "catalog.lots.lot_eth.on_hand",
+      "observed_changed_paths": [
+        "catalog.lots.lot_eth.on_hand"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVENTORY-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_eth.on_hand",
+          "value": 20
+        },
+        "request": {
+          "request_id": "CF-INVENTORY-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "LIMIT",
+            "approved_quantity": 20.0,
+            "reason_code": "STOCK_SHORT",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "LIMIT",
+            "approved_quantity": 20,
+            "reason_code": "STOCK_SHORT",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVENTORY-002",
+      "category": "inventory",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "31cce0bf266ddebc77c87770e4bfcfcdea08c99637818b5ef7e27b5ef943dbd3",
+      "changed_path": "catalog.lots.lot_eth.on_hand",
+      "observed_changed_paths": [
+        "catalog.lots.lot_eth.on_hand"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVENTORY-002",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_eth.on_hand",
+          "value": 0
+        },
+        "request": {
+          "request_id": "CF-INVENTORY-002",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "OUT_OF_STOCK",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "OUT_OF_STOCK",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-CABINET-001",
+      "category": "cabinet",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "d241fb0d0fa42c46a74714f11924817c59baa674ca8671701c5b451b77ffc458",
+      "changed_path": "request.destination_cabinet_id",
+      "observed_changed_paths": [
+        "request.destination_cabinet_id"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-CABINET-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.destination_cabinet_id",
+          "value": "cab_ox"
+        },
+        "request": {
+          "request_id": "CF-CABINET-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_ox",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "CABINET_INCOMPATIBLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "CABINET_INCOMPATIBLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-UNRETURNED-001",
+      "category": "today_unreturned_class",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "05834eaf97a8a3060fc5c427a7633578c01969abeaecbf72c5bc7d24e004097d",
+      "changed_path": "issues.stu01",
+      "observed_changed_paths": [
+        "issues.stu01"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-UNRETURNED-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "issues.stu01",
+          "value": [
+            "OXIDIZER"
+          ]
+        },
+        "request": {
+          "request_id": "CF-UNRETURNED-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "SESSION_INCOMPATIBLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "SESSION_INCOMPATIBLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-UNKNOWN-REQUESTER-001",
+      "category": "unknown_entity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "8dc600c8b49b719e2e8cdafa859c69b79f4eb1b2a53be7bbb4f9493c0e7e7a09",
+      "changed_path": "request.requester_id",
+      "observed_changed_paths": [
+        "request.requester_id"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-UNKNOWN-REQUESTER-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.requester_id",
+          "value": "unknown_demo_person"
+        },
+        "request": {
+          "request_id": "CF-UNKNOWN-REQUESTER-001",
+          "requester_id": "unknown_demo_person",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-UNKNOWN-LOT-001",
+      "category": "unknown_entity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "009455408cf41011a60948cfbb1165c80fb98746d21aebc6d80460ba09cdb702",
+      "changed_path": "request.lot_id",
+      "observed_changed_paths": [
+        "request.lot_id"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-UNKNOWN-LOT-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.lot_id",
+          "value": "unknown_demo_lot"
+        },
+        "request": {
+          "request_id": "CF-UNKNOWN-LOT-001",
+          "requester_id": "stu01",
+          "lot_id": "unknown_demo_lot",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-UNKNOWN-CABINET-001",
+      "category": "unknown_entity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "338568ba682a8ae4c061e92dda25913cdebf7480daa3f01c0613deb246f59e12",
+      "changed_path": "request.destination_cabinet_id",
+      "observed_changed_paths": [
+        "request.destination_cabinet_id"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-UNKNOWN-CABINET-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.destination_cabinet_id",
+          "value": "unknown_demo_cabinet"
+        },
+        "request": {
+          "request_id": "CF-UNKNOWN-CABINET-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "unknown_demo_cabinet",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "MISSING_REFERENCE"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-QUANTITY-CAP-001",
+      "category": "quantity_boundary",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "064c7daae68691b4f52c85cc5f73aba56b998d8c9f96738eb3be03774f614325",
+      "changed_path": "request.quantity",
+      "observed_changed_paths": [
+        "request.quantity"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-QUANTITY-CAP-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 250,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 250.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.quantity",
+          "value": 251
+        },
+        "request": {
+          "request_id": "CF-QUANTITY-CAP-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 251,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "LIMIT",
+            "approved_quantity": 250.0,
+            "reason_code": "ISSUE_CAP",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 250,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "LIMIT",
+            "approved_quantity": 250,
+            "reason_code": "ISSUE_CAP",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVALID-QUANTITY-001",
+      "category": "quantity_boundary",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "b74f8509bab9a1bf53a17a519006a616cf898195a99ee54f7a9a1a824548a286",
+      "changed_path": "request.quantity",
+      "observed_changed_paths": [
+        "request.quantity"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVALID-QUANTITY-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.quantity",
+          "value": 0
+        },
+        "request": {
+          "request_id": "CF-INVALID-QUANTITY-001",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 0,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "INVALID_QUANTITY",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "DENY",
+            "approved_quantity": null,
+            "reason_code": "INVALID_QUANTITY",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-START-BEFORE",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "a2a8ae42e993293c514bf84b5ffb15441d4154fdcf5e3a6d41a0e638a8f79d05",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-START-BEFORE",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-09-24"
+        },
+        "request": {
+          "request_id": "CF-AUTH-START-BEFORE",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-24"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "AUTHORIZATION_NOT_ACTIVE"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "AUTHORIZATION_NOT_ACTIVE"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-START-ON",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "b51d5686dafee8577c4d26596d379b5729245b66dee516370d58651984337c5b",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-START-ON",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-09-25"
+        },
+        "request": {
+          "request_id": "CF-AUTH-START-ON",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-25"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-START-AFTER",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "d2dc7a038b86f5d7d7bf333f7e972af219a012ac79dbea925774fa6456888b1c",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-START-AFTER",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-09-26"
+        },
+        "request": {
+          "request_id": "CF-AUTH-START-AFTER",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-26"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-END-BEFORE",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "89a91d4ea2ee7b505a29759f03e2f90104271f610bd327e63d6b4c2b41933034",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-END-BEFORE",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-09-29"
+        },
+        "request": {
+          "request_id": "CF-AUTH-END-BEFORE",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-29"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-END-ON",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "cb559a50dab408764e1f6c0fd119401d10b92f09ae208cf30bd03968568272e9",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-END-ON",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-09-30"
+        },
+        "request": {
+          "request_id": "CF-AUTH-END-ON",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-30"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-AUTH-END-AFTER",
+      "category": "authorization_validity",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [
+        {
+          "path": "validity.stu01",
+          "value": {
+            "from": "2026-09-25",
+            "until": "2026-09-30"
+          },
+          "reason": "Synthetic bounded authorization for inclusive date-boundary checks; not source evidence."
+        }
+      ],
+      "observed_setup_paths": [
+        "validity.stu01"
+      ],
+      "input_hash": "2e5faea9c8b7dc255e1f4093785edd3695c0602ea3b86c274293edb24cc46a64",
+      "changed_path": "request.as_of",
+      "observed_changed_paths": [
+        "request.as_of"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-AUTH-END-AFTER",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.as_of",
+          "value": "2026-10-01"
+        },
+        "request": {
+          "request_id": "CF-AUTH-END-AFTER",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-10-01"
+        },
+        "outcome": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "AUTHORIZATION_EXPIRED"
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "needs_review",
+          "unit": null,
+          "decision": null,
+          "review_reason_code": "AUTHORIZATION_EXPIRED"
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": true,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-LOT-EXPIRED",
+      "category": "lot_status",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "2b6faf1e7e498c3b2f70c749420717d75835333b97f1036ad8c6f455e303ddaf",
+      "changed_path": "catalog.lots.lot_eth.status",
+      "observed_changed_paths": [
+        "catalog.lots.lot_eth.status"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-LOT-EXPIRED",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_eth.status",
+          "value": "expired"
+        },
+        "request": {
+          "request_id": "CF-LOT-EXPIRED",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ISOLATE",
+            "approved_quantity": null,
+            "reason_code": "LOT_NOT_ISSUABLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ISOLATE",
+            "approved_quantity": null,
+            "reason_code": "LOT_NOT_ISSUABLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-LOT-DAMAGED",
+      "category": "lot_status",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "changed",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "7ef3bbe08ee22b92609f318bdc97088cfd409f8deeb2dd2c3c513fd31b414fc9",
+      "changed_path": "catalog.lots.lot_eth.status",
+      "observed_changed_paths": [
+        "catalog.lots.lot_eth.status"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-LOT-DAMAGED",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_eth.status",
+          "value": "damaged"
+        },
+        "request": {
+          "request_id": "CF-LOT-DAMAGED",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ISOLATE",
+            "approved_quantity": null,
+            "reason_code": "LOT_NOT_ISSUABLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ISOLATE",
+            "approved_quantity": null,
+            "reason_code": "LOT_NOT_ISSUABLE",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": true,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVARIANT-REQUEST-ID",
+      "category": "invariance",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "04728f98dd9166d592fd7814e66c701c4bf6165db4b13d0bbe0772c6bf1f9fda",
+      "changed_path": "request.request_id",
+      "observed_changed_paths": [
+        "request.request_id"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVARIANT-REQUEST-ID",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "request.request_id",
+          "value": "CF-RENAMED-REQUEST"
+        },
+        "request": {
+          "request_id": "CF-RENAMED-REQUEST",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVARIANT-UNRELATED-STOCK",
+      "category": "invariance",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "842f896c1de1e8defca81a9bf7f83f004909fac129e927a54efa9c738c25811c",
+      "changed_path": "catalog.lots.lot_ox.on_hand",
+      "observed_changed_paths": [
+        "catalog.lots.lot_ox.on_hand"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVARIANT-UNRELATED-STOCK",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_ox.on_hand",
+          "value": 1
+        },
+        "request": {
+          "request_id": "CF-INVARIANT-UNRELATED-STOCK",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    },
+    {
+      "id": "CF-INVARIANT-SUFFICIENT-STOCK",
+      "category": "invariance",
+      "evaluation_layer": "internal_calculation",
+      "expected_relation": "invariant",
+      "setup": [],
+      "observed_setup_paths": [],
+      "input_hash": "e1902d100f90e5e08e8733f36498d35edcfc55dc91d7b7cd0e1f6e9cc29690ba",
+      "changed_path": "catalog.lots.lot_eth.on_hand",
+      "observed_changed_paths": [
+        "catalog.lots.lot_eth.on_hand"
+      ],
+      "base": {
+        "request": {
+          "request_id": "CF-INVARIANT-SUFFICIENT-STOCK",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "variant": {
+        "mutation": {
+          "path": "catalog.lots.lot_eth.on_hand",
+          "value": 2001
+        },
+        "request": {
+          "request_id": "CF-INVARIANT-SUFFICIENT-STOCK",
+          "requester_id": "stu01",
+          "lot_id": "lot_eth",
+          "quantity": 100,
+          "destination_cabinet_id": "cab_flam",
+          "unit": "mL",
+          "as_of": "2026-09-28"
+        },
+        "outcome": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100.0,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "expected": {
+        "base": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        },
+        "variant": {
+          "status": "ready",
+          "unit": "mL",
+          "decision": {
+            "action": "ALLOW",
+            "approved_quantity": 100,
+            "reason_code": "ALLOWED",
+            "rule_version": "v2"
+          }
+        }
+      },
+      "checks": {
+        "mutation_isolated": true,
+        "expected_base": true,
+        "expected_variant": true,
+        "decision_changed": false,
+        "status_changed": false,
+        "relation_holds": true,
+        "passed": true
+      }
+    }
+  ],
+  "generated_at": "2026-10-07T09:32:24.610304+00:00"
+}

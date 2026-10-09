@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Arial">
+  <rect id="background" data-pptx-role="background" width="1280" height="720" fill="#F7F9FA" />
+  <g id="title" data-pptx-bounds="64 42 1152 101">
+    <text x="64" y="91" font-size="44" font-weight="bold" fill="#17384B">JEV 与模型的职责边界</text>
+    <text x="66" y="133" font-size="24" fill="#526874">复核提示和解释，都不能替代 decision_check。</text>
+  </g>
+  <g id="jev-review" data-pptx-bounds="64 183 694 221">
+    <rect x="64" y="183" width="694" height="221" fill="#EDF3F6" />
+    <text x="90" y="226" font-size="28" font-weight="bold" fill="#087F8C">JEV / 可选证据复核</text>
+    <text x="90" y="273" font-size="24" fill="#243746"><tspan x="90">先核对定位、完整 quote 与 SHA256，</tspan><tspan x="90" dy="36">再给相关性或人工复核优先级信号。</tspan></text>
+    <text x="90" y="364" font-size="18" fill="#526874">Noul 概率不是事实准确率；一条合成请求已验证连通性。</text>
+  </g>
+  <g id="generic-model" data-pptx-bounds="64 430 694 126">
+    <text x="66" y="464" font-size="28" font-weight="bold" fill="#17384B">通用模型 / 编排与解释</text>
+    <text x="66" y="511" font-size="24" fill="#243746"><tspan x="66">调用已配置工具，解释程序返回的结果；</tspan><tspan x="66" dy="36">不能覆盖程序决定或自动批准候选。</tspan></text>
+  </g>
+  <g id="deterministic-owner" data-pptx-bounds="800 183 416 373">
+    <rect x="800" y="183" width="416" height="373" fill="#17384B" />
+    <text x="826" y="229" font-size="28" font-weight="bold" fill="#FFFFFF">唯一业务决定来源</text>
+    <text x="826" y="276" font-size="24" fill="#FFFFFF">decision_check</text>
+    <line x1="826" y1="309" x2="1188" y2="309" stroke="#CCD9DF" stroke-width="1" />
+    <text x="826" y="357" font-size="28" fill="#FFFFFF"><tspan x="826">ALLOW / DENY</tspan><tspan x="826" dy="48">LIMIT / ISOLATE</tspan></text>
+    <text x="826" y="474" font-size="18" fill="#CCD9DF"><tspan x="826">规则与快照由程序核验，</tspan><tspan x="826" dy="29">资料不足则无业务决定。</tspan></text>
+  </g>
+  <g id="online-boundary" data-pptx-bounds="64 584 1152 75" font-size="18">
+    <text x="64" y="611" fill="#B66320">JEV 须显式 live=true，且来源获准外发；私有资料阻断，未配置返回 unavailable。</text>
+    <text x="64" y="644" fill="#526874">外发资料须明确授权。引用语义、阈值校准与真实资料效果未验证。</text>
+  </g>
+  <g id="footer" data-pptx-role="footer" data-pptx-bounds="64 672 1152 30" fill="#526874" font-size="16">
+    <text x="64" y="692">格物镜 · OntoLens / 概率、解释与决定分别验收</text><text x="1216" y="692" text-anchor="end">07</text>
+  </g>
+</svg>

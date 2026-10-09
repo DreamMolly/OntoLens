@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "scope": "Local delivery consistency only; not model performance or submission approval",
+  "checks": {
+    "validation": {
+      "passed": true,
+      "pytest_passed": 456,
+      "report_sha256": "5aedfc661d7773c89997b6d95af0d6823253d784c9b995669d229a414de66ca3",
+      "run_dir": "artifacts/source-validation/20261009-052126-c6f21459"
+    },
+    "materials": {
+      "passed": true,
+      "word_pytest_passed": 456,
+      "ppt_pytest_passed": 456
+    },
+    "package": {
+      "passed": true,
+      "sha256": "9db87c630c2068b7ff0f85c7d93b5df47261a9d4a7945d759c7b8600695befb0"
+    },
+    "integration": {
+      "passed": true,
+      "status": "platform_tools_and_synthetic_model_run_passed",
+      "platform_checks": 7,
+      "synthetic_model_run_verified": true
+    },
+    "matrix": {
+      "passed": true,
+      "C03": "PARTIAL",
+      "C06": "PARTIAL",
+      "C12": "PARTIAL",
+      "C13": "PARTIAL",
+      "C14": "PARTIAL",
+      "C15": "PARTIAL",
+      "C16": "PARTIAL",
+      "C17": "PARTIAL",
+      "C18": "DONE",
+      "C19": "PARTIAL"
+    },
+    "deployment": {
+      "passed": true,
+      "ready": true,
+      "issue_codes": [],
+      "report_sha256": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a"
+    },
+    "model_readiness": {
+      "passed": true,
+      "status": "model_bound_synthetic_run_verified_deployment_ready_pending_real_data",
+      "model_ids": [
+        1
+      ],
+      "models_visible": 1,
+      "agent_run_sha256": "96fad14bd5cea47b93c42c62f591e6f376ac273679021f68724c532fc926ffd2"
+    }
+  },
+  "goal_complete": false,
+  "files": {
+    "submission/peiwu-development-design-draft.docx": "886389de49dd4ae547e47229dee6c58c03cd5a9cc60ef6b5d149681178d048cc",
+    "submission/peiwu-presentation-draft.pptx": "8348bfa3b449d3a19d6fb4cd1db57cbf07fb56b8b01d1a9012c3364856a0e242",
+    "submission/evidence-matrix.yaml": "139ab46ce229bfbde005d38e70df7ca75f5d6f9c2d312cae20ef1ea99a7c170d",
+    "artifacts/nexent-integration-report.json": "7cadc615e78375d48e0a0cbace1d2c9e319166505fb5b2e01723c2d74c0d7378",
+    "artifacts/nexent-deployment-audit.json": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a",
+    "artifacts/nexent-model-readiness.json": "68dccae7acf2a7d43e053deb248845749c612850e3ea74b0fbb50f1fc5b19ba0",
+    "artifacts/nexent-agent-run-20260924.json": "96fad14bd5cea47b93c42c62f591e6f376ac273679021f68724c532fc926ffd2",
+    "artifacts/nexent-data-migration-report.json": "61577c4dff50af2a345df8a1c721c7f6a7d810c4aaa482a6dabe3075d212b486",
+    "artifacts/nexent-model-configuration-report.json": "43a18c483c5bd79473c41f4237ef9e9470a80dca3450c5c0d2ed2019be82e27e"
+  }
+}

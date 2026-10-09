@@ -1,0 +1,846 @@
+{
+  "schema_version": "peiwu-public-corpus-verification-1",
+  "scope": "public_documents_with_synthetic_ledger",
+  "passed": true,
+  "integrity_passed": true,
+  "external_request_sent": false,
+  "production_database_used": false,
+  "business_checker_called": false,
+  "synthetic_ledger_imported": false,
+  "label_status": "developer_authored_unreviewed",
+  "source_authenticity_verified": false,
+  "independent_review_completed": false,
+  "semantic_correctness_measured": false,
+  "legal_compliance_established": false,
+  "metric_scope": "developer_fixture_lexical_retrieval_evidence_coverage_only",
+  "limitations": [
+    "Hashes bind local excerpts, not live source authenticity or completeness.",
+    "Public URL metadata is checked offline; source content and identity require review.",
+    "Developer-authored queries and evidence labels are not an independent gold standard.",
+    "Shared reference documents and source families are not independent or blind samples.",
+    "Synthetic ledger bytes are verified but are not imported or used for business decisions.",
+    "Workspace search returns at most 30 lexical matches; no model semantics are evaluated."
+  ],
+  "data_hashes": {
+    "manifest.json": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
+    "excerpts/PUB-MOE-2023.txt": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+    "excerpts/PUB-MOE-2024.txt": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+    "excerpts/PUB-MOE-2013.txt": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+    "excerpts/PUB-MOE-2021.txt": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+    "excerpts/PUB-LAW-2026.txt": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+    "excerpts/PUB-WYU-2026.txt": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+    "synthetic-ledgers/LEDGER-ADMISSION-DEMO.csv": "c4aee745038a14f76cf6dbc53ec3a5e31055d9c4bbb8332dd76f5847c752f04d",
+    "synthetic-ledgers/LEDGER-VERSION-DEMO.csv": "1fd999a6b826aee0e29ed69a7b19c933671086f185795de17cb620846ee498ad"
+  },
+  "counts": {
+    "documents": 6,
+    "bundles": 2,
+    "passages": 21,
+    "synthetic_ledgers": 2,
+    "source_families": 3,
+    "questions": 10,
+    "questions_all_required_locators_found": 10,
+    "required_locators": 20,
+    "retrieved_required_locators": 20
+  },
+  "developer_fixture_locator_recall": 1.0,
+  "questions": [
+    {
+      "question_id": "PUB-Q01",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L1",
+          "source_locator": "第五条第二款人员培训片段",
+          "quote": "从业人员应当接受教育和培训，考核合格后上岗作业；对有资格要求的岗位，应当配备依法取得相应资格的人员。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L4",
+          "source_locator": "第五十一条第一款",
+          "quote": "第五十一条　使用危险化学品的单位应当将其作业场所使用的化学品安全技术说明书和化学品安全标签提供给从业人员，并加强培训教育，告知从业人员正确使用的方法和在紧急情况下应当采取的措施。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q02",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L1",
+          "source_locator": "第五条第二款人员培训片段",
+          "quote": "从业人员应当接受教育和培训，考核合格后上岗作业；对有资格要求的岗位，应当配备依法取得相应资格的人员。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L2",
+          "source_locator": "第四十一条第一款",
+          "quote": "第四十一条　危险化学品应当储存在专用仓库、专用场地或者专用储存室、储存专柜（以下统称专用储存场所）内，并由专人负责管理；剧毒化学品以及储存数量构成重大危险源的其他危险化学品，应当在专用储存场所内单独存放，实行双人收发、双人保管制度，收发记录的保存期限不得少于三年。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L4",
+          "source_locator": "第五十一条第一款",
+          "quote": "第五十一条　使用危险化学品的单位应当将其作业场所使用的化学品安全技术说明书和化学品安全标签提供给从业人员，并加强培训教育，告知从业人员正确使用的方法和在紧急情况下应当采取的措施。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q03",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L1",
+          "source_locator": "第五条第二款人员培训片段",
+          "quote": "从业人员应当接受教育和培训，考核合格后上岗作业；对有资格要求的岗位，应当配备依法取得相应资格的人员。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q04",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L1",
+          "source_locator": "三（三）末句",
+          "quote": "实验室重大安全隐患排除前或排除过程中无法保证安全的，应停止实验活动，隐患排除后经审查通过方可恢复实验。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L3",
+          "source_locator": "第十五条",
+          "quote": "第十五条 学校党政主要负责人、学校实验室安全主管职能部门、二级单位、实验室等各级责任机构应根据学校、二级单位和本实验室实际情况，分级开展相应的安全检查工作。在重大隐患未完成整改前，不得在实验室中进行实验活动。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L5",
+          "source_locator": "PDF第11页，第三十条",
+          "quote": "第三十条高校应根据本规范，结合本校实际情况，制定各项具体实施办法。各类实验室要符合国家行业相关实验室标准。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L1",
+          "source_locator": "第二条",
+          "quote": "第二条 本办法中的实验室，是指隶属于高校从事教学、科研等实验、实训活动的场所及其所属设施，以房间为管理单元。中试性质和工业化放大性质的试验场所及其所属设施不在本办法管理范围内，高校如涉及相关场所应根据相关法律法规及标准规范制定相关管理办法。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L5",
+          "source_locator": "第十七条",
+          "quote": "第十七条 在实验室开展的科研项目、学生课题，或其他实验活动应进行相应等级的安全风险评估。涉及重要危险源的实验活动，二级单位应进行审查、备案，学校应不定期抽查。Ⅰ级/红色级、Ⅱ级/橙色级实验室应针对重要危险源制定相应的管理办法和应急管控措施，责任到人。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q05",
+      "bundle_id": "BUNDLE-ADMISSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L1",
+          "source_locator": "三（三）末句",
+          "quote": "实验室重大安全隐患排除前或排除过程中无法保证安全的，应停止实验活动，隐患排除后经审查通过方可恢复实验。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L5",
+          "source_locator": "PDF第11页，第三十条",
+          "quote": "第三十条高校应根据本规范，结合本校实际情况，制定各项具体实施办法。各类实验室要符合国家行业相关实验室标准。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L1",
+          "source_locator": "第二条",
+          "quote": "第二条 本办法中的实验室，是指隶属于高校从事教学、科研等实验、实训活动的场所及其所属设施，以房间为管理单元。中试性质和工业化放大性质的试验场所及其所属设施不在本办法管理范围内，高校如涉及相关场所应根据相关法律法规及标准规范制定相关管理办法。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L3",
+          "source_locator": "第十五条",
+          "quote": "第十五条 学校党政主要负责人、学校实验室安全主管职能部门、二级单位、实验室等各级责任机构应根据学校、二级单位和本实验室实际情况，分级开展相应的安全检查工作。在重大隐患未完成整改前，不得在实验室中进行实验活动。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L5",
+          "source_locator": "第十七条",
+          "quote": "第十七条 在实验室开展的科研项目、学生课题，或其他实验活动应进行相应等级的安全风险评估。涉及重要危险源的实验活动，二级单位应进行审查、备案，学校应不定期抽查。Ⅰ级/红色级、Ⅱ级/橙色级实验室应针对重要危险源制定相应的管理办法和应急管控措施，责任到人。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q06",
+      "bundle_id": "BUNDLE-VERSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2013",
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。",
+          "sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L2",
+          "source_locator": "第四十一条第一款",
+          "quote": "第四十一条　危险化学品应当储存在专用仓库、专用场地或者专用储存室、储存专柜（以下统称专用储存场所）内，并由专人负责管理；剧毒化学品以及储存数量构成重大危险源的其他危险化学品，应当在专用储存场所内单独存放，实行双人收发、双人保管制度，收发记录的保存期限不得少于三年。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L3",
+          "source_locator": "第四十二条第一款",
+          "quote": "第四十二条　储存危险化学品的单位应当建立危险化学品出入库核查、登记制度。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q07",
+      "bundle_id": "BUNDLE-VERSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2013",
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。",
+          "sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L3",
+          "source_locator": "第四十二条第一款",
+          "quote": "第四十二条　储存危险化学品的单位应当建立危险化学品出入库核查、登记制度。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L1",
+          "source_locator": "第一项风险清单与台账片段",
+          "quote": "参照《高校实验室重要危险源主要风险清单（试行）》，以房间为单位，组织各实验室开展安全风险排查，填写主要风险点，形成实验室安全风险清单，摸清学院实验室风险情况底数，建立台账并动态调整，做到“一室一表，一院一台账”。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q08",
+      "bundle_id": "BUNDLE-VERSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2013",
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。",
+          "sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L1",
+          "source_locator": "第一项风险清单与台账片段",
+          "quote": "参照《高校实验室重要危险源主要风险清单（试行）》，以房间为单位，组织各实验室开展安全风险排查，填写主要风险点，形成实验室安全风险清单，摸清学院实验室风险情况底数，建立台账并动态调整，做到“一室一表，一院一台账”。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q09",
+      "bundle_id": "BUNDLE-VERSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2013",
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。",
+          "sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+          "score": 3
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 2
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L2",
+          "source_locator": "第四十一条第一款",
+          "quote": "第四十一条　危险化学品应当储存在专用仓库、专用场地或者专用储存室、储存专柜（以下统称专用储存场所）内，并由专人负责管理；剧毒化学品以及储存数量构成重大危险源的其他危险化学品，应当在专用储存场所内单独存放，实行双人收发、双人保管制度，收发记录的保存期限不得少于三年。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-LAW-2026",
+          "locator": "L3",
+          "source_locator": "第四十二条第一款",
+          "quote": "第四十二条　储存危险化学品的单位应当建立危险化学品出入库核查、登记制度。",
+          "sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+          "url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2023",
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+          "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L1",
+          "source_locator": "第一项风险清单与台账片段",
+          "quote": "参照《高校实验室重要危险源主要风险清单（试行）》，以房间为单位，组织各实验室开展安全风险排查，填写主要风险点，形成实验室安全风险清单，摸清学院实验室风险情况底数，建立台账并动态调整，做到“一室一表，一院一台账”。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    },
+    {
+      "question_id": "PUB-Q10",
+      "bundle_id": "BUNDLE-VERSION",
+      "label_status": "developer_authored_unreviewed",
+      "status": "needs_review",
+      "decision": null,
+      "citations": [
+        {
+          "source_id": "PUB-MOE-2021",
+          "locator": "L1",
+          "source_locator": "三（三）末句",
+          "quote": "实验室重大安全隐患排除前或排除过程中无法保证安全的，应停止实验活动，隐患排除后经审查通过方可恢复实验。",
+          "sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-MOE-2024",
+          "locator": "L3",
+          "source_locator": "第十五条",
+          "quote": "第十五条 学校党政主要负责人、学校实验室安全主管职能部门、二级单位、实验室等各级责任机构应根据学校、二级单位和本实验室实际情况，分级开展相应的安全检查工作。在重大隐患未完成整改前，不得在实验室中进行实验活动。",
+          "sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+          "url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+          "score": 1
+        },
+        {
+          "source_id": "PUB-WYU-2026",
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+          "url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+          "score": 1
+        }
+      ],
+      "missing_required_evidence": [],
+      "required_locators_found": true,
+      "missing_conditions": [
+        "site_specific_authorization_and_inventory",
+        "current_local_rules_and_applicability",
+        "independent_professional_review"
+      ]
+    }
+  ],
+  "generated_at": "2026-10-08T06:22:10.122918+00:00",
+  "corpus_path": "F:\\Projects\\2026ICT\\data\\public\\official-lab-safety",
+  "code_input_hashes": {
+    "src/peiwu/public_corpus.py": "94bcacfe4fcc4b39435d86023cd06bb42e0835122c42dcc5d65cfcc27721ec58",
+    "src/peiwu/workspace.py": "64e2ad9182a64ffa957be521e1d6c1c10271e0d374b8259799139f6b446e9378",
+    "scripts/verify_public_corpus.py": "a35e95c02ed8bf63ec8d9cceb265a462d267af895f7d4e8e2f1ea0d6cf340781"
+  }
+}

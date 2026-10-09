@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "scope": {
+    "code": "package_internal_consistency_only",
+    "authenticity_verified": false,
+    "semantics_verified": false,
+    "professional_review_verified": false,
+    "decision_reexecuted": true
+  },
+  "checks": [
+    {
+      "id": "format",
+      "status": "passed"
+    },
+    {
+      "id": "version_binding",
+      "status": "passed"
+    },
+    {
+      "id": "snapshot_hash",
+      "status": "passed"
+    },
+    {
+      "id": "source_bytes",
+      "status": "passed",
+      "source_count": 6
+    },
+    {
+      "id": "source_closure",
+      "status": "passed",
+      "required_source_count": 6
+    },
+    {
+      "id": "citations",
+      "status": "unresolved",
+      "verified_quote_count": 4,
+      "unresolved_quote_count": 2
+    },
+    {
+      "id": "review_records",
+      "status": "passed",
+      "record_count": 0
+    },
+    {
+      "id": "decision_reexecution",
+      "status": "passed"
+    }
+  ],
+  "issues": [
+    {
+      "check": "citations",
+      "code": "unresolved_quote",
+      "severity": "unresolved",
+      "source_id": "doc_c9a9d19a967b4db5a2b3",
+      "evidence_index": 0
+    },
+    {
+      "check": "citations",
+      "code": "unresolved_quote",
+      "severity": "unresolved",
+      "source_id": "doc_1439e76893e748309c74",
+      "evidence_index": 4
+    }
+  ]
+}

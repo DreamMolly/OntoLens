@@ -1,0 +1,1 @@
+以 stu01 的授权记录为例，系统保留 source_id 和 JSON 定位，也保留完整引文和原文哈希。这个来源属于 demo-initial 快照，决定使用 v2 规则，最后得到 ALLOW 100 mL。snapshot_hash 标记快照，source SHA256 标记原文，两者用途不同。external_model_allowed 默认关闭，图片资料只有人工摘录才进入资产链。

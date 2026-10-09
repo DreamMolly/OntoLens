@@ -1,0 +1,51 @@
+version: asset-recognition-synthetic-v1
+scope: 合成回归夹具，不代表行业数据、真实本体或标准对齐。
+cases:
+  - id: A01
+    title: authorization-change.md
+    text: "stu01 授权仅保留 ACID。lot_eth 位于 cab_flam。"
+    expected_entities:
+      - [Person, stu01]
+      - [HazardClass, ACID]
+      - [Lot, lot_eth]
+      - [StorageZone, cab_flam]
+    expected_relations:
+      - [authorized_for, stu01, ACID]
+    expected_schema_candidates: []
+  - id: A02
+    title: authorization-validity.md
+    text: "stu01 授权 ACID，生效: 2026-10-01，有效至: 2026-12-31。"
+    expected_entities:
+      - [Person, stu01]
+      - [HazardClass, ACID]
+    expected_relations:
+      - [authorized_for, stu01, ACID]
+    expected_schema_candidates:
+      - [authorized_for, valid_from, valid_until]
+  - id: A03
+    title: inventory-note.md
+    text: "lot_ox 与 peroxide 记录到 cab_ox；类别为 OXIDIZER。"
+    expected_entities:
+      - [Lot, lot_ox]
+      - [Chemical, peroxide]
+      - [StorageZone, cab_ox]
+      - [HazardClass, OXIDIZER]
+    expected_relations: []
+    expected_schema_candidates: []
+  - id: A04
+    title: english-authorization.md
+    text: "stu02 is authorized for OXIDIZER."
+    expected_entities:
+      - [Person, stu02]
+      - [HazardClass, OXIDIZER]
+    expected_relations:
+      - [authorized_for, stu02, OXIDIZER]
+    expected_schema_candidates: []
+  - id: A05
+    title: unlinked-mention.md
+    text: "stu01 requested review of ACID wording, but this document has no authorization statement."
+    expected_entities:
+      - [Person, stu01]
+      - [HazardClass, ACID]
+    expected_relations: []
+    expected_schema_candidates: []

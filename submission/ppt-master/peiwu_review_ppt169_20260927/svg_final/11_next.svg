@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" data-pptx-page-role="ending" font-family="Microsoft YaHei, Arial">
+  <rect id="background" data-pptx-role="background" width="1280" height="720" fill="#17384B" />
+  <g id="title" data-pptx-bounds="64 64 980 170">
+    <text x="64" y="113" font-size="18" fill="#CCD9DF">下一步 / 证据扩大之前的三个条件</text>
+    <text x="64" y="207" font-size="56" font-weight="bold" fill="#FFFFFF">先补真实证据，再扩大结论</text>
+  </g>
+  <g id="next-conditions" data-pptx-bounds="64 290 1152 270">
+    <line x1="90" y1="339" x2="90" y2="502" stroke="#087F8C" stroke-width="3" />
+    <circle cx="90" cy="339" r="12" fill="#FFFFFF" />
+    <circle cx="90" cy="420" r="12" fill="#FFFFFF" />
+    <circle cx="90" cy="501" r="12" fill="#FFFFFF" />
+    <text x="128" y="349" font-size="30" font-weight="bold" fill="#FFFFFF">真实资料与领域审核</text>
+    <text x="128" y="386" font-size="20" fill="#CCD9DF">授权、业务表单、金标准和费用上限</text>
+    <text x="128" y="430" font-size="30" font-weight="bold" fill="#FFFFFF">独立对照与冷启动</text>
+    <text x="128" y="467" font-size="20" fill="#CCD9DF">另一环境、持续负载、JEV 阈值与公平基线</text>
+    <text x="128" y="511" font-size="30" font-weight="bold" fill="#FFFFFF">材料冻结与队员答辩</text>
+    <text x="128" y="548" font-size="20" fill="#CCD9DF">官方模板、队员讲解、失败案例与限制说明</text>
+  </g>
+  <g id="boundary" data-pptx-bounds="64 602 1152 44">
+    <line x1="64" y1="602" x2="1216" y2="602" stroke="#4B7180" stroke-width="1" />
+    <text x="64" y="636" font-size="18" fill="#CCD9DF">当前成果：业务操作链路可用 · 不执行真实出库 · 不代表行业安全效果 · 不承诺奖项</text>
+  </g>
+  <g id="footer" data-pptx-role="footer" data-pptx-bounds="64 672 1152 30" fill="#CCD9DF" font-size="13.333333">
+    <text x="64" y="692">格物镜 · OntoLens / 真人资料与独立复核待补</text><text x="1216" y="692" text-anchor="end">11</text>
+  </g>
+</svg>

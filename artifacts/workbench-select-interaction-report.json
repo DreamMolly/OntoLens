@@ -1,0 +1,51 @@
+{
+  "format": "ontolens-ui-qa-1",
+  "status": "passed",
+  "observed_at": "2026-10-09T05:24:09.873147+00:00",
+  "scope": "Isolated synthetic Playwright fixtures; not live industry, real device or screen reader validation",
+  "tests": 6,
+  "failures": 0,
+  "errors": 0,
+  "page_errors": 0,
+  "external_browser_requests": 0,
+  "static_sha256": {
+    "app.js": "52322737d8012667fa2150cb4187290fc891c3c6c0225b600b30028b10f1e748",
+    "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924",
+    "index.html": "77fc117556d0f462a1cdf1533e9377b92a18a2f23a9cf4b376fd26b35300409e",
+    "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded"
+  },
+  "test_sha256": "1999cd4b6e91efc199de708f0de7b35f3e9e14bd842bc1c1a3eddf5980bd73f9",
+  "validation_command": ".venv/Scripts/python.exe -m pytest -q",
+  "cases": [
+    {
+      "name": "test_native_values_labels_and_presets_stay_synchronized",
+      "status": "passed",
+      "seconds": 2.722
+    },
+    {
+      "name": "test_pointer_keyboard_commit_escape_tab_and_aria",
+      "status": "passed",
+      "seconds": 3.467
+    },
+    {
+      "name": "test_typeahead_and_disabled_options_do_not_commit_until_enter",
+      "status": "passed",
+      "seconds": 2.57
+    },
+    {
+      "name": "test_async_sources_loading_failure_refresh_and_required_focus",
+      "status": "passed",
+      "seconds": 2.786
+    },
+    {
+      "name": "test_dismissals_sidebar_and_resize_preserve_values_without_api_writes",
+      "status": "passed",
+      "seconds": 3.16
+    },
+    {
+      "name": "test_mobile_flip_motion_reduced_motion_and_fast_reopen",
+      "status": "passed",
+      "seconds": 4.471
+    }
+  ]
+}

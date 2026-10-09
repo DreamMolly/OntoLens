@@ -1,0 +1,92 @@
+{
+  "observed_at": "2026-10-09T05:24:25.261127+00:00",
+  "scope": "isolated synthetic browser interaction; no live model calls; simulated viewports, not real device or screen-reader validation",
+  "observations": [
+    "five presets only fill fields; missing person yields decision null and references default unchecked",
+    "requester/lot/cabinet/quantity/date edits invalidate ALLOW synchronously",
+    "pending submit prevents duplicates; late ALLOW never approves edited draft",
+    "active version change invalidates current ALLOW and rejects old-version pending result",
+    "history binds export to viewed run and preserves mutable draft on return",
+    "keyboard source/Escape focus return and out-of-order source tuple stay correct",
+    "reduced motion computed displacement/durations are zero; source and focus remain usable",
+    "private selection clears and disables external source permission",
+    "320/390/760/1100/1440 layouts have no page overflow; 320/390 targets and form labels verified"
+  ],
+  "layout": [
+    {
+      "viewport_width": 320,
+      "whole_page_overflow": false
+    },
+    {
+      "viewport_width": 390,
+      "whole_page_overflow": false
+    },
+    {
+      "viewport_width": 760,
+      "whole_page_overflow": false
+    },
+    {
+      "viewport_width": 1100,
+      "whole_page_overflow": false
+    },
+    {
+      "viewport_width": 1440,
+      "whole_page_overflow": false
+    }
+  ],
+  "reduced_motion": [
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    },
+    {
+      "transform": "none",
+      "transition": "0s",
+      "animation": "0s"
+    }
+  ],
+  "touch_emulation": {
+    "width": 390,
+    "source_open_close": true
+  },
+  "css_zoom_200_percent": {
+    "whole_page_overflow": false,
+    "browser_ui_zoom_verified": false
+  },
+  "static_sha256": {
+    "index.html": "77fc117556d0f462a1cdf1533e9377b92a18a2f23a9cf4b376fd26b35300409e",
+    "app.js": "52322737d8012667fa2150cb4187290fc891c3c6c0225b600b30028b10f1e748",
+    "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "mode": "apply",
+  "ready": true,
+  "local_state": {
+    "postgres_version": "15",
+    "workbench_database": "present",
+    "mcp_token": "present",
+    "migration_status": "copied_container_state_with_limits",
+    "recovery_state": "verified",
+    "agent_id": 1,
+    "model_ids": [
+      1
+    ],
+    "mcp_id": 1
+  },
+  "compose": {
+    "services": [
+      "nexent-config",
+      "nexent-data-process",
+      "nexent-elasticsearch",
+      "nexent-mcp",
+      "nexent-minio",
+      "nexent-northbound",
+      "nexent-postgresql",
+      "nexent-runtime",
+      "nexent-web",
+      "redis"
+    ],
+    "data_root": "F:/Projects/2026ICT/.runtime/nexent-desktop-data",
+    "nexent_home": "F:/Projects/2026ICT/.runtime/nexent-home",
+    "ports": {
+      "nexent-web": "127.0.0.1:3000",
+      "nexent-northbound": "127.0.0.1:15013->5013"
+    }
+  },
+  "docker": {
+    "available": true,
+    "desktop_started": false
+  },
+  "workbench": {
+    "state": "running",
+    "mode": "synthetic_demo",
+    "active_id": "demo-initial",
+    "action": "started",
+    "pid": 35908,
+    "log": ".runtime\\demo-startup\\workbench.log"
+  },
+  "containers": {
+    "before": {
+      "nexent-northbound": {
+        "id": "b976ea0fb5663a496e5d26cca83c0b9beec2d7972164c9c9a4cd10ca98d52b18",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-data-process": {
+        "id": "92ef75c582d13eaf9c4a07414a064656020ccb6f38b984f35da2386b4bf77162",
+        "status": "exited",
+        "health": "unhealthy",
+        "restart_count": 0
+      },
+      "nexent-postgresql": {
+        "id": "e2fc94757d3320fec43c54f274cd30ebd3cda990bb7dcba7d32aa21969376c63",
+        "status": "exited",
+        "health": "unhealthy",
+        "restart_count": 0
+      },
+      "nexent-runtime": {
+        "id": "7a0436a23d4fc1ff8d366c76c5a74aa4d3421ca04707248d1afa4234e87e055b",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-config": {
+        "id": "8911f7e60e7b0b47516ddc8e4fccf658127cf28e58b8901e7c05c4fd80543a2e",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-mcp": {
+        "id": "9099e81f4f3e213060b4969ca51d877ee449da914eb78ebcb156fd53381c79d2",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-minio": {
+        "id": "4077f1cfd79f503aa680984bf4fb20d4f79b4d518ac32747a1e26f9586f805d5",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-redis": {
+        "id": "e1d057c51a7a3845c2c3db801be399393e1132c5bccb8f8d6d221fbfd594c84f",
+        "status": "exited",
+        "health": "unhealthy",
+        "restart_count": 0
+      },
+      "nexent-web": {
+        "id": "4e7a5b852fd3b9921b3a2fd914048040265afdc67e43dfa9dcc3bef0c9d09b02",
+        "status": "exited",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-elasticsearch": {
+        "id": "b48f925772d5e0790738a6469d17984249ad094cf288a5c51eabb4926b6aa1f8",
+        "status": "exited",
+        "health": "unhealthy",
+        "restart_count": 0
+      }
+    },
+    "after": {
+      "nexent-northbound": {
+        "id": "b976ea0fb5663a496e5d26cca83c0b9beec2d7972164c9c9a4cd10ca98d52b18",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-data-process": {
+        "id": "92ef75c582d13eaf9c4a07414a064656020ccb6f38b984f35da2386b4bf77162",
+        "status": "running",
+        "health": "healthy",
+        "restart_count": 0
+      },
+      "nexent-postgresql": {
+        "id": "e2fc94757d3320fec43c54f274cd30ebd3cda990bb7dcba7d32aa21969376c63",
+        "status": "running",
+        "health": "healthy",
+        "restart_count": 0
+      },
+      "nexent-runtime": {
+        "id": "7a0436a23d4fc1ff8d366c76c5a74aa4d3421ca04707248d1afa4234e87e055b",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-config": {
+        "id": "8911f7e60e7b0b47516ddc8e4fccf658127cf28e58b8901e7c05c4fd80543a2e",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-mcp": {
+        "id": "9099e81f4f3e213060b4969ca51d877ee449da914eb78ebcb156fd53381c79d2",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-minio": {
+        "id": "4077f1cfd79f503aa680984bf4fb20d4f79b4d518ac32747a1e26f9586f805d5",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-redis": {
+        "id": "e1d057c51a7a3845c2c3db801be399393e1132c5bccb8f8d6d221fbfd594c84f",
+        "status": "running",
+        "health": "healthy",
+        "restart_count": 0
+      },
+      "nexent-web": {
+        "id": "4e7a5b852fd3b9921b3a2fd914048040265afdc67e43dfa9dcc3bef0c9d09b02",
+        "status": "running",
+        "health": null,
+        "restart_count": 0
+      },
+      "nexent-elasticsearch": {
+        "id": "b48f925772d5e0790738a6469d17984249ad094cf288a5c51eabb4926b6aa1f8",
+        "status": "running",
+        "health": "healthy",
+        "restart_count": 0
+      }
+    },
+    "reused": [
+      "nexent-config",
+      "nexent-data-process",
+      "nexent-elasticsearch",
+      "nexent-mcp",
+      "nexent-minio",
+      "nexent-northbound",
+      "nexent-postgresql",
+      "nexent-redis",
+      "nexent-runtime",
+      "nexent-web"
+    ],
+    "recreated": [],
+    "created": []
+  },
+  "mcp": {
+    "reachable_from_container": true,
+    "protocol": "2025-03-26",
+    "tools": [
+      "asset_recognition",
+      "candidate_review",
+      "candidate_suggestions",
+      "decision_check",
+      "evidence_lookup",
+      "evidence_rerank_jev",
+      "graph_query"
+    ]
+  },
+  "nexent_api": {
+    "agent": {
+      "id": 1,
+      "model_ids": [
+        1
+      ],
+      "available": true
+    },
+    "mcp": {
+      "id": 1,
+      "health": "healthy"
+    }
+  },
+  "status": "ready",
+  "policy": "existing local deployment only; no pull, build, migration, token change or model call",
+  "time": "2026-09-27T10:21:06.806409+00:00"
+}

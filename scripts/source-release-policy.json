@@ -1,0 +1,255 @@
+{
+  "format": "peiwu-source-policy-1",
+  "root_files": [
+    ".gitignore",
+    ".gitattributes",
+    ".env.example",
+    "README.md",
+    "design.md",
+    "CHANGELOG.md",
+    "pyproject.toml",
+    "requirements.txt",
+    "setup-local.ps1",
+    "start-demo.ps1",
+    "start-workbench.ps1",
+    "start-operational.ps1",
+    "Dockerfile",
+    ".dockerignore",
+    "setup-local.sh",
+    "start-workbench.sh",
+    "start-demo.sh",
+    "submission/README.md",
+    "submission/design-document.md",
+    "submission/demo-runbook.md",
+    "submission/public-data-demo.md",
+    "submission/evidence-matrix.yaml",
+    "submission/peiwu-development-design-draft.docx",
+    "submission/peiwu-presentation-draft.pptx",
+    "submission/ppt-master/peiwu_review_ppt169_20260927/README.md",
+    "submission/ppt-master/peiwu_review_ppt169_20260927/design_spec.md",
+    "submission/ppt-master/peiwu_review_ppt169_20260927/spec_lock.md"
+  ],
+  "trees": [
+    {
+      "path": "src",
+      "suffixes": [
+        ".py",
+        ".html",
+        ".css",
+        ".js",
+        ".svg",
+        ".png",
+        ".webp",
+        ".ico"
+      ],
+      "names": []
+    },
+    {
+      "path": "tests",
+      "suffixes": [
+        ".py",
+        ".json",
+        ".yaml",
+        ".txt",
+        ".csv",
+        ".md",
+        ".png",
+        ".pdf"
+      ],
+      "names": []
+    },
+    {
+      "path": "data",
+      "suffixes": [
+        ".yaml",
+        ".yml",
+        ".json",
+        ".txt",
+        ".csv",
+        ".md",
+        ".png"
+      ],
+      "names": []
+    },
+    {
+      "path": "scripts",
+      "suffixes": [
+        ".py",
+        ".json",
+        ".ps1",
+        ".sh"
+      ],
+      "names": []
+    },
+    {
+      "path": "skills",
+      "suffixes": [
+        ".md",
+        ".py",
+        ".json",
+        ".yaml"
+      ],
+      "names": []
+    },
+    {
+      "path": "nexent",
+      "suffixes": [
+        ".md",
+        ".json",
+        ".yaml",
+        ".ps1",
+        ".example"
+      ],
+      "names": []
+    },
+    {
+      "path": "docs",
+      "suffixes": [
+        ".md"
+      ],
+      "names": []
+    },
+    {
+      "path": "deploy",
+      "suffixes": [".yaml", ".md"],
+      "names": []
+    },
+    {
+      "path": "design",
+      "suffixes": [".md", ".json", ".yaml"],
+      "names": []
+    },
+    {
+      "path": "submission/ppt-master/peiwu_review_ppt169_20260927/svg_output",
+      "suffixes": [
+        ".svg"
+      ],
+      "names": []
+    },
+    {
+      "path": "submission/ppt-master/peiwu_review_ppt169_20260927/svg_final",
+      "suffixes": [
+        ".svg"
+      ],
+      "names": []
+    },
+    {
+      "path": "submission/ppt-master/peiwu_review_ppt169_20260927/notes",
+      "suffixes": [
+        ".md"
+      ],
+      "names": []
+    },
+    {
+      "path": "submission/ppt-master/peiwu_review_ppt169_20260927/images",
+      "suffixes": [
+        ".png",
+        ".json"
+      ],
+      "names": []
+    }
+  ],
+  "evidence_files": [
+    "artifacts/demo-startup-20261008T120254.904950Z-apply.json",
+    "artifacts/nexent-live-runtime-20261008.json",
+    "artifacts/operational-deployment-20261008.json",
+    "artifacts/operational-deployment-20261009.json",
+    "artifacts/workbench-select-interaction-report.json",
+    "artifacts/workbench-date-interaction-report.json",
+    "artifacts/asset-recognition-report.json",
+    "artifacts/deliverable-consistency-report.json",
+    "artifacts/demo-startup-20260927T102106.807622Z-apply.json",
+    "artifacts/demo-startup-20260927T102155.062033Z-apply.json",
+    "artifacts/demo-startup-20260927T135713.429254Z-apply.json",
+    "artifacts/demo-startup-20260928T085001.359489Z-apply.json",
+    "artifacts/demo-startup-20260929T104316.193534Z-apply.json",
+    "artifacts/demo-startup-20261002T082333.742005Z-apply.json",
+    "artifacts/demo-startup-acceptance-20260927.json",
+    "artifacts/evidence-export-http-acceptance-20261002-core.json",
+    "artifacts/evidence-export-verification-20261002-core.json",
+    "artifacts/evidence-export-verification-20261002-needs-review-core.json",
+    "artifacts/human-review-acceptance.json",
+    "artifacts/human-review-evidence-export.json",
+    "artifacts/human-review-export-verification.json",
+    "artifacts/jev-live-verification.json",
+    "artifacts/local-validation-report.json",
+    "artifacts/workbench-interaction-report.json",
+    "artifacts/model-explain-preflight.json",
+    "artifacts/nexent-agent-run-20260924.json",
+    "artifacts/nexent-data-migration-report.json",
+    "artifacts/nexent-deployment-audit-20260929-core.json",
+    "artifacts/nexent-deployment-audit-20260929-live.json",
+    "artifacts/nexent-deployment-audit-20261002-current.json",
+    "artifacts/nexent-deployment-audit-20261002-live.json",
+    "artifacts/nexent-deployment-audit.json",
+    "artifacts/nexent-import-replay-first.json",
+    "artifacts/nexent-import-replay-second.json",
+    "artifacts/nexent-integration-report-20260929-live.json",
+    "artifacts/nexent-integration-report.json",
+    "artifacts/nexent-model-configuration-report.json",
+    "artifacts/nexent-model-configuration-20261009.json",
+    "artifacts/nexent-model-readiness.json",
+    "artifacts/peiwu-evidence-export-20261002-core.json",
+    "artifacts/peiwu-evidence-export-20261002-needs-review-core.json",
+    "artifacts/peiwu-nexent-agent.zip",
+    "artifacts/public-corpus-verification.json",
+    "artifacts/public-source-quotation-verification.json",
+    "artifacts/synthetic-counterfactual-report.json",
+    "artifacts/synthetic-evaluation-report.json"
+  ],
+  "allowed_archives": [
+    "artifacts/peiwu-nexent-agent.zip"
+  ],
+  "required_files": [
+    ".gitignore",
+    ".gitattributes",
+    ".env.example",
+    "README.md",
+    "pyproject.toml",
+    "src/peiwu/__init__.py",
+    "scripts/check_source_release.py",
+    "scripts/source-release-policy.json",
+    "submission/evidence-matrix.yaml",
+    "submission/peiwu-development-design-draft.docx",
+    "submission/peiwu-presentation-draft.pptx",
+    "artifacts/peiwu-nexent-agent.zip",
+    "artifacts/asset-recognition-report.json",
+    "artifacts/deliverable-consistency-report.json",
+    "artifacts/demo-startup-20260927T102106.807622Z-apply.json",
+    "artifacts/demo-startup-20260927T102155.062033Z-apply.json",
+    "artifacts/demo-startup-20260927T135713.429254Z-apply.json",
+    "artifacts/demo-startup-20260928T085001.359489Z-apply.json",
+    "artifacts/demo-startup-20260929T104316.193534Z-apply.json",
+    "artifacts/demo-startup-20261002T082333.742005Z-apply.json",
+    "artifacts/demo-startup-acceptance-20260927.json",
+    "artifacts/evidence-export-http-acceptance-20261002-core.json",
+    "artifacts/evidence-export-verification-20261002-core.json",
+    "artifacts/evidence-export-verification-20261002-needs-review-core.json",
+    "artifacts/human-review-acceptance.json",
+    "artifacts/human-review-evidence-export.json",
+    "artifacts/human-review-export-verification.json",
+    "artifacts/jev-live-verification.json",
+    "artifacts/local-validation-report.json",
+    "artifacts/model-explain-preflight.json",
+    "artifacts/nexent-agent-run-20260924.json",
+    "artifacts/nexent-data-migration-report.json",
+    "artifacts/nexent-deployment-audit-20260929-core.json",
+    "artifacts/nexent-deployment-audit-20260929-live.json",
+    "artifacts/nexent-deployment-audit-20261002-current.json",
+    "artifacts/nexent-deployment-audit-20261002-live.json",
+    "artifacts/nexent-deployment-audit.json",
+    "artifacts/nexent-import-replay-first.json",
+    "artifacts/nexent-import-replay-second.json",
+    "artifacts/nexent-integration-report-20260929-live.json",
+    "artifacts/nexent-integration-report.json",
+    "artifacts/nexent-model-configuration-report.json",
+    "artifacts/nexent-model-readiness.json",
+    "artifacts/peiwu-evidence-export-20261002-core.json",
+    "artifacts/peiwu-evidence-export-20261002-needs-review-core.json",
+    "artifacts/peiwu-nexent-agent.zip",
+    "artifacts/public-corpus-verification.json",
+    "artifacts/public-source-quotation-verification.json",
+    "artifacts/synthetic-counterfactual-report.json",
+    "artifacts/synthetic-evaluation-report.json"
+  ]
+}

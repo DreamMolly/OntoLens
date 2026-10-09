@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "observed_at": "2026-10-09T04:38:48.230822+00:00",
+  "scope": "Current relay model discovery and bounded Nexent explanation using synthetic enums only.",
+  "credentials_recorded": false,
+  "same_provider_preserved": true,
+  "available_provider_models": [
+    "gpt-5.6-sol",
+    "gpt-6-astra",
+    "gpt-6-sol",
+    "gpt-6.1-sol"
+  ],
+  "previous_model": {
+    "model_id": 1,
+    "model_name": "gpt-5.6-terra",
+    "display_name": "gpt-5.6-terra"
+  },
+  "temporary_connectivity": true,
+  "model_id": 2,
+  "model_name": "gpt-6-sol",
+  "persisted_connectivity": true,
+  "agent_bindings": [
+    {
+      "agent_id": 1,
+      "name": "peiwu_compliance_review",
+      "previous_model_ids": [
+        2
+      ],
+      "current_model_ids": [
+        2
+      ]
+    },
+    {
+      "agent_id": 2,
+      "name": "ontolens_result_explainer",
+      "previous_model_ids": [
+        2
+      ],
+      "current_model_ids": [
+        2
+      ]
+    }
+  ],
+  "explanation": {
+    "status": "ready",
+    "text": "当前程序决定为 **ALLOW（允许）**，原因代码为 **ALLOWED**，共计 **6** 条证据。资料已标注为**合成数据**，资料真实性为 **not_assessed（未评估）**。\n\n当前仍要求人工核对；请等待人工确认后再进行后续处理。",
+    "provider": "nexent",
+    "observed_at": "2026-10-09T04:38:48.229678+00:00",
+    "agent_id": 2,
+    "tool_calls": {},
+    "event_counts": {
+      "agent_new_run": 1,
+      "step_count": 1,
+      "model_output_thinking": 54,
+      "token_count": 1,
+      "final_answer": 1
+    },
+    "model_request_sent": true,
+    "authoritative": false,
+    "memory_retrieval_disabled": true,
+    "notice": "Nexent 辅助说明不能改变程序决定，也不能替代人工审核。"
+  }
+}

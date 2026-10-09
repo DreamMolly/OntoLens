@@ -1,0 +1,86 @@
+cases:
+- id: I01
+  request:
+    request_id: I01
+    requester_id: stu03
+    lot_id: lot_eth
+    quantity: 100
+    destination_cabinet_id: cab_flam
+    open_issue_classes:
+    - OXIDIZER
+  gold_v1:
+    action: ALLOW
+    approved_quantity: 100
+    reason_code: ALLOWED
+  gold_v2:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: I02
+  request:
+    request_id: I02
+    requester_id: stu03
+    lot_id: lot_ox
+    quantity: 50
+    destination_cabinet_id: cab_ox
+    open_issue_classes:
+    - FLAMMABLE
+  gold_v1:
+    action: ALLOW
+    approved_quantity: 50
+    reason_code: ALLOWED
+  gold_v2:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: I03
+  request:
+    request_id: I03
+    requester_id: tea01
+    lot_id: lot_base
+    quantity: 40
+    destination_cabinet_id: cab_base
+    open_issue_classes:
+    - ACID
+  gold_v1:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+  gold_v2:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: I04
+  request:
+    request_id: I04
+    requester_id: stu03
+    lot_id: lot_acid
+    quantity: 40
+    destination_cabinet_id: cab_acid
+    open_issue_classes:
+    - BASE
+  gold_v1:
+    action: ALLOW
+    approved_quantity: 40
+    reason_code: ALLOWED
+  gold_v2:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE
+- id: I05
+  request:
+    request_id: I05
+    requester_id: tea01
+    lot_id: lot_ox
+    quantity: 50
+    destination_cabinet_id: cab_ox
+    open_issue_classes:
+    - WATER_REACTIVE
+  gold_v1:
+    action: ALLOW
+    approved_quantity: 50
+    reason_code: ALLOWED
+  gold_v2:
+    action: DENY
+    approved_quantity: null
+    reason_code: SESSION_INCOMPATIBLE

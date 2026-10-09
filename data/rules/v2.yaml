@@ -1,0 +1,17 @@
+version: v2
+student_fraction: 0.5
+session_incompatibility: true
+deny_students: false
+incompatible_pairs:
+- - FLAMMABLE
+  - OXIDIZER
+- - ACID
+  - BASE
+- - WATER_REACTIVE
+  - ACID
+- - WATER_REACTIVE
+  - BASE
+- - WATER_REACTIVE
+  - OXIDIZER
+- - WATER_REACTIVE
+  - FLAMMABLE

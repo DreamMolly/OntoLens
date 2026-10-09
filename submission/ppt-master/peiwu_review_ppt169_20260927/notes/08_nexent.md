@@ -1,0 +1,1 @@
+2026-10-09 当前中转配置持久绑定 gpt-6-sol（model_id=2），见 artifacts/nexent-model-configuration-20261009.json。Docker 业务部署收据 artifacts/operational-deployment-20261009.json 为 passed，31 项检查覆盖容器 Nexent 连接、模型解释、私有原文不外发、非 root、健康检查和重启持久化。七工具逐项成功不等于模型一次用了全部七个；外部冷启动、长期稳定性、真实行业资料与专业审核仍待验证。

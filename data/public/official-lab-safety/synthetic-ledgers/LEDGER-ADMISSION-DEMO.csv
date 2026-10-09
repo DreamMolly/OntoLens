@@ -1,0 +1,3 @@
+record_id,kind,training_exam_evidence,authorization_evidence,risk_review_evidence
+DEMO-ADMISSION-001,synthetic,missing,unreviewed,missing
+DEMO-ADMISSION-002,synthetic,unreviewed,missing,missing

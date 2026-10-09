@@ -1,0 +1,57 @@
+{
+  "schema_version": "peiwu-review-acceptance-1",
+  "generated_at": "2026-10-07T09:19:51.929687+00:00",
+  "scope": "isolated synthetic HTTP workflow plus detached verifier; no operator authentication or professional review",
+  "external_request_sent": false,
+  "production_database_used": false,
+  "checks": {
+    "http_created_review": true,
+    "http_exported_package": true,
+    "selected_references_only": true,
+    "receipt_persisted": true,
+    "original_decision_unchanged": true,
+    "detached_verifier_passed": true,
+    "package_unchanged": true,
+    "removed_references_rejected": true,
+    "injected_decision_rejected": true
+  },
+  "passed": true,
+  "negative_controls": {
+    "removed_references": {
+      "exit_code": 1,
+      "passed": false,
+      "issue_codes": [
+        "unresolved_quote",
+        "unresolved_quote",
+        "invalid_review_references"
+      ]
+    },
+    "injected_decision": {
+      "exit_code": 1,
+      "passed": false,
+      "issue_codes": [
+        "unresolved_quote",
+        "unresolved_quote",
+        "review_wrote_decision",
+        "unresolved_review_reference"
+      ]
+    }
+  },
+  "package_path": "artifacts/human-review-evidence-export.json",
+  "package_sha256": "94db6591c044940aded18ba81e55070b149c2e2d15cfe01cf0a1c6e4a31dc25f",
+  "verification_path": "artifacts/human-review-export-verification.json",
+  "verification_sha256": "0de1615cc776c79a1c055db0de83ac380c371f8d4e936213de5790c648d243c7",
+  "run_id": "run_854728e487844cdba1f8",
+  "review_id": "review_cfc653859d254ccdb9d6",
+  "input_manifest": {
+    "scripts/verify_review_workflow.py": "5051f26243884b49931fb2c11c64f2e5bcd64925187c676548c426b7193c5e49",
+    "scripts/verify_evidence_export.py": "35160ac0ce396601eb92c5d679975bf1eb80c65814674f76c7e700bdf309535a",
+    "src/peiwu/review_verification.py": "f646f3948a82e63ee6802ad3fb74cc1d62f01e33f6b09c199e153cb845cd2f79",
+    "src/peiwu/export_verification.py": "2515e208811321aa26027c0b8d1bcc64a2c25a7ac253b55754a6a3febdd477f3",
+    "src/peiwu/workspace.py": "64e2ad9182a64ffa957be521e1d6c1c10271e0d374b8259799139f6b446e9378",
+    "src/peiwu/contracts.py": "d543eb41cf32428ac51dc6c4aadc59a029d71deaedf0de50b56a9ebdfe21fbd2",
+    "src/peiwu/web.py": "5f1dfd8c50ca785c21f0d2e7b364b70996719d3f168199d101d305a23c4cd8b4",
+    "data/catalog.yaml": "fbbdda9a66d1408958de7ac8a7b7e0111ffeb7c7981438935c9403dac3c96bf8",
+    "data/rules/v2.yaml": "750c4a7245f3dfec838182a5569782158fadf1bd6fbe567bef6bdd014b3dd47c"
+  }
+}

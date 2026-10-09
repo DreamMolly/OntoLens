@@ -1,0 +1,142 @@
+{
+  "status": "copied_container_state_with_limits",
+  "time": "2026-09-26T08:26:11.699821+00:00",
+  "scope": "Cold copy from the existing Nexent binds to a new Windows F: project directory; no source deletion",
+  "source_target_manifest_compared": false,
+  "verification_limits": [
+    "The first migration implementation recorded target hashes but did not compare them with source manifests.",
+    "The Elasticsearch mount visible after the Docker update contained zero files, so byte continuity with the pre-update cluster cannot be claimed.",
+    "PostgreSQL application configuration was recovered separately from the verified 2026-09-24 logical backup."
+  ],
+  "preserved_elasticsearch_inspection": {
+    "source": ".runtime/nexent-data/elasticsearch",
+    "method": "same-version Elasticsearch started against an isolated copy; no ports published",
+    "indices": [
+      {"name": ".ds-.logs-deprecation.elasticsearch-default-2026.09.24-000001", "documents": 1},
+      {"name": ".ds-ilm-history-7-2026.09.24-000001", "documents": 3}
+    ],
+    "user_or_knowledge_indices_found": false,
+    "conclusion": "Only Elasticsearch-maintained hidden system indices were present; the current cluster recreated equivalent system index types with new UUIDs."
+  },
+  "post_copy_recovery": {
+    "postgres_backup_sha256": "5f53b20376dce558339ef40c62620d2089a3cbdfe48fc88259994505f4702317",
+    "restored": {"mcp_records": 1, "visible_agents": 1, "skills": 3},
+    "model_recreated_and_bound": true,
+    "deployment_audit_ready": true,
+    "post_migration_platform_verification": "platform_tools_and_synthetic_model_run_passed"
+  },
+  "preflight": {
+    "target": "F:\\Projects\\2026ICT\\.runtime\\nexent-desktop-data",
+    "backup_manifest": ".runtime\\nexent-backups\\20260924-112816-ec410ebb\\manifest.json",
+    "copy_count": 9,
+    "compose_preflight": true
+  },
+  "stopped_containers": [
+    "nexent-northbound",
+    "nexent-web",
+    "nexent-elasticsearch",
+    "nexent-runtime",
+    "nexent-config",
+    "nexent-mcp",
+    "nexent-minio",
+    "nexent-postgresql",
+    "nexent-redis"
+  ],
+  "existing_containers": [
+    "nexent-web",
+    "nexent-northbound",
+    "nexent-runtime",
+    "nexent-mcp",
+    "nexent-config",
+    "nexent-minio",
+    "nexent-redis",
+    "nexent-postgresql",
+    "nexent-elasticsearch"
+  ],
+  "copies": [
+    {
+      "container": "nexent-postgresql",
+      "source": "/var/lib/postgresql/data",
+      "destination": "postgresql/data",
+      "files": 1767,
+      "bytes": 53760600,
+      "manifest_sha256": "325606711741c215259efc2ab634d545d41078742d7ff4eb93a2600f8f0db24f"
+    },
+    {
+      "container": "nexent-elasticsearch",
+      "source": "/usr/share/elasticsearch/data",
+      "destination": "elasticsearch",
+      "files": 0,
+      "bytes": 0,
+      "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "container": "nexent-redis",
+      "source": "/data",
+      "destination": "redis",
+      "files": 4,
+      "bytes": 292,
+      "manifest_sha256": "98af6e00c56c6456013df9442cf6129505dc66a10b3c052f55e27aeab681ea81"
+    },
+    {
+      "container": "nexent-minio",
+      "source": "/data",
+      "destination": "minio/data",
+      "files": 34,
+      "bytes": 36009,
+      "manifest_sha256": "799e23b1a00b17f86a2f54e96b6544a62061cba5a6087eb2c1bd9084cd5ccb82"
+    },
+    {
+      "container": "nexent-web",
+      "source": "/mnt/nexent-data/project-config",
+      "destination": "project-config",
+      "files": 2,
+      "bytes": 546,
+      "manifest_sha256": "3de218452c7fcef22843318583be0456f35eda03de55235c24564f19ac6480c5"
+    },
+    {
+      "container": "nexent-config",
+      "source": "/mnt/nexent-data/skills",
+      "destination": "skills",
+      "files": 0,
+      "bytes": 0,
+      "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "container": "nexent-config",
+      "source": "/mnt/nexent-data/memory-provider-plugins",
+      "destination": "memory-provider-plugins",
+      "files": 0,
+      "bytes": 0,
+      "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "container": "nexent-config",
+      "source": "/mnt/nexent-data/logs",
+      "destination": "logs",
+      "files": 4,
+      "bytes": 5121,
+      "manifest_sha256": "efcb218c03cb9ce2cdb4a3914ef43ba5f79b16c399eb406b5e4a10f495593bc0"
+    },
+    {
+      "container": "nexent-config",
+      "source": "/opt/ssh-keys",
+      "destination": "openssh-server/ssh-keys",
+      "files": 0,
+      "bytes": 0,
+      "manifest_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "third_party\\nexent\\deploy\\docker\\assets\\scripts\\sync_user_supabase2pg.py",
+      "destination": "scripts\\sync_user_supabase2pg.py",
+      "files": 1,
+      "bytes": 19394,
+      "sha256": "7792d9a41788728ad3b08e0f3f71ed7092abb1afea5aa72cb17d49e868a09a57"
+    }
+  ],
+  "target_tree": {
+    "files": 1812,
+    "bytes": 53821962,
+    "manifest_sha256": "37a918f1b9344bafd36f5f0d40692564abec144edd04d13c130a6f065941b817"
+  }
+}

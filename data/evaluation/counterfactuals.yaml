@@ -1,0 +1,420 @@
+version: synthetic-counterfactual-v1
+description: >-
+  Synthetic metamorphic cases for the source-bound workspace decision contract.
+  After any declared synthetic setup, each variant changes exactly one fact; this fixture is
+  diagnostic and is deliberately separate from regression/incident/heldout gold.
+cases:
+  - id: CF-UNIT-001
+    category: unit
+    base:
+      request_id: CF-UNIT-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.unit
+      value: g
+    changed_path: request.unit
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: UNIT_MISMATCH}
+
+  - id: CF-INVENTORY-001
+    category: inventory
+    base:
+      request_id: CF-INVENTORY-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_eth.on_hand
+      value: 20
+    changed_path: catalog.lots.lot_eth.on_hand
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: LIMIT, approved_quantity: 20, reason_code: STOCK_SHORT, rule_version: v2}}
+
+  - id: CF-INVENTORY-002
+    category: inventory
+    base:
+      request_id: CF-INVENTORY-002
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_eth.on_hand
+      value: 0
+    changed_path: catalog.lots.lot_eth.on_hand
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: DENY, approved_quantity: null, reason_code: OUT_OF_STOCK, rule_version: v2}}
+
+  - id: CF-CABINET-001
+    category: cabinet
+    base:
+      request_id: CF-CABINET-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.destination_cabinet_id
+      value: cab_ox
+    changed_path: request.destination_cabinet_id
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: DENY, approved_quantity: null, reason_code: CABINET_INCOMPATIBLE, rule_version: v2}}
+
+  - id: CF-UNRETURNED-001
+    category: today_unreturned_class
+    base:
+      request_id: CF-UNRETURNED-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: issues.stu01
+      value: [OXIDIZER]
+    changed_path: issues.stu01
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: DENY, approved_quantity: null, reason_code: SESSION_INCOMPATIBLE, rule_version: v2}}
+
+  - id: CF-UNKNOWN-REQUESTER-001
+    category: unknown_entity
+    base:
+      request_id: CF-UNKNOWN-REQUESTER-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.requester_id
+      value: unknown_demo_person
+    changed_path: request.requester_id
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: MISSING_REFERENCE}
+
+  - id: CF-UNKNOWN-LOT-001
+    category: unknown_entity
+    base:
+      request_id: CF-UNKNOWN-LOT-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.lot_id
+      value: unknown_demo_lot
+    changed_path: request.lot_id
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: MISSING_REFERENCE}
+
+  - id: CF-UNKNOWN-CABINET-001
+    category: unknown_entity
+    base:
+      request_id: CF-UNKNOWN-CABINET-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.destination_cabinet_id
+      value: unknown_demo_cabinet
+    changed_path: request.destination_cabinet_id
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: MISSING_REFERENCE}
+
+  - id: CF-QUANTITY-CAP-001
+    category: quantity_boundary
+    base:
+      request_id: CF-QUANTITY-CAP-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 250
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.quantity
+      value: 251
+    changed_path: request.quantity
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 250, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: LIMIT, approved_quantity: 250, reason_code: ISSUE_CAP, rule_version: v2}}
+
+  # Internal checker defense only: HTTP request validation rejects quantity=0.
+  - id: CF-INVALID-QUANTITY-001
+    category: quantity_boundary
+    base:
+      request_id: CF-INVALID-QUANTITY-001
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.quantity
+      value: 0
+    changed_path: request.quantity
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: DENY, approved_quantity: null, reason_code: INVALID_QUANTITY, rule_version: v2}}
+
+
+  - id: CF-AUTH-START-BEFORE
+    category: authorization_validity
+    expected_relation: changed
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-START-BEFORE
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-09-24'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: AUTHORIZATION_NOT_ACTIVE}
+
+  - id: CF-AUTH-START-ON
+    category: authorization_validity
+    expected_relation: invariant
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-START-ON
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-09-25'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-AUTH-START-AFTER
+    category: authorization_validity
+    expected_relation: invariant
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-START-AFTER
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-09-26'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-AUTH-END-BEFORE
+    category: authorization_validity
+    expected_relation: invariant
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-END-BEFORE
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-09-29'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-AUTH-END-ON
+    category: authorization_validity
+    expected_relation: invariant
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-END-ON
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-09-30'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-AUTH-END-AFTER
+    category: authorization_validity
+    expected_relation: changed
+    setup:
+      - path: validity.stu01
+        value: {from: '2026-09-25', until: '2026-09-30'}
+        reason: Synthetic bounded authorization for inclusive date-boundary checks; not source evidence.
+    base:
+      request_id: CF-AUTH-END-AFTER
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.as_of
+      value: '2026-10-01'
+    changed_path: request.as_of
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: needs_review, unit: null, decision: null, review_reason_code: AUTHORIZATION_EXPIRED}
+
+  - id: CF-LOT-EXPIRED
+    category: lot_status
+    expected_relation: changed
+    base:
+      request_id: CF-LOT-EXPIRED
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_eth.status
+      value: expired
+    changed_path: catalog.lots.lot_eth.status
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ISOLATE, approved_quantity: null, reason_code: LOT_NOT_ISSUABLE, rule_version: v2}}
+
+  - id: CF-LOT-DAMAGED
+    category: lot_status
+    expected_relation: changed
+    base:
+      request_id: CF-LOT-DAMAGED
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_eth.status
+      value: damaged
+    changed_path: catalog.lots.lot_eth.status
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ISOLATE, approved_quantity: null, reason_code: LOT_NOT_ISSUABLE, rule_version: v2}}
+
+  - id: CF-INVARIANT-REQUEST-ID
+    category: invariance
+    expected_relation: invariant
+    base:
+      request_id: CF-INVARIANT-REQUEST-ID
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: request.request_id
+      value: CF-RENAMED-REQUEST
+    changed_path: request.request_id
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-INVARIANT-UNRELATED-STOCK
+    category: invariance
+    expected_relation: invariant
+    base:
+      request_id: CF-INVARIANT-UNRELATED-STOCK
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_ox.on_hand
+      value: 1
+    changed_path: catalog.lots.lot_ox.on_hand
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+
+  - id: CF-INVARIANT-SUFFICIENT-STOCK
+    category: invariance
+    expected_relation: invariant
+    base:
+      request_id: CF-INVARIANT-SUFFICIENT-STOCK
+      requester_id: stu01
+      lot_id: lot_eth
+      quantity: 100
+      destination_cabinet_id: cab_flam
+      unit: mL
+      as_of: '2026-09-28'
+    variant:
+      path: catalog.lots.lot_eth.on_hand
+      value: 2001
+    changed_path: catalog.lots.lot_eth.on_hand
+    expected:
+      base: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}
+      variant: {status: ready, unit: mL, decision: {action: ALLOW, approved_quantity: 100, reason_code: ALLOWED, rule_version: v2}}

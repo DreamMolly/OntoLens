@@ -1,0 +1,3 @@
+record_id,kind,retention_note,classification_update,inventory_reconciliation
+DEMO-VERSION-001,synthetic,one_year_from_2023_excerpt,missing,unreviewed
+DEMO-VERSION-002,synthetic,applicability_not_confirmed,unreviewed,missing

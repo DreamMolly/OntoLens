@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "scope": {
+    "code": "package_internal_consistency_only",
+    "authenticity_verified": false,
+    "semantics_verified": false,
+    "professional_review_verified": false,
+    "decision_reexecuted": true
+  },
+  "checks": [
+    {
+      "id": "format",
+      "status": "passed"
+    },
+    {
+      "id": "version_binding",
+      "status": "passed"
+    },
+    {
+      "id": "snapshot_hash",
+      "status": "passed"
+    },
+    {
+      "id": "source_bytes",
+      "status": "passed",
+      "source_count": 6
+    },
+    {
+      "id": "source_closure",
+      "status": "passed",
+      "required_source_count": 6
+    },
+    {
+      "id": "citations",
+      "status": "unresolved",
+      "verified_quote_count": 4,
+      "unresolved_quote_count": 2
+    },
+    {
+      "id": "review_records",
+      "status": "unresolved",
+      "record_count": 1,
+      "structured_record_count": 1,
+      "legacy_record_count": 0,
+      "reference_count": 2,
+      "unresolved_reference_count": 1
+    },
+    {
+      "id": "decision_reexecution",
+      "status": "passed"
+    }
+  ],
+  "issues": [
+    {
+      "check": "citations",
+      "code": "unresolved_quote",
+      "severity": "unresolved",
+      "source_id": "doc_f5b0618e777e4f87b5f5",
+      "evidence_index": 0
+    },
+    {
+      "check": "citations",
+      "code": "unresolved_quote",
+      "severity": "unresolved",
+      "source_id": "doc_887b5f8f0a7e44a8a1ba",
+      "evidence_index": 4
+    },
+    {
+      "check": "review_records",
+      "code": "unresolved_review_reference",
+      "severity": "unresolved",
+      "record_index": 0,
+      "reference_index": 1
+    }
+  ]
+}

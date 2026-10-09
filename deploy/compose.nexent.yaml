@@ -1,0 +1,14 @@
+# Optional: docker compose -f deploy/compose.yaml -f deploy/compose.nexent.yaml up -d
+# The prepared Nexent deployment owns the external network; start it first.
+services:
+  ontolens:
+    environment:
+      PEIWU_NEXENT_BASE_URL: http://nexent-web:3000
+    networks:
+      - default
+      - nexent
+
+networks:
+  nexent:
+    external: true
+    name: nexent_network
