@@ -32,7 +32,7 @@ JEV 在线需要明确 live=true，且只能使用非私有、获准外发的来
 
 ## 09_validation
 
-这里的数字范围不同。60/60 和 unsafe_release 0 只描述冻结合成规则集，不能叫行业准确率，也不是盲测结果。7 是 MCP 工具实际回放数。456 是当前全量 pytest 通过的测试用例数；browser、MCP、assets、JEV 离线预检、pip 和 JavaScript 与 pytest 共七阶段 exit 0，154 项输入指纹一致。Docker 业务部署另有 30 项检查通过的收据。各项范围与结果以 artifacts/local-validation-report.json 和 artifacts/operational-deployment-20261009.json 为准，页面底部命令可用于复现。
+这里的数字范围不同。60/60 和 unsafe_release 0 只描述冻结合成规则集，不能叫行业准确率，也不是盲测结果。7 是 MCP 工具实际回放数。456 是当前全量 pytest 通过的测试用例数；browser、MCP、assets、JEV 离线预检、pip 和 JavaScript 与 pytest 共七阶段 exit 0，154 项输入指纹一致。Docker 业务部署另有 30 项检查通过的收据。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据，2026-10-09 的当前模型为 gpt-6-sol/model_id=2。各项范围与结果以 artifacts/local-validation-report.json 和 artifacts/operational-deployment-20261009.json 为准，页面底部命令可用于复现。
 
 ## 10_demo
 

@@ -15,7 +15,7 @@
 
 DONE 表示主张的指定软件范围有代码或测试支撑；PARTIAL 表示尚有该主张的未验证条件；PENDING 表示所需资料或外部验收未完成。SYNTHETIC 明示演练台账/规则的性质，不能写成行业效果。未完成研究不会自动否定软件可部署性，软件成功也不会关闭研究门槛。
 
-2026-10-09 当前 gpt-6-sol（model_id=2）配置收据通过，见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署收据 `artifacts/operational-deployment-20261009.json` 为 passed，30 项检查覆盖模型解释、容器连接、私有原文不外发、健康与重启持久化。解释 Agent 的 `tool_calls={}` 与 `memory_retrieval_disabled=true` 属于该收据边界。外部冷启动、真实行业资料和专业审核仍待。
+2026-10-09 当前 gpt-6-sol（model_id=2）配置收据通过，见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署收据 `artifacts/operational-deployment-20261009.json` 为 passed，30 项检查覆盖模型解释、容器连接、私有原文不外发、健康与重启持久化。解释 Agent 2 的 `tool_calls={}` 与 `memory_retrieval_disabled=true` 属于该收据边界。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据。外部冷启动、真实行业资料和专业审核仍待。
 
 P10 为 D1.1-7 当前首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 100 mL 截图。图片由真实 1440×1230 viewport 捕获，收据 `.runtime/ontolens-D1.1-final-capture-receipt.json`；材料最终原生 QA 见 `.runtime/material-final-456-20261009/receipt.json`。
 

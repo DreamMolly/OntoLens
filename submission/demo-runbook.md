@@ -24,7 +24,7 @@
 
 ## D. 当前 Nexent 和可选模型
 
-当前 gpt-6-sol（model_id=2）与 Nexent 解释收据见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署见 `artifacts/operational-deployment-20261009.json`，30 项检查通过。七工具逐项成功不等于模型一次用了全部七个；`memory_retrieval_disabled=true`、`tool_calls={}` 和私有原文不外发只在对应收据范围内成立。外部冷启动、真实行业资料和专业审核另验。
+当前 gpt-6-sol（model_id=2）与 Nexent Agent 2 解释收据见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署见 `artifacts/operational-deployment-20261009.json`，30 项检查通过。七工具逐项成功不等于模型一次用了全部七个；`memory_retrieval_disabled=true`、`tool_calls={}` 和私有原文不外发只在对应收据范围内成立。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据。外部冷启动、真实行业资料和专业审核另验。
 
 展示当前 observed_at、model_bound 与实际生成结果；不从历史 ready 推当前可用。私有或未获准来源只给模型固定枚举/计数，JEV 必须 live=true 且来源获准、非 private；服务失败不改变程序核验。Responses/JEV 单次真实调用只证明该次连通性，不是全协议、稳定性或行业准确率。
 

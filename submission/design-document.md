@@ -104,7 +104,7 @@ Nexent 连接步骤见 docs/17-nexent-package.md。artifacts/nexent-integration-
 
 业务入口为 `start-operational.ps1`，默认 8768；Nexent 宿主 Web 为 13000、容器内部 3000。四角色 admin/operator/reviewer/viewer 由服务器检查，审计身份来自登录账户，不代表专业资质。六台账 people/chemicals/lots/cabinets/issues/rules 导入保留六原始和六规范化来源，只创建候选；管理员检查、预览并显式确认发布，expected_active 拒绝并发覆盖。历史/复核/导出绑定原运行和快照，追加复核不改决定。
 
-普通解释对私有或未获准来源只发送固定枚举和计数摘要；产品专用 Nexent Agent 2 的无工具/自动记忆隔离以最新业务部署收据为准。12:02–12:04UTC 早先成功解释仍发现平台自动 search_memory，不能把旧 tool_calls={} 当作绝对零工具。
+普通解释对私有或未获准来源只发送固定枚举和计数摘要；2026-10-09 当前部署收据记录的是 gpt-6-sol/model_id=2 与 Agent 2 的无工具/记忆隔离。2026-10-08 12:02–12:04UTC 的七 MCP 工具与 Agent 1/model 1 编排、以及早先 Agent 2 自动 search_memory 发现，均是历史收据，不能把旧 tool_calls={} 当作当前绝对零工具。
 
 D1.1-7 保留品牌旁折叠按钮、边缘拖动及键盘调宽，删除冗余侧栏卡和底部控件。九个单选控件与四个日期控件各有 6/6 隔离交互测试通过，0 页面错误、0 外站请求；收据为 `artifacts/workbench-select-interaction-report.json` 与 `artifacts/workbench-date-interaction-report.json`。这不是实际读屏、真实设备或行业效果验收。P10 使用当前首页结构示意，不冒充本轮 ALLOW 核验。
 
