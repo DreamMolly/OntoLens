@@ -4,7 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
-from peiwu.delivery import audit
+from ontolens.delivery import audit
 
 
 ROOT = Path(__file__).resolve().parents[1]

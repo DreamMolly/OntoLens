@@ -6,11 +6,15 @@ v0.4.0 · D1.1 · 2026-10-09。当前业务与视觉收口见首节；D1.0及D1.
 
 ## 当前v0.4.0 / D1.1业务与视觉收口
 
+公开评审更新将主实现/资源迁到 `src/ontolens`，配置/请求头采用新名并保留旧名兼容，见[命名说明](../docs/39-brand-compatibility.md)。布局、颜色及资产字节保持既有合同，缓存更新为D1.1-16。命名迁移后完整464项回归、七阶段与158项输入指纹匹配，新容器35项检查通过；当前收据见 `artifacts/local-validation-report.json` 与 `artifacts/operational-deployment-20261009-ontolens.json`，日志为 `artifacts/source-validation/20261009-094214-e5337f3f/`。下方456/30记录属于迁移前收口。
+
 默认空业务工作区、四角色认证、六表原始/规范化候选检查及管理员发布/回滚已实现，专项回归及6HTTP流程通过；2026-10-09 完整七阶段通过，pytest `456 passed`，各阶段退出码均为0，日志已快照到 `artifacts/source-validation/20261009-052126-c6f21459/`。专项68/45/105互有重叠不可相加。D1.1-8日期控件已实现，独立日期 QA 6/6 通过。
 最新红框删除要求生效：品牌旁44px图标折叠，删除长fold、工作台/来源版本卡、底部本地空间及visible-/reset/+；edge拖宽和focusablehandle键盘8/HomeEnd/Enter/R保留，actor/logout有用途保留。9个单选下拉由选择专项6/6覆盖，D1.1-8日期输入专项6/6通过；两项均为隔离synthetic UI回归，不是行业效果证明。
 [2026-10-08 Nexent历史回执](../artifacts/nexent-live-runtime-20261008.json)12:02–12:04UTC passed，7实际MCP调用、Agent2tool-free真实解释、Agent1真实模型工具编排，未复用旧run且active不变。该结果为当时的合成软件链路，不是2026-10-09模型运行或行业评测。
-业务8768带认证/空库与13000集成已启动；2026-10-09 隔离容器业务流、重建/重启持久化、静态源码绑定、健康检查和 `gpt-6-sol` Nexent 辅助解释均通过，容器收据为30项检查，配置收据另见 `artifacts/nexent-model-configuration-20261009.json`。当前模型收据覆盖Agent2无工具解释；7 MCP与Agent1模型/工具编排来自10-08历史收据。源码已推送到私有 Gitea `fulao/OntoLens`，首个源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`。仍不等于 Linux 新机冷启动、长期并发或真实行业效果。
+业务8768带认证/空库与13000集成已启动；2026-10-09 隔离容器业务流、重建/重启持久化、静态源码绑定、健康检查和 `gpt-6-sol` Nexent 辅助解释均通过，容器收据为30项检查，配置收据另见 `artifacts/nexent-model-configuration-20261009.json`。当前模型收据覆盖Agent2无工具解释；7 MCP与Agent1模型/工具编排来自10-08历史收据。源码入口为公开 Gitea [fulao/OntoLens](https://git.fulao.cc/fulao/OntoLens)，首个源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`。仍不等于 Linux 新机冷启动、长期并发或真实行业效果。
 可实用业务流程、当前平台和最终软件/材料检查已收口并完成源码发布；真实资料效果、独立专业审核、实际设备/读屏、持续运行及正式参赛提交单独待核验。
+
+当前主实现迁移至 `src/ontolens/`，新配置采用 `ONTOLENS_*`，前端使用 `X-OntoLens-Token`。旧 Python 入口、环境配置、Nexent 机器标识和冻结协议兼容范围见[品牌与兼容说明](../docs/39-brand-compatibility.md)。本轮改变工程名称，不重新定义既有设计、决定或私有数据边界；迁移后的软件与静态指纹以重新生成的最终收据为准，以下历史块保留当时路径与数字。
 
 
 

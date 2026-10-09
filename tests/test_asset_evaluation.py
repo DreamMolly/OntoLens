@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from peiwu.asset_evaluation import evaluate_asset_recognition
+from ontolens.asset_evaluation import evaluate_asset_recognition
 
 
 ROOT = Path(__file__).resolve().parents[1]

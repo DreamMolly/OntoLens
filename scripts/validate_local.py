@@ -12,7 +12,7 @@ from uuid import uuid4
 
 import httpx
 
-from peiwu.delivery import file_digest, source_manifest
+from ontolens.delivery import file_digest, source_manifest
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,12 +24,13 @@ def main() -> int:
     run_dir.mkdir(parents=True)
     inputs = source_manifest(ROOT)
     environment = dict(os.environ)
-    for name in ("TYPESAFE_API_KEY", "PEIWU_MODEL_API_KEY", "PEIWU_MODEL_NAME", "PEIWU_MODEL_BASE_URL", "PEIWU_MCP_TOKEN",
-                 "PEIWU_AUTH_FILE", "PEIWU_SESSION_DB", "PEIWU_NEXENT_BASE_URL", "PEIWU_NEXENT_API_TOKEN"):
-        environment.pop(name, None)
+    for name in list(environment):
+        if name.startswith(("ONTOLENS_", "PEIWU_", "TYPESAFE_", "MODEL_", "NEXENT_", "OPENAI_", "ANTHROPIC_")):
+            environment.pop(name)
     temp = run_dir / "tmp"
     temp.mkdir()
-    environment.update({"PEIWU_ROOT": str(ROOT), "PEIWU_DB": str(run_dir / "smoke.sqlite3"), "PEIWU_WORKSPACE_MODE": "synthetic",
+    environment.update({"ONTOLENS_ROOT": str(ROOT), "ONTOLENS_DB": str(run_dir / "smoke.sqlite3"),
+                        "ONTOLENS_WORKSPACE_MODE": "synthetic", "ONTOLENS_LOAD_ENV": "false",
                         "TEMP": str(temp), "TMP": str(temp), "TMPDIR": str(temp),
                         "PIP_CACHE_DIR": str(ROOT / ".runtime/pip-cache"), "PYTHONIOENCODING": "utf-8",
                         "PLAYWRIGHT_BROWSERS_PATH": str(ROOT / ".runtime/playwright-browsers")})
@@ -40,7 +41,7 @@ def main() -> int:
     creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
     rows = []
     with (run_dir / "server.log").open("w", encoding="utf-8") as server_log:
-        server = subprocess.Popen([sys.executable, "-m", "uvicorn", "peiwu.web:create_app", "--factory",
+        server = subprocess.Popen([sys.executable, "-m", "uvicorn", "ontolens.web:create_app", "--factory",
                                    "--host", "127.0.0.1", "--port", str(port)], cwd=ROOT, env=environment,
                                   stdout=server_log, stderr=subprocess.STDOUT, creationflags=creationflags)
         try:

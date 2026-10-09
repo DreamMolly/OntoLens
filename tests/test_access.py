@@ -11,8 +11,8 @@ from types import SimpleNamespace
 
 import pytest
 
-import peiwu.access as access
-from peiwu.access import AccessController, AccessError, authorize, hash_password, read_accounts, update_account, verify_password
+import ontolens.access as access
+from ontolens.access import AccessController, AccessError, authorize, hash_password, read_accounts, update_account, verify_password
 
 PASSWORD = "TEST-FIXTURE-only-密码-482"
 ROOT = Path(__file__).resolve().parents[1]

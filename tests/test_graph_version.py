@@ -1,7 +1,7 @@
 import hashlib
 from pathlib import Path
 
-from peiwu.workspace import Workspace, encode, timestamp
+from ontolens.workspace import Workspace, encode, timestamp
 
 
 ROOT = Path(__file__).resolve().parents[1]

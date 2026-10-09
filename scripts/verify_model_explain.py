@@ -2,29 +2,20 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
 from urllib.parse import urlsplit
 
 import httpx
 
-from peiwu.model_explain import normalize_protocol
+from ontolens.model_explain import normalize_protocol
+from ontolens.config import env_value, load_environment
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_local_env(path: Path) -> None:
-    if not path.is_file():
-        return
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        name, value = line.split("=", 1)
-        name = name.strip()
-        if name and not os.environ.get(name):
-            os.environ[name] = value.strip()
+    load_environment(path)
 
 
 def local_url(value: str) -> str:
@@ -37,11 +28,11 @@ def local_url(value: str) -> str:
 
 
 def configuration() -> dict:
-    protocol = normalize_protocol(os.getenv("PEIWU_MODEL_PROTOCOL"))
-    return {"configured": bool(os.getenv("PEIWU_MODEL_BASE_URL") and os.getenv("PEIWU_MODEL_NAME")),
-            "protocol": protocol, "model": os.getenv("PEIWU_MODEL_NAME", ""),
-            "base_url_present": bool(os.getenv("PEIWU_MODEL_BASE_URL")),
-            "api_key_present": bool(os.getenv("PEIWU_MODEL_API_KEY")),
+    protocol = normalize_protocol(env_value("MODEL_PROTOCOL"))
+    return {"configured": bool(env_value("MODEL_BASE_URL") and env_value("MODEL_NAME")),
+            "protocol": protocol, "model": env_value("MODEL_NAME", ""),
+            "base_url_present": bool(env_value("MODEL_BASE_URL")),
+            "api_key_present": bool(env_value("MODEL_API_KEY")),
             "live_request_sent": False}
 
 
@@ -65,7 +56,7 @@ def main() -> int:
             status = client.get("/api/status")
             status.raise_for_status()
             csrf = status.json()["csrf_token"]
-            headers = {"X-Peiwu-Token": csrf}
+            headers = {"X-OntoLens-Token": csrf}
             check = client.post("/api/check", headers=headers, json=synthetic_request())
             check.raise_for_status()
             run_id = check.json()["run_id"]

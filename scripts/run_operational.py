@@ -8,22 +8,14 @@ from pathlib import Path
 import secrets
 import sqlite3
 
-from peiwu.access import AccessController, update_account
+from ontolens.access import AccessController, update_account
+from ontolens.config import load_environment as load_env_file
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_environment():
-    path = ROOT / ".env"
-    if path.is_file():
-        for raw in path.read_text(encoding="utf-8-sig").splitlines():
-            line = raw.strip()
-            if not line or line.startswith("#") or "=" not in line:
-                continue
-            key, value = line.split("=", 1)
-            key = key.strip()
-            if key.startswith(("PEIWU_", "TYPESAFE_")) and key not in os.environ:
-                os.environ[key] = value.strip().strip("\"'")
+    load_env_file(ROOT / ".env")
 
 
 def main() -> int:
@@ -38,7 +30,7 @@ def main() -> int:
     args = parser.parse_args()
     load_environment()
     if args.nexent_url:
-        os.environ["PEIWU_NEXENT_BASE_URL"] = args.nexent_url
+        os.environ["ONTOLENS_NEXENT_BASE_URL"] = args.nexent_url
     database = args.database.resolve()
     accounts = args.accounts.resolve()
     if database.exists():
@@ -58,15 +50,15 @@ def main() -> int:
     if not accounts.exists():
         parser.error("请先用 scripts/manage_access.py 创建账户，或首次启动时加 --bootstrap")
     AccessController(accounts, accounts.with_name("access.sqlite3"))
-    os.environ.update({"PEIWU_ROOT": str(ROOT), "PEIWU_DB": str(database),
-                       "PEIWU_AUTH_FILE": str(accounts), "PEIWU_SESSION_DB": str(accounts.with_name("access.sqlite3")),
-                       "PEIWU_WORKSPACE_MODE": "operational"})
+    os.environ.update({"ONTOLENS_ROOT": str(ROOT), "ONTOLENS_DB": str(database),
+                       "ONTOLENS_AUTH_FILE": str(accounts), "ONTOLENS_SESSION_DB": str(accounts.with_name("access.sqlite3")),
+                       "ONTOLENS_WORKSPACE_MODE": "operational"})
     if args.check_only:
         print(json.dumps({"ready": True, "mode": "operational", "auth_enabled": True,
                           "database": str(database), "port": args.port}, ensure_ascii=False))
         return 0
     import uvicorn
-    uvicorn.run("peiwu.web:create_app", factory=True, host=args.host, port=args.port,
+    uvicorn.run("ontolens.web:create_app", factory=True, host=args.host, port=args.port,
                 proxy_headers=False, log_level="info")
     return 0
 

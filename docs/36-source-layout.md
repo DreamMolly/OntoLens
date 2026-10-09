@@ -1,12 +1,15 @@
-# 源码布局与交接发布边界
+# OntoLens 源码布局与交接发布边界
 
-本项目保持现有模块位置。核心、测试和证据引用依赖这些目录，整理通过明确纳入范围实现；历史交付物和运行数据保留在本机。源码发布策略见 `scripts/source-release-policy.json`，离线检查入口为 `scripts/check_source_release.py`。
+当前主实现位于 `src/ontolens/`，`src/peiwu/` 仅保留旧 Python 导入和命令入口兼容。目录、配置与旧协议的迁移范围见[品牌与兼容说明](39-brand-compatibility.md)。历史交付物和运行数据保留在本机。源码发布策略见 `scripts/source-release-policy.json`，离线检查入口为 `scripts/check_source_release.py`。
 
-唯一搬迁的是根目录内无源码引用的 GitHub API 临时响应 `github-result-ce909d70.json`，已保存到 `.runtime/archive/`，搬迁前后 SHA256 一致。未搬迁测试夹具、交付证据或历史备份。
+命名迁移后新增8项兼容验证，完整软件回归为464项、七阶段通过，158项输入指纹匹配；源码日志为 `artifacts/source-validation/20261009-094214-e5337f3f/`。新隔离容器35项检查见 `artifacts/operational-deployment-20261009-ontolens.json`。旧456/30收据是迁移前阶段；公开发布另外扫描全部可达Git历史，不仅检查当前工作区。
 
-| 目录或文件 | 队友用途 | Git 纳入范围 |
+此前整理曾将根目录内无源码引用的 GitHub API 临时响应 `github-result-ce909d70.json` 保存到 `.runtime/archive/`，搬迁前后 SHA256 一致。品牌迁移调整当前主实现路径；冻结测试资料、交付证据和历史备份仍保留原记录。
+
+| 目录或文件 | 用途 | Git 纳入范围 |
 | --- | --- | --- |
-| `src/peiwu/` | 决策、证据、Web/MCP 与静态前端实现 | Python 与前端源码 |
+| `src/ontolens/` | 决策、证据、Web/MCP 与静态前端主实现 | Python 与前端源码 |
+| `src/peiwu/` | 旧包名的兼容入口，不保存第二套业务实现 | Python 兼容源码 |
 | `data/` | 规则、合成案例、评估集、公开文件摘录与清单 | 当前数据文件；公开摘录及合成台账的性质见 `docs/35-public-data-pack.md` |
 | `tests/` | 契约、回归、完整性与边界测试 | 测试源码及固定测试夹具 |
 | `scripts/` | 验证、部署、打包与源码发布工具 | 源码与发布策略；运行输出不纳入 |
@@ -50,7 +53,7 @@
 
 ## v0.4.0发布门槛与运行状态排除
 
-v0.4.0/D1.1软件默认业务空库、带账户、六表候选检查发布，不能再把全部能力写作local demo。2026-10-09 可实用业务流程、`gpt-6-sol` 配置绑定与Agent2无工具解释、456 passed七阶段和隔离业务容器30项收据均通过；7 MCP与Agent1工具编排属于10-08历史运行。源码已推送到私有 Gitea `fulao/OntoLens`；首个源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`，当前 `main` 见仓库链接。Linux新机冷启动、长期稳定性、真实行业效果和正式参赛提交仍单独待验。
+v0.4.0/D1.1软件默认业务空库、带账户、六表候选检查发布，不能再把全部能力写作local demo。2026-10-09 可实用业务流程、`gpt-6-sol` 配置绑定与Agent2无工具解释、456 passed七阶段和隔离业务容器30项收据均通过；7 MCP与Agent1工具编排属于10-08历史运行。源码发布入口为公开 Gitea [fulao/OntoLens](https://git.fulao.cc/fulao/OntoLens)；首次源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`，当前 `main` 见仓库链接。公开可见不自动授予复用许可，许可证状态以根 README 为准。Linux新机冷启动、长期稳定性、真实行业效果和正式参赛提交仍单独待验。
 
 `.runtime/operational/accounts.json`、initial-admin.txt、access.sqlite3/workbench.sqlite3、所有私有原始/规范化台账、登录cookie/token、真实.env、Dockervolume与私有导出 MUST排除。账户文件仅哈希也不发布；密码不可写入镜像/README/命令行参数。源码里的schema/模板及明确合成测试资料可按白名单纳入。
 

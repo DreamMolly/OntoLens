@@ -8,7 +8,6 @@ from __future__ import annotations
 import asyncio
 import copy
 import json
-import os
 import re
 import time
 from datetime import datetime, timezone
@@ -17,7 +16,8 @@ from urllib.parse import urlsplit
 
 import httpx
 
-from peiwu.model_context import REASONS
+from ontolens.model_context import REASONS
+from ontolens.config import env_value, read_environment
 
 
 TOOL_NAMES = {"asset_recognition", "evidence_lookup", "graph_query", "candidate_suggestions",
@@ -85,19 +85,12 @@ class NexentRuntime:
     @classmethod
     def from_environment(cls, root: Path | None = None) -> "NexentRuntime":
         root = root or Path(__file__).resolve().parents[2]
-        settings = {}
-        env_path = root / ".env"
-        if env_path.is_file():
-            for raw in env_path.read_text(encoding="utf-8-sig").splitlines():
-                line = raw.strip()
-                if line and not line.startswith("#") and "=" in line:
-                    name, value = line.split("=", 1)
-                    if name.strip().startswith(("PEIWU_NEXENT_", "NEXENT_")):
-                        settings[name.strip()] = value.strip().strip("\"'")
-        settings.update(os.environ)
+        settings = read_environment(root / ".env")
 
         def value(name: str, default: str = "") -> str:
-            return settings.get("PEIWU_NEXENT_" + name, settings.get("NEXENT_" + name, default))
+            aliases = ("NEXENT_" + name,)
+            file_value = env_value("NEXENT_" + name, default, environment=settings, aliases=aliases)
+            return env_value("NEXENT_" + name, file_value, aliases=aliases)
 
         agent_id = value("AGENT_ID")
         return cls(value("BASE_URL", "http://127.0.0.1:13000"), token=value("API_TOKEN"),

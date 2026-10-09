@@ -5,9 +5,9 @@ from pathlib import Path
 import pytest
 import yaml
 
-from peiwu.asset_evaluation import evaluate_asset_recognition
-from peiwu.documents import parse_document
-from peiwu.workspace import Workspace, WorkspaceError
+from ontolens.asset_evaluation import evaluate_asset_recognition
+from ontolens.documents import parse_document
+from ontolens.workspace import Workspace, WorkspaceError
 
 
 ROOT = Path(__file__).resolve().parents[1]

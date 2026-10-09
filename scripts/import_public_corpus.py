@@ -14,8 +14,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from peiwu.public_corpus import load_public_corpus  # noqa: E402
-from peiwu.workspace import Workspace, encode  # noqa: E402
+from ontolens.public_corpus import load_public_corpus  # noqa: E402
+from ontolens.workspace import Workspace, encode  # noqa: E402
 
 
 def expected_documents(corpus):

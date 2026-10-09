@@ -3,7 +3,7 @@ from zipfile import ZipFile
 
 import pytest
 
-from peiwu.delivery import (
+from ontolens.delivery import (
     deck_text,
     file_digest,
     integration_checks,
@@ -24,9 +24,11 @@ def test_source_manifest_is_deterministic_and_covers_new_delivery_code():
     first = source_manifest(ROOT)
     second = source_manifest(ROOT)
     assert first == second
-    assert "src/peiwu/delivery.py" in first
+    assert "src/ontolens/delivery.py" in first
+    assert "src/peiwu/__init__.py" in first
+    assert "src/ontolens/config.py" in first
     assert "scripts/audit_deliverables.py" in first
-    assert first["src/peiwu/delivery.py"] == file_digest(ROOT / "src/peiwu/delivery.py")
+    assert first["src/ontolens/delivery.py"] == file_digest(ROOT / "src/ontolens/delivery.py")
     assert first["start-demo.ps1"] == file_digest(ROOT / "start-demo.ps1")
     assert "nexent/windows.override.yaml" in first
     assert "nexent/windows.paths.env.example" in first

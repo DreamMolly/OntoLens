@@ -6,7 +6,7 @@ from typing import Any
 
 import yaml
 
-from peiwu.workspace import Workspace
+from ontolens.workspace import Workspace
 
 
 def _scores(predicted: set[tuple], expected: set[tuple]) -> dict[str, int | float]:

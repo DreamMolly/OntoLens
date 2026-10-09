@@ -29,7 +29,7 @@ def local_file(root: Path, name: str) -> Path:
 
 
 def source_manifest(root: Path) -> dict[str, str]:
-    patterns = ("src/peiwu/**/*.py", "src/peiwu/static/*", "scripts/*.py", "tests/*.py",
+    patterns = ("src/ontolens/**/*.py", "src/ontolens/static/*", "src/peiwu/**/*.py", "scripts/*.py", "tests/*.py",
                 "data/**/*", "pyproject.toml", "requirements.txt", "start-workbench.ps1", "start-demo.ps1",
                 "setup-local.ps1", "setup-local.sh", "start-workbench.sh", "start-demo.sh",
                 ".env.example", ".gitignore", ".gitattributes", "design.md", "design/02-foundations.md",

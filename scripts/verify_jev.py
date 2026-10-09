@@ -4,28 +4,19 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
 
-from peiwu.jev import JevReranker
-from peiwu.jev_replay import build_record, replay_record
-from peiwu.workspace import Workspace
+from ontolens.jev import JevReranker
+from ontolens.jev_replay import build_record, replay_record
+from ontolens.workspace import Workspace
+from ontolens.config import load_environment
 
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def load_local_env(path: Path) -> None:
-    if not path.is_file():
-        return
-    for raw_line in path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        name, value = line.split("=", 1)
-        name, value = name.strip(), value.strip()
-        if name and not os.environ.get(name):
-            os.environ[name] = value
+    load_environment(path)
 
 
 def main() -> int:

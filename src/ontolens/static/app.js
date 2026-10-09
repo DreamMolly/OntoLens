@@ -34,7 +34,7 @@ async function api(path, options = {}) {
   const capability = options.method === "POST" ? capabilityForPath(path) : null;
   if (capability && !can(capability)) throw new Error("当前账户没有执行此操作的权限。");
   let response;
-  try { response = await fetch("/api" + path, { ...options, headers: { "X-Peiwu-Token": state.token, ...(options.headers || {}) } }); }
+  try { response = await fetch("/api" + path, { ...options, headers: { "X-OntoLens-Token": state.token, ...(options.headers || {}) } }); }
   catch (cause) { const error = new Error("连接中断，请查看保存状态后再决定是否重试。"); error.uncertain = options.method === "POST"; throw error; }
   if (response.status === 401) { showLogin("会话未登录或已失效，请登录后继续。"); throw new Error("需要登录业务工作区。"); }
   let payload;

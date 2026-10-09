@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def main() -> int:
-    files = sorted((ROOT / "src/peiwu/static").glob("*.js"))
+    files = sorted((ROOT / "src/ontolens/static").glob("*.js"))
     if not files:
         raise RuntimeError("No frontend JavaScript files found")
     for path in files:

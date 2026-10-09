@@ -309,7 +309,7 @@ def test_apply_starts_workbench_once_with_token_in_child_environment(tmp_path):
     assert "start-workbench.ps1" in " ".join(args)
     assert args[1:4] == ["-NoProfile", "-ExecutionPolicy", "Bypass"]
     assert TOKEN not in " ".join(args)
-    assert kwargs["env"]["PEIWU_MCP_TOKEN"] == TOKEN
+    assert kwargs["env"]["ONTOLENS_MCP_TOKEN"] == TOKEN
     assert kwargs["env"]["HOME"] == "C:/Users/example"
 
 

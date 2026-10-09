@@ -4,6 +4,8 @@ D1.1 · 2026-10-09 · 侧栏/首页主实现已落地，完整 browser smoke、�
 
 [返回设计规范目录](README.md)。本页定义所有任务共享的可访问合同；精确颜色与排版以[基础规范](02-foundations.md)为准。
 
+当前共享控件位于 `src/ontolens/static/`；品牌和工程兼容见[品牌与兼容说明](../docs/39-brand-compatibility.md)。路径、请求头与配置更名不改变焦点、语义、响应式或减少运动合同。
+
 ## 语义与键盘
 
 MUST 优先用原生 button/input/select/textarea/label/details/dialog/table，不能把 div 点击当操作控件。

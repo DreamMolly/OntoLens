@@ -1,8 +1,28 @@
 # 格物镜 · OntoLens 初赛材料版式 QA
 
-日期：2026-10-09。当前材料已按最终 v0.4.0/D1.1 收据更新，并随源码推送到私有 Gitea；不是官方最终模板或实际行业验收材料。检查范围为现行 Word/PPT、D1.1 首页结构示意截图和可编辑来源。
+日期：2026-10-09。当前材料正在完成公开与 OntoLens 命名迁移验收；私有源码推送记录保留历史；不是官方最终模板或实际行业验收材料。检查范围为现行 Word/PPT、D1.1 首页结构示意截图和可编辑来源。
 
-## v0.4.0/D1.1 当前更新
+
+## 公开与命名迁移验收（2026-10-09）
+
+当前 Word/PPT 保持 4/11 页与原几何，产品名称统一为格物镜 · OntoLens；当前 CLI 命令为 `python -m ontolens`。Nexent 的旧 Agent/Skill 机器 ID 与历史 schema/档案名保留兼容，未重新登记；可见页面使用 OntoLens Agent 和三项职责，备注说明真实 ID。
+
+命名迁移后最终全量为 **464 passed in 166.48s**、七阶段 exit 0、158 项输入指纹一致；收据为 `artifacts/local-validation-report.json`，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 **35 项检查通过**，验证 ontolens 主入口、配置、请求头、真实 Agent 2 辅助解释与重启持久化，`real_industry_data_used=false`。旧 30 项收据与 456 基线属于本次命名迁移前历史。
+
+P10 继续为 D1.1 尚未核验的首页结构示意，不表示 ALLOW 或真实业务效果。外部冷启动、真实行业资料、独立专业审核、长期稳定性和正式提交仍待各自验证。当前原生材料哈希与视觉 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
+
+| 当前原生材料 | SHA256 | QA |
+| --- | --- | --- |
+| Word 开发设计稿 | `3fb909b8d2618294770077855968854034ae255035bc83e14c6a5ae9d888e4de` | 4 页、48 段、180 词、2655 字符；schema 0 errors，25 条模板排版提示 |
+| PPT 答辩稿 | `dc8bbfa8cefbf52889c4ca8e6f0e10d7c3986166a492bbc324bae6aeab9722ef` | 11 页；schema 0 errors、issues 0；第 8/9 页名称与 464 已同步 |
+
+全 4 页 Word 与 11 页 PPT 原生 PNG、两份接触表位于 `.runtime/material-public-ontolens-20261009/word/` 和 `ppt/`，已独立视觉检查，无新增裁切、溢出或重叠。ZIP 部件审计无新增/删除部件，PPT 全部数值几何不变；变化仅限第 8/9 页可见文本、对应备注及 Word 正文。原备份和历史导出均保留。
+
+Word 最后段以等长文字将“仍待完成”改为“仍未验证”，明确未验证边界；`word/page-4-boundary.png` 是本次改字后的原生最后页，已检查无新增裁切或重叠。其余页沿用此前同版式 QA；PPT 未变。
+
+以下本轮之前的章节全部保留为历史，不绑定本次公开与命名迁移的材料哈希、源码或运行状态。
+
+## 历史命名迁移前 D1.1 更新（2026-10-09）
 
 本轮保留 Word 4 页、PPT 11 页、主题和可编辑几何。正文改为实际软件范围：空业务库、角色登录、六原始/六规范化台账、候选检查/管理员发布、业务核验、追加复核和证据导出。行业字段适用性、独立评测、专业审核、长期稳定性和正式提交仍未完成；不执行真实出库。
 
@@ -14,7 +34,7 @@ PPT 第 10 页使用 `.runtime/ontolens-D1.1-final-home-1440x1230.png`（1440×1
 
 日期与选择控件分别由 `artifacts/workbench-date-interaction-report.json`、`artifacts/workbench-select-interaction-report.json` 记录，均为 6/6、0 页面错误、0 外站请求；范围是隔离合成 Playwright，不是实际读屏、真实设备或行业验证。
 
-## 2026-10-09 最终材料 QA
+## 历史命名迁移前材料 QA（2026-10-09）
 
 | 检查 | 当前结果 | 证据 |
 | --- | --- | --- |

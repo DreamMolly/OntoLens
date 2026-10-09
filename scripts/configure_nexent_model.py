@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit, urlunsplit
 
 import httpx
+from ontolens.config import env_value
 
 if __package__:
     from .verify_model_explain import load_local_env
@@ -18,10 +18,10 @@ else:
 
 
 def model_payload() -> dict:
-    name = os.getenv("PEIWU_MODEL_NAME", "").strip()
-    base_url = os.getenv("PEIWU_MODEL_BASE_URL", "").strip()
-    api_key = os.getenv("PEIWU_MODEL_API_KEY", "").strip()
-    require(bool(name and base_url and api_key), "PEIWU model name, base URL and API key are required")
+    name = env_value("MODEL_NAME", "").strip()
+    base_url = env_value("MODEL_BASE_URL", "").strip()
+    api_key = env_value("MODEL_API_KEY", "").strip()
+    require(bool(name and base_url and api_key), "OntoLens model name, base URL and API key are required")
     parsed = urlsplit(base_url)
     require(parsed.scheme in {"http", "https"} and bool(parsed.hostname)
             and not parsed.username and not parsed.password and not parsed.query and not parsed.fragment,
@@ -77,7 +77,7 @@ def configure(client: httpx.Client, payload: dict, *, apply: bool, state: dict |
     wanted_agent_id = expected_agent_id()
     agents = [item for item in agents_response.json()
               if item.get("name") == "peiwu_compliance_review" and item.get("agent_id") == wanted_agent_id]
-    require(len(agents) == 1, "Expected exactly one Peiwu Agent")
+    require(len(agents) == 1, "Expected exactly one OntoLens legacy Agent instance")
     detail_response = client.post("/agent/search_info", json={"agent_id": wanted_agent_id})
     detail_response.raise_for_status()
     detail = detail_response.json()
@@ -87,7 +87,7 @@ def configure(client: httpx.Client, payload: dict, *, apply: bool, state: dict |
     bound_skills = {skill_names.get(item.get("skill_id")) for item in detail.get("skills", []) if item.get("enabled")}
     bound_tools = {item.get("name") for item in detail.get("tools", []) if item.get("enabled")}
     require(detail.get("permission") == "EDIT" and bound_skills == SKILL_NAMES and bound_tools == TOOL_NAMES,
-            "Peiwu Agent is not the editable seven-tool, three-Skill instance")
+            "OntoLens legacy Agent is not the editable seven-tool, three-Skill instance")
     previous_model_ids = detail.get("model_ids") or []
     result.update({"applied": False, "model_created": False, "healthcheck_sent": False,
                    "temporary_healthcheck_attempted": False, "model_create_attempted": False,

@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from peiwu.cli import main
+from ontolens.cli import main
 
 ROOT = Path(__file__).resolve().parents[1]
 

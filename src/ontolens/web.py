@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 import hashlib
 import secrets
 from contextlib import asynccontextmanager
@@ -14,37 +13,38 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
-from peiwu import __version__
-from peiwu.access import AccessController, AccessError, authorize
-from peiwu.audit_context import audit_actor
-from peiwu.bridge import create_mcp
-from peiwu.catalog import HAZARD_CLASSES
-from peiwu.contracts import CandidateRequest, CheckRequest, EvidenceRerankRequest, LoginRequest, ReviewRecordRequest, SwitchRequest
-from peiwu.documents import MAX_UPLOAD, parse_document
-from peiwu.jev import JevReranker
-from peiwu.ledger_import import GROUPS, MAX_FILE_BYTES
-from peiwu.model_context import explanation_view
-from peiwu.model_explain import build_request, extract_text, normalize_protocol
-from peiwu.workspace import Workspace, WorkspaceError, encode
+from ontolens import __version__
+from ontolens.access import AccessController, AccessError, authorize
+from ontolens.audit_context import audit_actor
+from ontolens.bridge import create_mcp
+from ontolens.catalog import HAZARD_CLASSES
+from ontolens.config import env_value
+from ontolens.contracts import CandidateRequest, CheckRequest, EvidenceRerankRequest, LoginRequest, ReviewRecordRequest, SwitchRequest
+from ontolens.documents import MAX_UPLOAD, parse_document
+from ontolens.jev import JevReranker
+from ontolens.ledger_import import GROUPS, MAX_FILE_BYTES
+from ontolens.model_context import explanation_view
+from ontolens.model_explain import build_request, extract_text, normalize_protocol
+from ontolens.workspace import Workspace, WorkspaceError, encode
 
 
 def create_app(root: Path | None = None, database: Path | None = None, *, seed_demo: bool | None = None):
-    root = root or Path(os.getenv("PEIWU_ROOT", Path(__file__).resolve().parents[2]))
-    database = database or Path(os.getenv("PEIWU_DB", root / ".runtime/workbench.sqlite3"))
-    mode = os.getenv("PEIWU_WORKSPACE_MODE", "operational")
+    root = root or Path(env_value("ROOT", Path(__file__).resolve().parents[2]))
+    database = database or Path(env_value("DB", root / ".runtime/workbench.sqlite3"))
+    mode = env_value("WORKSPACE_MODE", "operational")
     if mode not in {"operational", "synthetic"}:
-        raise ValueError("PEIWU_WORKSPACE_MODE must be operational or synthetic")
+        raise ValueError("ONTOLENS_WORKSPACE_MODE must be operational or synthetic")
     workspace = Workspace(root, database, seed_demo=mode == "synthetic" if seed_demo is None else seed_demo)
     mcp = create_mcp(workspace)
     csrf_token = secrets.token_urlsafe(32)
-    auth_path = os.getenv("PEIWU_AUTH_FILE", "").strip()
-    access = (AccessController(Path(auth_path), Path(os.getenv("PEIWU_SESSION_DB", database.with_name("access.sqlite3"))),
-                               secure_cookie=os.getenv("PEIWU_COOKIE_SECURE", "false").lower() == "true")
+    auth_path = env_value("AUTH_FILE", "").strip()
+    access = (AccessController(Path(auth_path), Path(env_value("SESSION_DB", database.with_name("access.sqlite3"))),
+                               secure_cookie=env_value("COOKIE_SECURE", "false").lower() == "true")
               if auth_path else None)
     session_cookie = "ontolens_session"
     nexent = None
-    if os.getenv("PEIWU_NEXENT_BASE_URL"):
-        from peiwu.nexent_runtime import NexentRuntime
+    if env_value("NEXENT_BASE_URL"):
+        from ontolens.nexent_runtime import NexentRuntime
         nexent = NexentRuntime.from_environment(root)
 
     @asynccontextmanager
@@ -59,9 +59,9 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
     app.state.nexent_status = {"connected": False, "model_ready": False, "observed_at": None,
                               "notice": "Nexent 未配置，核心资料核验可独立运行"}
     allowed_hosts = ["127.0.0.1", "localhost", "[::1]", "testserver", "host.docker.internal"]
-    allowed_hosts.extend(host.strip() for host in os.getenv("PEIWU_ALLOWED_HOSTS", "").split(",") if host.strip())
+    allowed_hosts.extend(host.strip() for host in env_value("ALLOWED_HOSTS", "").split(",") if host.strip())
     if "*" in allowed_hosts:
-        raise ValueError("PEIWU_ALLOWED_HOSTS requires explicit host names")
+        raise ValueError("ONTOLENS_ALLOWED_HOSTS requires explicit host names")
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=allowed_hosts)
 
     @app.middleware("http")
@@ -72,7 +72,7 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
         expected_csrf = csrf_token
         request.state.actor = None
         if path.startswith("/mcp"):
-            mcp_token = os.getenv("PEIWU_MCP_TOKEN", "")
+            mcp_token = env_value("MCP_TOKEN", "")
             supplied = request.headers.get("authorization", "")
             if (remote and not mcp_token) or (mcp_token and not secrets.compare_digest(supplied, "Bearer " + mcp_token)):
                 return JSONResponse({"detail": "MCP 访问凭证无效"}, status_code=401)
@@ -93,7 +93,7 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
                 return JSONResponse({"detail": "当前账户没有执行此操作的权限"}, status_code=403)
         request.state.actor = actor
         if path.startswith("/api/") and request.method not in ("GET", "HEAD", "OPTIONS"):
-            supplied = request.headers.get("x-peiwu-token", "")
+            supplied = request.headers.get("x-ontolens-token", request.headers.get("x-peiwu-token", ""))
             origin = request.headers.get("origin")
             origin_invalid = origin is not None and (urlsplit(origin).scheme not in {"http", "https"}
                                                     or urlsplit(origin).netloc != request.headers.get("host"))
@@ -167,8 +167,8 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
         return {"csrf_token": session["csrf_token"] if session else csrf_token, "active_id": workspace.active_id(), "version": __version__, "mode": current_mode,
                 "team": {"students": [], "advisor": None, "reviewer": None},
                 "auth_enabled": access is not None, "actor": request.state.actor,
-                "model_configured": bool(os.getenv("PEIWU_MODEL_BASE_URL") and os.getenv("PEIWU_MODEL_NAME")),
-                "model_protocol": normalize_protocol(os.getenv("PEIWU_MODEL_PROTOCOL")),
+                "model_configured": bool(env_value("MODEL_BASE_URL") and env_value("MODEL_NAME")),
+                "model_protocol": normalize_protocol(env_value("MODEL_PROTOCOL")),
                 "jev_configured": jev["key_present"] and jev["sdk_installed"], "jev": jev,
                 "nexent_connected": app.state.nexent_status["connected"], "mcp_path": "/mcp/", "classes": HAZARD_CLASSES,
                 "notice": {"synthetic_demo": "合成演示空间；核验使用合成快照，不执行真实出库",
@@ -361,13 +361,13 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
 
     @app.post("/api/runs/{run_id}/explain")
     async def explain(run_id: str):
-        endpoint = os.getenv("PEIWU_MODEL_BASE_URL", "").rstrip("/")
-        model = os.getenv("PEIWU_MODEL_NAME", "")
-        protocol = normalize_protocol(os.getenv("PEIWU_MODEL_PROTOCOL"))
+        endpoint = env_value("MODEL_BASE_URL", "").rstrip("/")
+        model = env_value("MODEL_NAME", "")
+        protocol = normalize_protocol(env_value("MODEL_PROTOCOL"))
         if not endpoint or not model:
             raise WorkspaceError("模型尚未配置；证据链与程序判定可离线使用", 503)
         run = workspace.run(run_id)
-        token = os.getenv("PEIWU_MODEL_API_KEY", "")
+        token = env_value("MODEL_API_KEY", "")
         context, context_scope = explanation_view(workspace, run)
         system_prompt = ("用中文简短解释程序核验结果。不得修改或建议覆盖程序决定；未作决定就说需复核。"
                          "source_text_sent=false 表示仅有匿名摘要，不能编造人员、物料、原文或引用；"

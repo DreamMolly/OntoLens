@@ -219,9 +219,9 @@ Design decisions use the user's standing autonomous project/material optimizatio
 - **Title**: Nexent 编排与本机恢复
 - **Core message**: 平台负责调度，程序负责决定，来源记录负责复查。
 - **Content**:
-  - 已有 Agent peiwu_compliance_review、model_id=2（gpt-6-sol）、三个 Skill、七个 MCP 工具。
+  - 可见名称为 OntoLens Agent，三项职责为申请输入、证据链、确定性判定；现有机器 ID 保留兼容。
   - 工具集合：asset_recognition、evidence_lookup、graph_query、candidate_suggestions、evidence_rerank_jev、decision_check、candidate_review。
-  - 2026-10-09 当前 gpt-6-sol/model_id=2 配置与 Docker 业务部署已实测；30 项部署检查通过，外部冷启动与真实行业效果另验。
+  - 当前 OntoLens 新镜像 35 项检查通过，gpt-6-sol/model_id=2 与 Agent 2 解释延续既有平台配置，未重新登记机器 ID；旧 30 项部署与 10-08 七工具/Agent 1 编排保留历史，外部冷启动和行业效果另验。
   - start-demo.ps1 面向已准备本机，复用 F 盘数据和令牌；增加数据库等待与数据处理健康检查。
   - 日常恢复不等于新机一键部署或独立冷启动。
   - 启动入口不安装依赖、不迁移数据、不创建模型、不重复导入 Agent。
@@ -234,7 +234,7 @@ Design decisions use the user's standing autonomous project/material optimizatio
 - **Content**:
   - 冻结合成规则集：60/60 exact_match，unsafe_release=0。
   - 平台 MCP：7 个工具实际验证。
-  - 当前全量回归 456 passed in 156.97s，七阶段 exit 0、154 项输入指纹一致；Docker 业务部署收据为 30 checks passed，real_industry_data_used=false。权威收据为 artifacts/local-validation-report.json、artifacts/source-validation/20261009-052126-c6f21459/ 和 artifacts/operational-deployment-20261009.json。
+  - 当前全量回归 464 passed in 166.48s，七阶段 exit 0、158 项输入指纹一致；新镜像收据为 35 checks passed，real_industry_data_used=false。权威收据为 artifacts/local-validation-report.json、artifacts/source-validation/20261009-094214-e5337f3f/ 和 artifacts/operational-deployment-20261009-ontolens.json。
   - .venv/Scripts/python.exe -m pytest -q。
   - .venv/Scripts/python.exe scripts/verify_nexent.py。
   - 规则结果、项目测试数和模型效果分开解释；不宣称行业准确率。
@@ -277,4 +277,7 @@ Design decisions use the user's standing autonomous project/material optimizatio
 
 
 
-本轮 v0.4.0/D1.1-7 保留原生 11 页主题和数值几何，采用 officecli DOM 修改现有正文、备注、计数和第10页图片，不重新生成整套幻灯片。六台账业务导入、账户权限、候选检查/管理员发布、核验/复核/导出已实现，行业适用与独立专业验收另记。当前首页图不表示实际核验结果；最新原生 QA 收据见 `.runtime/material-final-456-20261009/receipt.json`，历史 exports/validation 保留原范围。
+本轮 v0.4.0/D1.1-7 保留原生 11 页主题和数值几何，采用 officecli DOM 修改现有正文、备注、计数和第10页图片，不重新生成整套幻灯片。六台账业务导入、账户权限、候选检查/管理员发布、核验/复核/导出已实现，行业适用与独立专业验收另记。当前首页图不表示实际核验结果；最新原生 QA 收据见 `.runtime/material-public-ontolens-20261009/receipt.json`，历史 exports/validation 保留原范围。
+
+
+公开与命名迁移验收：464 个测试、七阶段通过、158 项输入指纹一致；最终耗时与日志目录以 `artifacts/local-validation-report.json` 为准。新 OntoLens Docker 收据 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过。PPT 第 8 页可见 Agent/Skill 名称使用 OntoLens 与职责词，实际平台旧 ID 留在备注作兼容说明；未重新登记。QA 收据 `.runtime/material-public-ontolens-20261009/receipt.json`；旧 exports/validation 保留历史。

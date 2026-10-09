@@ -7,11 +7,11 @@
   </g>
   <g id="agent-to-tools" data-pptx-bounds="64 179 1152 360">
     <rect x="64" y="183" width="330" height="141" fill="#17384B" />
-    <text x="88" y="225" font-size="28" font-weight="bold" fill="#FFFFFF">Nexent Agent</text>
-    <text x="88" y="268" font-size="18" fill="#FFFFFF">peiwu_compliance_review</text>
+    <text x="88" y="225" font-size="28" font-weight="bold" fill="#FFFFFF">OntoLens Agent</text>
+    <text x="88" y="268" font-size="18" fill="#FFFFFF">核验与证据编排</text>
     <text x="88" y="303" font-size="18" fill="#CCD9DF">model_id=2</text>
     <text x="64" y="373" font-size="28" font-weight="bold" fill="#17384B">三个可复用 Skill</text>
-    <text fill="#243746" font-family="Microsoft YaHei, Consolas" font-size="18" x="66" y="417">peiwu-intake</text><text fill="#243746" font-family="Microsoft YaHei, Consolas" font-size="18" x="66" y="449">peiwu-evidence</text><text fill="#243746" font-family="Microsoft YaHei, Consolas" font-size="18" x="66" y="481">peiwu-decision</text><line x1="394" y1="261" x2="492" y2="261" stroke="#087F8C" stroke-width="3" marker-end="url(#arrow)" />
+    <text fill="#243746" font-family="Microsoft YaHei, Arial" font-size="18" x="66" y="417">申请输入</text><text fill="#243746" font-family="Microsoft YaHei, Consolas" font-size="18" x="66" y="449">证据链</text><text fill="#243746" font-family="Microsoft YaHei, Consolas" font-size="18" x="66" y="481">确定性判定</text><line x1="394" y1="261" x2="492" y2="261" stroke="#087F8C" stroke-width="3" marker-end="url(#arrow)" />
     <text x="416" y="238" font-size="18" fill="#087F8C">MCP</text>
     <rect x="512" y="183" width="704" height="338" fill="#EDF3F6" />
     <text x="538" y="225" font-size="28" font-weight="bold" fill="#17384B">本地工作台 / 七工具</text>
@@ -22,7 +22,7 @@
   <g id="restart-entry" data-pptx-bounds="64 554 1152 107">
     <text x="64" y="590" font-size="28" font-weight="bold" fill="#17384B">业务与演示入口</text>
     <text x="392" y="590" font-size="24" fill="#243746">空库登录 / 六台账检查 / 版本与来源绑定</text>
-    <text fill="#526874" font-size="18" x="64" y="627">业务入口 start-operational.ps1：空库、角色登录、六台账导入与管理员发布。</text><text fill="#526874" font-size="18" x="64" y="655">10-09 gpt-6-sol/model_id=2 已配置并通过部署收据；行业效果、外部冷启动仍待验证。</text></g>
+    <text fill="#526874" font-size="18" x="64" y="627">业务入口 start-operational.ps1：空库、角色登录、六台账导入与管理员发布。</text><text fill="#526874" font-size="18" x="64" y="655">OntoLens 新镜像 35 项检查通过；实际行业效果与外部冷启动仍待验证。</text></g>
   <g id="footer" data-pptx-role="footer" data-pptx-bounds="64 672 1152 30" fill="#526874" font-size="16">
     <text x="64" y="692">格物镜 · OntoLens / 平台工具链 · 合成证据</text><text x="1216" y="692" text-anchor="end">08</text>
   </g>

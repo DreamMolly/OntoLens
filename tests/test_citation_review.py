@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from peiwu.jev import CITATION_QUESTION_VERSION, JevReranker
-from peiwu.workspace import Workspace, digest
+from ontolens.jev import CITATION_QUESTION_VERSION, JevReranker
+from ontolens.workspace import Workspace, digest
 from tests.test_workbench import ROOT, client, request, source
 
 

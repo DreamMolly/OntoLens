@@ -12,7 +12,7 @@
 
 ## 2026-09-26 中间故障记录
 
-- 本机实际 Docker Desktop 安装位于 `C:/Users/leovo/AppData/Local/Programs/DockerDesktop`；启动后服务端返回 29.7.2，Compose 返回 v5.5.0。
+- 本机 Docker Desktop 使用当前用户目录下的安装位置；启动后服务端返回 29.7.2，Compose 返回 v5.5.0。公开说明不列本机用户名路径。
 - PostgreSQL 反复重启，实际日志为 `could not write to file "pg_wal/xlogtemp.29": No space left on device`。这不是模型绑定或 MCP 令牌错误。
 - Elasticsearch 数据目录的 `df -h` 返回 `/dev/sde` 容量 128 MB、已用 116 MB、剩余约 2 MB（99%）。数据库和其他项目数据仍使用 `/mnt/f/...` 错误绑定；没有切换到 Windows F 盘。
 - 只读部署审计退出 1，记录 `wrong_host_path`、`service_not_ready` 和 `missing_service`；本次报告为 `artifacts/nexent-deployment-audit.json`。

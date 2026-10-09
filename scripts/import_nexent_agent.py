@@ -55,7 +55,7 @@ def load_bundle(path: Path, package: Path = ROOT / "nexent") -> dict:
     with ZipFile(io.BytesIO(content)) as archive:
         config = json.loads(archive.read("agent.json"))
         agent = config["agent_info"][str(config["agent_id"])]
-        require(len(config["agent_info"]) == 1 and not agent["managed_agents"], "Only the single Peiwu agent is supported")
+        require(len(config["agent_info"]) == 1 and not agent["managed_agents"], "Only the single OntoLens legacy agent template is supported")
         require(not agent.get("model_ids") and not agent.get("model_names")
                 and not agent.get("business_logic_model_id") and not agent.get("business_logic_model_name"),
                 "Starter import must not configure or select a model")

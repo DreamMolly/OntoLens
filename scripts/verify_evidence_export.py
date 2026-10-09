@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from peiwu.export_verification import verify_evidence_export_file
+from ontolens.export_verification import verify_evidence_export_file
 
 
 def main() -> int:

@@ -41,7 +41,7 @@
   },
   "outputs": [
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-16.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-16.png",
       "size": [
         16,
         16
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-32.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-32.png",
       "size": [
         32,
         32
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-48.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-48.png",
       "size": [
         48,
         48
@@ -83,7 +83,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-64.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-64.png",
       "size": [
         64,
         64
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-256.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-256.png",
       "size": [
         256,
         256
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-256.webp",
+      "path": "src/ontolens/static/ontolens-symbol-d1-256.webp",
       "size": [
         256,
         256
@@ -121,7 +121,7 @@
       "sha256": "3b6aebfcc1ddb179c0d7d4342a0ded46d8162704229d7c2efb641e258eb93ab1"
     },
     {
-      "path": "src/peiwu/static/ontolens-symbol-d1-256-dark.png",
+      "path": "src/ontolens/static/ontolens-symbol-d1-256-dark.png",
       "size": [
         256,
         256
@@ -133,7 +133,7 @@
       "derived_from": "postprocessed model silhouette"
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-source-d1-64.png",
+      "path": "src/ontolens/static/ontolens-illustration-source-d1-64.png",
       "size": [
         64,
         64
@@ -161,7 +161,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-source-d1-256.png",
+      "path": "src/ontolens/static/ontolens-illustration-source-d1-256.png",
       "size": [
         256,
         256
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-relations-d1-64.png",
+      "path": "src/ontolens/static/ontolens-illustration-relations-d1-64.png",
       "size": [
         64,
         64
@@ -217,7 +217,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-relations-d1-256.png",
+      "path": "src/ontolens/static/ontolens-illustration-relations-d1-256.png",
       "size": [
         256,
         256
@@ -245,7 +245,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-versions-d1-64.png",
+      "path": "src/ontolens/static/ontolens-illustration-versions-d1-64.png",
       "size": [
         64,
         64
@@ -273,7 +273,7 @@
       ]
     },
     {
-      "path": "src/peiwu/static/ontolens-illustration-versions-d1-256.png",
+      "path": "src/ontolens/static/ontolens-illustration-versions-d1-256.png",
       "size": [
         256,
         256

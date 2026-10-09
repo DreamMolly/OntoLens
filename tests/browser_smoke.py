@@ -249,7 +249,7 @@ def acceptance_interactions(page, output):
               "touch_emulation": {"width": 390, "source_open_close": True},
               "css_zoom_200_percent": {"whole_page_overflow": False, "browser_ui_zoom_verified": False}}
     root = Path(__file__).resolve().parents[1]
-    report["static_sha256"] = {name: hashlib.sha256((root / "src" / "peiwu" / "static" / name).read_bytes()).hexdigest()
+    report["static_sha256"] = {name: hashlib.sha256((root / "src" / "ontolens" / "static" / name).read_bytes()).hexdigest()
                                for name in ("index.html", "app.js", "style.css")}
     (output / "workbench-interaction-report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 

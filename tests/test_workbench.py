@@ -11,8 +11,8 @@ pytest.importorskip("fastapi")
 from fastapi.testclient import TestClient
 from pypdf import PdfWriter
 
-from peiwu.web import create_app
-from peiwu.workspace import Workspace
+from ontolens.web import create_app
+from ontolens.workspace import Workspace
 
 
 ROOT = Path(__file__).resolve().parents[1]

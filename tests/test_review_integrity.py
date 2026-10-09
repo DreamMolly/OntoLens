@@ -7,7 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import pytest
 
-from peiwu.export_verification import verify_evidence_export, verify_evidence_export_file
+from ontolens.export_verification import verify_evidence_export, verify_evidence_export_file
 from tests.test_review_workflow import client, request
 
 

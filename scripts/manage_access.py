@@ -4,16 +4,16 @@ from __future__ import annotations
 import argparse
 import getpass
 import json
-import os
 from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from peiwu.access import ROLES, read_accounts, update_account
+from ontolens.access import ROLES, read_accounts, update_account
+from ontolens.config import env_value
 
 
 def _password():
-    configured = os.environ.get("PEIWU_ACCOUNT_PASSWORD")
+    configured = env_value("ACCOUNT_PASSWORD")
     if configured is not None:
         return configured
     password = getpass.getpass("新密码（至少 12 个字符）：")
@@ -23,8 +23,8 @@ def _password():
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="管理工作台本地账户；密码使用交互输入或 PEIWU_ACCOUNT_PASSWORD")
-    parser.add_argument("--auth-file", type=Path, default=Path(os.environ.get("PEIWU_AUTH_FILE", ".runtime/accounts.json")))
+    parser = argparse.ArgumentParser(description="管理工作台本地账户；密码使用交互输入或 ONTOLENS_ACCOUNT_PASSWORD")
+    parser.add_argument("--auth-file", type=Path, default=Path(env_value("AUTH_FILE", ".runtime/accounts.json")))
     commands = parser.add_subparsers(dest="command", required=True)
     add = commands.add_parser("add")
     add.add_argument("username")

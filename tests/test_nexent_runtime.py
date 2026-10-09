@@ -4,7 +4,7 @@ import json
 import httpx
 import pytest
 
-from peiwu.nexent_runtime import NexentRuntime, explanation_context
+from ontolens.nexent_runtime import NexentRuntime, explanation_context
 
 
 def runtime_with(handler, **kwargs):
@@ -120,6 +120,7 @@ def test_incomplete_or_failed_stream_never_reports_success_or_leaks_error(stream
 
 
 def test_config_rejects_remote_and_embedded_credentials(tmp_path, monkeypatch):
+    monkeypatch.setenv("ONTOLENS_LOAD_ENV", "true")
     for name in list(__import__("os").environ):
         if name.startswith(("PEIWU_NEXENT_", "NEXENT_")):
             monkeypatch.delenv(name)

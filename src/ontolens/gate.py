@@ -5,8 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from peiwu.checker import decide
-from peiwu.evaluate import evaluate
+from ontolens.checker import decide
+from ontolens.evaluate import evaluate
 
 
 def review_promotion(

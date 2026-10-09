@@ -2,4 +2,4 @@
 from contextvars import ContextVar
 
 
-audit_actor: ContextVar[dict | None] = ContextVar("peiwu_audit_actor", default=None)
+audit_actor: ContextVar[dict | None] = ContextVar("ontolens_audit_actor", default=None)

@@ -20,8 +20,8 @@ from datetime import date
 
 import yaml
 
-from peiwu.review_verification import check_review_records
-from peiwu.ledger_import import snapshot_report
+from ontolens.review_verification import check_review_records
+from ontolens.ledger_import import snapshot_report
 
 
 _CHECKS = ("format", "version_binding", "snapshot_hash", "source_bytes", "source_closure", "citations",

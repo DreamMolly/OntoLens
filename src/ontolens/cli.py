@@ -8,15 +8,15 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from peiwu.catalog import load_catalog
-from peiwu.checker import decide
-from peiwu.evaluate import evaluate, load_cases
-from peiwu.gate import read_text, review_promotion
-from peiwu.rules import load_rules
+from ontolens.catalog import load_catalog
+from ontolens.checker import decide
+from ontolens.evaluate import evaluate, load_cases
+from ontolens.gate import read_text, review_promotion
+from ontolens.rules import load_rules
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="peiwu")
+    parser = argparse.ArgumentParser(prog="ontolens")
     sub = parser.add_subparsers(dest="command", required=True)
 
     decide_cmd = sub.add_parser("decide")

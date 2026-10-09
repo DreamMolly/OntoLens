@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from peiwu.jev import RELATION_QUESTION_VERSION, JevReranker
+from ontolens.jev import RELATION_QUESTION_VERSION, JevReranker
 
 
 class RelationClient:

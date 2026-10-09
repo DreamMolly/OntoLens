@@ -15,15 +15,15 @@ from uuid import uuid4
 
 import yaml
 
-from peiwu.catalog import HAZARD_CLASSES, load_catalog
-from peiwu.audit_context import audit_actor
-from peiwu.checker import decide
-from peiwu.evaluate import evaluate, load_cases
-from peiwu.gate import review_promotion
-from peiwu.jev import JevReranker
-from peiwu.ledger_import import GROUPS, candidate_invariants, canonical, original_chunks, parse_bundle, snapshot_report
-from peiwu.ontology import schema as ontology_schema
-from peiwu.rules import load_rules
+from ontolens.catalog import HAZARD_CLASSES, load_catalog
+from ontolens.audit_context import audit_actor
+from ontolens.checker import decide
+from ontolens.evaluate import evaluate, load_cases
+from ontolens.gate import review_promotion
+from ontolens.jev import JevReranker
+from ontolens.ledger_import import GROUPS, candidate_invariants, canonical, original_chunks, parse_bundle, snapshot_report
+from ontolens.ontology import schema as ontology_schema
+from ontolens.rules import load_rules
 
 
 def encode(value: Any) -> str:

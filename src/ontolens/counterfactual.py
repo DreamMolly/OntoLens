@@ -17,8 +17,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from typing import Any
 
-from peiwu.catalog import load_catalog, load_yaml
-from peiwu.workspace import Workspace
+from ontolens.catalog import load_catalog, load_yaml
+from ontolens.workspace import Workspace
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -238,7 +238,7 @@ def build_counterfactual_report(
         "scope": {
             "mode": "synthetic_demo",
             "claim_boundary": "Synthetic snapshot mutations only; this is not industry accuracy, safety rate, or professional review.",
-            "decision_contract": "Internal Workspace._calculate plus deterministic peiwu.checker.decide; no HTTP validation, model or network request.",
+            "decision_contract": "Internal Workspace._calculate plus deterministic ontolens.checker.decide; no HTTP validation, model or network request.",
             "http_boundary": "Invalid HTTP quantities are rejected by request validation before calculation; checker INVALID_QUANTITY is not an HTTP response.",
             "gold_boundary": "Counterfactual expectations are a separate developer-authored metamorphic fixture; frozen data/cases gold is untouched.",
         },

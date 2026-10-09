@@ -3,7 +3,7 @@
 services:
   ontolens:
     environment:
-      PEIWU_NEXENT_BASE_URL: http://nexent-web:3000
+      ONTOLENS_NEXENT_BASE_URL: http://nexent-web:3000
     networks:
       - default
       - nexent

@@ -19,7 +19,7 @@ pytest.importorskip("uvicorn")
 import uvicorn
 from playwright.sync_api import expect, sync_playwright
 
-from peiwu.web import create_app
+from ontolens.web import create_app
 
 
 ROOT = Path(__file__).resolve().parents[1]

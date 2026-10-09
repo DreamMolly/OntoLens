@@ -5,11 +5,11 @@ from pathlib import Path
 
 import pytest
 
-from peiwu.public_corpus import (
+from ontolens.public_corpus import (
     LABEL_STATUS, PublicCorpusError, _PublicOnlyWorkspace, load_public_corpus,
     public_document_lookup, verify_public_corpus,
 )
-from peiwu.workspace import Workspace
+from ontolens.workspace import Workspace
 
 
 def save(root, manifest):
@@ -176,7 +176,7 @@ def test_cli_writes_only_dedicated_report_in_test_root(corpus, tmp_path, monkeyp
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     test_project = tmp_path / "cli-project"
-    for relative in ("src/peiwu/public_corpus.py", "src/peiwu/workspace.py", "scripts/verify_public_corpus.py"):
+    for relative in ("src/ontolens/public_corpus.py", "src/ontolens/workspace.py", "scripts/verify_public_corpus.py"):
         destination = test_project / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes((project / relative).read_bytes())

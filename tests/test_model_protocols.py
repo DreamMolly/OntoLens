@@ -1,6 +1,6 @@
 import pytest
 
-from peiwu.model_explain import build_request, extract_text, normalize_protocol
+from ontolens.model_explain import build_request, extract_text, normalize_protocol
 
 
 @pytest.mark.parametrize("protocol,path", [

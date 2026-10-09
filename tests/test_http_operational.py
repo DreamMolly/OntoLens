@@ -11,9 +11,9 @@ from fastapi.testclient import TestClient
 import httpx
 import pytest
 
-from peiwu.access import update_account
-from peiwu.export_verification import verify_evidence_export
-from peiwu.web import create_app
+from ontolens.access import update_account
+from ontolens.export_verification import verify_evidence_export
+from ontolens.web import create_app
 
 ROOT = Path(__file__).resolve().parents[1]
 PASSWORD = "HTTP-TEST-FIXTURE-ONLY-4892"
@@ -289,7 +289,7 @@ def test_nexent_unconfigured_is_503_and_connected_status_tracks_observed_state(a
         run = client.post("/api/check", headers=headers, json=check_request()).json()
         assert client.get("/api/integrations/nexent").json()["connected"] is False
         assert client.post(f"/api/runs/{run['run_id']}/orchestrate", headers=headers).status_code == 503
-    from peiwu.nexent_runtime import NexentRuntime
+    from ontolens.nexent_runtime import NexentRuntime
     class PlatformStub:
         calls = 0
         async def status(self):

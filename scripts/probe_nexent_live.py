@@ -8,7 +8,7 @@ from pathlib import Path
 
 import httpx
 
-from peiwu.nexent_runtime import NexentRuntime, TOOL_NAMES, observed_now
+from ontolens.nexent_runtime import NexentRuntime, TOOL_NAMES, observed_now
 
 
 ROOT = Path(__file__).resolve().parents[1]

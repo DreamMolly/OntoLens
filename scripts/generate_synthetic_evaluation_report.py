@@ -14,11 +14,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from peiwu.catalog import load_catalog
-from peiwu.counterfactual import build_counterfactual_report
-from peiwu.evaluate import evaluate, load_cases
-from peiwu.gate import read_text, review_promotion
-from peiwu.rules import load_rules
+from ontolens.catalog import load_catalog
+from ontolens.counterfactual import build_counterfactual_report
+from ontolens.evaluate import evaluate, load_cases
+from ontolens.gate import read_text, review_promotion
+from ontolens.rules import load_rules
 
 
 ROOT = Path(__file__).resolve().parents[1]

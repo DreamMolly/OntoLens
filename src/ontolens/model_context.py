@@ -1,7 +1,7 @@
 """Explicit model views: private business records stay inside the workspace."""
 from __future__ import annotations
 
-from peiwu.workspace import Workspace, encode
+from ontolens.workspace import Workspace, encode
 
 
 ACTIONS = {"ALLOW", "DENY", "LIMIT", "ISOLATE"}

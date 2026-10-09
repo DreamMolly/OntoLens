@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from peiwu.jev import JevReranker
+from ontolens.jev import JevReranker
 from scripts.verify_jev import load_local_env
 
 
@@ -115,6 +115,7 @@ def test_jev_rejects_forged_external_permission(monkeypatch, changes):
 
 
 def test_verify_jev_loads_local_env_without_overriding_process_values(tmp_path, monkeypatch):
+    monkeypatch.setenv("ONTOLENS_LOAD_ENV", "true")
     env_file = tmp_path / ".env"
     env_file.write_text("TYPESAFE_API_KEY=local-key\nTYPESAFE_MODEL=local-model\n", encoding="utf-8")
     monkeypatch.delenv("TYPESAFE_API_KEY", raising=False)

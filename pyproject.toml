@@ -1,5 +1,5 @@
 [project]
-name = "peiwu"
+name = "ontolens"
 version = "0.4.0"
 description = "OntoLens: auditable lab chemical issue decisions for Huawei ICT track 3."
 requires-python = ">=3.11"
@@ -11,13 +11,14 @@ jev = ["typesafe-sdk==0.7.1"]
 test = ["pytest>=8", "httpx>=0.27,<1", "playwright>=1.50,<2"]
 
 [project.scripts]
-peiwu = "peiwu.cli:main"
+ontolens = "ontolens.cli:main"
+peiwu = "ontolens.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-peiwu = ["static/*"]
+ontolens = ["static/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -9,10 +9,10 @@ services:
       - path: ../.env
         required: false
     environment:
-      PEIWU_DB: /state/workbench.sqlite3
-      PEIWU_AUTH_FILE: /config/accounts.json
-      PEIWU_SESSION_DB: /state/access.sqlite3
-      PEIWU_WORKSPACE_MODE: operational
+      ONTOLENS_DB: /state/workbench.sqlite3
+      ONTOLENS_AUTH_FILE: /config/accounts.json
+      ONTOLENS_SESSION_DB: /state/access.sqlite3
+      ONTOLENS_WORKSPACE_MODE: operational
     volumes:
       - ontolens-state:/state
       - ../.runtime/operational:/config:ro

@@ -25,7 +25,7 @@ pytest.importorskip("uvicorn")
 import uvicorn
 from playwright.sync_api import expect, sync_playwright
 
-from peiwu.web import create_app
+from ontolens.web import create_app
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / ".runtime" / "date-picker-qa"
@@ -95,7 +95,7 @@ def page(monkeypatch, request):
                             "api_requests": requests,
                             "api_write_requests": [item for item in requests if item["method"] not in {"GET", "HEAD"}],
                             "static_sha256": {
-                                name: hashlib.sha256((ROOT / "src/peiwu/static" / name).read_bytes()).hexdigest()
+                                name: hashlib.sha256((ROOT / "src/ontolens/static" / name).read_bytes()).hexdigest()
                                 for name in ("app.js", "style.css", "index.html", "date-controls.js")
                             },
                         }

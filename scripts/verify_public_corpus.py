@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from peiwu.public_corpus import PublicCorpusError, verify_public_corpus  # noqa: E402
+from ontolens.public_corpus import PublicCorpusError, verify_public_corpus  # noqa: E402
 
 
 def main(argv=None):
@@ -30,7 +30,7 @@ def main(argv=None):
     report["corpus_path"] = str(args.corpus.resolve())
     report["code_input_hashes"] = {
         path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
-        for path in ("src/peiwu/public_corpus.py", "src/peiwu/workspace.py", "scripts/verify_public_corpus.py")}
+        for path in ("src/ontolens/public_corpus.py", "src/ontolens/workspace.py", "scripts/verify_public_corpus.py")}
     destination = ROOT / "artifacts/public-corpus-verification.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")

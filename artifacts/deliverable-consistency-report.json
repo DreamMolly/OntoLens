@@ -4,14 +4,14 @@
   "checks": {
     "validation": {
       "passed": true,
-      "pytest_passed": 456,
-      "report_sha256": "5aedfc661d7773c89997b6d95af0d6823253d784c9b995669d229a414de66ca3",
-      "run_dir": "artifacts/source-validation/20261009-052126-c6f21459"
+      "pytest_passed": 464,
+      "report_sha256": "e5b49392255f8b7b3d096d68acdf050fb1f02030412f947bf7040b3e155ee72a",
+      "run_dir": "artifacts/source-validation/20261009-094214-e5337f3f"
     },
     "materials": {
       "passed": true,
-      "word_pytest_passed": 456,
-      "ppt_pytest_passed": 456
+      "word_pytest_passed": 464,
+      "ppt_pytest_passed": 464
     },
     "package": {
       "passed": true,
@@ -54,9 +54,9 @@
   },
   "goal_complete": false,
   "files": {
-    "submission/peiwu-development-design-draft.docx": "a978f8a33019ee9552eb23e0aca6d9ce1727e55d0f98403eb251d16941d68b35",
-    "submission/peiwu-presentation-draft.pptx": "b40c0a15ec620b48e8dbd1fe163a592169cd04d7a12335122e9ade8e64d51304",
-    "submission/evidence-matrix.yaml": "8271bf7afd4091911475921b5323f087b01429bfaa19023abadf0e50764eed84",
+    "submission/peiwu-development-design-draft.docx": "3fb909b8d2618294770077855968854034ae255035bc83e14c6a5ae9d888e4de",
+    "submission/peiwu-presentation-draft.pptx": "dc8bbfa8cefbf52889c4ca8e6f0e10d7c3986166a492bbc324bae6aeab9722ef",
+    "submission/evidence-matrix.yaml": "714c669366b43f4d950cf5e75df5febb3d8301bf7563bda72f84e0cd8d0d1cf1",
     "artifacts/nexent-integration-report.json": "7cadc615e78375d48e0a0cbace1d2c9e319166505fb5b2e01723c2d74c0d7378",
     "artifacts/nexent-deployment-audit.json": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a",
     "artifacts/nexent-model-readiness.json": "68dccae7acf2a7d43e053deb248845749c612850e3ea74b0fbb50f1fc5b19ba0",

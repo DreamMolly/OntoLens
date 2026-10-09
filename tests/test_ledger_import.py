@@ -10,9 +10,9 @@ from pathlib import Path
 import pytest
 import yaml
 
-from peiwu.export_verification import verify_evidence_export
-from peiwu.ledger_import import GROUPS, canonical, parse_bundle
-from peiwu.workspace import Workspace, WorkspaceError, digest, encode
+from ontolens.export_verification import verify_evidence_export
+from ontolens.ledger_import import GROUPS, canonical, parse_bundle
+from ontolens.workspace import Workspace, WorkspaceError, digest, encode
 
 ROOT = Path(__file__).resolve().parents[1]
 

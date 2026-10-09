@@ -8,8 +8,8 @@ import sys
 
 import pytest
 
-from peiwu.export_verification import verify_evidence_export, verify_evidence_export_file
-from peiwu.workspace import Workspace, encode
+from ontolens.export_verification import verify_evidence_export, verify_evidence_export_file
+from ontolens.workspace import Workspace, encode
 
 
 ROOT = Path(__file__).resolve().parents[1]

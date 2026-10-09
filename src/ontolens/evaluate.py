@@ -5,8 +5,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from peiwu.catalog import load_yaml
-from peiwu.checker import decide
+from ontolens.catalog import load_yaml
+from ontolens.checker import decide
 
 
 def load_cases(path: str | Path) -> list[dict[str, Any]]:

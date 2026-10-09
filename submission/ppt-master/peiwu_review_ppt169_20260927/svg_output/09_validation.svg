@@ -20,8 +20,8 @@
     <text x="64" y="558" font-size="18" fill="#526874">平台 API；不等于模型一次调用了全部工具</text>
   </g>
   <g id="project-regression" data-pptx-bounds="686 398 530 174">
-    <text x="686" y="474" font-size="72" font-weight="bold" fill="#17384B">456</text>
-    <text x="686" y="520" font-size="28" fill="#243746">本轮全量回归 456 passed</text>
+    <text x="686" y="474" font-size="72" font-weight="bold" fill="#17384B">464</text>
+    <text x="686" y="520" font-size="28" fill="#243746">本轮全量回归 464 passed</text>
     <text x="686" y="558" font-size="18" fill="#526874">七阶段 exit 0；行业效果未验证</text>
   </g>
   <g id="reproduce" data-pptx-bounds="64 592 1152 68">

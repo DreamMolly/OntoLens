@@ -1,16 +1,85 @@
+<p align="center">
+  <img src="src/ontolens/static/ontolens-symbol-d1-256.png" width="80" height="80" alt="OntoLens 标志">
+</p>
+
 # 格物镜 · OntoLens
 
-**可追溯的实验室危化品领用核验工作台 · v0.4.0 · D1.1**
+**让实验室危化品领用核验有据可查、可复核、可重算。**
 
-格物镜把申请、人员授权、批次、柜位、库存和规则放进同一次核验。确定性程序给出 `ALLOW / DENY / LIMIT / ISOLATE`；资料缺失、授权失效或单位不一致时保持 `needs_review`、`decision=null`，显示补件建议。每次记录绑定申请、快照和原文，可回查、追加复核及导出离线重算。
+OntoLens 是面向实验室危化品领用流程的证据核验工作台。它将人员授权、物料批次、库存、柜位与规则绑定到同一份版本快照，由确定性程序给出决定；每个结果都能回到触发它的原文与规则。Nexent 与 JEV 提供编排、检索和解释辅助，业务决定始终由程序生成。
 
-v0.4.0已加入带账户的业务工作区：新库为空，不自动填演示事实；获授权的六类台账经导入、预览检查和管理员显式发布后可用于实际业务资料核验。软件记录核验结果，实际出库仍遵循本单位审批流程。操作者填写的用途/授权说明不等于来源真实性或专业审核证明。
+`v0.4.0` · `Python 3.11+` · `FastAPI` · `SQLite` · `MCP` · `Docker` · `Nexent`
 
-**发布状态：已推送到 Gitea。** 私有仓库：[fulao/OntoLens](https://git.fulao.cc/fulao/OntoLens)，源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`，文档更新已推送至 [`main`](https://git.fulao.cc/fulao/OntoLens/src/branch/main)。当前业务流程、456 项全量回归、隔离容器和 `gpt-6-sol` Nexent 收据均已通过；真实行业效果、独立专业审核、Linux 新机冷启动和比赛正式提交单独保持未完成，不将这些研究门槛误称已满足。
+[快速开始](#快速开始) · [核心设计](#核心设计) · [验证结果](#验证结果) · [演示与材料](#演示与材料) · [规划](docs/37-teammate-handoff.md) · [设计规范](design.md)
 
-## 快速启动业务工作区
+![格物镜工作台：申请、决定与证据路径](docs/assets/ontolens-workbench.png)
 
-要求Python 3.11+，使用完整源码目录。默认仅监听本机 `127.0.0.1:8768`；核心核验不需要Docker或模型账户。
+*实际运行界面，使用隔离合成台账。截图展示软件行为，不代表真实行业评测。*
+
+## 解决什么问题
+
+一次领用申请需要同时核对“谁有资格、哪个批次可用、库存够不够、放在哪个柜位、适用哪版规则”。这些事实散落在台账和制度中，资料变更后，过去的决定也需要有据可查。
+
+OntoLens 将这条流程连起来：
+
+1. 导入六类台账，保留原始字节、来源定位和规范化结果。
+2. 检查候选及影响，由管理员确认发布有效版本。
+3. 在固定快照下核验申请，返回决定、数量、原因和证据路径。
+4. 打开原文、追加复核记录，或导出证据包在离线环境重新计算。
+
+| 核验结果 | 含义 |
+| --- | --- |
+| `ALLOW` | 按规则允许申请数量 |
+| `DENY` | 拒绝本次申请，保留原因 |
+| `LIMIT` | 按规则限量，明确批准数量 |
+| `ISOLATE` | 批次不应流通，拒绝领用 |
+| `needs_review` | 资料缺失、冲突或失效，`decision=null`，列出补件项 |
+
+核验结果供本单位审批流程使用，软件不直接执行真实出库。
+
+## 核心设计
+
+### 决定与解释分离
+
+确定性内核读取可信快照中的授权、库存和规则。申请方不能注入“已授权”事实，模型也不能修改 `action`、批准数量或规则版本。资料不完整时进入复核，模型不可凭常识补齐并放行。
+
+### 每条决定绑定证据
+
+结果保留 `source_id`、`locator`、`quote`、`SHA256` 与版本快照。原文检查器和关系列表指向同一份来源；编辑申请后旧结果立即标为过期，历史记录保持当时的快照。
+
+### 变更先预览，再发布
+
+人员授权与制度更新先形成候选，检查引用、日期、单位和规则影响。发布/回滚需要管理员确认及 `expected_active` 比较，拒绝并发覆盖，保留历史版本。
+
+### 导出后可以独立重算
+
+证据包包含申请、规则、快照及所需来源的原始字节，离线校验器核对闭包、哈希、定位和复核绑定，重新计算决定。它证明包内一致性；来源真实性和专业适用性仍需业务方核验。
+
+```mermaid
+flowchart LR
+    A[台账 / 制度 / 原始资料] --> B[原文与定位 / 哈希]
+    B --> C[候选检查 / 影响预览]
+    C --> D[管理员发布 / 固定快照]
+    E[领用申请] --> F[确定性核验]
+    D --> F
+    F --> G[决定 / 缺件复核]
+    G --> H[证据路径 / 原文回查]
+    G --> I[证据包 / 离线重算]
+    J[Nexent / JEV / 解释模型] -. 受限辅助 .-> H
+```
+
+## 快速开始
+
+### 业务工作区
+
+需要 Python 3.11+、Git。核心核验可离线运行，Nexent、Docker 和在线模型为可选接入。
+
+```bash
+git clone https://git.fulao.cc/fulao/OntoLens.git
+cd OntoLens
+```
+
+**Windows / PowerShell**
 
 ```powershell
 python -m venv .venv
@@ -18,15 +87,7 @@ python -m venv .venv
 powershell -NoProfile -ExecutionPolicy Bypass -File .\start-operational.ps1 -Bootstrap
 ```
 
-首次 `-Bootstrap` 只在账户文件不存在时创建随机管理员。用户名为 `admin`，密码仅写本机 `.runtime/operational/initial-admin.txt`，不会打印或进入源码。打开 [业务工作台](http://127.0.0.1:8768/)，在本机查看该文件登录，然后用交互命令改密码；确认新密码可登录后删除初始密码文件。
-
-```powershell
-.\.venv\Scripts\python.exe scripts/manage_access.py --auth-file .runtime/operational/accounts.json set-password admin
-```
-
-以后启动省略 `-Bootstrap`；连接当前本机Nexent可加 `-NexentUrl http://127.0.0.1:13000`。只检查条件用 `start-operational.ps1 -CheckOnly`；改变端口用 `-Port`。默认数据库、账户、会话位于 `.runtime/operational/`。业务入口拒绝复用当前active为合成演示的数据库，保留原库；不删除或重置旧演示数据。
-
-Linux/macOS使用同一个Python入口；以下是跨平台命令，当前实测平台为Windows，Linux独立安装及Docker新机冷启动仍需新验收。
+**Linux / macOS**
 
 ```bash
 python3 -m venv .venv
@@ -34,67 +95,114 @@ python3 -m venv .venv
 .venv/bin/python scripts/run_operational.py --bootstrap --host 127.0.0.1 --port 8768
 ```
 
-详细首次启动、账户、台账格式、备份和Docker步骤见[业务部署说明](docs/38-operational-deployment.md)。Docker定义在[deploy](deploy/README.md)，容器实际构建状态以本轮新收据为准。
+打开 <http://127.0.0.1:8768/>。首次启动创建 `admin`，随机密码写入本机 `.runtime/operational/initial-admin.txt`。登录前在本机查看该文件，改密码并确认可登录后删除初始密码文件；后续启动省略 `-Bootstrap` / `--bootstrap`。
 
-## 导入并发布六类业务台账
+```powershell
+.\.venv\Scripts\python.exe scripts/manage_access.py --auth-file .runtime/operational/accounts.json set-password admin
+```
 
-登录后进入“原始资料”→“导入业务台账”，先查看/下载模板，再提供以下六份资料及用途、授权依据、授权方、记录日期和本地处理确认。
+新业务库为空。登录后进入“原始资料”，下载模板、导入六类台账，检查候选并由管理员确认发布。首次账户、资料格式、模型配置、备份与对外部署详见[部署指南](docs/38-operational-deployment.md)。Windows 与 Docker Desktop 已实测；独立 Linux/macOS 新机安装仍列为待验。
 
-| 文件组 | 内容 | 格式 |
-| --- | --- | --- |
-| people | 人员、角色、停权、类别及授权有效期/依据 | JSON/YAML/CSV |
-| chemicals | 危害类别、单位和单次领用上限 | JSON/YAML/CSV |
-| lots | 物料批次、库存和批次状态 | JSON/YAML/CSV |
-| cabinets | 柜位及允许类别 | JSON/YAML/CSV |
-| issues | 尚未归还或同会话已领用类别 | JSON/YAML/CSV |
-| rules | 规则版本、学生比例、冲突类别与制度开关 | JSON/YAML |
+### Docker
 
-每份为1–2,000,000字节。系统保留六份原始字节与六份规范化来源，核对schema、引用、日期、单位、hash及候选不变量。导入先形成候选，不直接生效；管理员预览影响、确认发布，使用 `expected_active` 防冲突。业务发布/回滚使用 `confirm_publish=true`，合成兼容路径才使用 `confirm_demo`。
+先按部署指南创建本机账户配置，再从仓库根目录执行：
 
-六类台账导入均不授予模型外发权限；非合成people固定为private。公开制度文本不能自行授予某个人业务权限。单份资料上传、公开条款检索、OCR/人工摘录和候选建议分别保留其真实性质。
+```bash
+docker compose -f deploy/compose.yaml up -d --build
+```
 
-## 已实现的软件能力与边界
+容器以非 root 身份运行，数据保存在命名卷，账户配置只读挂载，默认端口仅映射至本机。停止使用 `docker compose -f deploy/compose.yaml stop`；[容器说明](deploy/README.md)包含备份、反向代理和 Nexent 网络接入。
 
-| 能力 | 当前行为 |
+### 合成演练
+
+从仓库根目录启动独立演练库：
+
+```powershell
+$env:ONTOLENS_WORKSPACE_MODE = 'synthetic'
+$env:ONTOLENS_DB = '.runtime/demo/workbench.sqlite3'
+$env:ONTOLENS_LOAD_ENV = 'false'
+.\.venv\Scripts\python.exe -m uvicorn ontolens.web:create_app --factory --host 127.0.0.1 --port 8767
+```
+
+该命令应在单独终端运行；关闭终端后不沿用演练环境变量启动业务库。演练使用明确标注的合成人员、库存及规则；[演示流程](submission/demo-runbook.md)给出完整操作顺序。
+
+## 功能与技术栈
+
+| 层 | 实现与用途 |
 | --- | --- |
-| 业务空工作区 | 新HTTP工作区默认operational；发布有效台账前引导导入，不填假人员/库存 |
-| 账户与操作权限 | admin/operator/reviewer/viewer，PBKDF2-SHA256 600,000次，8小时会话、CSRF、撤销与账户审计绑定 |
-| 核验和证据 | 四种决定与缺件状态；source/locator/hash、快照、申请及复核绑定 |
-| 数据版本 | 六表候选、原文与规范化检查、影响预览、管理员CAS发布/回滚 |
-| 复核与复现 | 引用默认未选，追加不改判；原始来源闭包导出，脱库重算 |
-| D1.1界面 | 展示首页、真实四统计、拖动/键盘侧栏；品牌旁44px折叠图标，去除无用侧栏卡和宽度按钮 |
-| 模型辅助 | 私有/未获准来源只发送枚举与计数最小摘要，不发送ID、引文、数量、日期 |
-| Nexent与JEV | 专用无工具Nexent解释实例、实时观察状态；JEV显式live仅对获准来源，不改业务决定 |
+| 工作台 | 本地 HTML/CSS/JavaScript；可调宽侧栏、原文联动、日期/选择控件、键盘与减少动效 |
+| 服务与权限 | FastAPI；管理员、操作者、复核者、只读用户；可撤销会话、CSRF与登录身份审计 |
+| 数据与版本 | SQLite；六份原始 + 六份规范化台账、候选检查、影响预览、发布与回滚 |
+| 核验内核 | Python 确定性规则；四种决定、缺件门禁、数量与有效期约束 |
+| 证据复现 | 原始字节闭包导出、独立引用校验和离线重算 |
+| 平台接入 | Nexent + MCP 七工具；单独的无工具辅助解释实例 |
+| 可选模型 | TypeSafe JEV 证据重排；OpenAI/Anthropic 兼容解释接口 |
 
-角色是操作级权限，当前不是多租户或按每份文档分配ACL。普通业务窗口使用带认证的业务入口；直接启动未配置账户的裸HTTP应用只允许本机，不作为共享部署入口。
+业务台账导入不授予外发权限。私有或未获准资料的解释请求只发送固定枚举和计数摘要；JEV 在线重排需要显式 `live=true`，且来源为非私有并获准外发。模型服务失效时，程序核验、普通检索和导出仍可用。
 
-## 模型、JEV与当前Nexent
+## 验证结果
 
-模型配置留在本地 `.env`/环境变量：`PEIWU_MODEL_BASE_URL / PEIWU_MODEL_NAME / PEIWU_MODEL_API_KEY / PEIWU_MODEL_PROTOCOL`。全部证据获准且非private时可发获准证据；否则固定最小摘要白名单，模型不能读取原文，也不能改判。
+每项数字对应自己的数据与检查范围。项目的[证据矩阵](submission/evidence-matrix.yaml)保留完整边界和未完成项。
 
-JEV按钮显式在线调用 `live=true`；只有明确允许外发且非private来源才可发送。离线普通检索继续可用。配置齐全、一次调用成功和概率信号不等于语义准确率评测。
+| 检查 | 已取得结果 | 可核对证据 |
+| --- | --- | --- |
+| 软件回归 | 464项测试；pytest、浏览器、MCP、资产、JEV离线预检、依赖和JS语法七阶段通过 | [本地验证报告](artifacts/local-validation-report.json) |
+| 合成规则留出集 | 60/60；该冻结夹具中 `unsafe_release=0` | [合成评估](artifacts/synthetic-evaluation-report.json) |
+| 反事实边界 | 21/21；授权、库存、批次、柜位与单位变更 | [反事实收据](artifacts/synthetic-counterfactual-report.json) |
+| 选择器与日期 | 各6项隔离浏览器测试通过 | [选择器](artifacts/workbench-select-interaction-report.json) / [日期](artifacts/workbench-date-interaction-report.json) |
+| 容器业务流程 | 35项检查；新OntoLens入口、权限、导入发布、核验、导出、模型边界与重启持久化 | [命名迁移后容器收据](artifacts/operational-deployment-20261009-ontolens.json) |
+| Nexent解释 | 同一中转供应商 `gpt-6-sol` 绑定、Agent2实际无工具解释 | [模型配置收据](artifacts/nexent-model-configuration-20261009.json) |
 
-Nexent产品解释使用 `ontolens_result_explainer` 专用实例，要求无工具、无技能、无协作Agent；只发送去标识结果摘要。状态来自 `/api/integrations/nexent` 的当前观察与 `observed_at`，历史ready报告不参与判就绪。宿主Web端口本轮从受Windows保留限制的3000改为13000，容器内仍3000。2026-10-08 12:02–12:04 UTC的7个MCP调用及Agent1工具编排是历史运行证据。2026-10-09配置收据记录同一中转供应商的 `gpt-6-sol` 绑定；当前容器收据记录Agent2无工具解释和隔离业务流，不声称这次又跑了7 MCP或Agent1的gpt-6-sol工具编排。上述均为合成软件链路，不是行业效果。
-
-## 验证、规划和源码发布
-
-本轮专项账户/台账/HTTP流程结果分别记录，互有重叠，不能相加当完整测试数。2026-10-09 完整七阶段通过：456 passed；browser、MCP、资产、JEV离线预检、pip、全前端 JS 语法检查均退出 0，收据见 `artifacts/local-validation-report.json` 与 `artifacts/source-validation/20261009-052126-c6f21459/`。旧356是D1.0历史基线。
+软件测试、合成规则评估和一次模型调用不代表行业准确率。真实台账独立标签评测、领域审核、长期负载、备份恢复、真实设备/读屏及独立新机验收仍在[规划](docs/37-teammate-handoff.md)中。
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/validate_local.py
 .\.venv\Scripts\python.exe scripts/check_source_release.py --snapshot-validation
 .\.venv\Scripts\python.exe scripts/audit_deliverables.py
-.\.venv\Scripts\python.exe scripts/check_source_release.py
+.\.venv\Scripts\python.exe scripts/check_source_release.py --check-staged
 ```
 
-验证使用显式synthetic隔离数据库；不向业务账户/私有台账库跑写入测试。导出可用 `scripts/verify_evidence_export.py` 校验与重算；未签名包证明内部一致，不能认证来源或全部历史未被删除。
+验证使用隔离合成数据库，不对日常业务库运行写入测试。Linux/macOS 将 Python 路径换为 `.venv/bin/python`。
 
-[规划与里程碑](docs/37-teammate-handoff.md)集中列出已完成、未完成、验收条件和拓展方向；[源码交付规范](docs/36-source-layout.md)规定白名单、日志和排除项。Gitea 推送仅代表源码交付完成，不代表真实行业效果或正式参赛提交完成。
+## 演示与材料
 
-[design.md](design.md)是唯一设计入口，[design/](design/README.md)按基础、首页、交互、动效、无障碍和验收拆分。当前视觉按用户参考删繁，功能兼容与dirty/stale保护继续有效；资产出处见[清单](design/asset-manifest.json)。
+评审可以按以下顺序查看同一份申请：正常核验、超量/冲突/异常批次、缺件复核、打开原文、版本变更与回滚、导出离线重算。所有演练资料均注明性质。
 
-## 目录与兼容
+| 入口 | 内容 |
+| --- | --- |
+| [演示流程](submission/demo-runbook.md) | 业务操作闭环、模型边界和失败演示 |
+| [参赛材料](submission/README.md) | Word/PPT草稿、可编辑来源与证据矩阵 |
+| [当前规划与里程碑](docs/37-teammate-handoff.md) | 完成、未完成、验收条件和拓展方向 |
+| [部署指南](docs/38-operational-deployment.md) | 账户、台账、权限、备份、Docker与Nexent |
+| [设计规范](design.md) | 设计索引及交互、动效、无障碍合同 |
+| [源码交付](docs/36-source-layout.md) | 目录、白名单与历史证据范围 |
 
-`src/peiwu`为内核、HTTP/MCP和前端；`data`含规则/测试资料和公开摘录；`tests/scripts`用于验证及启动；`deploy`提供容器定义；`nexent`提供接入模板；`docs/design`为交接规范；`submission`为参赛草稿；`.runtime`仅本机状态。
+当前定位是可接授权业务资料的核验工作台。正式参赛提交、专业审核和真实行业效果各有独立验收，材料草稿不会把它们标为完成。
 
-产品叫“格物镜 · OntoLens”，Python包、环境变量和 `peiwu-replay-1` 等协议保留peiwu兼容。`.env`、accounts、会话、数据库、上传和私有导出不入库。不要仅复制静态网页或Python包代替完整资源检出。变更见[CHANGELOG](CHANGELOG.md)。
+## 目录
+
+```text
+src/ontolens/    核验、证据、权限、HTTP/MCP与前端
+src/peiwu/       旧Python入口的兼容层
+data/           合成评估与公开来源摘录
+tests/          契约、完整性和浏览器回归
+scripts/        启动、验证、部署和交付工具
+deploy/         容器定义
+nexent/         接入模板与固定上游版本
+design/         分篇设计规范
+docs/           部署、规划和历史记录
+submission/     参赛草稿与可编辑材料
+artifacts/      经白名单筛选的验证证据
+```
+
+## 贡献与反馈
+
+提交问题时附版本、复现步骤、预期/实际行为及脱敏日志。修改前阅读[设计规范](design.md)和[当前里程碑](docs/37-teammate-handoff.md)；核心行为变化需要有针对性的回归和新的验收收据。账户、密钥、上传文件、数据库与私有导出放在本机运行目录，不进入 Git。
+
+项目统一使用 **格物镜 · OntoLens**。原 `peiwu` 包、`PEIWU_*` 配置、Nexent机器标识和导出协议属于历史兼容范围，详见[命名与兼容说明](docs/39-brand-compatibility.md)。它们不会被用作新的对外项目名称，也不会因改名而改写历史记录的哈希。
+
+## 许可与致谢
+
+仓库公开用于查阅与评审，目前尚未指定项目许可证，公开可见不自动授予复用许可。Nexent 与其他依赖按各自许可证使用；本仓库不包含它们的私有运行配置或完整 vendor 副本。
+
+项目使用 [Nexent](https://github.com/ModelEngine-Group/nexent) 与 [TypeSafe](https://typesafe.ai/)。README 的阅读顺序参考 [Ruff](https://github.com/astral-sh/ruff) 和 Nexent 的项目说明，以实际实现与可复核结果为依据。

@@ -2,7 +2,20 @@
 
 本记录区分 v0.4.0/D1.1 当前原生材料、历史生成导出与交付审计，不证明模型效果、行业安全性、正式提交资格或专业审核完成。
 
-## v0.4.0/D1.1 最终对账更新（2026-10-09）
+
+## 公开与命名迁移验收（2026-10-09）
+
+当前 Word/PPT 保持 4/11 页与原几何，产品名称统一为格物镜 · OntoLens；当前 CLI 命令为 `python -m ontolens`。Nexent 的旧 Agent/Skill 机器 ID 与历史 schema/档案名保留兼容，未重新登记；可见页面使用 OntoLens Agent 和三项职责，备注说明真实 ID。
+
+命名迁移后最终全量为 **464 passed in 166.48s**、七阶段 exit 0、158 项输入指纹一致；收据为 `artifacts/local-validation-report.json`，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 **35 项检查通过**，验证 ontolens 主入口、配置、请求头、真实 Agent 2 辅助解释与重启持久化，`real_industry_data_used=false`。旧 30 项收据与 456 基线属于本次命名迁移前历史。
+
+P10 继续为 D1.1 尚未核验的首页结构示意，不表示 ALLOW 或真实业务效果。外部冷启动、真实行业资料、独立专业审核、长期稳定性和正式提交仍待各自验证。当前原生材料哈希与视觉 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
+
+当前 Word SHA256 `3fb909b8d2618294770077855968854034ae255035bc83e14c6a5ae9d888e4de`（4 页、48 段、180 词、2655 字符、25 条模板排版提示）；PPT SHA256 `dc8bbfa8cefbf52889c4ca8e6f0e10d7c3986166a492bbc324bae6aeab9722ef`（11 页、0 issues）。两份 schema 均 0 errors；全 15 页原生 PNG 与接触表已生成并独立视觉检查，无新增裁切或重叠。ZIP 审计确认 PPT 只有第 8/9 页可见文本与备注变化，全页数值几何不变，未新增/删除部件；旧档案和备份保留。最后 Word 边界措辞等长修正为“仍未验证”，schema/25 条提示/统计未变，新增原生 `word/page-4-boundary.png` 已检查；PPT 哈希保持不变。
+
+以下本轮之前的章节全部保留为历史，不绑定本次公开与命名迁移的材料哈希、源码或运行状态。
+
+## 历史命名迁移前最终对账（2026-10-09）
 
 当前 Word/PPT 已更新为本轮全量 **456 passed**，PPT 第 9 页同步 456，SVG、notes 与可编辑 spec 同步；旧 356/286 导出继续保留为历史记录。
 

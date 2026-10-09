@@ -28,11 +28,11 @@ JEV 在线需要明确 live=true，且只能使用非私有、获准外发的来
 
 ## 08_nexent
 
-2026-10-08 当前本机七 MCP 工具已逐项实测，Agent 1/model 1 完成合成输入的真实模型编排，active 未变。业务入口 start-operational.ps1 使用空库、登录角色和六台账导入，管理员检查并确认发布。早先 Agent 2 成功解释发现平台自动 search_memory，其空 tool_calls 只是注册 MCP 计数；无工具和自动记忆隔离须引用后续业务部署收据。行业效果、新机冷启动和长期稳定性另验。
+当前主包、命令和可见产品名称为 OntoLens。原 Nexent Agent peiwu_compliance_review、Skill peiwu-intake/peiwu-evidence/peiwu-decision 与服务 peiwu-local 仍是既有机器 ID，未重新登记，页面只采用产品名称和职责说明。新镜像收据 artifacts/operational-deployment-20261009-ontolens.json 为 passed、35 项检查通过，包含 ontolens 入口、配置、请求头、真实 Agent 2 解释及重启持久化；使用合成私有夹具，真实行业资料未使用。gpt-6-sol/model_id=2 延续既有中转配置；解释不能改判，外部冷启动与专业审核仍待验证。
 
 ## 09_validation
 
-这里的数字范围不同。60/60 和 unsafe_release 0 只描述冻结合成规则集，不能叫行业准确率，也不是盲测结果。7 是 MCP 工具实际回放数。456 是当前全量 pytest 通过的测试用例数；browser、MCP、assets、JEV 离线预检、pip 和 JavaScript 与 pytest 共七阶段 exit 0，154 项输入指纹一致。Docker 业务部署另有 30 项检查通过的收据。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据，2026-10-09 的当前模型为 gpt-6-sol/model_id=2。各项范围与结果以 artifacts/local-validation-report.json 和 artifacts/operational-deployment-20261009.json 为准，页面底部命令可用于复现。
+60/60 和 unsafe_release 0 属于冻结合成规则基准，不是行业准确率或盲测。7 是历史 MCP 工具逐项回放数，不等于当前模型一次调用全部工具。命名迁移后本轮全量回归为 464 passed in 166.48s，pytest、browser、MCP、assets、JEV、pip、JavaScript 七阶段 exit 0，158 项输入指纹一致；权威收据为 artifacts/local-validation-report.json，快照为 artifacts/source-validation/20261009-094214-e5337f3f/。OntoLens 新容器收据 artifacts/operational-deployment-20261009-ontolens.json 为 passed、35 项检查通过，real_industry_data_used=false。当前 gpt-6-sol/model_id=2 和 Agent 2 辅助解释延续既有平台配置；JEV 仍须显式 live=true 和外发授权，解释不能覆盖决定。外部冷启动、真实行业资料、专业审核与长期稳定性仍待验证。
 
 ## 10_demo
 

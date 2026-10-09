@@ -1,8 +1,10 @@
-# Nexent 参赛配置包
+# 格物镜 · OntoLens Nexent 参赛配置包
 
-2026-09-26 当前运行说明：数据已冷拷贝并切换到项目 F 盘，逻辑备份恢复 MCP、Agent 和三个 Skill，模型已重新健康检查并绑定，data-process 已补齐。部署审计及迁移后七工具、四种决定、引用和导出复测均通过。一次 Agent/run 仍是历史合成证据，不代表真实资料或独立冷启动。
+2026-09-26 部署记录（历史）：数据已冷拷贝并切换到项目 F 盘，逻辑备份恢复 MCP、Agent 和三个 Skill，模型已重新健康检查并绑定，data-process 已补齐。部署审计及迁移后七工具、四种决定、引用和导出复测均通过。一次 Agent/run 仍是历史合成证据，不代表真实资料或独立冷启动。
 
 2026-09-23 用户确认报名完成。本页说明报名后如何把本地工作台接入 Nexent；队员姓名、导师和审核人仍不写入仓库。
+
+当前产品名称为格物镜 · OntoLens，主包及新配置使用 `ontolens` / `ONTOLENS_*`。模板中的 `peiwu_compliance_review`、`peiwu-local`、`peiwu-*` Skills 和原档案名保留为既有平台互通标识；不重新创建同一 Agent 来改品牌。兼容范围见[品牌与兼容说明](39-brand-compatibility.md)，当前模型与部署范围见[业务部署](38-operational-deployment.md)。
 
 ## 已交付文件
 
@@ -21,15 +23,16 @@
 本地启动：
 
 ~~~powershell
-.\\.venv\\Scripts\\python.exe -m pip install -e ".[workbench,test]"
-.\\start-workbench.ps1
+.\.venv\Scripts\python.exe -m pip install -e ".[workbench,test]"
+$env:ONTOLENS_WORKSPACE_MODE = "synthetic"
+.\start-workbench.ps1
 ~~~
 
 同机 Nexent 使用 http://127.0.0.1:8765/mcp/。如果 Nexent 在 Docker 容器里，使用 host.docker.internal 地址，并在工作台进程中设置同一个令牌：
 
 ~~~powershell
-$env:PEIWU_MCP_TOKEN = "队员自己生成的随机令牌"
-.\\start-workbench.ps1 -BindHost 0.0.0.0
+$env:ONTOLENS_MCP_TOKEN = "本机生成的随机令牌"
+.\start-workbench.ps1 -BindHost 0.0.0.0
 ~~~
 
 容器配置不能使用示例中的占位符。不要把令牌提交到仓库、截图或 PPT。
@@ -39,7 +42,7 @@ $env:PEIWU_MCP_TOKEN = "队员自己生成的随机令牌"
 1. 按本机/容器模板在 Nexent MCP 仓库添加 peiwu-local；URL 使用对应地址。Authorization 必须是完整的 Bearer 加令牌，不是裸令牌。模板不是实际密钥文件。
 2. 测试七个工具：asset_recognition、evidence_lookup、graph_query、candidate_suggestions、evidence_rerank_jev、decision_check、candidate_review。JEV 未配置时，evidence_rerank_jev 应返回 unavailable，不影响其他工具。
 3. 在工具配置页执行“扫描/更新工具”（后端 GET /api/tool/scan_tool），使七工具进入工具目录；仅刷新 MCP 工具计数不足以导入 Agent。运行 nexent/package.ps1，然后导入 ZIP。单独 JSON 不携带 Skill 文件。重试前检查已有 Agent/Skill，不能重复创建。
-4. 当前 Agent 为 peiwu_compliance_review，已绑定 `model_id=1`，并完成一次合成 Agent/run；只读状态见 `artifacts/nexent-model-readiness.json`，运行摘要见 `artifacts/nexent-agent-run-20260924.json`，字段清单见 `docs/29-nexent-model-inputs.md`。当前模型 capability profile 未声明 reasoning controls，因此没有思考强度下拉；真实行业资料、独立审核和部署修项仍待补。不填写假 ID、不自动消费额度。
+4. 为 `peiwu_compliance_review` 绑定实际可用模型，不在可移植包里填写假 ID。2026-10-09 配置收据记录 `gpt-6-sol` / `model_id=2` 的实际绑定，当前 Agent2 无工具解释的边界见 `38-operational-deployment.md`；`artifacts/nexent-model-readiness.json` 的 `model_id=1` 和 `artifacts/nexent-agent-run-20260924.json` 属于较早历史。字段清单见 `29-nexent-model-inputs.md`。思考强度控件是否可用必须以所选模型的实际 capability profile 为准，不由模型名称猜测；真实行业资料、独立审核和持续运行仍待验。
 5. 保存并调试一条申请：先查证据，再查关系，再调用 decision_check。
 6. 保留 Nexent 版本、模型标识、工具调用日志和截图，作为初赛材料的可复现记录。
 
@@ -54,27 +57,27 @@ JEV 只用于“哪些来源片段更支持当前问题”的结构化 Noul 判�
 JEV 只接收已发布快照中 external_model_allowed=true 的文本片段。私有资料、未发布上传资料和图片二进制不会发送到 TypeSafe。公开资料是否可外发仍由资料授权决定，不能因为页面可访问就默认开启。
 
 ~~~powershell
-.\\.venv\\Scripts\\python.exe -m pip install -e ".[jev]"
-$env:TYPESAFE_API_KEY = "队员自己的 TypeSafe 密钥"
+.\.venv\Scripts\python.exe -m pip install -e ".[jev]"
+$env:TYPESAFE_API_KEY = "本机 TypeSafe 密钥"
 $env:TYPESAFE_MODEL = "jev-1.13.0"
 $env:TYPESAFE_BASE_URL = "https://api.typesafe.ai"
 ~~~
 
 可选的 TYPESAFE_BASE_URL 用于自定义服务端点；为兼容旧环境，代码也会读取 TYPESAFE_ENDPOINT。密钥只放在本机环境变量或密钥管理中，不提交仓库。JEV 的 Noul 只返回支持关系概率，没有独立置信度；正式使用前要用独立资料评测阈值。
 `scripts/verify_jev.py` 会读取项目根目录被忽略的 `.env`，但不覆盖已有的非空进程环境变量；因此可以直接运行下面的预检或显式 `--live` 命令。
-工作台的可选解释接口另有 `PEIWU_MODEL_PROTOCOL`：`chat_completions` 发送 `/chat/completions`，`responses` 发送 `/responses`，`messages` 发送 Anthropic 风格 `/messages`。这只是配伍工作台的解释适配器，不等于 Nexent Agent 已完成模型编排；Nexent 的模型仍需在平台中绑定并单独验证。
+工作台的可选解释接口另有 `ONTOLENS_MODEL_PROTOCOL`：`chat_completions` 发送 `/chat/completions`，`responses` 发送 `/responses`，`messages` 发送 Anthropic 风格 `/messages`。这是格物镜工作台的解释适配器，不等于 Nexent Agent 已完成模型编排；Nexent 的模型仍需在平台中绑定并单独验证。旧 `PEIWU_MODEL_PROTOCOL` 继续兼容，优先级见[品牌与兼容说明](39-brand-compatibility.md)。
 
 不消耗额度的预检：
 
 ~~~powershell
-.\\.venv\\Scripts\\python.exe scripts/verify_jev.py
-.\\.venv\\Scripts\\python.exe scripts/verify_jev.py --task citation_review
+.\.venv\Scripts\python.exe scripts/verify_jev.py
+.\.venv\Scripts\python.exe scripts/verify_jev.py --task citation_review
 ~~~
 
 确认密钥和端点后，显式发送一条合成查询：
 
 ~~~powershell
-.\\.venv\\Scripts\\python.exe scripts/verify_jev.py --live
+.\.venv\Scripts\python.exe scripts/verify_jev.py --live
 ~~~
 
 TYPESAFE_JEV_REVIEW_THRESHOLD 的默认值是 0.75，只用于界面标记高优先级证据，不会自动批准候选或改变四种业务决定。阈值必须以后续独立资料评测校准。

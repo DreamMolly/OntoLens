@@ -688,7 +688,7 @@ class DemoStartup:
         log_dir.mkdir(parents=True, exist_ok=True)
         log_path = log_dir / "workbench.log"
         child_env = dict(self.environ)
-        child_env["PEIWU_MCP_TOKEN"] = token
+        child_env["ONTOLENS_MCP_TOKEN"] = token
         args = [powershell, "-NoProfile", "-ExecutionPolicy", "Bypass",
                 "-File", str(self.root / "start-workbench.ps1"),
                 "-BindHost", "0.0.0.0", "-Port", "8765"]
@@ -739,7 +739,7 @@ class DemoStartup:
         if not matching_agents or not matching_mcp:
             return None
         if len(matching_agents) != 1 or len(matching_mcp) != 1:
-            raise StartupError("nexent_identity_mismatch", "Nexent contains duplicate Peiwu Agent or MCP records")
+            raise StartupError("nexent_identity_mismatch", "Nexent contains duplicate OntoLens legacy Agent or MCP records")
         agent = matching_agents[0]
         mcp = matching_mcp[0]
         if (agent.get("agent_id") != expected["agent_id"]
@@ -857,7 +857,7 @@ def write_report(report: dict, root: Path = ROOT) -> Path:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Preflight or start the existing migrated Peiwu demo")
+    parser = argparse.ArgumentParser(description="Preflight or start the existing OntoLens demo using its migrated configuration")
     parser.add_argument("--apply", action="store_true", help="Start the existing Docker services and workbench")
     args = parser.parse_args(argv)
     mode = "apply" if args.apply else "preflight"

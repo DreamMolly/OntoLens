@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from peiwu.documents import parse_document
-from peiwu.workspace import Workspace, encode
+from ontolens.documents import parse_document
+from ontolens.workspace import Workspace, encode
 
 
 ROOT = Path(__file__).resolve().parents[1]

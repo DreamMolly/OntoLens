@@ -1,7 +1,7 @@
 {
   "format": "ontolens-ui-qa-1",
   "status": "passed",
-  "observed_at": "2026-10-09T05:24:09.873147+00:00",
+  "observed_at": "2026-10-09T09:45:07.729700+00:00",
   "scope": "Isolated synthetic Playwright fixtures; not live industry, real device or screen reader validation",
   "tests": 6,
   "failures": 0,
@@ -9,43 +9,43 @@
   "page_errors": 0,
   "external_browser_requests": 0,
   "static_sha256": {
-    "app.js": "52322737d8012667fa2150cb4187290fc891c3c6c0225b600b30028b10f1e748",
+    "app.js": "c320b869de51c73cc3f0ec7dcfc6b52bafa7231a6d939b1884cfbd7ed7db23f7",
     "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924",
-    "index.html": "77fc117556d0f462a1cdf1533e9377b92a18a2f23a9cf4b376fd26b35300409e",
+    "index.html": "04033fe3a861718c6b4633126eab44727ea681480e57e682aa5fdccc49ea4bc2",
     "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded"
   },
-  "test_sha256": "1999cd4b6e91efc199de708f0de7b35f3e9e14bd842bc1c1a3eddf5980bd73f9",
+  "test_sha256": "dda9b39de09198643b7a903376fd41231afb36a9d1fbfec9975c47e17a14e665",
   "validation_command": ".venv/Scripts/python.exe -m pytest -q",
   "cases": [
     {
       "name": "test_native_values_labels_and_presets_stay_synchronized",
       "status": "passed",
-      "seconds": 2.722
+      "seconds": 3.186
     },
     {
       "name": "test_pointer_keyboard_commit_escape_tab_and_aria",
       "status": "passed",
-      "seconds": 3.467
+      "seconds": 3.844
     },
     {
       "name": "test_typeahead_and_disabled_options_do_not_commit_until_enter",
       "status": "passed",
-      "seconds": 2.57
+      "seconds": 2.946
     },
     {
       "name": "test_async_sources_loading_failure_refresh_and_required_focus",
       "status": "passed",
-      "seconds": 2.786
+      "seconds": 3.007
     },
     {
       "name": "test_dismissals_sidebar_and_resize_preserve_values_without_api_writes",
       "status": "passed",
-      "seconds": 3.16
+      "seconds": 3.192
     },
     {
       "name": "test_mobile_flip_motion_reduced_motion_and_fast_reopen",
       "status": "passed",
-      "seconds": 4.471
+      "seconds": 4.315
     }
   ]
 }

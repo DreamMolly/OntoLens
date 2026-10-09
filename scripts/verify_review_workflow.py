@@ -13,7 +13,7 @@ from tempfile import TemporaryDirectory
 
 from fastapi.testclient import TestClient
 
-from peiwu.web import create_app
+from ontolens.web import create_app
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,7 +35,7 @@ def main() -> int:
         database = Path(temp) / "isolated.sqlite3"
         app = create_app(ROOT, database, seed_demo=True)
         with TestClient(app) as client:
-            client.headers["X-Peiwu-Token"] = client.get("/api/status").json()["csrf_token"]
+            client.headers["X-OntoLens-Token"] = client.get("/api/status").json()["csrf_token"]
             response = client.post("/api/check", json={
                 "request_id": "SYNTHETIC-REVIEW-ACCEPTANCE", "requester_id": "unknown_demo_person",
                 "lot_id": "lot_eth", "destination_cabinet_id": "cab_flam", "quantity": 100,
@@ -93,8 +93,8 @@ def main() -> int:
                               "issue_codes": [item["code"] for item in checked["issues"]]}
             checks[name + "_rejected"] = result.returncode == 1 and checked["passed"] is False
     inputs = ["scripts/verify_review_workflow.py", "scripts/verify_evidence_export.py",
-              "src/peiwu/review_verification.py", "src/peiwu/export_verification.py", "src/peiwu/workspace.py",
-              "src/peiwu/contracts.py", "src/peiwu/web.py", "data/catalog.yaml", "data/rules/v2.yaml"]
+              "src/ontolens/review_verification.py", "src/ontolens/export_verification.py", "src/ontolens/workspace.py",
+              "src/ontolens/contracts.py", "src/ontolens/web.py", "data/catalog.yaml", "data/rules/v2.yaml"]
     report = {"schema_version": "peiwu-review-acceptance-1", "generated_at": datetime.now(timezone.utc).isoformat(),
               "scope": "isolated synthetic HTTP workflow plus detached verifier; no operator authentication or professional review",
               "external_request_sent": False, "production_database_used": False,

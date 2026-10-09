@@ -12,7 +12,7 @@ def normalize_protocol(value: str | None) -> str:
     protocol = (value or DEFAULT_PROTOCOL).strip().lower()
     protocol = PROTOCOL_ALIASES.get(protocol, protocol)
     if protocol not in PROTOCOLS:
-        raise ValueError("PEIWU_MODEL_PROTOCOL must be chat_completions, responses, or messages")
+        raise ValueError("ONTOLENS_MODEL_PROTOCOL must be chat_completions, responses, or messages")
     return protocol
 
 

@@ -5,8 +5,8 @@ from __future__ import annotations
 import math
 from typing import Any
 
-from peiwu.models import Decision, number
-from peiwu.rules import classes_conflict
+from ontolens.models import Decision, number
+from ontolens.rules import classes_conflict
 
 
 def decide(catalog: dict[str, Any], rules: dict[str, Any], request: dict[str, Any]) -> Decision:

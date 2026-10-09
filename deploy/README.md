@@ -1,6 +1,10 @@
 # OntoLens v0.4.0 业务容器部署
 
+命名迁移后镜像实际运行 `ontolens.web:create_app`，使用 `ONTOLENS_*` 与 `X-OntoLens-Token`。新[隔离容器收据](../artifacts/operational-deployment-20261009-ontolens.json)中35项检查通过，覆盖命令入口、权限、完整业务流程、真实模型解释和restart持久化；下方30项是迁移前收据，不能当作新镜像证据。
+
 根Dockerfile与compose定义面向带认证的空业务工作区。2026-10-09 已用隔离业务卷实际 build、启动并完成业务流程、重建/重启持久化与模型解释检查，共30项通过；这不是Linux新机冷启动、长期负载或行业验证。命令仍是其他机器上的操作入口。完整账号/台账/隐私说明见[业务部署](../docs/38-operational-deployment.md)。
+
+当前容器使用 `ontolens.web:create_app` 主入口和 `ONTOLENS_*` 配置。已有 `PEIWU_*` 仍按[品牌与兼容说明](../docs/39-brand-compatibility.md)读取；迁移品牌不需要清空业务卷或更换账户。
 
 ## 准备账户
 
@@ -30,7 +34,7 @@ docker compose -f deploy/compose.yaml ps
 
 主机manage_access修改账户后，目录bind可即时看到原子替换后的新文件；服务读取新的revision即撤销旧会话，不要求force-recreate。配置目录不通过Web静态暴露；/state仍是独立持久业务/会话库。
 
-对外服务使用TLS反向代理，设置PEIWU_COOKIE_SECURE=true与PEIWU_ALLOWED_HOSTS具体域名；维持loopback端口映射，代理处理实际外部入口。默认不信任proxy headers，Host/Origin必须按实际部署一致配置，不使用通配允许Host。
+对外服务使用TLS反向代理，设置 `ONTOLENS_COOKIE_SECURE=true` 与 `ONTOLENS_ALLOWED_HOSTS` 具体域名；维持loopback端口映射，代理处理实际外部入口。默认不信任proxy headers，Host/Origin必须按实际部署一致配置，不使用通配允许Host。
 
 ## 可选Nexent联动
 

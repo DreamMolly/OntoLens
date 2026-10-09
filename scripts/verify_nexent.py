@@ -119,7 +119,7 @@ def verify(platform_url: str, workbench_url: str, report: dict):
                        if item["remote_mcp_server_name"] == "peiwu-local")
         mcp_id = service["mcp_id"]
         health = nexent.get("/mcp/healthcheck", params={"mcp_id": mcp_id}); health.raise_for_status()
-        require(health.json()["data"]["health_status"] == "healthy", "Peiwu MCP is not healthy")
+        require(health.json()["data"]["health_status"] == "healthy", "OntoLens legacy MCP service is not healthy")
         tools = nexent.get("/mcp/tools", params={"mcp_id": mcp_id}); tools.raise_for_status()
         require({item["name"] for item in tools.json()["tools"]} == TOOL_NAMES, "Unexpected MCP tool set")
         report["mcp"] = {"id": mcp_id, "health": "healthy", "tools": sorted(TOOL_NAMES)}

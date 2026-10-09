@@ -79,4 +79,7 @@
 - 不得把合成数据写成真实行业数据。 (user)
 
 
-本轮 v0.4.0/D1.1-7 保留原生 11 页主题和数值几何，采用 officecli DOM 修改现有正文、备注、计数和第10页图片，不重新生成整套幻灯片。六台账业务导入、账户权限、候选检查/管理员发布、核验/复核/导出已实现，行业适用与独立专业验收另记。当前首页图不表示实际核验结果；最新原生 QA 收据见 `.runtime/material-final-456-20261009/receipt.json`，历史 exports/validation 保留原范围。当前全量回归已由最终收据更新为 456 passed；旧 356 仅作历史基线。
+本轮 v0.4.0/D1.1-7 保留原生 11 页主题和数值几何，采用 officecli DOM 修改现有正文、备注、计数和第10页图片，不重新生成整套幻灯片。六台账业务导入、账户权限、候选检查/管理员发布、核验/复核/导出已实现，行业适用与独立专业验收另记。当前首页图不表示实际核验结果；最新原生 QA 收据见 `.runtime/material-public-ontolens-20261009/receipt.json`，历史 exports/validation 保留原范围。当前全量回归已由最终收据更新为 464 passed；旧 356 仅作历史基线。
+
+
+公开与命名迁移验收：464 个测试、七阶段通过、158 项输入指纹一致；最终耗时与日志目录以 `artifacts/local-validation-report.json` 为准。新 OntoLens Docker 收据 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过。PPT 第 8 页可见 Agent/Skill 名称使用 OntoLens 与职责词，实际平台旧 ID 留在备注作兼容说明；未重新登记。QA 收据 `.runtime/material-public-ontolens-20261009/receipt.json`；旧 exports/validation 保留历史。

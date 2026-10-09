@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from peiwu.catalog import HAZARD_CLASSES, load_yaml
+from ontolens.catalog import HAZARD_CLASSES, load_yaml
 
 
 def load_rules(path: str | Path) -> dict[str, Any]:

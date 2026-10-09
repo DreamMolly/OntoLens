@@ -11,9 +11,9 @@ import pytest
 import yaml
 from pydantic import ValidationError
 
-import peiwu.counterfactual as counterfactual
-from peiwu.contracts import CheckRequest
-from peiwu.counterfactual import build_counterfactual_report
+import ontolens.counterfactual as counterfactual
+from ontolens.contracts import CheckRequest
+from ontolens.counterfactual import build_counterfactual_report
 
 
 ROOT = Path(__file__).resolve().parents[1]

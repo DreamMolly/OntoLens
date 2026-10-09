@@ -7,7 +7,7 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-from peiwu.counterfactual import ROOT, build_counterfactual_report
+from ontolens.counterfactual import ROOT, build_counterfactual_report
 
 
 def main() -> int:

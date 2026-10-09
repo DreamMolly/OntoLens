@@ -1,6 +1,10 @@
-# v0.4.0业务工作区部署与数据边界
+# OntoLens v0.4.0 业务工作区部署与数据边界
+
+迁移后的实际容器与35项业务检查见[新容器收据](../artifacts/operational-deployment-20261009-ontolens.json)，完整464项软件回归、七阶段及158项指纹见 `artifacts/local-validation-report.json`，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。下方较早的456/30及10-08模型工具收据只代表对应历史阶段。
 
 本说明面向完整源码目录的实际启动和操作。默认业务库为空、登录后导入六类资料，不用合成数据替代业务事实。Windows业务入口已提供；容器构建、独立Linux/新机冷启动与当前完整Nexent展示以最新验收收据为准，本文提供的命令不表示全部已执行。
+
+当前主实现位于 `src/ontolens/`，新的模型、工作库、账户与部署配置推荐使用 `ONTOLENS_*`；已有 `PEIWU_*` 环境仍兼容，不要求重置账户、数据库或模型配置。优先级及保留的协议标识见[品牌与兼容说明](39-brand-compatibility.md)。
 
 ## Windows首次启动
 
@@ -78,7 +82,7 @@ JEV在线必须显式live=true，只有获准且非private的来源参与；私�
 
 ## Nexent与端口
 
-本机产品Nexent地址用 `PEIWU_NEXENT_BASE_URL=http://127.0.0.1:13000`，API_TOKEN/AGENT_ID配置只放本机环境。宿主3000受Windows排除端口限制，本轮改13000，容器内部仍3000；容器联动使用nexent-web:3000和nexent_network。
+本机产品Nexent地址用 `ONTOLENS_NEXENT_BASE_URL=http://127.0.0.1:13000`，`ONTOLENS_NEXENT_API_TOKEN` / `ONTOLENS_NEXENT_AGENT_ID` 只放本机环境。宿主3000受Windows排除端口限制，现用13000，容器内部仍3000；容器联动使用nexent-web:3000和nexent_network。
 
 当前状态通过 `/api/integrations/nexent` 真请求，observed_at、model_bound、tool_free、model_verified_at和当前调用结果分别解释，不加载历史ready作为当前状态。[2026-10-09 模型配置收据](../artifacts/nexent-model-configuration-20261009.json)记录同一中转供应商的 `gpt-6-sol` 健康检查与Agent绑定；[容器验收收据](../artifacts/operational-deployment-20261009.json)中30项检查通过，包含隔离业务流和Agent2无工具解释。7 MCP与Agent1工具编排对应单独的2026-10-08历史运行，不能并入本轮gpt-6-sol链路。此前gpt-5.6-terra的provider 404失败收据保留，错误不会再被当作成功回答。断连时核心核验独立可用；持续运行/新机另验。
 
@@ -88,7 +92,7 @@ JEV在线必须显式live=true，只有获准且非private的来源参与；私�
 
 先在主机生成账户，再构建启动；账户管理是主机CLI，只读目录bind允许看到主机原子替换后的新文件，账户revision改变立即使旧会话失效，无需为密码变更重建容器。目录不经Web静态暴露；业务DB与session DB另在/state持久volume，不能把/config内其他历史文件当当前业务库。
 
-外部使用应经TLS反向代理，将PEIWU_COOKIE_SECURE=true、PEIWU_ALLOWED_HOSTS设为具体域名，不用通配符。未经认证的裸create_app只支持本机，不作为共享业务部署。Uvicorn默认不信任转发头；反代配置要与Host/Origin及实际TLS访问一致。
+外部使用应经TLS反向代理，将 `ONTOLENS_COOKIE_SECURE=true`、`ONTOLENS_ALLOWED_HOSTS` 设为具体域名，不用通配符。未经认证的裸create_app只支持本机，不作为共享业务部署。Uvicorn默认不信任转发头；反代配置要与Host/Origin及实际TLS访问一致。
 
 ## 备份、恢复与验证
 

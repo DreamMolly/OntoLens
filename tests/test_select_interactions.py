@@ -20,7 +20,7 @@ pytest.importorskip("uvicorn")
 import uvicorn
 from playwright.sync_api import expect, sync_playwright
 
-from peiwu.web import create_app
+from ontolens.web import create_app
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / ".runtime" / "select-final-qa"
@@ -76,7 +76,7 @@ def page(monkeypatch, request):
                             "scope": "isolated synthetic fixture; no live business or model validation",
                             "page_errors": errors, "external_browser_requests": external,
                             "api_requests": api_requests,
-                            "static_sha256": {name: hashlib.sha256((ROOT / "src/peiwu/static" / name).read_bytes()).hexdigest()
+                            "static_sha256": {name: hashlib.sha256((ROOT / "src/ontolens/static" / name).read_bytes()).hexdigest()
                                               for name in ("app.js", "style.css", "index.html")},
                         }, ensure_ascii=False, indent=2), encoding="utf-8")
                         browser.close()

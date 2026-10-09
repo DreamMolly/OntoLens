@@ -24,7 +24,7 @@
 
 ## D. 当前 Nexent 和可选模型
 
-当前 gpt-6-sol（model_id=2）与 Nexent Agent 2 解释收据见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署见 `artifacts/operational-deployment-20261009.json`，30 项检查通过。七工具逐项成功不等于模型一次用了全部七个；`memory_retrieval_disabled=true`、`tool_calls={}` 和私有原文不外发只在对应收据范围内成立。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据。外部冷启动、真实行业资料和专业审核另验。
+当前新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过，实际使用 `ontolens` 入口、新配置和请求头；gpt-6-sol/model_id=2 与 Agent 2 解释延续原中转和平台配置。七工具逐项成功不等于模型一次用了全部七个；`memory_retrieval_disabled=true`、`tool_calls={}` 和私有原文不外发只在对应收据范围内成立。旧 30 项部署及 2026-10-08 七 MCP 工具/Agent 1 编排是历史收据。外部冷启动、真实行业资料和专业审核另验。
 
 展示当前 observed_at、model_bound 与实际生成结果；不从历史 ready 推当前可用。私有或未获准来源只给模型固定枚举/计数，JEV 必须 live=true 且来源获准、非 private；服务失败不改变程序核验。Responses/JEV 单次真实调用只证明该次连通性，不是全协议、稳定性或行业准确率。
 
@@ -32,4 +32,7 @@
 
 D1.1-7 品牌旁折叠图标、边缘拖动/键盘调宽，九个单选控件与四个日期控件各 6/6 隔离测试通过、0 页面错误、0 外站请求；证据为 `artifacts/workbench-select-interaction-report.json` 与 `artifacts/workbench-date-interaction-report.json`。真实设备/读屏另验。P10 图片是当前首页结构示意，未运行核验；现场演练须用实际结果页面，不能将首页或保存的历史 ALLOW 伪作当前核验。
 
-最终回归收据 `artifacts/local-validation-report.json`：456 passed、7 stages exit 0、154 项输入指纹一致；软件导入/核验/复核/导出可用，不表示实际行业字段适用、专业审核、独立评测、外部冷启动、长期稳定性或正式提交完成。Gitea 是否发布以根任务最终结果为准。
+最终回归收据 `artifacts/local-validation-report.json`：464 passed、7 stages exit 0、158 项输入指纹一致；软件导入/核验/复核/导出可用，不表示实际行业字段适用、专业审核、独立评测、外部冷启动、长期稳定性或正式提交完成。Gitea 是否发布以根任务最终结果为准。
+
+
+本轮公开与命名迁移：当前主包/命令为 `ontolens`，材料回归为 464 个测试、七阶段通过、158 项输入指纹一致，最终耗时与日志目录以 `artifacts/local-validation-report.json` 为准。新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过；原 30 项收据只作命名迁移前历史。平台旧 Agent/Skill ID 保留，页面名称不表示重新登记。当前原生材料 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。

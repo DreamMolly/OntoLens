@@ -1,16 +1,16 @@
 import argparse
 import asyncio
 import json
-import os
 
 import httpx
 
 from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
+from ontolens.config import env_value
 
 
 async def run(url):
-    token = os.getenv("PEIWU_MCP_TOKEN", "")
+    token = env_value("MCP_TOKEN", "")
     headers = {"Authorization": "Bearer " + token} if token else {}
     async with httpx.AsyncClient(headers=headers, trust_env=False, timeout=30) as client, \
             streamable_http_client(url, http_client=client) as (reader, writer, session_identifier):

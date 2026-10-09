@@ -13,8 +13,8 @@ from typing import Any
 
 import yaml
 
-from peiwu.catalog import HAZARD_CLASSES, LOT_STATUSES
-from peiwu.checker import decide
+from ontolens.catalog import HAZARD_CLASSES, LOT_STATUSES
+from ontolens.checker import decide
 
 GROUPS = ("people", "chemicals", "lots", "cabinets", "issues", "rules")
 SCHEMA = "peiwu-ledger-bundle-1"

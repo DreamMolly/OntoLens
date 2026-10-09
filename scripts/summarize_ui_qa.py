@@ -20,7 +20,7 @@ def summarize(junit: Path, suite: str, runtime: str, output: str) -> None:
                               for tag in ("failure", "error", "skipped")):
         raise ValueError("UI suite must contain six successful JUnit cases: " + suite)
     names = ("app.js", "style.css", "index.html", "date-controls.js")
-    hashes = {name: hashlib.sha256((ROOT / "src/peiwu/static" / name).read_bytes()).hexdigest()
+    hashes = {name: hashlib.sha256((ROOT / "src/ontolens/static" / name).read_bytes()).hexdigest()
               for name in names}
     test_path = ROOT / "tests" / (suite + ".py")
     records = []

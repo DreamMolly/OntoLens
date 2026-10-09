@@ -1,6 +1,6 @@
 import pytest
 
-from peiwu.jev_replay import build_record, replay_record
+from ontolens.jev_replay import build_record, replay_record
 
 
 def live_result():

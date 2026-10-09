@@ -17,9 +17,9 @@ from pathlib import Path
 
 import httpx
 
-from peiwu.access import update_account
-from peiwu.export_verification import verify_evidence_export
-from peiwu.nexent_runtime import upstream_error_text
+from ontolens.access import update_account
+from ontolens.export_verification import verify_evidence_export
+from ontolens.nexent_runtime import upstream_error_text
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,9 +71,9 @@ def probe(*, keep_running=False, image="ontolens:0.4.0", port=18768) -> dict:
         "services:\n  ontolens:\n    image: " + image + "\n    ports: !override\n      - '127.0.0.1:" + str(port) + ":8768'\n"
         "    volumes: !override\n      - qa-state:/state\n      - "
         + json.dumps(runtime.as_posix() + ":/config:ro") + "\n"
-        "    environment:\n      PEIWU_NEXENT_BASE_URL: http://nexent-web:3000\n"
-        "      PEIWU_NEXENT_AGENT_NAME: ontolens_result_explainer\n"
-        "      PEIWU_NEXENT_AGENT_ID: '2'\n    restart: 'no'\n"
+        "    environment:\n      ONTOLENS_NEXENT_BASE_URL: http://nexent-web:3000\n"
+        "      ONTOLENS_NEXENT_AGENT_NAME: ontolens_result_explainer\n"
+        "      ONTOLENS_NEXENT_AGENT_ID: '2'\n    restart: 'no'\n"
         "volumes:\n  qa-state:\n    name: " + identifier + "-state\n", encoding="utf-8")
     compose = ["docker", "compose", "--project-name", identifier,
                "-f", str(ROOT / "deploy/compose.yaml"), "-f", str(ROOT / "deploy/compose.nexent.yaml"),
@@ -121,7 +121,7 @@ def probe(*, keep_running=False, image="ontolens:0.4.0", port=18768) -> dict:
             clients.append(client)
             response = client.post("/api/auth/login", json={"username": role, "password": password})
             require(response.status_code == 200 and response.json()["actor"]["role"] == role, "login_failed")
-            client.headers["X-Peiwu-Token"] = response.json()["csrf_token"]
+            client.headers["X-OntoLens-Token"] = response.json()["csrf_token"]
             logged[role] = client
         passwords.clear()
         admin, operator, reviewer, viewer = (logged[r] for r in ("admin", "operator", "reviewer", "viewer"))
@@ -131,7 +131,7 @@ def probe(*, keep_running=False, image="ontolens:0.4.0", port=18768) -> dict:
         request = {"request_id": "TEST-DEPLOYMENT", "requester_id": "TEST_PERSON", "lot_id": "TEST_BATCH",
                    "destination_cabinet_id": "TEST_STORAGE", "quantity": 20.0, "unit": "mL", "as_of": "2026-10-08"}
         require(viewer.post("/api/check", json=request).status_code == 403, "viewer_write_allowed")
-        no_csrf = admin.post("/api/check", json=request, headers={"X-Peiwu-Token": "invalid"})
+        no_csrf = admin.post("/api/check", json=request, headers={"X-OntoLens-Token": "invalid"})
         require(no_csrf.status_code == 403, "csrf_not_enforced")
         empty = operator.post("/api/check", json=request).json()
         require(empty["status"] == "needs_review" and empty["decision"] is None, "empty_workspace_decided")
@@ -312,9 +312,9 @@ def refresh_deployment(path: Path, *, invoke_model: bool, keep_running: bool) ->
             login = client.post("/api/auth/login", json={"username": "admin", "password": password})
             require(login.status_code == 200, "replacement_login_failed")
             password = ""
-            client.headers["X-Peiwu-Token"] = login.json()["csrf_token"]
+            client.headers["X-OntoLens-Token"] = login.json()["csrf_token"]
             hashes = {}
-            for source in sorted((ROOT / "src/peiwu/static").iterdir()):
+            for source in sorted((ROOT / "src/ontolens/static").iterdir()):
                 if source.suffix in {".html", ".css", ".js"}:
                     response = client.get("/" if source.name == "index.html" else "/static/" + source.name)
                     expected = hashlib.sha256(source.read_bytes()).hexdigest()

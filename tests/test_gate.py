@@ -4,11 +4,11 @@ import copy
 import pytest
 import yaml
 
-from peiwu.catalog import load_catalog
-from peiwu.checker import decide
-from peiwu.evaluate import evaluate, load_cases
-from peiwu.gate import review_promotion
-from peiwu.rules import load_rules
+from ontolens.catalog import load_catalog
+from ontolens.checker import decide
+from ontolens.evaluate import evaluate, load_cases
+from ontolens.gate import review_promotion
+from ontolens.rules import load_rules
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = load_catalog(ROOT / "data" / "catalog.yaml")

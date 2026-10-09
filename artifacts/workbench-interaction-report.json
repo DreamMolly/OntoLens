@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-09T05:24:25.261127+00:00",
+  "observed_at": "2026-10-09T09:45:21.830051+00:00",
   "scope": "isolated synthetic browser interaction; no live model calls; simulated viewports, not real device or screen-reader validation",
   "observations": [
     "five presets only fill fields; missing person yields decision null and references default unchecked",
@@ -85,8 +85,8 @@
     "browser_ui_zoom_verified": false
   },
   "static_sha256": {
-    "index.html": "77fc117556d0f462a1cdf1533e9377b92a18a2f23a9cf4b376fd26b35300409e",
-    "app.js": "52322737d8012667fa2150cb4187290fc891c3c6c0225b600b30028b10f1e748",
+    "index.html": "04033fe3a861718c6b4633126eab44727ea681480e57e682aa5fdccc49ea4bc2",
+    "app.js": "c320b869de51c73cc3f0ec7dcfc6b52bafa7231a6d939b1884cfbd7ed7db23f7",
     "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924"
   }
 }

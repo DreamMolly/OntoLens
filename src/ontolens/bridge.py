@@ -1,8 +1,8 @@
 from mcp.server.fastmcp import FastMCP
 from mcp.server.transport_security import TransportSecuritySettings
 
-from peiwu.contracts import CheckRequest, CitationReference
-from peiwu.workspace import Workspace
+from ontolens.contracts import CheckRequest, CitationReference
+from ontolens.workspace import Workspace
 
 
 def create_mcp(workspace: Workspace):

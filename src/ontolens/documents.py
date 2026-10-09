@@ -3,7 +3,7 @@ import io
 import json
 from pathlib import Path
 
-from peiwu.workspace import WorkspaceError
+from ontolens.workspace import WorkspaceError
 
 
 MAX_UPLOAD = 4 * 1024 * 1024

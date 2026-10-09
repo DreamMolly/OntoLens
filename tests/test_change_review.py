@@ -2,7 +2,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from peiwu.jev import CHANGE_QUESTION_VERSION, JevReranker
+from ontolens.jev import CHANGE_QUESTION_VERSION, JevReranker
 
 
 class ChangeClient:

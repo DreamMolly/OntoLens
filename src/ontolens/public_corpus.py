@@ -16,7 +16,7 @@ from pathlib import Path, PureWindowsPath
 from tempfile import TemporaryDirectory
 from urllib.parse import parse_qsl, urlsplit
 
-from peiwu.workspace import Workspace
+from ontolens.workspace import Workspace
 
 
 SCHEMA_VERSION = "peiwu-public-corpus-1"
@@ -265,7 +265,7 @@ def verify_public_corpus(corpus: Path) -> dict:
     manifest = loaded.manifest
     documents = {document["id"]: document for document in manifest["documents"]}
     results = []
-    with TemporaryDirectory(prefix="peiwu-public-corpus-") as temporary:
+    with TemporaryDirectory(prefix="ontolens-public-corpus-") as temporary:
         for index, bundle in enumerate(manifest["bundles"]):
             workspace = _PublicOnlyWorkspace(loaded.root, Path(temporary) / f"bundle-{index}.sqlite3")
             source_map = {}

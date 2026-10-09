@@ -15,10 +15,13 @@
 
 DONE 表示主张的指定软件范围有代码或测试支撑；PARTIAL 表示尚有该主张的未验证条件；PENDING 表示所需资料或外部验收未完成。SYNTHETIC 明示演练台账/规则的性质，不能写成行业效果。未完成研究不会自动否定软件可部署性，软件成功也不会关闭研究门槛。
 
-2026-10-09 当前 gpt-6-sol（model_id=2）配置收据通过，见 `artifacts/nexent-model-configuration-20261009.json`；Docker 业务部署收据 `artifacts/operational-deployment-20261009.json` 为 passed，30 项检查覆盖模型解释、容器连接、私有原文不外发、健康与重启持久化。解释 Agent 2 的 `tool_calls={}` 与 `memory_retrieval_disabled=true` 属于该收据边界。2026-10-08 的七 MCP 工具与 Agent 1/model 1 编排是历史收据。外部冷启动、真实行业资料和专业审核仍待。
+当前新镜像收据 `artifacts/operational-deployment-20261009-ontolens.json` 为 passed，35 项检查验证 `ontolens` 主入口、新配置、请求头、模型解释、账户业务流程和重启持久化。gpt-6-sol/model_id=2 延续既有中转配置；Agent 2 的 `tool_calls={}` 与 `memory_retrieval_disabled=true` 属于该收据边界。命名迁移前 30 项部署与 2026-10-08 的七 MCP 工具/Agent 1 编排只作历史证据，外部冷启动、真实行业资料和专业审核仍待。
 
-P10 为 D1.1-7 当前首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 100 mL 截图。图片由真实 1440×1230 viewport 捕获，收据 `.runtime/ontolens-D1.1-final-capture-receipt.json`；材料最终原生 QA 见 `.runtime/material-final-456-20261009/receipt.json`。
+P10 为 D1.1-7 当前首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 100 mL 截图。图片由真实 1440×1230 viewport 捕获，收据 `.runtime/ontolens-D1.1-final-capture-receipt.json`；材料最终原生 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
 
-软件启动、账户、授权声明、私有资料和备份操作见 `docs/38-operational-deployment.md`；当前规划见 `docs/37-teammate-handoff.md`。最终软件回归见 `artifacts/local-validation-report.json`：456 passed、7 stages exit 0、154 项输入指纹一致。源码已推送到私有 Gitea `fulao/OntoLens`，材料不代替正式提交。官方姓名、认证与行业效果不得自行填入。
+软件启动、账户、授权声明、私有资料和备份操作见 `docs/38-operational-deployment.md`；当前规划见 `docs/37-teammate-handoff.md`。最终软件回归见 `artifacts/local-validation-report.json`：464 passed in 166.48s、7 stages exit 0、158 项输入指纹一致，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。公开仓库状态以根 README 的地址与发布记录为准；材料不代替正式提交，官方姓名、认证与行业效果不得自行填入。
 
 公开资料演示 `public-data-demo.md` 使用六份官方制度加合成台账，不是实际校内台账、独立盲测或法律合规认证。
+
+
+本轮公开与命名迁移：当前主包/命令为 `ontolens`，材料回归为 464 个测试、七阶段通过、158 项输入指纹一致，最终耗时与日志目录以 `artifacts/local-validation-report.json` 为准。新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过；原 30 项收据只作命名迁移前历史。平台旧 Agent/Skill ID 保留，页面名称不表示重新登记。当前原生材料 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
