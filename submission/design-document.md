@@ -115,4 +115,4 @@ D1.1-7 保留品牌旁折叠按钮、边缘拖动及键盘调宽，删除冗余�
 
 `artifacts/local-validation-report.json` 为 `passed=true`：`.venv/Scripts/python.exe -m pytest -q` 返回 **456 passed in 156.97s**，browser、MCP、assets、JEV、pip、JavaScript 六项与 pytest 共七阶段均 exit 0；最终快照为 `artifacts/source-validation/20261009-052126-c6f21459/`，输入指纹 154 项一致。
 
-`artifacts/operational-deployment-20261009.json` 为 Docker 业务部署 passed，31 项检查通过；使用合成私有测试夹具，`real_industry_data_used=false`。`artifacts/nexent-model-configuration-20261009.json` 记录当前中转可用并持久绑定 `gpt-6-sol` / `model_id=2`。这些收据证明当前软件链路和部署边界，不能替代外部冷启动、真实行业资料、专业审核、长期稳定性或正式参赛提交。
+`artifacts/operational-deployment-20261009.json` 为 Docker 业务部署 passed，30 项检查通过；使用合成私有测试夹具，`real_industry_data_used=false`。`artifacts/nexent-model-configuration-20261009.json` 记录当前中转可用并持久绑定 `gpt-6-sol` / `model_id=2`。这些收据证明当前软件链路和部署边界，不能替代外部冷启动、真实行业资料、专业审核、长期稳定性或正式参赛提交。

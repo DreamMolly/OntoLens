@@ -6,7 +6,7 @@
 
 v0.4.0已加入带账户的业务工作区：新库为空，不自动填演示事实；获授权的六类台账经导入、预览检查和管理员显式发布后可用于实际业务资料核验。软件记录核验结果，实际出库仍遵循本单位审批流程。操作者填写的用途/授权说明不等于来源真实性或专业审核证明。
 
-**发布状态：已推送到 Gitea。** 私有仓库：[fulao/OntoLens](https://git.fulao.cc/fulao/OntoLens)，`main` 提交 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`。当前业务流程、456 项全量回归、隔离容器和 `gpt-6-sol` Nexent 收据均已通过；真实行业效果、独立专业审核、Linux 新机冷启动和比赛正式提交单独保持未完成，不将这些研究门槛误称已满足。
+**发布状态：已推送到 Gitea。** 私有仓库：[fulao/OntoLens](https://git.fulao.cc/fulao/OntoLens)，源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`，文档更新已推送至 [`main`](https://git.fulao.cc/fulao/OntoLens/src/branch/main)。当前业务流程、456 项全量回归、隔离容器和 `gpt-6-sol` Nexent 收据均已通过；真实行业效果、独立专业审核、Linux 新机冷启动和比赛正式提交单独保持未完成，不将这些研究门槛误称已满足。
 
 ## 快速启动业务工作区
 
@@ -74,7 +74,7 @@ python3 -m venv .venv
 
 JEV按钮显式在线调用 `live=true`；只有明确允许外发且非private来源才可发送。离线普通检索继续可用。配置齐全、一次调用成功和概率信号不等于语义准确率评测。
 
-Nexent产品解释使用 `ontolens_result_explainer` 专用实例，要求无工具、无技能、无协作Agent；只发送去标识结果摘要。状态来自 `/api/integrations/nexent` 的当前观察与 `observed_at`，历史ready报告不参与判就绪。宿主Web端口本轮从受Windows保留限制的3000改为13000，容器内仍3000；2026-10-08 12:02–12:04 UTC已通过当前7个MCP调用、专用Agent2无工具真实解释及Agent1真实模型/工具编排，active未改变。证据是本轮合成链路，不是行业效果。
+Nexent产品解释使用 `ontolens_result_explainer` 专用实例，要求无工具、无技能、无协作Agent；只发送去标识结果摘要。状态来自 `/api/integrations/nexent` 的当前观察与 `observed_at`，历史ready报告不参与判就绪。宿主Web端口本轮从受Windows保留限制的3000改为13000，容器内仍3000。2026-10-08 12:02–12:04 UTC的7个MCP调用及Agent1工具编排是历史运行证据。2026-10-09配置收据记录同一中转供应商的 `gpt-6-sol` 绑定；当前容器收据记录Agent2无工具解释和隔离业务流，不声称这次又跑了7 MCP或Agent1的gpt-6-sol工具编排。上述均为合成软件链路，不是行业效果。
 
 ## 验证、规划和源码发布
 

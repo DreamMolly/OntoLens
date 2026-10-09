@@ -54,9 +54,9 @@
   },
   "goal_complete": false,
   "files": {
-    "submission/peiwu-development-design-draft.docx": "886389de49dd4ae547e47229dee6c58c03cd5a9cc60ef6b5d149681178d048cc",
-    "submission/peiwu-presentation-draft.pptx": "8348bfa3b449d3a19d6fb4cd1db57cbf07fb56b8b01d1a9012c3364856a0e242",
-    "submission/evidence-matrix.yaml": "139ab46ce229bfbde005d38e70df7ca75f5d6f9c2d312cae20ef1ea99a7c170d",
+    "submission/peiwu-development-design-draft.docx": "a978f8a33019ee9552eb23e0aca6d9ce1727e55d0f98403eb251d16941d68b35",
+    "submission/peiwu-presentation-draft.pptx": "b40c0a15ec620b48e8dbd1fe163a592169cd04d7a12335122e9ade8e64d51304",
+    "submission/evidence-matrix.yaml": "8271bf7afd4091911475921b5323f087b01429bfaa19023abadf0e50764eed84",
     "artifacts/nexent-integration-report.json": "7cadc615e78375d48e0a0cbace1d2c9e319166505fb5b2e01723c2d74c0d7378",
     "artifacts/nexent-deployment-audit.json": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a",
     "artifacts/nexent-model-readiness.json": "68dccae7acf2a7d43e053deb248845749c612850e3ea74b0fbb50f1fc5b19ba0",

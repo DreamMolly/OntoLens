@@ -80,7 +80,7 @@ JEV在线必须显式live=true，只有获准且非private的来源参与；私�
 
 本机产品Nexent地址用 `PEIWU_NEXENT_BASE_URL=http://127.0.0.1:13000`，API_TOKEN/AGENT_ID配置只放本机环境。宿主3000受Windows排除端口限制，本轮改13000，容器内部仍3000；容器联动使用nexent-web:3000和nexent_network。
 
-当前状态通过 `/api/integrations/nexent` 真请求，observed_at、model_bound、tool_free、model_verified_at和当前调用结果分别解释，不加载历史ready作为当前状态。[2026-10-09 模型配置收据](../artifacts/nexent-model-configuration-20261009.json)记录同一中转供应商的 `gpt-6-sol` 健康检查与 Agent 绑定；[容器验收收据](../artifacts/operational-deployment-20261009.json)记录7MCP、Agent2 tool-free真实解释和Agent1合成模型编排，未复用旧run、未改active。此前gpt-5.6-terra的provider 404失败收据保留，错误不会再被当作成功回答。断连时核心核验独立可用；持续运行/新机另验。
+当前状态通过 `/api/integrations/nexent` 真请求，observed_at、model_bound、tool_free、model_verified_at和当前调用结果分别解释，不加载历史ready作为当前状态。[2026-10-09 模型配置收据](../artifacts/nexent-model-configuration-20261009.json)记录同一中转供应商的 `gpt-6-sol` 健康检查与Agent绑定；[容器验收收据](../artifacts/operational-deployment-20261009.json)中30项检查通过，包含隔离业务流和Agent2无工具解释。7 MCP与Agent1工具编排对应单独的2026-10-08历史运行，不能并入本轮gpt-6-sol链路。此前gpt-5.6-terra的provider 404失败收据保留，错误不会再被当作成功回答。断连时核心核验独立可用；持续运行/新机另验。
 
 ## Docker与持久化
 

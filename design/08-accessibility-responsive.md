@@ -1,6 +1,6 @@
 # 无障碍响应式与输入体验
 
-D1.1 · 2026-10-09 · 侧栏/首页主实现已落地，完整缩放、设备与读屏验收仍待完成；D1.0无障碍合同继续有效。
+D1.1 · 2026-10-09 · 侧栏/首页主实现已落地，完整 browser smoke、五档模拟视口和 CSS 200% zoom 已通过；浏览器 UI 缩放、真实设备与读屏任务仍待完成。D1.0无障碍合同继续有效。
 
 [返回设计规范目录](README.md)。本页定义所有任务共享的可访问合同；精确颜色与排版以[基础规范](02-foundations.md)为准。
 
@@ -76,7 +76,7 @@ nav文字4.5:1、focus/selected/resize边线3:1按02角色在真实背景核对�
 9single采用07的combobox/listbox渐进增强；native仅增强成功后从可访问树/Tab隐藏，JS关闭仍原生。value/form/required不分叉，multiple保留native。
 MUST验证Arrow/HomeEnd/typeahead/EnterSpace/Escape/Tab、outsideclick、正确aria-selected/disabled/expanded、label/错误焦点代理；退出即时inert/aria-hidden/pointer-none，动画不是语义计时器。
 菜单44px选项/6px间距/窗口限高flip，scroll/resize/zoom/侧栏调整不会错位或遮焦点，不外溢320px；reduced0，快切epoch取消，既有dirty/source绑定不变。
-当前代码已实现，选择专项 6/6 通过；最新收据与当前 `app.js`/`style.css`/`index.html` 指纹一致。完整矩阵、真实设备和读屏仍待验收；native 回退仍是无脚本/增强失败时的保护路径。
+当前代码已实现，选择专项 6/6 通过；可交付收据见[选择器交互报告](../artifacts/workbench-select-interaction-report.json)，静态文件指纹与当前源码匹配。报告覆盖所列隔离合成场景；30项合同中未单独覆盖的组合、真实设备和读屏仍待验收。native 回退仍是无脚本/增强失败时的保护路径。
 
 ## v0.4.0 日期控件无障碍与响应式合同
 
@@ -84,4 +84,4 @@ MUST验证Arrow/HomeEnd/typeahead/EnterSpace/Escape/Tab、outsideclick、正确a
 
 日期单元格、上/下月、今天、清除和月份/年份控件均可用键盘访问。打开后焦点进入当前日期或第一个可用日期，Escape 返回日期文本，Tab 按自然顺序离开；外部点击、滚动和缩放不会清除已提交值。必填、非法日期和超出 `min/max` 的输入由可见文本字段显示错误，并与附近错误说明关联。
 
-面板在 320px 和 390px 视口内不得横向溢出；日期网格保持七列和足够触点，必要时面板贴近左右边缘收缩。增强失败时原生日期输入必须仍可操作。减少动效时面板不产生位移或淡入，但日期值、焦点、错误和选中状态保持即时可见。D1.1-8 专项 6/6 已通过，页面错误、外部请求和 API 写入均为 0。
+面板在 320px 和 390px 视口内不得横向溢出；日期网格保持七列和足够触点，必要时面板贴近左右边缘收缩。增强失败时原生日期输入必须仍可操作。减少动效时面板不产生位移或淡入，但日期值、焦点、错误和选中状态保持即时可见。D1.1-8 专项 6/6 已通过，页面错误、外部请求和 API 写入均为 0；可交付收据见[日期交互报告](../artifacts/workbench-date-interaction-report.json)。

@@ -1,6 +1,6 @@
 # 工程合同与交互验收
 
-D1.1 · 2026-10-09 · 既有30项合同继续有效，首页/侧栏/选择器/日期控件主实现已落地；完整侧栏、200%缩放、设备与读屏验收仍有待验项。历史D1.0结果见11。
+D1.1 · 2026-10-09 · 既有30项合同继续有效，首页/侧栏/选择器/日期控件主实现已落地；完整 browser smoke、五档模拟视口、CSS 200% zoom，以及选择和日期各6项专项通过。真实设备、读屏软件和浏览器 UI 缩放仍待实测。30项是验收合同，不代表每一项均有独立端到端结果。历史D1.0结果见11。
 
 [返回设计规范目录](README.md)。MUST/SHOULD/MAY 强度见[产品原则](01-product-principles.md)。
 
@@ -95,8 +95,8 @@ ResizeObserver监听main应避免读写反馈循环，布局类型只在真实�
 
 create_app新库默认operational不seed；Workspace类默认seed保留脚本兼容，validator/tests显式synthetic，不对业务库写入smoke。
 必须补验auth/session/logout/角色403/会话撤销/CSRF/actor审计，六表原始+规范化导入/失败拒绝，admin confirm_publish/CAS回滚，private模型摘要、JEV获准live、Nexenttool-free/observed_at。
-选择控件增强按07验证native value/form/required/disabled、keyboard/typeahead/Escape/outsideclick/anchorflip/reduced，不只测效果；当前专项 6/6 通过，覆盖 9 个 single select，收据见 `.runtime/select-final-qa/summary.json`。该收据为隔离 synthetic fixture，不替代完整30项矩阵。
-专项68/45/旧新组合105和6HTTP流程重叠，不加总；本轮全suite/七阶段/容器build/新截图/材料一致性待最终回执。
+选择控件增强按07验证native value/form/required/disabled、keyboard/typeahead/Escape/outsideclick/anchorflip/reduced，不只测效果；当前专项 6/6 通过，覆盖 9 个 single select，收据见[选择器交互报告](../artifacts/workbench-select-interaction-report.json)。该收据为隔离 synthetic fixture，不替代30项合同中尚未逐场景验证的组合。
+专项68/45/旧新组合105和6HTTP流程重叠，不加总。2026-10-09完整七阶段 `456 passed`、所有阶段exit 0、隔离容器build/业务流/重启持久化及材料审计均通过；证据见[本地验收](../artifacts/local-validation-report.json)、[容器验收](../artifacts/operational-deployment-20261009.json)和[材料QA](../docs/24-material-qa.md)。以上均为软件/合成验收，不证明真实行业适用性。
 
 ## D1.1-8 日期控件专项验收
 
@@ -109,10 +109,10 @@ create_app新库默认operational不seed；Workspace类默认seed保留脚本兼
 | Date-05 | 320/390px、向上翻转、滚动/缩放重定位和无横溢出 | 通过 |
 | Date-06 | 160ms进入、100ms退出、快速中断和 reduced-motion | 通过 |
 
-日期控件实现文件为 `src/peiwu/static/date-controls.js`，功能编号为 D1.1-8；页面 `style.css`/`index.html` 当前使用 `D1.1-14` 查询串仅做缓存失效。专项收据为 `.runtime/date-picker-qa/summary.json`，测试使用隔离合成工作区，不证明真实业务日期适用性。
+日期控件实现文件为 `src/peiwu/static/date-controls.js`，功能编号为 D1.1-8；页面 `style.css`/`index.html` 当前使用 `D1.1-15` 查询串仅做缓存失效。专项交付收据为[日期交互报告](../artifacts/workbench-date-interaction-report.json)，测试使用隔离合成工作区，不证明真实业务日期适用性。
 
 ## 2026-10-09 CSS Zoom 修复验证
 
 隔离 Chromium 探针复现 1440px 视口在 200% CSS zoom 时 `scrollWidth=1470`：证据示意图容器在布局切换瞬间收缩，而固定 116px 的绝对定位 `.map-core` 仍向两边绘制。中心节点与图片现按容器比例限制宽度并保留方形比例，最大尺寸和正常桌面外观保持一致，不依靠页面裁剪掩盖溢出。
 
-修复后同一探针 `scrollWidth=clientWidth=1440`、越界节点和页面错误均为空，收据见 `.runtime/date-picker-qa/zoom-200-fixed.json`；日期与选择器回归 `12 passed in 44.35s`。本轮完整 `tests/browser_smoke.py` 在第 327 行因候选定位器保持 disabled 提前失败，未到 zoom 断言，因此不能声称完整 smoke 或原生浏览器 UI 缩放验收通过。
+修复后同一探针 `scrollWidth=clientWidth=1440`、越界节点和页面错误均为空。最终 `tests/browser_smoke.py` 已通过，覆盖决策、证据、导出、上传、检索、发布/回滚、指标、草稿/历史/来源身份、reduced-motion、响应式触点；[交互报告](../artifacts/workbench-interaction-report.json)记录五档模拟视口无全页溢出及 CSS 200% zoom 无溢出。日期与选择器各6项专项亦通过。旧的候选定位器失败是早期运行记录，不代表最终 smoke 状态。浏览器 UI 原生缩放、真实设备、实际读屏仍未验；CSS zoom与模拟视口不等于这三类验证。

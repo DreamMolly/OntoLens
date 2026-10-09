@@ -10,11 +10,11 @@
 - 私有模型上下文限制为枚举/计数摘要；Nexent专用tool-free解释与实时observed_at，JEV显式live仅获准来源，均不改判。
 - D1.1按用户参考改善首页/真实统计/结构示意/可拉伸侧栏，品牌旁44px折叠图标，删除冗余卡、底部本地工作空间和可见宽度控件；边缘拖动及键盘调宽保留。
 - 日期字段新增统一日历增强：可编辑 `YYYY-MM-DD`、月份/年份跳转、闰年和范围校验、键盘导航、向上翻转、减少动效；原生 ISO 日期值仍是唯一提交值。2026-10-09 日期专项浏览器 QA 6/6 通过，收据与当前日期脚本指纹一致。
-- 选择器渐进增强已按当前源码重跑：6/6 场景通过，覆盖9个单选控件的同步、键盘/typeahead、required/disabled、翻转、reduced-motion、滚动/侧栏关闭与无写入回归；收据为 `.runtime/select-final-qa/summary.json`，仅代表隔离 synthetic UI fixture。
-- 提供非root Dockerfile、业务持久volume、只读账户bind、loopback compose与可选nexent_network覆盖；容器实际构建/启动待本轮新验收。
+- 选择器渐进增强已按当前源码重跑：6/6 场景通过，覆盖9个单选控件的同步、键盘/typeahead、required/disabled、翻转、reduced-motion、滚动/侧栏关闭与无写入回归；收据为 `artifacts/workbench-select-interaction-report.json`，仅代表隔离 synthetic UI fixture。
+- 提供非root Dockerfile、业务持久volume、只读账户bind、loopback compose与可选nexent_network覆盖；2026-10-09 隔离容器 build、业务流程、重建/重启持久化与模型解释收据通过，30 项检查通过，不是Linux新机冷启动或行业验收。
 - 交接文档区分软件部署、当前平台展示、真实行业/专业评测和正式参赛提交，不增加人员任务分配。
 
-本轮新增修复后完整七阶段通过：456 passed；browser、MCP、资产、JEV离线预检、pip、全前端 JS 语法检查均退出 0。源码日志已快照到 `artifacts/source-validation/20261009-052126-c6f21459/`。2026-10-09 容器与 `gpt-6-sol` Nexent 模型解释收据通过，仍仅使用隔离 TEST FIXTURE。已推送私有 Gitea 仓库 `fulao/OntoLens`，`main` 提交 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`；真实行业效果、独立冷启动与正式参赛提交未完成。以下v0.3.0记录保留历史。
+本轮新增修复后完整七阶段通过：456 passed；browser、MCP、资产、JEV离线预检、pip、全前端 JS 语法检查均退出 0。源码日志已快照到 `artifacts/source-validation/20261009-052126-c6f21459/`。容器收据中30项检查通过；`gpt-6-sol` 配置绑定与Agent2无工具解释通过，仍仅使用隔离 TEST FIXTURE。2026-10-08 的7 MCP与Agent1工具编排是较早的独立历史收据，不是本轮gpt-6-sol模型链路结果。已推送私有 Gitea 仓库 `fulao/OntoLens`，首个源码发布提交为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`；真实行业效果、独立冷启动与正式参赛提交未完成。以下v0.3.0记录保留历史。
 
 ## v0.3.0 本地候选 — 2026-10-08（未发布）
 

@@ -1,6 +1,6 @@
 # 动效与真实状态反馈
 
-D1.1 · 2026-10-09 · 侧栏、首页、选择器与日期控件主实现已落地；完整交互验收仍有待验项。D1.0原生检查器即时关闭例外继续有效。
+D1.1 · 2026-10-09 · 侧栏、首页、选择器与日期控件主实现已落地；完整浏览器 smoke、五档模拟视口、CSS 200% zoom，以及选择/日期专项各6/6均已通过。真实设备、读屏软件与浏览器 UI 缩放仍待实测。D1.0原生检查器即时关闭例外继续有效。
 
 [返回设计规范目录](README.md)。MUST/SHOULD/MAY 强度见[产品原则](01-product-principles.md)。
 
@@ -74,7 +74,7 @@ MUST验收快速拖动→Esc、pointercancel、折叠中切任务、focus toolti
 触发器role=combobox与aria-expanded/controls/active-descendant准确，manual popover role=listbox、option的selected/disabled/name完整。选中即时native value+一次change，保持dirty/单位/候选来源/异步保护；highlight不是提交，动画结束不执行语义。
 菜单与anchor间距6px、白面圆角8px、option有效高度44px、蓝选中tick；按窗口available height自动flip、最大高度320px并内部滚动，trigger宽度及内容受视口约束，长中文可完整访问。
 enter160ms opacity0→1、沿实际展开方向translateY±4px、scale0.98→1，transform-origin跟随方向；exit100ms fade，但inert/aria-hidden/pointer-none与focus语义即时生效。chevron120ms，reduced全部0。
-每次开/关/换目标以epoch中断旧motion，禁止依赖animationend/setTimeout写业务状态；快速关闭再开不复活旧选项/旧source。
+每次开/关/换目标以epoch中断旧motion，禁止依赖animationend/setTimeout写业务状态；快速关闭再开不复活旧选项/旧source。当前交互收据见[选择器](../artifacts/workbench-select-interaction-report.json)与[日期控件](../artifacts/workbench-date-interaction-report.json)，仅覆盖其列明的隔离合成浏览器场景。
 Arrow/Home/End/typeahead移动，Enter/Space选择，Escape取消且focus回trigger，Tab自然离开；outside click关闭。scroll/resize/侧栏变化重定位或关闭并保持value，不调用业务API。校验/label焦点代理到可见trigger，不能focus隐藏native。
 mobile/coarse可保持原生增强回退，触点44px/字段16px；disabled与刷新options立即联动，popover退出不留透明拦截层/旧焦点，源dialog即时关闭例外仍独立有效。
 参考公开UIUX/Motion取消式状态转换及RadixSelect keyboard/typeahead/popper/availablewindow与ShadcnSelect文档；未运行独立MotionMCP/会员工具，不以参考库名冒称通路。当前专项 6/6 通过，覆盖 9 个 single select 的同步、键盘、typeahead、required/disabled、翻转、reduced-motion、侧栏/滚动关闭与无写入回归；收据为 `.runtime/select-final-qa/summary.json`。该收据是隔离 synthetic fixture，不代表真实业务或模型效果。
@@ -89,4 +89,4 @@ mobile/coarse可保持原生增强回退，触点44px/字段16px；disabled与�
 
 键盘支持日期单元格的左右/上下移动、Home/End、PageUp/PageDown（Shift 加年）、Enter/Space 提交和 Escape 取消；月份与年份可直接编辑，`今天`与可选的`清除`只在明确点击后提交。日期计算使用 UTC civil date，避免本地时区和夏令时造成跨日；闰年、非法日期、最小/最大日期和空值必须回到同一原生校验路径。
 
-当前状态：代码已实现，Node 语法检查通过；日期专项 6/6 浏览器用例通过，覆盖 ISO 同步、键盘、闰年/范围、320/390px、焦点、reduced-motion 和无 API 写入。功能编号为 D1.1-8，页面资源查询串当前为 `D1.1-14`（仅用于缓存失效）。收据位于 `.runtime/date-picker-qa/summary.json`；日期面板不代表日期真实性或业务规则适用性。
+当前状态：代码已实现，Node 语法检查通过；日期专项 6/6 浏览器用例通过，覆盖 ISO 同步、键盘、闰年/范围、320/390px、焦点、reduced-motion 和无 API 写入。功能编号为 D1.1-8，页面资源查询串当前为 `D1.1-15`（仅用于缓存失效）。可交付收据见[日期交互报告](../artifacts/workbench-date-interaction-report.json)；日期面板不代表日期真实性或业务规则适用性。

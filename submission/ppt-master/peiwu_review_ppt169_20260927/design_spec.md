@@ -221,7 +221,7 @@ Design decisions use the user's standing autonomous project/material optimizatio
 - **Content**:
   - 已有 Agent peiwu_compliance_review、model_id=2（gpt-6-sol）、三个 Skill、七个 MCP 工具。
   - 工具集合：asset_recognition、evidence_lookup、graph_query、candidate_suggestions、evidence_rerank_jev、decision_check、candidate_review。
-  - 2026-10-09 当前 gpt-6-sol/model_id=2 配置与 Docker 业务部署已实测；31 项部署检查通过，外部冷启动与真实行业效果另验。
+  - 2026-10-09 当前 gpt-6-sol/model_id=2 配置与 Docker 业务部署已实测；30 项部署检查通过，外部冷启动与真实行业效果另验。
   - start-demo.ps1 面向已准备本机，复用 F 盘数据和令牌；增加数据库等待与数据处理健康检查。
   - 日常恢复不等于新机一键部署或独立冷启动。
   - 启动入口不安装依赖、不迁移数据、不创建模型、不重复导入 Agent。
@@ -234,7 +234,7 @@ Design decisions use the user's standing autonomous project/material optimizatio
 - **Content**:
   - 冻结合成规则集：60/60 exact_match，unsafe_release=0。
   - 平台 MCP：7 个工具实际验证。
-  - 当前全量回归 456 passed in 156.97s，七阶段 exit 0、154 项输入指纹一致；Docker 业务部署收据为 31 checks passed，real_industry_data_used=false。权威收据为 artifacts/local-validation-report.json、artifacts/source-validation/20261009-052126-c6f21459/ 和 artifacts/operational-deployment-20261009.json。
+  - 当前全量回归 456 passed in 156.97s，七阶段 exit 0、154 项输入指纹一致；Docker 业务部署收据为 30 checks passed，real_industry_data_used=false。权威收据为 artifacts/local-validation-report.json、artifacts/source-validation/20261009-052126-c6f21459/ 和 artifacts/operational-deployment-20261009.json。
   - .venv/Scripts/python.exe -m pytest -q。
   - .venv/Scripts/python.exe scripts/verify_nexent.py。
   - 规则结果、项目测试数和模型效果分开解释；不宣称行业准确率。

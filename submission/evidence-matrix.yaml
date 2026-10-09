@@ -30,7 +30,7 @@ claims:
     evidence: artifacts/nexent-model-configuration-20261009.json; artifacts/operational-deployment-20261009.json; artifacts/nexent-live-runtime-20261008.json; artifacts/nexent-integration-report.json; artifacts/nexent-model-readiness.json; scripts/verify_nexent.py; docs/38-operational-deployment.md
     command: .venv/Scripts/python.exe scripts/verify_nexent.py
     status: PARTIAL
-    limit: 2026-10-09 gpt-6-sol/model_id=2 配置收据与 Docker 业务部署收据通过；31 项检查包含容器连接、模型解释、私有原文不外发、健康与重启持久化。外部冷启动、专业审核、真实行业资料和持续运行另验
+    limit: 2026-10-09 gpt-6-sol/model_id=2 配置收据与 Docker 业务部署收据通过；30 项检查包含容器连接、模型解释、私有原文不外发、健康与重启持久化。外部冷启动、专业审核、真实行业资料和持续运行另验
   - id: C10
     claim: Windows 部署路径、服务状态和本机暴露端口可只读审计
     evidence: scripts/audit_nexent_deployment.py; artifacts/operational-deployment-20261009.json; artifacts/nexent-deployment-audit.json; artifacts/nexent-deployment-audit-20261002-live.json; nexent/windows.override.yaml
