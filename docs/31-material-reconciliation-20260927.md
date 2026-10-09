@@ -82,12 +82,11 @@ officecli view submission/peiwu-presentation-draft.pptx screenshot --render nati
 
 当前 Word/PPT 与 editable SVG/spec/notes 的产品名称已同步；文件名、peiwu 工程引用和历史 generated 记录保留。当前两份 schema 均 0 errors，PPT 0 issues，Word 24 原有提示；新名称对应的变化页已原生渲染检查，无截断、溢出或重叠，数值与几何不变。第 10 页已原位替换 D1.0-6 的 1440×1230 真实 viewport 截图，ALLOW 100 mL 与 stu01 原文同屏；当前 Logo 是模型生成后处理位图。该截图只证明当前本地合成资料运行的 UI 状态，不代表实际应用或完整 Nexent 演示已验收。
 
-既有全量及交付审计属于品牌/UI 修订前证据，旧 356/7 检查/128 输入验证属于历史范围，不绑定当前 v0.4.0；材料最终 audit 尚待根任务 snapshot 后执行一次。Gitea 暂缓，实际应用、完整 Nexent 参赛演示尚未验收，保持候选状态；无分工/责任表新增。
+既有全量及交付审计属于品牌/UI 修订前证据，旧 356/7 检查/128 输入验证属于历史范围，不绑定当前 v0.4.0；当前最终 audit 已在源码推送前通过。源码已推送到私有 Gitea，真实行业应用、完整专业评测、独立冷启动和正式参赛提交仍未验收；无分工/责任表新增。
 
 ## D1 最终截图冻结 QA
 
 PPT 第 10 页图片、editable `images/image-8-1.png` 与 `svg_final/10_demo.svg` 嵌入媒体均为同一真实截图的精确字节，SHA256 `D89B08BAC3D0C6D611C3B5DCD14099A9DF802B1E580D239BC78BEEC38FC4FBBB`；source `svg_output/10_demo.svg` 保留原工程图片路径。变化仅限该页图片/caption/notes 与对应 editable 资料；其它幻灯片及 notes 字节未变，所有 PPT/SVG 数值几何未变，356 数字未变。原生 PPT 第 10 页原图与 11 页接触表已查看，无新增裁切、拉伸、重叠、越界或低对比度；截图细字仅作界面示意，详细演示仍需打开真实工作台。Word 哈希未变、仍 4 页，PPT 11 页；两份 schema 0 errors，PPT 0 issues，Word 原有 24 提示保留。
 
-最新隔离全量验证 run 为 `.runtime/validation/20261008-104853-561a21f6`，356 passed（97.34 秒）、7 项检查均退出 0，128 个输入指纹匹配当前实现。本子任务只读取核对报告，没有重跑 full validation 或 audit。模型生成并处理的品牌位图以 `design/asset-manifest.json` 为来源，不再描述为手绘 SVG 临时标记；不修改过去失败或旧导出的历史记录。当前材料定稿冻结，仍为未推送的本地候选，真实行业应用、完整 Nexent 参赛演示、独立冷启动及生产验收未完成，不添加分工；最终 audit 由根任务在 snapshot 后执行一次。
-
+最新隔离全量验证 run 为 `.runtime/validation/20261009-052126-c6f21459`，456 passed（156.97 秒）、7 项检查均退出 0，154 个输入指纹匹配当前实现。模型生成并处理的品牌位图以 `design/asset-manifest.json` 为来源，不再描述为手绘 SVG 临时标记；不修改过去失败或旧导出的历史记录。当前材料已随源码推送到私有 Gitea，真实行业应用、完整专业评测、独立冷启动及正式参赛提交未完成，不添加分工。
 

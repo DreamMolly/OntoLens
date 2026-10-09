@@ -19,6 +19,6 @@ DONE 表示主张的指定软件范围有代码或测试支撑；PARTIAL 表示�
 
 P10 为 D1.1-7 当前首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 100 mL 截图。图片由真实 1440×1230 viewport 捕获，收据 `.runtime/ontolens-D1.1-final-capture-receipt.json`；材料最终原生 QA 见 `.runtime/material-final-456-20261009/receipt.json`。
 
-软件启动、账户、授权声明、私有资料和备份操作见 `docs/38-operational-deployment.md`；当前规划见 `docs/37-teammate-handoff.md`。最终软件回归见 `artifacts/local-validation-report.json`：456 passed、7 stages exit 0、154 项输入指纹一致。Gitea 是否已推送以根任务最终发布结果为准，材料不代替正式提交。官方姓名、认证与行业效果不得自行填入。
+软件启动、账户、授权声明、私有资料和备份操作见 `docs/38-operational-deployment.md`；当前规划见 `docs/37-teammate-handoff.md`。最终软件回归见 `artifacts/local-validation-report.json`：456 passed、7 stages exit 0、154 项输入指纹一致。源码已推送到私有 Gitea `fulao/OntoLens`，材料不代替正式提交。官方姓名、认证与行业效果不得自行填入。
 
 公开资料演示 `public-data-demo.md` 使用六份官方制度加合成台账，不是实际校内台账、独立盲测或法律合规认证。

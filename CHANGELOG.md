@@ -1,6 +1,6 @@
 # 格物镜 · OntoLens 更新记录
 
-## v0.4.0 · D1.1 — 2026-10-08（发布准备中，未推送）
+## v0.4.0 · D1.1 — 2026-10-09（已推送 Gitea）
 
 新增默认空业务工作区、带认证启动与六类业务台账候选发布。新HTTP库不填演示事实，Workspace内部seed默认保留脚本兼容，验证显式使用synthetic隔离资料。实际出库与业务规则适用性仍遵循单位流程，不把来源授权声明或软件通过写成专业审核。
 
@@ -14,7 +14,7 @@
 - 提供非root Dockerfile、业务持久volume、只读账户bind、loopback compose与可选nexent_network覆盖；容器实际构建/启动待本轮新验收。
 - 交接文档区分软件部署、当前平台展示、真实行业/专业评测和正式参赛提交，不增加人员任务分配。
 
-本轮新增修复后完整七阶段通过：456 passed；browser、MCP、资产、JEV离线预检、pip、全前端 JS 语法检查均退出 0。源码日志已快照到 `artifacts/source-validation/20261009-052126-c6f21459/`。2026-10-09 容器与 `gpt-6-sol` Nexent 模型解释收据通过，仍仅使用隔离 TEST FIXTURE；真实行业效果、独立冷启动与正式参赛提交未完成。Gitea尚未推送。以下v0.3.0记录保留历史。
+本轮新增修复后完整七阶段通过：456 passed；browser、MCP、资产、JEV离线预检、pip、全前端 JS 语法检查均退出 0。源码日志已快照到 `artifacts/source-validation/20261009-052126-c6f21459/`。2026-10-09 容器与 `gpt-6-sol` Nexent 模型解释收据通过，仍仅使用隔离 TEST FIXTURE。已推送私有 Gitea 仓库 `fulao/OntoLens`，`main` 提交 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`；真实行业效果、独立冷启动与正式参赛提交未完成。以下v0.3.0记录保留历史。
 
 ## v0.3.0 本地候选 — 2026-10-08（未发布）
 

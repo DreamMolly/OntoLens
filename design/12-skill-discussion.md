@@ -92,4 +92,4 @@ D1.0方向、token、任务结构、状态、动效与30项交互验收已决策
 
 用户红框要求覆盖D1.1首轮visible宽控建议：折叠只保留品牌旁44px图标，删工作台/来源关系版本卡、底部本地空间和-/reset/+；边缘drag和focusablehandle键盘仍可操作，真实actor/logout保留。不为反侧栏/通用a11y模板恢复被用户删掉的装饰。
 用户又要求select效果更好看，采纳vanilla渐进增强、native value/form/validation保留、完整键盘/ARIA/anchorflip、enter160/exit100/reduced0；这是待实现/QA合同，不冒称参考Radix/shadcn等于运行依赖或已验证。
-新默认业务空库/认证/六表发布可接授权业务数据，synthetic保留为显式测试/展示；字段和授权声明不证明行业有效性。当前Nexent已实测通过新7工具/两Agent链路；全suite/容器/新界面验收仍分别收口，未推送。
+新默认业务空库/认证/六表发布可接授权业务数据，synthetic保留为显式测试/展示；字段和授权声明不证明行业有效性。当前 Nexent、全suite、容器和新界面验收已分别收口，源码已推送；真实行业效果、独立专业审核和正式参赛提交仍待完成。

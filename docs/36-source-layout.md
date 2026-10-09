@@ -50,7 +50,7 @@
 
 ## v0.4.0发布门槛与运行状态排除
 
-v0.4.0/D1.1软件默认业务空库、带账户、六表候选检查发布，不能再把全部能力写作local demo。2026-10-09 可实用业务流程、当前Nexent展示、456 passed七阶段和隔离业务容器收据均通过；材料/源码检查完成后进入Gitea推送。Linux新机冷启动、长期稳定性、真实行业效果和正式参赛提交仍单独待验。
+v0.4.0/D1.1软件默认业务空库、带账户、六表候选检查发布，不能再把全部能力写作local demo。2026-10-09 可实用业务流程、当前Nexent展示、456 passed七阶段和隔离业务容器收据均通过；源码已推送到私有 Gitea `fulao/OntoLens`，`main` 为 `92f2c2c8c17647082227e9209efc2a7f0cf14d04`。Linux新机冷启动、长期稳定性、真实行业效果和正式参赛提交仍单独待验。
 
 `.runtime/operational/accounts.json`、initial-admin.txt、access.sqlite3/workbench.sqlite3、所有私有原始/规范化台账、登录cookie/token、真实.env、Dockervolume与私有导出 MUST排除。账户文件仅哈希也不发布；密码不可写入镜像/README/命令行参数。源码里的schema/模板及明确合成测试资料可按白名单纳入。
 
