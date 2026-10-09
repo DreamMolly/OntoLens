@@ -1,0 +1,35 @@
+{
+  "format": "ontolens-nexent-agent-run-1",
+  "observed_at": "2026-10-09T11:50:23.506170+00:00",
+  "scope": "Current non-debug Nexent model-driven run against synthetic inputs; not industry validation or professional review.",
+  "agent_id": 1,
+  "agent_name": "ontolens_compliance_review",
+  "model_id": 2,
+  "model_name": "gpt-6-sol",
+  "version_no": 0,
+  "is_debug": false,
+  "reasoning_effort": null,
+  "model_orchestration_verified": true,
+  "mode": "synthetic_demo",
+  "final_status": "ready",
+  "decision": {
+    "action": "ALLOW",
+    "approved_quantity": 100.0,
+    "reason_code": "ALLOWED",
+    "rule_version": "v2"
+  },
+  "version_id": "demo-initial",
+  "snapshot_hash": "2b5e3e9e9d5c39692b75728ad2376c7c173b12d2386b42f97536bd613a9fe375",
+  "evidence_count": 6,
+  "tool_calls": {
+    "search_memory": 1,
+    "read_skill_md": 6,
+    "evidence_lookup": 3,
+    "graph_query": 3,
+    "parallel_executor": 1,
+    "decision_check": 1
+  },
+  "live_report": "artifacts/nexent-live-runtime-current.json",
+  "live_report_sha256": "fc774aa4b59be65094e649f43c0e9e080d0ed4f9131fffc400fdd7b7efa35be8",
+  "notice": "本轮模型与工具使用合成输入，不代表行业验证、人工审核或实际出库。"
+}

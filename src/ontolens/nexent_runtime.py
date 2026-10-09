@@ -88,9 +88,8 @@ class NexentRuntime:
         settings = read_environment(root / ".env")
 
         def value(name: str, default: str = "") -> str:
-            aliases = ("NEXENT_" + name,)
-            file_value = env_value("NEXENT_" + name, default, environment=settings, aliases=aliases)
-            return env_value("NEXENT_" + name, file_value, aliases=aliases)
+            file_value = env_value("NEXENT_" + name, default, environment=settings)
+            return env_value("NEXENT_" + name, file_value)
 
         agent_id = value("AGENT_ID")
         return cls(value("BASE_URL", "http://127.0.0.1:13000"), token=value("API_TOKEN"),
@@ -117,32 +116,50 @@ class NexentRuntime:
                         response.raise_for_status()
                         return response.json()
 
-                    agents, models, services = await asyncio.gather(
-                        get("agent/list"), get("model/llm_list"), get("mcp/list"))
+                    agents, models = await asyncio.gather(
+                        get("agent/list"), get("model/llm_list"))
                     result["connected"] = True
                     matches = [a for a in agents if a.get("name") == self.agent_name
                                and (self.agent_id is None or a.get("agent_id") == self.agent_id)]
                     agent = matches[0] if len(matches) == 1 else {}
-                    model_ids = agent.get("model_ids") or []
-                    model_found = any(m.get("model_id") in model_ids for m in models.get("data", []))
                     result["agent_id"] = agent.get("agent_id", self.agent_id)
+                    # Nexent exposes draft bindings at version 0 while a normal
+                    # run defaults to the published version. Pin both probes and
+                    # the later run to the same configured draft snapshot.
+                    version_no = 0
+                    model_ids = []
                     tool_free = False
+                    info = {}
                     if agent:
-                        detail = await client.post("agent/search_info", json={"agent_id": agent["agent_id"]})
+                        detail = await client.post("agent/search_info", json={
+                            "agent_id": agent["agent_id"], "version_no": version_no})
                         detail.raise_for_status()
                         info = detail.json()
+                        model_ids = info.get("model_ids") or []
                         tool_free = (info.get("tools") == [] and info.get("skills") == []
                                      and not info.get("sub_agent_id_list")
                                      and not info.get("external_sub_agent_id_list")
                                      and not info.get("allow_chat_metadata"))
                     result["tool_free"] = tool_free
-                    registered = [s for s in services.get("remote_mcp_server_list", [])
-                                  if s.get("remote_mcp_server_name") == "peiwu-local" and s.get("enabled")]
+                    result["version_no"] = version_no
+                    result["model_ids"] = list(model_ids)
+                    result["model_id"] = next((model_id for model_id in model_ids
+                                                if any(m.get("model_id") == model_id
+                                                       for m in models.get("data", []))), None)
+                    model_found = result["model_id"] is not None
                     mcp_ok = False
-                    if len(registered) == 1:
-                        response = await client.get("mcp/healthcheck", params={"mcp_id": registered[0]["mcp_id"]})
-                        response.raise_for_status()
-                        mcp_ok = response.json().get("data", {}).get("health_status") == "healthy"
+                    # MCP is required for tool-enabled agents only. A transient
+                    # MCP outage must not mask a ready tool-free explanation run.
+                    try:
+                        services = await get("mcp/list")
+                        registered = [s for s in services.get("remote_mcp_server_list", [])
+                                      if s.get("remote_mcp_server_name") == "ontolens-local" and s.get("enabled")]
+                        if len(registered) == 1:
+                            response = await client.get("mcp/healthcheck", params={"mcp_id": registered[0]["mcp_id"]})
+                            response.raise_for_status()
+                            mcp_ok = response.json().get("data", {}).get("health_status") == "healthy"
+                    except (httpx.HTTPError, ValueError, TypeError, KeyError):
+                        mcp_ok = False
                     result["checks"] = {"agent_available": agent.get("is_available") is True,
                                         "model_bound": model_found, "mcp_healthy": mcp_ok}
                     result["model_bound"] = model_found
@@ -200,7 +217,8 @@ class NexentRuntime:
                 async with asyncio.timeout(self._timeout):
                     async with self._client(self._timeout) as client:
                         async with client.stream("POST", "agent/run", json={
-                            "agent_id": live["agent_id"], "query": prompt, "history": [],
+                            "agent_id": live["agent_id"], "model_id": live["model_id"],
+                            "version_no": live["version_no"], "query": prompt, "history": [],
                             # Nexent's ephemeral execution path disables automatic
                             # memory retrieval/storage in addition to our empty
                             # configured tool/skill/Agent bindings.

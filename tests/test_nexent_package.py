@@ -17,7 +17,7 @@ PACKAGE = ROOT / "nexent"
 def test_nexent_agent_template_has_expected_dependency_contract():
     config = json.loads((PACKAGE / "agent.json").read_text(encoding="utf-8"))
     agent = config["agent_info"][str(config["agent_id"])]
-    assert agent["name"] == "peiwu_compliance_review"
+    assert agent["name"] == "ontolens_compliance_review"
     assert agent["name"].isidentifier()
     assert not agent.get("model_ids")
     assert not agent.get("model_names")
@@ -25,13 +25,13 @@ def test_nexent_agent_template_has_expected_dependency_contract():
         "asset_recognition", "evidence_lookup", "graph_query", "candidate_suggestions",
         "evidence_rerank_jev", "decision_check", "candidate_review",
     }
-    assert all(tool["source"] == "mcp" and tool["usage"] == "peiwu-local"
+    assert all(tool["source"] == "mcp" and tool["usage"] == "ontolens-local"
                and tool["params"] == {} for tool in agent["tools"])
     assert set(agent["skill_names"]) == {
-        "peiwu-intake", "peiwu-evidence", "peiwu-decision"
+        "ontolens-intake", "ontolens-evidence", "ontolens-decision"
     }
-    assert "REPLACE_WITH_PEIWU_MCP_TOKEN" not in json.dumps(config)
-    assert config["mcp_info"][0]["mcp_server_name"] == "peiwu-local"
+    assert "REPLACE_WITH_ONTOLENS_MCP_TOKEN" not in json.dumps(config)
+    assert config["mcp_info"][0]["mcp_server_name"] == "ontolens-local"
     assert "合成演示" in agent["description"]
     assert "未补齐" in agent["constraint_prompt"]
 
@@ -103,4 +103,4 @@ def test_nexent_service_templates_use_local_or_docker_host_without_real_secret()
     docker = json.loads((PACKAGE / "mcp-service-docker.json").read_text(encoding="utf-8"))
     assert local["url"] == "http://127.0.0.1:8765/mcp/"
     assert docker["url"].startswith("http://host.docker.internal:")
-    assert "REPLACE_WITH_PEIWU_MCP_TOKEN" in docker["headers"]["Authorization"]
+    assert "REPLACE_WITH_ONTOLENS_MCP_TOKEN" in docker["headers"]["Authorization"]

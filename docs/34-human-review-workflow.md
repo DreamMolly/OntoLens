@@ -12,7 +12,7 @@
 
 `POST /api/runs/{run_id}/review` 接受 evidence_references 中的 source_id、locator、sha256、quote 和 unresolved。明确缺失的引用必须使用 `quote=null, unresolved=true`。旧客户端的 evidence_ids 会在本次新建记录时展开为具体引用；历史审计记录不会被重新生成。
 
-服务端在写入同一事务内重新检查原始字节哈希与定位原文，来源已变更时拒绝写入。新记录使用 peiwu-review-1，绑定记录 ID、run、版本、快照哈希及申请哈希，并返回该次提交自身的审计序号和时间。并发提交不会借用另一条记录的时间。decision_written 与 reviewer_identity_verified 固定为 false。
+服务端在写入同一事务内重新检查原始字节哈希与定位原文，来源已变更时拒绝写入。新记录使用 ontolens-review-1，绑定记录 ID、run、版本、快照哈希及申请哈希，并返回该次提交自身的审计序号和时间。并发提交不会借用另一条记录的时间。decision_written 与 reviewer_identity_verified 固定为 false。
 
 跟进记录仅允许追加到审计表；核验结果原始行不被修改。这是应用层追加约束，不是防止数据库管理员篡改的签名日志。
 

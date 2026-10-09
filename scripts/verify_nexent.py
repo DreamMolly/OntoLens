@@ -17,7 +17,7 @@ import httpx
 ROOT = Path(__file__).resolve().parents[1]
 TOOL_NAMES = {"asset_recognition", "evidence_lookup", "graph_query", "candidate_suggestions",
               "evidence_rerank_jev", "decision_check", "candidate_review"}
-SKILL_NAMES = {"peiwu-intake", "peiwu-evidence", "peiwu-decision"}
+SKILL_NAMES = {"ontolens-intake", "ontolens-evidence", "ontolens-decision"}
 
 
 def local_url(value: str) -> str:
@@ -44,11 +44,11 @@ def require(condition: bool, message: str):
 
 
 def load_agent_run_evidence(path: Path | None = None) -> dict | None:
-    candidate = path or (ROOT / "artifacts/nexent-agent-run-20260924.json")
+    candidate = path or (ROOT / "artifacts/nexent-agent-run-current.json")
     if not candidate.is_file():
         return None
     payload = json.loads(candidate.read_text(encoding="utf-8"))
-    require(payload.get("format") == "peiwu-nexent-agent-run-1", "Invalid Agent run evidence format")
+    require(payload.get("format") == "ontolens-nexent-agent-run-1", "Invalid Agent run evidence format")
     require(payload.get("model_orchestration_verified") is True, "Agent run is not marked verified")
     require(payload.get("final_status") == "ready", "Agent run did not finish ready")
     decision = payload.get("decision") or {}
@@ -116,15 +116,15 @@ def verify(platform_url: str, workbench_url: str, report: dict):
         active_before = status.json()["active_id"]
         services = nexent.get("/mcp/list"); services.raise_for_status()
         service = next(item for item in services.json()["remote_mcp_server_list"]
-                       if item["remote_mcp_server_name"] == "peiwu-local")
+                       if item["remote_mcp_server_name"] == "ontolens-local")
         mcp_id = service["mcp_id"]
         health = nexent.get("/mcp/healthcheck", params={"mcp_id": mcp_id}); health.raise_for_status()
-        require(health.json()["data"]["health_status"] == "healthy", "OntoLens legacy MCP service is not healthy")
+        require(health.json()["data"]["health_status"] == "healthy", "OntoLens MCP service is not healthy")
         tools = nexent.get("/mcp/tools", params={"mcp_id": mcp_id}); tools.raise_for_status()
         require({item["name"] for item in tools.json()["tools"]} == TOOL_NAMES, "Unexpected MCP tool set")
         report["mcp"] = {"id": mcp_id, "health": "healthy", "tools": sorted(TOOL_NAMES)}
         agents = nexent.get("/agent/list"); agents.raise_for_status()
-        agent = next(item for item in agents.json() if item["name"] == "peiwu_compliance_review")
+        agent = next(item for item in agents.json() if item["name"] == "ontolens_compliance_review")
         report["agent"] = {key: agent.get(key) for key in
                            ("agent_id", "name", "model_ids", "is_available", "unavailable_reasons")}
         detail = nexent.post("/agent/search_info", json={"agent_id": agent["agent_id"]}); detail.raise_for_status()
@@ -152,7 +152,7 @@ def verify(platform_url: str, workbench_url: str, report: dict):
 
         def call(name: str, inputs: dict) -> dict:
             response = nexent.post("/tool/validate", json={"name": name, "source": "mcp",
-                                                          "usage": "peiwu-local", "inputs": inputs, "params": {}})
+                                                          "usage": "ontolens-local", "inputs": inputs, "params": {}})
             payload = tool_payload(response)
             report["calls"].append({"tool": name, "http_status": response.status_code,
                                     "inputs": inputs, "result": payload})
@@ -162,7 +162,7 @@ def verify(platform_url: str, workbench_url: str, report: dict):
         require(bool(lookup["results"]), "No evidence found")
         source_id = lookup["results"][0]["id"]
         assets = call("asset_recognition", {"source_id": source_id})
-        require(assets["schema"]["version"] == "peiwu-ontology-1", "Unexpected ontology version")
+        require(assets["schema"]["version"] == "ontolens-ontology-1", "Unexpected ontology version")
         versions = workbench.get("/versions"); versions.raise_for_status()
         candidates = [item for item in versions.json()["candidates"] if item["parent_id"] == "demo-initial"]
         require(bool(candidates), "Run the synthetic browser demonstration first to prepare a candidate")
@@ -235,7 +235,7 @@ def main() -> int:
     report = {"status": "failed", "time": datetime.now(timezone.utc).isoformat(),
               "scope": "真实 Nexent 平台 API 复测；合成数据；历史合成 Agent/run 证据单独标记",
               "source_commit": (ROOT / "third_party/nexent/.pinned-commit").read_text().strip(),
-              "package_sha256": hashlib.sha256((ROOT / "artifacts/peiwu-nexent-agent.zip").read_bytes()).hexdigest()}
+              "package_sha256": hashlib.sha256((ROOT / "artifacts/ontolens-nexent-agent.zip").read_bytes()).hexdigest()}
     exit_code = 1
     try:
         report["containers"] = container_state()

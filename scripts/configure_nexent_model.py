@@ -76,8 +76,8 @@ def configure(client: httpx.Client, payload: dict, *, apply: bool, state: dict |
     agents_response.raise_for_status()
     wanted_agent_id = expected_agent_id()
     agents = [item for item in agents_response.json()
-              if item.get("name") == "peiwu_compliance_review" and item.get("agent_id") == wanted_agent_id]
-    require(len(agents) == 1, "Expected exactly one OntoLens legacy Agent instance")
+              if item.get("name") == "ontolens_compliance_review" and item.get("agent_id") == wanted_agent_id]
+    require(len(agents) == 1, "Expected exactly one OntoLens Agent instance")
     detail_response = client.post("/agent/search_info", json={"agent_id": wanted_agent_id})
     detail_response.raise_for_status()
     detail = detail_response.json()
@@ -87,7 +87,7 @@ def configure(client: httpx.Client, payload: dict, *, apply: bool, state: dict |
     bound_skills = {skill_names.get(item.get("skill_id")) for item in detail.get("skills", []) if item.get("enabled")}
     bound_tools = {item.get("name") for item in detail.get("tools", []) if item.get("enabled")}
     require(detail.get("permission") == "EDIT" and bound_skills == SKILL_NAMES and bound_tools == TOOL_NAMES,
-            "OntoLens legacy Agent is not the editable seven-tool, three-Skill instance")
+            "OntoLens Agent is not the editable seven-tool, three-Skill instance")
     previous_model_ids = detail.get("model_ids") or []
     result.update({"applied": False, "model_created": False, "healthcheck_sent": False,
                    "temporary_healthcheck_attempted": False, "model_create_attempted": False,

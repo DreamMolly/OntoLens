@@ -25,7 +25,7 @@ def test_source_manifest_is_deterministic_and_covers_new_delivery_code():
     second = source_manifest(ROOT)
     assert first == second
     assert "src/ontolens/delivery.py" in first
-    assert "src/peiwu/__init__.py" in first
+    assert "src/ontolens/__init__.py" in first
     assert "src/ontolens/config.py" in first
     assert "scripts/audit_deliverables.py" in first
     assert first["src/ontolens/delivery.py"] == file_digest(ROOT / "src/ontolens/delivery.py")
@@ -40,8 +40,8 @@ def test_local_file_rejects_paths_outside_project():
 
 
 def test_existing_material_readers_find_boundaries_and_count_shape():
-    document = word_text(ROOT / "submission/peiwu-development-design-draft.docx")
-    slides = deck_text(ROOT / "submission/peiwu-presentation-draft.pptx")
+    document = word_text(ROOT / "submission/ontolens-development-design-draft.docx")
+    slides = deck_text(ROOT / "submission/ontolens-presentation-draft.pptx")
     assert "source_id、locator、quote 和 SHA256" in document
     assert "unavailable" in document
     assert "MCP" in slides and "unavailable" in slides
@@ -52,9 +52,9 @@ def test_material_counts_survive_slide_and_object_reordering(tmp_path, deck_coun
     folder = tmp_path / "submission"
     folder.mkdir()
     prefix = ".venv/Scripts/python.exe -m pytest -q; unavailable; SHA256; 未验证; 阶段回归 "
-    with ZipFile(folder / "peiwu-development-design-draft.docx", "w") as archive:
+    with ZipFile(folder / "ontolens-development-design-draft.docx", "w") as archive:
         archive.writestr("word/document.xml", '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>' + prefix + '27 passed</w:t></w:r></w:p></w:body></w:document>')
-    with ZipFile(folder / "peiwu-presentation-draft.pptx", "w") as archive:
+    with ZipFile(folder / "ontolens-presentation-draft.pptx", "w") as archive:
         archive.writestr("ppt/slides/slide2.xml", '<p:sld xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><p:cSld><p:spTree><p:sp><p:nvSpPr><p:cNvPr id="99" name="regression"/></p:nvSpPr><p:txBody><a:p><a:r><a:t>' + prefix + str(deck_count) + ' passed</a:t></a:r></a:p></p:txBody></p:sp></p:spTree></p:cSld></p:sld>')
     if accepted:
         assert material_counts(tmp_path, 27) == {"word_pytest_passed": 27, "ppt_pytest_passed": 27}
@@ -66,7 +66,7 @@ def test_material_counts_survive_slide_and_object_reordering(tmp_path, deck_coun
 def test_nexent_package_matches_source_template():
     package_hash = package_matches(ROOT)
     assert len(package_hash) == 64
-    assert package_hash == file_digest(ROOT / "artifacts/peiwu-nexent-agent.zip")
+    assert package_hash == file_digest(ROOT / "artifacts/ontolens-nexent-agent.zip")
 
 
 @pytest.mark.parametrize(("status", "stage"), [

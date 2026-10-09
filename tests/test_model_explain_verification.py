@@ -6,7 +6,7 @@ from scripts.verify_model_explain import configuration, local_url, synthetic_req
 
 
 def test_model_explain_preflight_is_honest_without_configuration(monkeypatch):
-    for name in ("PEIWU_MODEL_BASE_URL", "PEIWU_MODEL_NAME", "PEIWU_MODEL_API_KEY", "PEIWU_MODEL_PROTOCOL"):
+    for name in ("ONTOLENS_MODEL_BASE_URL", "ONTOLENS_MODEL_NAME", "ONTOLENS_MODEL_API_KEY", "ONTOLENS_MODEL_PROTOCOL"):
         monkeypatch.delenv(name, raising=False)
     result = configuration()
     assert result["configured"] is False

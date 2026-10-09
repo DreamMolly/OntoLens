@@ -1,0 +1,25 @@
+{
+  "mode": "live",
+  "scope": "one synthetic local explanation request",
+  "live_request_sent": true,
+  "http_status": 200,
+  "run_id": "run_ffc54cde1adb4d36841d",
+  "configuration": {
+    "configured": true,
+    "protocol": "responses",
+    "model": "gpt-6-sol",
+    "base_url_present": true,
+    "api_key_present": true,
+    "live_request_sent": false
+  },
+  "model": "gpt-6-sol",
+  "protocol": "responses",
+  "text_returned": true,
+  "verified": false,
+  "status": "passed",
+  "observed_at": "2026-10-09T11:42:27.649566+00:00",
+  "transport": "HTTP loopback workbench plus real provider Responses API",
+  "url": "http://127.0.0.1:18770",
+  "isolated_service_stopped": true,
+  "credentials_recorded": false
+}

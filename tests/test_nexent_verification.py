@@ -64,7 +64,7 @@ def test_unknown_empty_export_is_not_silently_bypassed():
 def test_model_run_evidence_requires_real_synthetic_agent_contract(tmp_path):
     record = tmp_path / "run.json"
     record.write_text(json.dumps({
-        "format": "peiwu-nexent-agent-run-1",
+        "format": "ontolens-nexent-agent-run-1",
         "model_orchestration_verified": True,
         "final_status": "ready",
         "decision": {"action": "ALLOW"},
@@ -78,7 +78,7 @@ def test_model_run_evidence_requires_real_synthetic_agent_contract(tmp_path):
 def test_model_run_evidence_rejects_missing_decision_chain(tmp_path):
     record = tmp_path / "run.json"
     record.write_text(json.dumps({
-        "format": "peiwu-nexent-agent-run-1",
+        "format": "ontolens-nexent-agent-run-1",
         "model_orchestration_verified": True,
         "final_status": "ready",
         "decision": {"action": "ALLOW"},

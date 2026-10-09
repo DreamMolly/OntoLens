@@ -1,21 +1,50 @@
 {
   "mode": "live",
   "live_request_sent": true,
-  "scope": "one synthetic relevance query; no private or real industry data",
-  "model": "jev-1.13.0",
-  "resolved_model": "jev-1.13.0",
-  "question_version": "peiwu-evidence-support-v2",
-  "purpose": "relevance",
-  "request_count": 1,
-  "usage": {"input_tokens": 664, "output_tokens": 40},
-  "input_hash": "38d8da684bc122fecb0d6b2428d66200d8fb8b648609d6f662df377501535da3",
-  "review_required": true,
-  "review_threshold": 0.75,
-  "candidates": [
-    {"source_id": "doc_954309929289464c90f0", "locator": "$.stu03", "jev_probability": 0.85, "jev_review_priority": "high"},
-    {"source_id": "doc_544de3298e8e453bb7fb", "locator": "$.stu03", "jev_probability": 0.65, "jev_review_priority": "normal"}
-  ],
-  "status": "ready",
-  "code": "scored",
-  "notice": "Noul 概率只用于证据重排和复核优先级，不是事实准确率、独立置信度或业务决定。该文件保存一条代表性样本，不是稳定性或准确率报告。"
+  "result": {
+    "model": "jev-1.13.0",
+    "resolved_model": null,
+    "question_version": "ontolens-evidence-support-v2",
+    "purpose": "relevance",
+    "candidates": [
+      {
+        "id": "doc_9e5bc86b9b144def8cac",
+        "title": "合成人员授权.json",
+        "media_type": "application/json",
+        "sha256": "9b8ea74d43aa3c0ac5f122de43b99ede423321991cd8d54e69ec52387b22f0bc",
+        "kind": "synthetic",
+        "external_model_allowed": true,
+        "created_at": "2026-10-09T11:51:03.442238+00:00",
+        "locator": "$.stu03",
+        "text": "{\"banned\": false, \"classes\": [\"FLAMMABLE\", \"OXIDIZER\", \"ACID\", \"BASE\"], \"role\": \"student\"}",
+        "score": 1
+      },
+      {
+        "id": "doc_ce32ab23521a4d409508",
+        "title": "合成未归还记录.json",
+        "media_type": "application/json",
+        "sha256": "7a458ff0253bc263fc6768e35a8f91fc42aef5e6930ef087440526315bb4c87f",
+        "kind": "synthetic",
+        "external_model_allowed": true,
+        "created_at": "2026-10-09T11:51:03.444121+00:00",
+        "locator": "$.stu03",
+        "text": "[\"OXIDIZER\"]",
+        "score": 1
+      }
+    ],
+    "request_count": 1,
+    "usage": null,
+    "input_hash": "26dcd74ff2a98542f07bf826bb3352cd6355d8e395c16cbe19f0394e3ccb3cc3",
+    "review_required": true,
+    "review_threshold": 0.75,
+    "fallback": true,
+    "notice": "Noul 只有支持关系概率，没有独立置信度；不作业务决定或自动批准",
+    "status": "error",
+    "reason": "JEV 服务或返回格式异常，已保留原顺序；检查配置后重试",
+    "code": "provider_error",
+    "elapsed_ms": 1407.0,
+    "version_id": "demo-initial",
+    "snapshot_hash": "44d962789a2a6db6701711cce650b0fab5f024ecee798384fb073af4002fcc4b"
+  },
+  "process_exit_code": 1
 }

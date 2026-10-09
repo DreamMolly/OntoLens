@@ -18,7 +18,7 @@ v0.4.0 · D1.1 · 2026-10-09。业务空库/认证/台账候选发布与展示�
 | 状态反馈、动效、日期与减少运动 | [07 动效](design/07-motion-feedback.md) |
 | 键盘、焦点、触控、日期、缩放与窄屏 | [08 无障碍响应式](design/08-accessibility-responsive.md) |
 | Logo、图标、alpha与出处 | [09 品牌资产](design/09-brand-assets.md) |
-| 接口兼容、30项原合同与10项侧栏验收 | [10 工程验证](design/10-engineering-validation.md) |
+| 接口、30项交互合同与10项侧栏验收 | [10 工程验证](design/10-engineering-validation.md) |
 | 允许变更与未完成状态 | [11 变更状态](design/11-change-control-status.md) |
 | 164项已咨询入口、取舍与能力缺口 | [12 技能讨论](design/12-skill-discussion.md) |
 
@@ -26,7 +26,7 @@ MUST为必须、SHOULD为建议、MAY为可选；分篇共同构成D1.1合同，
 默认业务入口可接授权台账；synthetic仍显式保留。授权声明/一次调用/软件通过不证明行业效果或专业审核。部署步骤见[业务说明](docs/38-operational-deployment.md)。
 本规范不授权仓库推送或正式发布。[讨论交接索引](docs/38-design-council.md)只链接上述规范，不另建产品权威。
 
-## 公开仓库与命名迁移
+## 工程入口
 
-当前实现与静态资产位于 `src/ontolens/`，发行包、主命令、环境变量和页面请求头优先使用 OntoLens。原 `peiwu` Python入口、配置和序列化协议保留兼容，范围见[命名与兼容](docs/39-brand-compatibility.md)。资源缓存版本为 `D1.1-16`；本次只迁移资源位置与请求头，不重设颜色、布局或动效。
-README面向公开评审与开发者，以实际工作台截图、核心机制、快速启动和独立验证证据组织内容。新截图使用隔离合成库，历史材料图仍保持其原始时间与范围。
+实现与静态资产位于 `src/ontolens/`。发行包与主命令为 `ontolens`，配置使用 `ONTOLENS_*`，页面请求头使用 `X-OntoLens-Token`。资源缓存版本为 `D1.1-16`；颜色、布局与动效遵循各分篇合同。
+README面向公开评审与开发者，以实际工作台截图、核心机制、快速启动和独立验证证据组织内容。截图须注明资料性质和所展示的实际状态。

@@ -24,7 +24,7 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true", help="Fetch only if third_party/nexent does not exist")
     args = parser.parse_args()
     specification = json.loads((ROOT / "nexent/upstream.json").read_text(encoding="utf-8"))
-    if (specification.get("schema_version") != "peiwu-nexent-upstream-1"
+    if (specification.get("schema_version") != "ontolens-nexent-upstream-1"
             or specification.get("url") != "https://github.com/ModelEngine-Group/nexent.git"
             or not re.fullmatch(r"[0-9a-f]{40}", specification.get("commit", ""))
             or specification.get("destination") != "third_party/nexent"):

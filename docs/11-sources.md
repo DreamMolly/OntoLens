@@ -58,19 +58,12 @@
 - 限制：尚未核验全文实验与结果，不据此写其算法优劣；更不能据一篇文献声称完成系统性创新性检索。
 - 下一步：取得全文并逐项比对候选产生、人工预算、排序、约束、版本和评测，再决定可声称的原创范围。
 
-### ER-20260922-peiwu-baseline-01
-
-- 来源类型：本工作区程序和实际测试。2026-09-22 运行 python -m pytest -q 为 7 passed；eval v2 对原 H 集 total=60、exact_match=60、unsafe_release=0。
-- 支持：现有教学原型符合其测试期望；代码检查表明 promote 只返回报告，未实现版本发布。
-- 限制：规则和期望来自手工合成；无真实 Nexent、行业资料或专家有效性证明。
-- 允许措辞：冻结合成基准上可复现。禁止更强措辞：行业准确率 100%、自主进化成功或可获得国奖。
-
 ### ER-20260923-typesafe-jev-01
 
 - 来源类型：TypeSafe 官方文档和重排 cookbook： https://docs.typesafe.ai/llms.txt 、 https://docs.typesafe.ai/cookbooks/rerank_typesafe.md 。
 - 支持：Jev/System One 可用 Noul 返回候选支持关系的概率；代码可对候选排序，Choice/Score 置信度可用于人工复核分流。Noul 本身只返回概率，项目不伪造独立置信度。官方文档要求保留代码对工作流的控制，并按目标数据校准阈值。
 - 项目使用：JEV 只接在 evidence_lookup 后做证据重排，不读取或修改 decision_check 的四种决定；未配置 TYPESAFE_API_KEY 时返回 unavailable 并保留普通检索。
-- 限制：本地已安装 TypeSafe SDK 0.7.1，已用一条合成查询验证请求链路；尚未在独立配伍资料上校准阈值，官方 cookbook 的准确率和成本数字不是本项目结果。
+- 限制：本地已安装 TypeSafe SDK 0.7.1，已用一条合成查询验证请求链路；尚未在独立领域资料上校准阈值，官方 cookbook 的准确率和成本数字不是本项目结果。
 
 ### ER-20260923-huawei-track3-supplement-01
 

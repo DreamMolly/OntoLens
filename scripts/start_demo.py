@@ -191,7 +191,7 @@ def validate_local_state(root: Path) -> tuple[dict, str]:
     runtime = root / ".runtime"
     data = runtime / "nexent-desktop-data"
     home = runtime / "nexent-home"
-    token_path = runtime / "peiwu-mcp-token.txt"
+    token_path = runtime / "ontolens-mcp-token.txt"
     database = runtime / "workbench.sqlite3"
     pg_version = data / "postgresql" / "data" / "PG_VERSION"
     migration_path = root / "artifacts" / "nexent-data-migration-report.json"
@@ -242,7 +242,7 @@ def validate_local_state(root: Path) -> tuple[dict, str]:
     mcp_id = integration_mcp.get("id")
     if (not isinstance(agent_id, int) or not isinstance(model_ids, list) or not model_ids
             or any(not isinstance(value, int) for value in model_ids)
-            or readiness.get("agent_name") != "peiwu_compliance_review"
+            or readiness.get("agent_name") != "ontolens_compliance_review"
             or readiness.get("agent_available") is not True
             or readiness.get("deployment_audit_ready") is not True
             or integration.get("status") not in {
@@ -438,7 +438,7 @@ process.stdin.on('end', async () => {
   }
   try {
     const initialized = await post({jsonrpc:'2.0',id:1,method:'initialize',params:{
-      protocolVersion:'2025-03-26',capabilities:{},clientInfo:{name:'peiwu-startup',version:'1'}}});
+      protocolVersion:'2025-03-26',capabilities:{},clientInfo:{name:'ontolens-startup',version:'1'}}});
     const protocol = initialized.result.protocolVersion;
     const listed = await post({jsonrpc:'2.0',id:2,method:'tools/list'}, protocol);
     process.stdout.write(JSON.stringify({protocol,tools:listed.result.tools.map(tool => tool.name).sort()}));
@@ -536,7 +536,7 @@ class DemoStartup:
         env = dict(self.environ)
         env["ROOT_DIR"] = _posix(self.root / ".runtime" / "nexent-desktop-data")
         env["NEXENT_USER_DIR"] = _posix(self.root / ".runtime" / "nexent-home")
-        env["PEIWU_NEXENT_ES_DATA"] = _posix(elasticsearch_data_root(self.root))
+        env["ONTOLENS_NEXENT_ES_DATA"] = _posix(elasticsearch_data_root(self.root))
         env.pop("COMPOSE_PROFILES", None)
         return env
 
@@ -632,7 +632,7 @@ class DemoStartup:
             initialized = self.host.post_json("http://127.0.0.1:8765/mcp/", {
                 "jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
                     "protocolVersion": "2025-03-26", "capabilities": {},
-                    "clientInfo": {"name": "peiwu-startup", "version": "1"},
+                    "clientInfo": {"name": "ontolens-startup", "version": "1"},
                 }}, headers, 10)
             protocol = initialized["result"]["protocolVersion"]
             listed = self.host.post_json("http://127.0.0.1:8765/mcp/", {
@@ -733,13 +733,13 @@ class DemoStartup:
             return None
         if not isinstance(agents, list) or not isinstance(mcp_list, dict):
             return None
-        matching_agents = [item for item in agents if item.get("name") == "peiwu_compliance_review"]
+        matching_agents = [item for item in agents if item.get("name") == "ontolens_compliance_review"]
         matching_mcp = [item for item in mcp_list.get("remote_mcp_server_list", [])
-                        if item.get("remote_mcp_server_name") == "peiwu-local"]
+                        if item.get("remote_mcp_server_name") == "ontolens-local"]
         if not matching_agents or not matching_mcp:
             return None
         if len(matching_agents) != 1 or len(matching_mcp) != 1:
-            raise StartupError("nexent_identity_mismatch", "Nexent contains duplicate OntoLens legacy Agent or MCP records")
+            raise StartupError("nexent_identity_mismatch", "Nexent contains duplicate OntoLens Agent or MCP records")
         agent = matching_agents[0]
         mcp = matching_mcp[0]
         if (agent.get("agent_id") != expected["agent_id"]

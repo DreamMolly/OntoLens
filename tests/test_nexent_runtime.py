@@ -17,12 +17,13 @@ def responses(request, *, tools=None):
         return httpx.Response(200, json=[{"name": "ontolens_result_explainer", "agent_id": 2,
                                         "model_ids": [1], "is_available": True}])
     if path.endswith("/agent/search_info"):
-        return httpx.Response(200, json={"tools": tools or [], "skills": [], "allow_chat_metadata": False})
+        return httpx.Response(200, json={"model_ids": [1], "tools": tools or [], "skills": [],
+                                        "allow_chat_metadata": False})
     if path.endswith("/model/llm_list"):
         return httpx.Response(200, json={"data": [{"model_id": 1}]})
     if path.endswith("/mcp/list"):
         return httpx.Response(200, json={"remote_mcp_server_list": [
-            {"remote_mcp_server_name": "peiwu-local", "enabled": True, "mcp_id": 1}]})
+            {"remote_mcp_server_name": "ontolens-local", "enabled": True, "mcp_id": 1}]})
     if path.endswith("/mcp/healthcheck"):
         return httpx.Response(200, json={"data": {"health_status": "healthy"}})
     raise AssertionError(path)
@@ -45,12 +46,41 @@ def test_live_status_cache_preserves_observation_and_rechecks_failure():
         assert len(calls) == count
         second["checks"]["mcp_healthy"] = False
         assert (await runtime.status())["checks"]["mcp_healthy"]
+        runtime._transport = httpx.MockTransport(
+            lambda req: httpx.Response(503) if req.url.path.endswith("/mcp/list") else responses(req))
+        mcp_failed = await runtime.status(force=True)
+        assert mcp_failed["connected"] and mcp_failed["model_ready"] and mcp_failed["tool_free"]
+        assert mcp_failed["checks"]["mcp_healthy"] is False
         runtime._transport = httpx.MockTransport(lambda req: httpx.Response(503))
         failed = await runtime.status(force=True)
         assert not failed["connected"] and not failed["model_ready"]
         assert failed["error_code"] == "HTTPStatusError" and failed["observed_at"]
 
     asyncio.run(scenario())
+
+
+def test_run_pins_the_same_draft_version_and_model_checked_by_status():
+    requests = []
+
+    def handler(request):
+        requests.append(request)
+        if request.url.path.endswith("/agent/search_info"):
+            return httpx.Response(200, json={"model_ids": [2], "tools": [{"name": "decision_check"}],
+                                            "skills": [], "allow_chat_metadata": False})
+        if request.url.path.endswith("/model/llm_list"):
+            return httpx.Response(200, json={"data": [{"model_id": 1}, {"model_id": 2}]})
+        if request.url.path.endswith("/agent/run"):
+            body = json.loads(request.content)
+            assert body["version_no"] == 0 and body["model_id"] == 2
+            assert body["is_debug"] is False
+            return httpx.Response(200, text='data: {"type":"final_answer","content":"固定版本说明"}\n\n')
+        return responses(request)
+
+    result = asyncio.run(runtime_with(handler, allow_tools=True).invoke("TEST FIXTURE"))
+    assert result["status"] == "ready" and result["text"] == "固定版本说明"
+    search = [request for request in requests if request.url.path.endswith("/agent/search_info")]
+    assert len(search) == 1
+    assert all(json.loads(request.content)["version_no"] == 0 for request in search)
 
 
 def test_private_input_never_leaves_allowlist_and_output_cannot_change_decision():
@@ -122,10 +152,10 @@ def test_incomplete_or_failed_stream_never_reports_success_or_leaks_error(stream
 def test_config_rejects_remote_and_embedded_credentials(tmp_path, monkeypatch):
     monkeypatch.setenv("ONTOLENS_LOAD_ENV", "true")
     for name in list(__import__("os").environ):
-        if name.startswith(("PEIWU_NEXENT_", "NEXENT_")):
+        if name.startswith(("ONTOLENS_NEXENT_", "NEXENT_")):
             monkeypatch.delenv(name)
-    (tmp_path / ".env").write_text("PEIWU_NEXENT_BASE_URL=http://127.0.0.1:3001\n"
-                                    "PEIWU_NEXENT_API_TOKEN=private-token\nPEIWU_NEXENT_AGENT_ID=2\n")
+    (tmp_path / ".env").write_text("ONTOLENS_NEXENT_BASE_URL=http://127.0.0.1:3001\n"
+                                    "ONTOLENS_NEXENT_API_TOKEN=private-token\nONTOLENS_NEXENT_AGENT_ID=2\n")
     runtime = NexentRuntime.from_environment(tmp_path)
     assert runtime.base_url == "http://127.0.0.1:3001" and runtime.agent_id == 2
     for origin in ["https://remote.example", "http://user:secret@localhost", "http://localhost?token=x"]:

@@ -1,27 +1,22 @@
-# 格物镜 · OntoLens 初赛材料工作区
+# 格物镜 · OntoLens 初赛材料
 
-本目录为第十一届华为 ICT 大赛创新赛赛题 3 的材料草稿，报名已完成。v0.4.0 软件支持角色登录、空业务库、六台账导入/候选检查/管理员发布、旁路核验、追加复核和证据导出；D1.1-7 首页与侧栏、九个单选控件已有隔离交互验收。实际行业字段适用、专业审核、独立评测、新机冷启动、长期稳定性与正式提交分别待完成，不执行真实出库。
+本目录是华为 ICT 创新赛赛题 3 的材料草稿。软件支持角色登录、空业务库、六台账导入/候选检查/管理员发布、旁路核验、追加复核和证据导出。行业适用、独立评测、专业审核、跨机器冷启动、长期稳定性和正式提交分别待验，不执行真实出库。
 
 ## 文件
 
-- `design-document.md`：设计说明与软件/研究边界。
-- `demo-runbook.md`：独立演练库和当前 Nexent 展示路径。
+- `design-document.md`：设计说明与研究边界。
+- `ontolens-development-design-draft.docx`：四页原生开发设计稿。
+- `ontolens-presentation-draft.pptx`：十一页答辩稿，包含首页结构示意与逐页备注。
+- `ppt-master/ontolens_review_ppt169_20260927/`：可编辑 SVG、图片、spec 与 notes。
 - `evidence-matrix.yaml`：对外主张、证据、命令与限制。
-- `peiwu-development-design-draft.docx`：保留原生四页版式的开发设计草稿。
-- `peiwu-presentation-draft.pptx`：保留原生十一页主题、几何和可编辑文字，带当前首页结构图与备注。
-- `ppt-master/peiwu_review_ppt169_20260927/`：同步的 editable SVG、图片、spec 与备注；历史 exports/validation 保留其历史范围。
+- `demo-runbook.md` / `public-data-demo.md`：演练流程与公开资料场景。
 
-## 状态与证据
+## 证据口径
 
-DONE 表示主张的指定软件范围有代码或测试支撑；PARTIAL 表示尚有该主张的未验证条件；PENDING 表示所需资料或外部验收未完成。SYNTHETIC 明示演练台账/规则的性质，不能写成行业效果。未完成研究不会自动否定软件可部署性，软件成功也不会关闭研究门槛。
+DONE 表示指定软件范围有实现与检查，PARTIAL 表示该主张仍有待验条件，PENDING 表示所需验证尚未完成。SYNTHETIC 明示台账/规则性质。软件成功不能关闭领域适用门槛，研究待完成也不否定软件可部署能力。
 
-当前新镜像收据 `artifacts/operational-deployment-20261009-ontolens.json` 为 passed，35 项检查验证 `ontolens` 主入口、新配置、请求头、模型解释、账户业务流程和重启持久化。gpt-6-sol/model_id=2 延续既有中转配置；Agent 2 的 `tool_calls={}` 与 `memory_retrieval_disabled=true` 属于该收据边界。命名迁移前 30 项部署与 2026-10-08 的七 MCP 工具/Agent 1 编排只作历史证据，外部冷启动、真实行业资料和专业审核仍待。
+本轮软件结果见 `artifacts/local-validation-report.json`，平台工具与模型运行、容器流程、来源引用和原生材料各用对应收据。测试数与原生稿一致，原生版式检查方法见 `docs/24-material-qa.md`，规划见 `docs/37-teammate-handoff.md`。
 
-P10 为 D1.1-7 当前首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 100 mL 截图。图片由真实 1440×1230 viewport 捕获，收据 `.runtime/ontolens-D1.1-final-capture-receipt.json`；材料最终原生 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
+P10 为 D1.1 首页结构示意，尚未运行实际核验，不能当作本轮 ALLOW 或业务效果截图。图像须保留比例与状态说明；公开制度加合成台账不构成独立行业评测或法律认证。
 
-软件启动、账户、授权声明、私有资料和备份操作见 `docs/38-operational-deployment.md`；当前规划见 `docs/37-teammate-handoff.md`。最终软件回归见 `artifacts/local-validation-report.json`：464 passed in 166.48s、7 stages exit 0、158 项输入指纹一致，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。公开仓库状态以根 README 的地址与发布记录为准；材料不代替正式提交，官方姓名、认证与行业效果不得自行填入。
-
-公开资料演示 `public-data-demo.md` 使用六份官方制度加合成台账，不是实际校内台账、独立盲测或法律合规认证。
-
-
-本轮公开与命名迁移：当前主包/命令为 `ontolens`，材料回归为 464 个测试、七阶段通过、158 项输入指纹一致，最终耗时与日志目录以 `artifacts/local-validation-report.json` 为准。新镜像 `artifacts/operational-deployment-20261009-ontolens.json` 为 35 项检查通过；原 30 项收据只作命名迁移前历史。平台旧 Agent/Skill ID 保留，页面名称不表示重新登记。当前原生材料 QA 见 `.runtime/material-public-ontolens-20261009/receipt.json`。
+正式模板中的姓名、认证和业务成果只依据真实资料填写，材料草稿不代替正式提交。

@@ -55,7 +55,7 @@ def load_bundle(path: Path, package: Path = ROOT / "nexent") -> dict:
     with ZipFile(io.BytesIO(content)) as archive:
         config = json.loads(archive.read("agent.json"))
         agent = config["agent_info"][str(config["agent_id"])]
-        require(len(config["agent_info"]) == 1 and not agent["managed_agents"], "Only the single OntoLens legacy agent template is supported")
+        require(len(config["agent_info"]) == 1 and not agent["managed_agents"], "Only the single OntoLens agent template is supported")
         require(not agent.get("model_ids") and not agent.get("model_names")
                 and not agent.get("business_logic_model_id") and not agent.get("business_logic_model_name"),
                 "Starter import must not configure or select a model")
@@ -107,10 +107,10 @@ def inspect_target(client: httpx.Client, bundle: dict) -> dict:
     service_info = bundle["config"]["mcp_info"][0]
     services = request_json(client, "GET", "/mcp/list")["remote_mcp_server_list"]
     services = [item for item in services if item["remote_mcp_server_name"] == service_info["mcp_server_name"]]
-    require(len(services) == 1 and services[0].get("enabled") is True, "Prepare exactly one enabled peiwu-local MCP service first")
+    require(len(services) == 1 and services[0].get("enabled") is True, "Prepare exactly one enabled ontolens-local MCP service first")
     require(services[0]["remote_mcp_server"].rstrip("/") == service_info["mcp_url"].rstrip("/"), "MCP URL conflicts with bundle")
     tools = request_json(client, "GET", "/tool/list")
-    available = {tool["name"] for tool in tools if tool["source"] == "mcp" and tool.get("usage") == "peiwu-local"
+    available = {tool["name"] for tool in tools if tool["source"] == "mcp" and tool.get("usage") == "ontolens-local"
                  and tool.get("is_available") is True}
     require(TOOL_NAMES.issubset(available), "Missing registered tools; use the Nexent tool scan before importing")
     for name in TOOL_NAMES:
@@ -182,7 +182,7 @@ def reconcile(client: httpx.Client, bundle: dict, *, apply: bool, journal: Path)
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", type=local_url, default="http://127.0.0.1:3000")
-    parser.add_argument("--package", type=Path, default=ROOT / "artifacts/peiwu-nexent-agent.zip")
+    parser.add_argument("--package", type=Path, default=ROOT / "artifacts/ontolens-nexent-agent.zip")
     parser.add_argument("--apply", action="store_true", help="Import only if absent and dependencies match; never overwrite")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts/nexent-import-report.json")
     args = parser.parse_args()

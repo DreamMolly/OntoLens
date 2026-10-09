@@ -1,4 +1,4 @@
-param([string]$Output = "artifacts/peiwu-nexent-agent.zip")
+param([string]$Output = "artifacts/ontolens-nexent-agent.zip")
 
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $PSScriptRoot

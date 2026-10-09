@@ -93,7 +93,7 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
                 return JSONResponse({"detail": "当前账户没有执行此操作的权限"}, status_code=403)
         request.state.actor = actor
         if path.startswith("/api/") and request.method not in ("GET", "HEAD", "OPTIONS"):
-            supplied = request.headers.get("x-ontolens-token", request.headers.get("x-peiwu-token", ""))
+            supplied = request.headers.get("x-ontolens-token", "")
             origin = request.headers.get("origin")
             origin_invalid = origin is not None and (urlsplit(origin).scheme not in {"http", "https"}
                                                     or urlsplit(origin).netloc != request.headers.get("host"))
@@ -200,7 +200,7 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
             "rules": {"version": "制度版本标识", "student_fraction": "0..1，按有效制度填写",
                       "session_incompatibility": "boolean", "deny_students": "boolean", "incompatible_pairs": "HazardClass[2][]"},
         }
-        return {"schema": "peiwu-ledger-template-1",
+        return {"schema": "ontolens-ledger-template-1",
                 "sources": {group: {"filename": group + ".json", "media_type": "application/json",
                                     "content": encode(rules if group == "rules" else {}), "fields": fields[group]}
                             for group in GROUPS},
@@ -241,7 +241,7 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
             files[name] = raw
         actor = request.state.actor
         effective_operator = actor["username"] if actor is not None else operator
-        manifest = {"schema": "peiwu-ledger-bundle-1", "label": label,
+        manifest = {"schema": "ontolens-ledger-bundle-1", "label": label,
                     "authorization": {"local_operation_authorized": local_operation_authorized,
                                       "operator": effective_operator, "basis": basis},
                     "metadata": {"authorized_by": authorized_by, "purpose": purpose, "recorded_at": recorded_at},

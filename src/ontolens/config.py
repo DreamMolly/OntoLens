@@ -1,8 +1,8 @@
-"""Configuration aliases for the OntoLens namespace migration.
+"""Configuration loading for the OntoLens application.
 
-An explicitly set ONTOLENS value, including an empty string, takes precedence
-over PEIWU. Loading a dotenv file never overrides process configuration under
-either alias; unset legacy configurations therefore keep working unchanged.
+The application has one configuration namespace. Process values take precedence
+over values read from the project dotenv file, including an explicitly empty
+process value.
 """
 from __future__ import annotations
 
@@ -11,16 +11,12 @@ import os
 from pathlib import Path
 
 
-CONFIG_PREFIXES = ("ONTOLENS_", "PEIWU_", "TYPESAFE_", "NEXENT_")
+CONFIG_PREFIXES = ("ONTOLENS_", "TYPESAFE_")
 
 
-def env_value(name: str, default=None, *, environment: Mapping[str, str] | None = None,
-              aliases: tuple[str, ...] = ()):
+def env_value(name: str, default=None, *, environment: Mapping[str, str] | None = None):
     settings = os.environ if environment is None else environment
-    for key in ("ONTOLENS_" + name, "PEIWU_" + name, *aliases):
-        if key in settings:
-            return settings[key]
-    return default
+    return settings.get("ONTOLENS_" + name, default)
 
 
 def read_environment(path: Path) -> dict[str, str]:
@@ -40,10 +36,5 @@ def read_environment(path: Path) -> dict[str, str]:
 def load_environment(path: Path) -> None:
     present = set(os.environ)
     for name, value in read_environment(path).items():
-        if name.startswith(("ONTOLENS_", "PEIWU_")):
-            suffix = name.split("_", 1)[1]
-            if "ONTOLENS_" + suffix in present or "PEIWU_" + suffix in present:
-                continue
-        elif name in present:
-            continue
-        os.environ[name] = value
+        if name not in present:
+            os.environ[name] = value

@@ -13,11 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
-    for name in ("PEIWU_MODEL_BASE_URL", "PEIWU_MODEL_NAME", "PEIWU_MODEL_PROTOCOL", "PEIWU_MCP_TOKEN"):
+    for name in ("ONTOLENS_MODEL_BASE_URL", "ONTOLENS_MODEL_NAME", "ONTOLENS_MODEL_PROTOCOL", "ONTOLENS_MCP_TOKEN"):
         monkeypatch.delenv(name, raising=False)
     app = create_app(ROOT, tmp_path / "review.sqlite3", seed_demo=True)
     with TestClient(app) as connection:
-        connection.headers["X-Peiwu-Token"] = connection.get("/api/status").json()["csrf_token"]
+        connection.headers["X-OntoLens-Token"] = connection.get("/api/status").json()["csrf_token"]
         yield connection
 
 

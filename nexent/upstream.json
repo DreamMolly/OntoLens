@@ -1,5 +1,5 @@
 {
-  "schema_version": "peiwu-nexent-upstream-1",
+  "schema_version": "ontolens-nexent-upstream-1",
   "url": "https://github.com/ModelEngine-Group/nexent.git",
   "commit": "9317cd39ae1ea9cd6ad82047fd1e1ef7a7d87ac1",
   "destination": "third_party/nexent",

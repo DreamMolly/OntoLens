@@ -4,7 +4,6 @@ D1.1 · 2026-10-09 · 侧栏、首页、选择器与日期控件主实现已落�
 
 [返回设计规范目录](README.md)。MUST/SHOULD/MAY 强度见[产品原则](01-product-principles.md)。
 
-当前共享控件主实现位于 `src/ontolens/static/`；旧包名、配置和协议兼容范围见[品牌与兼容说明](../docs/39-brand-compatibility.md)。路径迁移不改变本页的交互与动效合同。
 
 ## 动效的任务边界
 
@@ -91,4 +90,4 @@ mobile/coarse可保持原生增强回退，触点44px/字段16px；disabled与�
 
 键盘支持日期单元格的左右/上下移动、Home/End、PageUp/PageDown（Shift 加年）、Enter/Space 提交和 Escape 取消；月份与年份可直接编辑，`今天`与可选的`清除`只在明确点击后提交。日期计算使用 UTC civil date，避免本地时区和夏令时造成跨日；闰年、非法日期、最小/最大日期和空值必须回到同一原生校验路径。
 
-日期控件主实现为 `src/ontolens/static/date-controls.js`。日期专项 6/6 浏览器用例通过，覆盖 ISO 同步、键盘、闰年/范围、320/390px、焦点、reduced-motion 和无 API 写入。功能编号为 D1.1-8，页面资源查询串当前为 `D1.1-16`（仅用于缓存失效）。可交付收据见[日期交互报告](../artifacts/workbench-date-interaction-report.json)；路径迁移后的文件指纹和运行状态以最新收据为准，日期面板不代表日期真实性或业务规则适用性。
+日期控件主实现为 `src/ontolens/static/date-controls.js`。日期专项覆盖 ISO 同步、键盘、闰年/范围、320/390px、焦点、reduced-motion 和无 API 写入。功能编号为 D1.1-8，页面资源查询串当前为 `D1.1-16`（仅用于缓存失效）。可交付结果见[日期交互报告](../artifacts/workbench-date-interaction-report.json)，收据必须与文件指纹一致；日期面板不代表日期真实性或业务规则适用性。

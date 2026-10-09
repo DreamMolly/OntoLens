@@ -11,7 +11,6 @@ from __future__ import annotations
 import hashlib
 import json
 import os
-import socket
 import tempfile
 import threading
 import time
@@ -33,10 +32,10 @@ DATE_IDS = ("as-of", "ledger-recorded-at", "valid-from", "valid-until")
 
 
 @pytest.fixture
-def page(monkeypatch, request):
+def page(monkeypatch, request, browser_listener):
     for name in tuple(os.environ):
-        if (name in {"PEIWU_AUTH_FILE", "PEIWU_SESSION_DB", "PEIWU_MCP_TOKEN"}
-                or name.startswith(("PEIWU_NEXENT_", "PEIWU_MODEL", "TYPESAFE"))):
+        if (name in {"ONTOLENS_AUTH_FILE", "ONTOLENS_SESSION_DB", "ONTOLENS_MCP_TOKEN"}
+                or name.startswith(("ONTOLENS_NEXENT_", "ONTOLENS_MODEL", "TYPESAFE"))):
             monkeypatch.delenv(name, raising=False)
     cache = ROOT / ".runtime" / "playwright-browsers"
     if cache.is_dir():
@@ -47,9 +46,7 @@ def page(monkeypatch, request):
     requests: list[dict[str, str]] = []
     with tempfile.TemporaryDirectory(prefix="date-picker-isolated-", dir=ARTIFACTS) as directory:
         app = create_app(ROOT, Path(directory) / "workspace.sqlite3", seed_demo=True)
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
-            listener.bind(("127.0.0.1", 0))
-            listener.listen(128)
+        with browser_listener as listener:
             port = listener.getsockname()[1]
             server = uvicorn.Server(uvicorn.Config(app, log_level="error"))
             worker = threading.Thread(target=server.run, kwargs={"sockets": [listener]}, daemon=True)

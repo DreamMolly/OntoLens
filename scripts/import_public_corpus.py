@@ -82,7 +82,7 @@ def run(database, corpus_path, apply):
     else:
         plan, state_before = plan_import(None, expected), None
     report = {
-        "schema_version": "peiwu-public-corpus-import-1",
+        "schema_version": "ontolens-public-corpus-import-1",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "mode": "apply" if apply else "dry_run",
         "database": str(database),
@@ -151,7 +151,7 @@ def main(argv=None):
     try:
         report = run(args.database.resolve(), args.corpus, args.apply)
     except (OSError, ValueError, sqlite3.Error, KeyError, TypeError) as exc:
-        report = {"schema_version": "peiwu-public-corpus-import-1", "passed": False,
+        report = {"schema_version": "ontolens-public-corpus-import-1", "passed": False,
                   "mode": "apply" if args.apply else "dry_run", "error": str(exc),
                   "external_request_sent": False}
     destination = ROOT / ".runtime/public-corpus-import-receipt.json"

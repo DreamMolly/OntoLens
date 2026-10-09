@@ -44,7 +44,7 @@ RELATIONS = (
 
 def schema() -> dict:
     return {
-        "version": "peiwu-ontology-1",
+        "version": "ontolens-ontology-1",
         "types": [item.__dict__ for item in TYPES],
         "relations": [item.__dict__ for item in RELATIONS],
         "alignment": {

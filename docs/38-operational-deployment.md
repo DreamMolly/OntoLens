@@ -1,10 +1,8 @@
 # OntoLens v0.4.0 业务工作区部署与数据边界
 
-迁移后的实际容器与35项业务检查见[新容器收据](../artifacts/operational-deployment-20261009-ontolens.json)，完整464项软件回归、七阶段及158项指纹见 `artifacts/local-validation-report.json`，快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。下方较早的456/30及10-08模型工具收据只代表对应历史阶段。
 
 本说明面向完整源码目录的实际启动和操作。默认业务库为空、登录后导入六类资料，不用合成数据替代业务事实。Windows业务入口已提供；容器构建、独立Linux/新机冷启动与当前完整Nexent展示以最新验收收据为准，本文提供的命令不表示全部已执行。
 
-当前主实现位于 `src/ontolens/`，新的模型、工作库、账户与部署配置推荐使用 `ONTOLENS_*`；已有 `PEIWU_*` 环境仍兼容，不要求重置账户、数据库或模型配置。优先级及保留的协议标识见[品牌与兼容说明](39-brand-compatibility.md)。
 
 ## Windows首次启动
 
@@ -84,7 +82,7 @@ JEV在线必须显式live=true，只有获准且非private的来源参与；私�
 
 本机产品Nexent地址用 `ONTOLENS_NEXENT_BASE_URL=http://127.0.0.1:13000`，`ONTOLENS_NEXENT_API_TOKEN` / `ONTOLENS_NEXENT_AGENT_ID` 只放本机环境。宿主3000受Windows排除端口限制，现用13000，容器内部仍3000；容器联动使用nexent-web:3000和nexent_network。
 
-当前状态通过 `/api/integrations/nexent` 真请求，observed_at、model_bound、tool_free、model_verified_at和当前调用结果分别解释，不加载历史ready作为当前状态。[2026-10-09 模型配置收据](../artifacts/nexent-model-configuration-20261009.json)记录同一中转供应商的 `gpt-6-sol` 健康检查与Agent绑定；[容器验收收据](../artifacts/operational-deployment-20261009.json)中30项检查通过，包含隔离业务流和Agent2无工具解释。7 MCP与Agent1工具编排对应单独的2026-10-08历史运行，不能并入本轮gpt-6-sol链路。此前gpt-5.6-terra的provider 404失败收据保留，错误不会再被当作成功回答。断连时核心核验独立可用；持续运行/新机另验。
+当前状态由 `/api/integrations/nexent` 实际请求给出；observed_at、model_bound、tool_free、model_verified_at 与调用结果分别解释。Agent 为 `ontolens_compliance_review`，解释实例为 `ontolens_result_explainer`，MCP 为 `ontolens-local`。模型、工具与容器验证分别查看当前收据；服务错误和空解释不能记作成功。断连时核心核验独立可用，持续运行和新机另验。
 
 ## Docker与持久化
 
@@ -100,4 +98,4 @@ JEV在线必须显式live=true，只有获准且非private的来源参与；私�
 
 恢复先用独立目录/数据库核对active版本、来源hash、历史/复核和账户状态，再切实际工作入口；不要覆盖唯一现有备份或删除演示库。容器volume删除命令不属于日常停止。
 
-开发验证用显式synthetic隔离库，不对私有业务库跑写入smoke。2026-10-09完整七阶段 `456 passed` 且各阶段exit 0，日志快照见 `../artifacts/source-validation/20261009-052126-c6f21459/`；隔离容器build/业务流/重建/重启持久化和模型解释通过。专项结果不能相加当全suite；真实资料、Linux新机、长期运行和行业效果仍单独待验。规划/拓展与发布门槛见[里程碑](37-teammate-handoff.md)。
+开发验证使用显式 synthetic 隔离库，不对私有业务库跑写入 smoke。完整软件结果见 `artifacts/local-validation-report.json`；容器构建、业务流、重建/重启持久化和模型解释看各自收据。专项结果不能相加为全量测试数；真实资料、Linux 新机、长期运行和行业效果另验。规划与拓展见[里程碑](37-teammate-handoff.md)。

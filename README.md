@@ -146,12 +146,13 @@ $env:ONTOLENS_LOAD_ENV = 'false'
 
 | 检查 | 已取得结果 | 可核对证据 |
 | --- | --- | --- |
-| 软件回归 | 464项测试；pytest、浏览器、MCP、资产、JEV离线预检、依赖和JS语法七阶段通过 | [本地验证报告](artifacts/local-validation-report.json) |
+| 软件回归 | pytest、浏览器、MCP、资产、JEV离线预检、依赖和JS语法七阶段；测试数与退出码见报告 | [本地验证报告](artifacts/local-validation-report.json) |
 | 合成规则留出集 | 60/60；该冻结夹具中 `unsafe_release=0` | [合成评估](artifacts/synthetic-evaluation-report.json) |
 | 反事实边界 | 21/21；授权、库存、批次、柜位与单位变更 | [反事实收据](artifacts/synthetic-counterfactual-report.json) |
 | 选择器与日期 | 各6项隔离浏览器测试通过 | [选择器](artifacts/workbench-select-interaction-report.json) / [日期](artifacts/workbench-date-interaction-report.json) |
-| 容器业务流程 | 35项检查；新OntoLens入口、权限、导入发布、核验、导出、模型边界与重启持久化 | [命名迁移后容器收据](artifacts/operational-deployment-20261009-ontolens.json) |
+| 容器业务流程 | 权限、导入发布、核验、导出、模型边界与重启持久化 | [容器收据](artifacts/operational-deployment-20261009-ontolens.json) |
 | Nexent解释 | 同一中转供应商 `gpt-6-sol` 绑定、Agent2实际无工具解释 | [模型配置收据](artifacts/nexent-model-configuration-20261009.json) |
+| JEV在线状态 | 当前请求返回 `provider_error`，保留原顺序降级；程序核验与普通检索可用 | [在线收据](artifacts/jev-live-verification.json) |
 
 软件测试、合成规则评估和一次模型调用不代表行业准确率。真实台账独立标签评测、领域审核、长期负载、备份恢复、真实设备/读屏及独立新机验收仍在[规划](docs/37-teammate-handoff.md)中。
 
@@ -183,14 +184,13 @@ $env:ONTOLENS_LOAD_ENV = 'false'
 
 ```text
 src/ontolens/    核验、证据、权限、HTTP/MCP与前端
-src/peiwu/       旧Python入口的兼容层
 data/           合成评估与公开来源摘录
 tests/          契约、完整性和浏览器回归
 scripts/        启动、验证、部署和交付工具
 deploy/         容器定义
 nexent/         接入模板与固定上游版本
 design/         分篇设计规范
-docs/           部署、规划和历史记录
+docs/           架构、部署、评测与规划
 submission/     参赛草稿与可编辑材料
 artifacts/      经白名单筛选的验证证据
 ```
@@ -198,8 +198,6 @@ artifacts/      经白名单筛选的验证证据
 ## 贡献与反馈
 
 提交问题时附版本、复现步骤、预期/实际行为及脱敏日志。修改前阅读[设计规范](design.md)和[当前里程碑](docs/37-teammate-handoff.md)；核心行为变化需要有针对性的回归和新的验收收据。账户、密钥、上传文件、数据库与私有导出放在本机运行目录，不进入 Git。
-
-项目统一使用 **格物镜 · OntoLens**。原 `peiwu` 包、`PEIWU_*` 配置、Nexent机器标识和导出协议属于历史兼容范围，详见[命名与兼容说明](docs/39-brand-compatibility.md)。它们不会被用作新的对外项目名称，也不会因改名而改写历史记录的哈希。
 
 ## 许可与致谢
 

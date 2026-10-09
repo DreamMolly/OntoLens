@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from typing import Any
 
 
-FORMAT = "peiwu-jev-replay-1"
+FORMAT = "ontolens-jev-replay-1"
 
 
 def build_record(result: dict[str, Any], scope: str) -> dict[str, Any]:

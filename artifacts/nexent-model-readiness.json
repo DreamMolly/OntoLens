@@ -1,13 +1,15 @@
 {
-  "checked_at": "2026-09-26",
-  "scope": "post-migration local Nexent readiness; model health probes completed; no secret values recorded",
+  "checked_at": "2026-10-09T11:52:09.642181+00:00",
+  "scope": "Current local Nexent configuration, seven MCP tools and non-debug model orchestration using synthetic data only.",
   "nexent_version": "v2.6.0",
   "source_commit": "9317cd39ae1ea9cd6ad82047fd1e1ef7a7d87ac1",
   "agent_id": 1,
-  "agent_name": "peiwu_compliance_review",
-  "model_ids": [1],
-  "models_visible": 1,
-  "model_name": "gpt-5.6-terra",
+  "agent_name": "ontolens_compliance_review",
+  "model_ids": [
+    2
+  ],
+  "models_visible": 2,
+  "model_name": "gpt-6-sol",
   "agent_available": true,
   "reasoning_capability": null,
   "mcp_tools_verified": 7,
@@ -17,13 +19,12 @@
   "deployment_audit_ready": true,
   "status": "model_bound_synthetic_run_verified_deployment_ready_pending_real_data",
   "blocking_items": [
-    "队员提供真实行业资料、独立审核人与费用/调用上限确认",
-    "用授权资料执行独立冷启动、领域评测和最终材料复核"
+    "授权行业资料、独立专业审核与领域效果评测仍待验证",
+    "独立Linux新机、长期稳定性与并发负载仍待验证"
   ],
-  "agent_run_artifact": "artifacts/nexent-agent-run-20260924.json",
-  "agent_run_sha256": "96fad14bd5cea47b93c42c62f591e6f376ac273679021f68724c532fc926ffd2",
-  "migration_report": "artifacts/nexent-data-migration-report.json",
+  "agent_run_artifact": "artifacts/nexent-agent-run-current.json",
+  "agent_run_sha256": "562d591cfa47bedece6ff63564ecb8b8da518bfd94b10ea527cc7d682d8d4d91",
   "deployment_audit": "artifacts/nexent-deployment-audit.json",
   "model_configuration_report": "artifacts/nexent-model-configuration-report.json",
-  "notice": "迁移后七工具和部署审计已通过；Agent/run 仍是一次历史合成运行，不代表真实行业效果或专业审核。"
+  "notice": "当前七工具与真实模型编排通过；验证输入为合成资料，不证明行业适用或专业审核。"
 }

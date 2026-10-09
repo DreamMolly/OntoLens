@@ -2,16 +2,15 @@
 
 这是格物镜 · OntoLens 的赛题 3 Agent 配置模板，按 Nexent 官方 Agent 导出/导入格式整理。它可以先导入查看，再绑定本地 MCP、模型和资料；不能在没有这些依赖时声称已完成 Nexent 联调。
 
-模板中的 `peiwu_compliance_review`、`peiwu-local` 与 `peiwu-*` Skill 名是已有 Nexent 实例互通的机器标识，不是产品名称。原始包、Skill 目录和历史证据文件沿用原名，以保持模板、已导入实例及哈希可对应；当前 Python 主包和新配置使用 `ontolens` / `ONTOLENS_*`，详见[品牌与兼容说明](../docs/39-brand-compatibility.md)。
 
 ## 目录
 
 - agent.json：Agent 配置模板。
 - mcp-service.local.json：Nexent 与本机工作台同机运行时使用。
 - mcp-service-docker.json：Nexent 在 Docker 容器中运行时使用；需要宿主机端口可达，并在工作台设置 `ONTOLENS_MCP_TOKEN`。
-- skills/peiwu-intake/SKILL.md：申请输入和边界。
-- skills/peiwu-evidence/SKILL.md：证据检索与关系路径。
-- skills/peiwu-decision/SKILL.md：确定性判定、候选审核和输出契约。
+- skills/ontolens-intake/SKILL.md：申请输入和边界。
+- skills/ontolens-evidence/SKILL.md：证据检索与关系路径。
+- skills/ontolens-decision/SKILL.md：确定性判定、候选审核和输出契约。
 - 可选 JEV：evidence_rerank_jev 只做证据相关性重排，不参与四种决定。
 
 ## 使用顺序

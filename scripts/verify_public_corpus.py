@@ -23,7 +23,7 @@ def main(argv=None):
     try:
         report = verify_public_corpus(args.corpus)
     except PublicCorpusError as exc:
-        report = {"schema_version": "peiwu-public-corpus-verification-1", "passed": False,
+        report = {"schema_version": "ontolens-public-corpus-verification-1", "passed": False,
                   "integrity_passed": False, "error": str(exc), "external_request_sent": False,
                   "production_database_used": False, "business_checker_called": False}
     report["generated_at"] = datetime.now(timezone.utc).isoformat()

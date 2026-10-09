@@ -5,7 +5,6 @@ the application is never configured to contact an external model.
 """
 
 import json
-import socket
 import tempfile
 import threading
 import time
@@ -26,9 +25,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.fixture
-def page(monkeypatch):
-    for name in ("PEIWU_MODEL_BASE_URL", "PEIWU_MODEL_NAME", "PEIWU_MODEL_API_KEY",
-                 "PEIWU_MCP_TOKEN", "TYPESAFE_API_KEY"):
+def page(monkeypatch, browser_listener):
+    for name in ("ONTOLENS_MODEL_BASE_URL", "ONTOLENS_MODEL_NAME", "ONTOLENS_MODEL_API_KEY",
+                 "ONTOLENS_MCP_TOKEN", "TYPESAFE_API_KEY"):
         monkeypatch.delenv(name, raising=False)
     browser_cache = ROOT / ".runtime" / "playwright-browsers"
     if browser_cache.is_dir():
@@ -37,9 +36,7 @@ def page(monkeypatch):
     runtime.mkdir(exist_ok=True)
     with tempfile.TemporaryDirectory(prefix="workbench-flow-", dir=runtime) as directory:
         app = create_app(ROOT, Path(directory) / "workbench.sqlite3", seed_demo=True)
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listener:
-            listener.bind(("127.0.0.1", 0))
-            listener.listen(128)
+        with browser_listener as listener:
             port = listener.getsockname()[1]
             server = uvicorn.Server(uvicorn.Config(app, log_level="error"))
             worker = threading.Thread(target=server.run, kwargs={"sockets": [listener]}, daemon=True)
@@ -68,7 +65,7 @@ def page(monkeypatch):
 
 def import_source(page, name, content):
     token = page.request.get("/api/status").json()["csrf_token"]
-    response = page.request.post("/api/documents", headers={"X-Peiwu-Token": token}, multipart={
+    response = page.request.post("/api/documents", headers={"X-OntoLens-Token": token}, multipart={
         "kind": "synthetic", "file": {"name": name, "mimeType": "text/plain", "buffer": content.encode()},
     })
     assert response.status == 201, response.text()

@@ -1,36 +1,15 @@
-# 本轮建设
+# OntoLens 建设规划入口
 
-历史记录：本页是 2026-09-22 完成的首轮骨架范围，不是后续功能禁令。新工作的次序以 [日程](06-schedule.md) 和 [规划审查](14-plan-review.md) 为准。
+当前规划与状态以[里程碑](37-teammate-handoff.md)为准。本页列可持续建设的模块及验收方法，不按人员分工组织。
 
-本节在前面 8 份规划定稿后执行。本轮只建可复现骨架。
+| 范围 | 源码或文档 | 验收重点 |
+| --- | --- | --- |
+| 核验与规则 | `src/ontolens/`、`data/rules/` | 四决定、缺件边界、冻结基准与独立重算 |
+| 来源与版本 | `workspace.py`、`ledger_import.py` | 原字节、定位、候选检查、管理员发布与并发比较 |
+| 权限与部署 | `access.py`、`deploy/`、`docs/38-operational-deployment.md` | 角色、会话、CSRF、私有资料、持久化 |
+| 界面与体验 | `src/ontolens/static/`、`design.md` | 侧栏、表单、证据联动、键盘、日期与减少动效 |
+| 平台与模型 | `skills/ontolens/`、`nexent/` | 实际工具调用、Skill 绑定、解释不改判 |
+| 资料与研究 | `docs/12-data-contract.md`、`docs/13-evaluation-protocol.md` | 授权、标签、公平基线与行业适用 |
+| 材料与复现 | `submission/`、`artifacts/` | 实际数字、复现命令、证据范围与正式模板 |
 
-## 要出现的文件
-
-- pyproject.toml 和 requirements.txt
-- src/peiwu 下的目录、规则、判定、评估、门禁和命令行
-- data/catalog.yaml
-- data/rules 下的 v1、v2、v3
-- data/cases 下的回归、事故、留出种子
-- skills/peiwu/SKILL.md
-- tests 覆盖判定顺序、事故修复、v2 升版成功、v3 升版失败
-
-## 不做
-
-- 网页
-- 安装或调用真实 Nexent 服务
-- PPT、视频、报名表
-- 把种子案例灌到 60 条
-- 真实台账
-
-## 完成定义
-
-仓库根目录的测试通过。v1 对事故案例放行，v2 打回。promote 接受 v2，拒绝 v3。
-
-## 2026-09-22 续建
-
-留出集从 12 条种子扩到 60 条。新增案例不与回归、事故或原种子重复。规则卡没有改。目录新增两个打平批次。门禁仍接受 v2、拒绝 v3。
-
-
-## 2026-09-22 演示
-
-i01 用 decide 连续运行两次，v1 与 v2 的决定 JSON 各自逐字一致。没有新增命令。Nexent 仍待队员确认能否安装。
+后续优先完成真实任务验证、独立新机部署、读屏与真实设备、备份恢复和长期负载；新增能力应有对应的失败用例与可重跑证据。

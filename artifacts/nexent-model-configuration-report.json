@@ -1,29 +1,60 @@
 {
   "status": "configured",
-  "time": "2026-09-26T09:20:04.126008+00:00",
-  "scope": "Local Nexent model recovery; credentials are neither printed nor written to the report",
-  "configuration": {
-    "model_factory": "OpenAI-API-Compatible",
-    "model_name": "gpt-5.6-terra",
-    "model_type": "llm",
-    "base_url_present": true,
-    "api_key_present": true
-  },
-  "applied": true,
+  "time": "2026-10-09T11:19:03.109810+00:00",
+  "scope": "Current local Nexent model and Agent connectivity; synthetic summary only; credentials never recorded.",
+  "credentials_recorded": false,
+  "agent_id": 1,
+  "model_id": 2,
+  "applied": false,
   "model_created": false,
   "healthcheck_sent": true,
-  "temporary_healthcheck_attempted": true,
-  "model_create_attempted": false,
-  "model_update_attempted": true,
   "agent_update_attempted": false,
-  "agent_id": 1,
-  "previous_model_ids": [
-    1
-  ],
-  "temporary_connectivity": true,
-  "model_update_confirmed": true,
-  "model_id": 1,
+  "configuration": {
+    "model_factory": "OpenAI-API-Compatible",
+    "model_name": "gpt-6-sol",
+    "model_type": "llm",
+    "base_url_present": true,
+    "api_key_present": false
+  },
   "connectivity": true,
+  "agent_bindings": [
+    {
+      "agent_id": 1,
+      "name": "ontolens_compliance_review",
+      "model_ids": [
+        2
+      ],
+      "available": true
+    },
+    {
+      "agent_id": 2,
+      "name": "ontolens_result_explainer",
+      "model_ids": [
+        2
+      ],
+      "available": true
+    }
+  ],
   "agent_available": true,
-  "reasoning_capability": null
+  "explanation": {
+    "status": "ready",
+    "text": "当前状态为 `ready`，程序动作为 `ALLOW`，原因码为 `ALLOWED`，证据数量为 6，表示程序判定允许。\n\n本次为**合成数据**，资料真实性尚未评估（`not_assessed`）。仍需人工核对，下一步等待人工核验证据及程序结果；此说明不代表已完成人工审核或可实际出库。",
+    "provider": "nexent",
+    "observed_at": "2026-10-09T11:44:42.728145+00:00",
+    "agent_id": 2,
+    "tool_calls": {},
+    "event_counts": {
+      "agent_new_run": 1,
+      "step_count": 1,
+      "model_output_thinking": 72,
+      "token_count": 1,
+      "final_answer": 1
+    },
+    "model_request_sent": true,
+    "authoritative": false,
+    "memory_retrieval_disabled": true,
+    "notice": "Nexent 辅助说明不能改变程序决定，也不能替代人工审核。"
+  },
+  "observed_at": "2026-10-09T11:50:23.506170+00:00",
+  "explanation_source": "artifacts/nexent-live-runtime-current.json"
 }

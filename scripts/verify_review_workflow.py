@@ -95,7 +95,7 @@ def main() -> int:
     inputs = ["scripts/verify_review_workflow.py", "scripts/verify_evidence_export.py",
               "src/ontolens/review_verification.py", "src/ontolens/export_verification.py", "src/ontolens/workspace.py",
               "src/ontolens/contracts.py", "src/ontolens/web.py", "data/catalog.yaml", "data/rules/v2.yaml"]
-    report = {"schema_version": "peiwu-review-acceptance-1", "generated_at": datetime.now(timezone.utc).isoformat(),
+    report = {"schema_version": "ontolens-review-acceptance-1", "generated_at": datetime.now(timezone.utc).isoformat(),
               "scope": "isolated synthetic HTTP workflow plus detached verifier; no operator authentication or professional review",
               "external_request_sent": False, "production_database_used": False,
               "checks": checks, "passed": all(checks.values()), "negative_controls": controls,

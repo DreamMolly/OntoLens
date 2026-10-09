@@ -173,7 +173,7 @@ def screen(root: Path, name: str, allowed_archives: set[str]) -> dict:
                     raise ValueError("Unsafe Office archive entry: " + name)
                 if member.filename.endswith((".xml", ".rels", ".txt")):
                     scan_bytes(archive.read(member), name)
-    if name == "artifacts/peiwu-nexent-agent.zip":
+    if name == "artifacts/ontolens-nexent-agent.zip":
         config_bytes = (root / "nexent/agent.json").read_bytes()
         config = json.loads(config_bytes)
         skills = {skill for agent in config["agent_info"].values() for skill in agent.get("skill_names", [])}
@@ -218,7 +218,7 @@ def main() -> int:
         if not output.relative_to(ROOT).as_posix().startswith(".runtime/"):
             raise ValueError("Manifest output must stay in .runtime")
         output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps({"format": "peiwu-source-release-1", "scope": "Offline packaging screen; does not prove source authenticity or absence of all secrets", "files": rows}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        output.write_text(json.dumps({"format": "ontolens-source-release-1", "scope": "Offline packaging screen; does not prove source authenticity or absence of all secrets", "files": rows}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print("\n".join(names) if args.paths else json.dumps({"passed": True, "files": len(rows), "bytes": sum(row["bytes"] for row in rows), "manifest": output.relative_to(ROOT).as_posix()}))
         return 0
     except (OSError, ValueError, KeyError, TypeError, subprocess.CalledProcessError) as exc:

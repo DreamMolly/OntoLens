@@ -52,7 +52,7 @@ def bundle(format="json"):
             raw = output.getvalue().encode()
         files[name] = raw
         sources[group] = {"file": name, "media_type": media, "kind": "private", "sha256": digest(raw)}
-    manifest = {"schema": "peiwu-ledger-bundle-1", "label": "TEST FIXTURE operator ledger",
+    manifest = {"schema": "ontolens-ledger-bundle-1", "label": "TEST FIXTURE operator ledger",
                 "authorization": {"local_operation_authorized": True, "operator": "test-operator", "basis": "TEST FIXTURE local authorization"},
                 "metadata": {"authorized_by": "test-authority", "purpose": "automated contract test", "recorded_at": "2026-10-08"}, "sources": sources}
     return manifest, files, facts

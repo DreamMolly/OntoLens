@@ -1,6 +1,6 @@
 {
   "schema_version": "synthetic-evaluation.v2",
-  "generated_at": "2026-10-08T06:26:28.393511+00:00",
+  "generated_at": "2026-10-09T11:41:44.941397+00:00",
   "scope": {
     "mode": "synthetic_demo",
     "claim_boundary": "Frozen checked-in cases only; not industry accuracy, safety rate, or deployment validation.",
@@ -2725,7 +2725,7 @@
     "scope": {
       "mode": "synthetic_demo",
       "claim_boundary": "Synthetic snapshot mutations only; this is not industry accuracy, safety rate, or professional review.",
-      "decision_contract": "Internal Workspace._calculate plus deterministic peiwu.checker.decide; no HTTP validation, model or network request.",
+      "decision_contract": "Internal Workspace._calculate plus deterministic ontolens.checker.decide; no HTTP validation, model or network request.",
       "http_boundary": "Invalid HTTP quantities are rejected by request validation before calculation; checker INVALID_QUANTITY is not an HTTP response.",
       "gold_boundary": "Counterfactual expectations are a separate developer-authored metamorphic fixture; frozen data/cases gold is untouched."
     },

@@ -1,20 +1,14 @@
-# 变更影响复核排序
+# OntoLens 变更影响复核
 
-日期：2026-09-24。来源：`docs/21-jev-community-research.md` 中 jev-test-filter、jev-review 等社区工作流的边界化借鉴。
+`JevReranker` 的 `purpose=change_review` 使用 `ontolens-change-impact-review-v1` 问题版本。候选文本产生 `jev_impact_probability`、`impact_signal/context_signal` 等人工复核提示。
 
-## 已实现
+程序先计算确定性前后差异和受影响申请。JEV 不决定影响集合，不发布候选，不改库存、授权、规则或 action；`review_required` 始终为 true。候选、问题正文、模型与来源哈希参与 input_hash。
 
-- `JevReranker` 新增 `purpose=change_review` 和问题版本 `peiwu-change-impact-review-v1`。候选文本只产生 `jev_impact_probability`、`impact_signal/context_signal` 等人工复核提示。
-- 程序仍先计算确定性前后差异和受影响申请；JEV 不决定影响集合，不发布候选，不改库存、授权、规则或四种 action。
-- 只有显式脚本的固定合成陈述才允许在线模式；网页/MCP 没有在线许可。当前 `scripts/verify_jev.py --task change_review` 只做本地预检，request_count=0。
-- 候选、问题正文、模型和来源哈希仍参与 input_hash；`review_required` 始终为 true。
+默认固定合成预检不发在线请求，在线范围按脚本许可与来源外发约束执行：
 
-## 验证边界
+```powershell
+.venv/Scripts/python.exe -m pytest -q tests/test_change_review.py
+.venv/Scripts/python.exe scripts/verify_jev.py --task change_review
+```
 
-| 命令 | 退出码 | 结果 |
-| --- | --- | --- |
-| `.venv/Scripts/python.exe -m pytest -q tests/test_change_review.py` | 0 | 变更信号、权限门禁、无 action/decision 输出通过 |
-| `.venv/Scripts/python.exe scripts/verify_jev.py --task change_review` | 0 | 固定合成预检；`request_count=0`；JEV unavailable/live_not_authorized |
-| `.venv/Scripts/python.exe -m pytest -q` | 0 | 最近全量 138 passed；不是行业效果 |
-
-尚未执行 `--live` 变更复核，未发送真实资料，也没有把模型概率写成准确率或合规结论。候选关系语义审查、真实制度变更和独立人工金标准仍待队员。
+离线契约只验证信号、权限与无决定输出。真实制度变更、在线语义、独立人工标签及阈值校准仍需专门评测，模型概率不作为准确率或合规结论。

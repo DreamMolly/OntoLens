@@ -20,14 +20,14 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
-    monkeypatch.delenv("PEIWU_MODEL_BASE_URL", raising=False)
-    monkeypatch.delenv("PEIWU_MODEL_NAME", raising=False)
-    monkeypatch.delenv("PEIWU_MODEL_PROTOCOL", raising=False)
-    for name in ("TYPESAFE_API_KEY", "TYPESAFE_MODEL", "TYPESAFE_ENDPOINT", "TYPESAFE_BASE_URL", "PEIWU_MCP_TOKEN"):
+    monkeypatch.delenv("ONTOLENS_MODEL_BASE_URL", raising=False)
+    monkeypatch.delenv("ONTOLENS_MODEL_NAME", raising=False)
+    monkeypatch.delenv("ONTOLENS_MODEL_PROTOCOL", raising=False)
+    for name in ("TYPESAFE_API_KEY", "TYPESAFE_MODEL", "TYPESAFE_ENDPOINT", "TYPESAFE_BASE_URL", "ONTOLENS_MCP_TOKEN"):
         monkeypatch.delenv(name, raising=False)
     app = create_app(ROOT, tmp_path / "workbench.sqlite3", seed_demo=True)
     with TestClient(app) as connection:
-        connection.headers["X-Peiwu-Token"] = connection.get("/api/status").json()["csrf_token"]
+        connection.headers["X-OntoLens-Token"] = connection.get("/api/status").json()["csrf_token"]
         yield connection
 
 
@@ -165,7 +165,7 @@ def test_asset_recognition_preserves_sources_and_proposes_relations(client):
     response = client.get("/api/documents/" + document["id"] + "/assets")
     assert response.status_code == 200
     payload = response.json()
-    assert payload["schema"]["version"] == "peiwu-ontology-1"
+    assert payload["schema"]["version"] == "ontolens-ontology-1"
     assert payload["schema"]["alignment"]["external_standard"] is None
     observed = {(item["type"], item["id"], item["locator"]) for item in payload["entities"]}
     assert ("Person", "stu01", "L1") in observed
@@ -282,7 +282,7 @@ def test_date_range_and_publish_confirmation_validated(client):
 
 
 def test_cross_origin_write_and_missing_token_rejected(client):
-    assert client.post("/api/check", json=request(), headers={"X-Peiwu-Token": ""}).status_code == 403
+    assert client.post("/api/check", json=request(), headers={"X-OntoLens-Token": ""}).status_code == 403
     assert client.post("/api/check", json=request(), headers={"Origin": "https://example.org"}).status_code == 403
 
 
@@ -341,7 +341,7 @@ def test_workspace_migrates_legacy_document_permission_without_implicit_consent(
 def test_mcp_initialize_tools_and_call(client):
     headers = {"Accept": "application/json, text/event-stream"}
     initialized = client.post("/mcp/", headers=headers, json={"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {
-        "protocolVersion": "2025-03-26", "capabilities": {}, "clientInfo": {"name": "peiwu-test", "version": "1"}}})
+        "protocolVersion": "2025-03-26", "capabilities": {}, "clientInfo": {"name": "ontolens-test", "version": "1"}}})
     assert initialized.status_code == 200, initialized.text
     headers["MCP-Protocol-Version"] = initialized.json()["result"]["protocolVersion"]
     result = client.post("/mcp/", headers=headers, json={"jsonrpc": "2.0", "id": 2, "method": "tools/list"}).json()

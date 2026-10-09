@@ -12,10 +12,10 @@ from urllib.parse import urlsplit
 
 MAX_CANDIDATES = 30
 MAX_STATE_CHARACTERS = 16000
-QUESTION_VERSION = "peiwu-evidence-support-v2"
-CITATION_QUESTION_VERSION = "peiwu-citation-review-v1"
-CHANGE_QUESTION_VERSION = "peiwu-change-impact-review-v1"
-RELATION_QUESTION_VERSION = "peiwu-relation-review-v1"
+QUESTION_VERSION = "ontolens-evidence-support-v2"
+CITATION_QUESTION_VERSION = "ontolens-citation-review-v1"
+CHANGE_QUESTION_VERSION = "ontolens-change-impact-review-v1"
+RELATION_QUESTION_VERSION = "ontolens-relation-review-v1"
 DEFAULT_MODEL = "jev-1.13.0"
 REQUEST_TIMEOUT_SECONDS = 20.0
 DEFAULT_REVIEW_THRESHOLD = 0.75

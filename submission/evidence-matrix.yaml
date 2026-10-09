@@ -1,142 +1,146 @@
 version: 0.4.0
 status: draft
 claims:
-  - id: C11
-    claim: 初始 Nexent 导入脚本可核对现有配置并安全重跑
-    evidence: scripts/import_nexent_agent.py; tests/test_nexent_import.py; artifacts/nexent-import-replay-first.json; artifacts/nexent-import-replay-second.json
-    command: .venv/Scripts/python.exe scripts/import_nexent_agent.py
-    status: DONE
-    limit: 本机已有实例复用已实测；新实例创建和中断分支仅有模拟测试，不等于完整冷启动或模型编排
-  - id: C12
-    claim: JEV 支持本项目新增的引用核验、变更复核或本体关系审查
-    evidence: src/ontolens/jev.py; tests/test_citation_review.py; artifacts/nexent-integration-report.json; artifacts/evidence-export-http-acceptance-20261002-core.json; artifacts/evidence-export-verification-20261002-needs-review-core.json; docs/22-citation-review.md
-    command: .venv/Scripts/python.exe scripts/verify_jev.py --task citation_review
-    status: PARTIAL
-    limit: 已实现并验证本地引用字面核验；支持/矛盾、变更复核和关系审查均只有离线契约验证，在线语义与真实资料仍未验证；后两项分别见 C14、C15
-  - id: C01
-    claim: 四种决定由确定性程序返回
-    evidence: src/ontolens/checker.py; tests/test_workbench.py; artifacts/local-validation-report.json
-    command: .\\.venv\\Scripts\\python.exe -m pytest -q
-    status: DONE
-    limit: 合成目录和教学规则
-  - id: C02
-    claim: 每次决定带来源定位和快照版本
-    evidence: src/ontolens/workspace.py; src/ontolens/export_verification.py; scripts/verify_evidence_export.py; tests/test_workbench.py; tests/test_export_verification.py; artifacts/evidence-export-http-acceptance-20261002-core.json
-    command: python tests/browser_smoke.py --url http://127.0.0.1:8765
-    status: DONE
-    limit: 本地工作台；未代表专业审核
-  - id: C03
-    claim: Nexent 可通过 MCP 调用七个工具，并在 JEV 未配置时安全降级
-    evidence: artifacts/operational-deployment-20261009-ontolens.json; artifacts/nexent-model-configuration-20261009.json; artifacts/operational-deployment-20261009.json; artifacts/nexent-live-runtime-20261008.json; artifacts/nexent-integration-report.json; artifacts/nexent-model-readiness.json; scripts/verify_nexent.py; docs/38-operational-deployment.md
-    command: .venv/Scripts/python.exe scripts/verify_nexent.py
-    status: PARTIAL
-    limit: 命名迁移后 OntoLens 新镜像 35 项检查通过，验证 ontolens 入口/配置/请求头、Agent 2 解释与持久化；原 30 项与10-08七工具/Agent 1是历史收据。原平台ID保留兼容，外部冷启动、专业审核、真实行业资料和持续运行另验
-  - id: C10
-    claim: Windows 部署路径、服务状态和本机暴露端口可只读审计
-    evidence: scripts/audit_nexent_deployment.py; artifacts/operational-deployment-20261009.json; artifacts/nexent-deployment-audit.json; artifacts/nexent-deployment-audit-20261002-live.json; nexent/windows.override.yaml
-    command: .venv/Scripts/python.exe scripts/audit_nexent_deployment.py
-    status: PARTIAL
-    limit: 2026-09-26/29 历史审计曾退出 0，10 服务、F 盘关键挂载和当时健康通过；2026-10-02 早先只读审计因 Docker 引擎不可达退出 1，随后统一入口恢复成功并由 `nexent-deployment-audit-20261002-live.json` 复核；尚未完成另一台机器的独立冷启动、持续负载与长期稳定性验证
-  - id: C04
-    claim: v2 在冻结合成留出集上 exact_match=60 且 unsafe_release=0
-    evidence: data/cases/heldout.yaml; src/ontolens/evaluate.py; scripts/generate_synthetic_evaluation_report.py; artifacts/synthetic-evaluation-report.json
-    command: .venv/Scripts/python.exe scripts/generate_synthetic_evaluation_report.py
-    status: DONE
-    limit: 不是行业准确率
-  - id: C05
-    claim: 真实行业资料支持业务价值
-    evidence: 待队员提供授权、访谈和脱敏资料
-    command: 待补
-    status: PENDING
-    limit: 软件可接业务台账，不代表行业效果、专业适用性或独立评测完成
-  - id: C06
-    claim: JEV 可对证据候选进行结构化相关性重排，但不参与业务决定
-    evidence: src/ontolens/jev.py; src/ontolens/bridge.py; tests/test_workbench.py; artifacts/jev-live-verification.json; docs/17-nexent-package.md
-    command: .\\.venv\\Scripts\\python.exe scripts/verify_jev.py --live
-    status: PARTIAL
-    limit: 已用一条合成查询在线验证重排；不是准确率或行业效果。网页/MCP 必须显式 live=true，且来源非 private 并获准外发才请求；密钥存在不触发自动请求，阈值未在独立资料上校准
-  - id: C07
-    claim: 来源文件可识别为现有资产和待审核关系候选
-    evidence: src/ontolens/ontology.py; src/ontolens/workspace.py; tests/test_workbench.py
-    command: .\\.venv\\Scripts\\python.exe scripts/evaluate_assets.py --output artifacts/asset-recognition-report.json
-    status: DONE
-    limit: 当前是目录/别名匹配基线，未对齐真实行业本体或标准
-  - id: C08
-    claim: 初赛设计文档和答辩演示草稿已生成
-    evidence: submission/peiwu-development-design-draft.docx; submission/peiwu-presentation-draft.pptx; artifacts/local-validation-report.json; .runtime/material-public-ontolens-20261009
-    command: officecli validate submission/peiwu-development-design-draft.docx; officecli validate submission/peiwu-presentation-draft.pptx
-    status: DONE
-    limit: 当前 schema 0 errors、PPT issues 0；Word 25 条模板/块式排版提示保留。464 全量回归和原生渲染已更新，官方模板字段和队员最终确认待补，详见 docs/24-material-qa.md
-  - id: C09
-    claim: 合成图片与人工摘录可进入同一资产识别来源链
-    evidence: data/demo/synthetic-asset-label.png; data/demo/synthetic-asset-label.transcript.md; tests/test_workbench.py
-    command: .\\.venv\\Scripts\\python.exe -m pytest -q tests/test_workbench.py
-    status: DONE
-    limit: 图片由本地模板生成，摘录由人工提供；不代表 OCR 或真实图像理解
-  - id: C13
-    claim: 工作台解释适配器有三种协议契约且不参与业务决定
-    evidence: src/ontolens/model_explain.py; tests/test_model_protocols.py; docs/23-model-protocols.md
-    command: .venv/Scripts/python.exe -m pytest -q tests/test_model_protocols.py
-    status: PARTIAL
-    limit: 三协议构造和解析有离线契约；Responses 单次工作台联调见本地收据，Nexent 模型编排另记，不代表三协议均在线验证或模型准确率
-  - id: C14
-    claim: JEV 可对程序已定位的变更候选提供人工复核优先级信号
-    evidence: src/ontolens/jev.py; tests/test_change_review.py; scripts/verify_jev.py; docs/25-change-impact-review.md
-    command: .venv/Scripts/python.exe scripts/verify_jev.py --task change_review
-    status: PARTIAL
-    limit: 目前只有离线契约和固定合成预检；未做在线变更语义或真实资料验证，不改变影响集合和业务决定
-  - id: C15
-    claim: JEV 可对 proposed 关系候选提供支持/缺口复核信号
-    evidence: src/ontolens/jev.py; tests/test_relation_review.py; scripts/verify_jev.py; docs/26-relation-review.md
-    command: .venv/Scripts/python.exe scripts/verify_jev.py --task relation_review
-    status: PARTIAL
-    limit: 只有离线契约和固定合成预检；不自动批准关系，未做真实资料或领域标准验证
-  - id: C16
-    claim: JEV 结果具备显式录制/重放标记且回放不伪装在线请求
-    evidence: src/ontolens/jev_replay.py; scripts/verify_jev.py; tests/test_jev_replay.py; docs/27-jev-replay.md
-    command: .venv/Scripts/python.exe -m pytest -q tests/test_jev_replay.py
-    status: PARTIAL
-    limit: 仅验证离线记录契约；没有新增在线请求，不代表真实模型稳定性或行业效果
-  - id: C17
-    claim: 模型解释联调有显式本地预检且不冒充 Nexent Agent 运行
-    evidence: scripts/verify_model_explain.py; tests/test_model_explain_verification.py; artifacts/nexent-model-configuration-20261009.json; artifacts/operational-deployment-20261009.json; .runtime/model-probe-20261008/model-explanation-response.json; .runtime/model-probe-20261008/model-explanation-verification.json; docs/28-model-explain-verification.md
-    command: .venv/Scripts/python.exe scripts/verify_model_explain.py
-    status: PARTIAL
-    limit: Responses 一次真实本地工作台解释及 Nexent 当前合成 Agent 编排分开留证；不是全三协议在线、reasoning capability、真实资料效果或独立审核
-  - id: C18
-    claim: 交付审计拒绝失败平台报告及模型证据错配，部署审计在 Docker 不可达时保留本次失败状态
-    evidence: src/ontolens/delivery.py; scripts/audit_nexent_deployment.py; tests/test_delivery.py; tests/test_nexent_deployment.py; artifacts/demo-startup-20260927T135713.429254Z-apply.json; artifacts/demo-startup-20260928T085001.359489Z-apply.json; artifacts/demo-startup-20260929T104316.193534Z-apply.json; artifacts/demo-startup-20261002T082333.742005Z-apply.json; artifacts/nexent-deployment-audit-20261002-current.json; artifacts/nexent-deployment-audit-20261002-live.json; docs/30-demo-startup.md
-    command: .venv/Scripts/python.exe -m pytest -q tests/test_delivery.py tests/test_nexent_deployment.py
-    status: DONE
-    limit: 审计逻辑的离线回归已通过；2026-10-02 同时保留 Docker 不可达失败记录与随后恢复成功记录；容器侧 MCP 七工具与 Agent 可用性已在恢复后的该时间点复核，不替代独立冷启动或行业验证
-  - id: C19
-    claim: Windows 错误挂载数据可在保留源与逻辑备份的前提下冷拷贝、恢复并切换到项目 F 盘
-    evidence: scripts/migrate_nexent_windows_data.py; artifacts/nexent-data-migration-report.json; artifacts/nexent-deployment-audit.json; artifacts/nexent-model-configuration-report.json; docs/19-deployment-review.md
-    command: .venv/Scripts/python.exe scripts/audit_nexent_deployment.py
-    status: PARTIAL
-    limit: 同机恢复与迁移后复测已完成；首版迁移只记录目标摘要，ES 仅核验保留目录没有用户索引，不声称更新前字节连续；旧源未删除，未做独立冷启动或长期稳定性验证
-  - id: C20
-    claim: 已准备本机可通过统一入口恢复工作台和 Nexent，先验证持久化挂载与就绪状态
-    evidence: start-demo.ps1; scripts/start_demo.py; tests/test_demo_startup.py; nexent/windows.override.yaml; docs/30-demo-startup.md; artifacts/demo-startup-acceptance-20260927.json; artifacts/demo-startup-20260927T102106.807622Z-apply.json; artifacts/demo-startup-20260927T102155.062033Z-apply.json; artifacts/demo-startup-20260927T135713.429254Z-apply.json; artifacts/demo-startup-20260928T085001.359489Z-apply.json; artifacts/demo-startup-20260929T104316.193534Z-apply.json; artifacts/demo-startup-20261002T082333.742005Z-apply.json
-    command: powershell -NoProfile -ExecutionPolicy Bypass -File .\start-demo.ps1
-    status: DONE
-    limit: 已迁移本机的全停恢复和二次幂等重跑证据保留；后续停机后，统一入口于北京时间 2026-09-27 21:57:13 再次报告 ready，启动 Docker Desktop 和工作台、复用 10 容器且无新建或重建，容器侧 MCP 七工具及 Agent 1/model 1 可用性通过；Northbound 仍为宿主 15013、容器 5013；未调用模型，不等同于新机独立冷启动、长期稳定性、真实资料效果或专业审核
-  - id: C21
-    claim: needs_review 能给出结构化补件建议并追加不改变决定的人工复核记录
-    evidence: src/ontolens/contracts.py; src/ontolens/workspace.py; src/ontolens/web.py; src/ontolens/static/app.js; src/ontolens/static/index.html; src/ontolens/export_verification.py; tests/test_review_workflow.py; tests/test_workbench_flow.py; tests/test_export_verification.py; tests/test_review_integrity.py; src/ontolens/review_verification.py; scripts/verify_review_workflow.py; artifacts/human-review-acceptance.json; docs/34-human-review-workflow.md
-    command: .venv/Scripts/python.exe scripts/verify_review_workflow.py
-    status: DONE
-    limit: 软件可在导入工作区追加复核；既有验收使用明示合成夹具，记录是 append-only 跟进，不是专业审核，不会生成四种业务决定
-  - id: C22
-    claim: 合成事实发生单一变化时，程序决定按声明契约变化并保留 needs_review 边界
-    evidence: data/evaluation/counterfactuals.yaml; src/ontolens/counterfactual.py; scripts/generate_counterfactual_evaluation_report.py; artifacts/synthetic-counterfactual-report.json; tests/test_counterfactual.py; docs/34-counterfactual-evaluation.md
-    command: .venv/Scripts/python.exe scripts/generate_counterfactual_evaluation_report.py
-    status: DONE
-    limit: 21 个独立合成变形案例（含授权有效期、批次状态和不变性）；开发者编写的期望值，不是行业准确率、盲测或专业审核
-  - id: C23
-    claim: AI取得公开制度片段并在独立资料包中复核出处、哈希及跨文档检索定位
-    evidence: data/public/official-lab-safety/manifest.json; src/ontolens/public_corpus.py; scripts/verify_public_corpus.py; tests/test_public_corpus.py; artifacts/public-corpus-verification.json; artifacts/public-source-quotation-verification.json; docs/35-public-data-pack.md
-    command: .venv/Scripts/python.exe scripts/verify_public_corpus.py
-    status: PARTIAL
-    limit: 6来源/3家族、21引文、2开发包和10未审核问题；20定位被词法检索找到，未验证语义回答、真实台账、专业审核或法律合规；共享来源不是独立盲测
-
+- id: C11
+  claim: 初始 Nexent 导入脚本可核对现有配置并安全重跑
+  evidence: scripts/import_nexent_agent.py; tests/test_nexent_import.py; docs/20-repeatable-nexent-import.md
+  command: .venv/Scripts/python.exe scripts/import_nexent_agent.py
+  status: DONE
+  limit: 同名内容与工具/Skill依赖逐项核对；新实例创建和中断分支的模拟测试不等于独立冷启动或模型编排
+- id: C12
+  claim: JEV 支持本项目新增的引用核验、变更复核或本体关系审查
+  evidence: src/ontolens/jev.py; tests/test_citation_review.py; artifacts/nexent-integration-report.json; docs/22-citation-review.md
+  command: .venv/Scripts/python.exe scripts/verify_jev.py --task citation_review
+  status: PARTIAL
+  limit: 本地引用字面与完整性检查已实现；支持/矛盾、变更与关系语义仍需独立标签和真实资料验证
+- id: C01
+  claim: 四种决定由确定性程序返回
+  evidence: src/ontolens/checker.py; tests/test_workbench.py; artifacts/local-validation-report.json
+  command: ./.venv/Scripts/python.exe -m pytest -q
+  status: DONE
+  limit: 合成目录和教学规则
+- id: C02
+  claim: 每次决定带来源定位和快照版本
+  evidence: src/ontolens/workspace.py; src/ontolens/export_verification.py; scripts/verify_evidence_export.py; tests/test_workbench.py; tests/test_export_verification.py;
+    artifacts/human-review-acceptance.json
+  command: python tests/browser_smoke.py --url http://127.0.0.1:8765
+  status: DONE
+  limit: 本地工作台；未代表专业审核
+- id: C03
+  claim: Nexent 可通过 MCP 调用七个工具，并在 JEV 未配置时安全降级
+  evidence: artifacts/nexent-integration-report.json; artifacts/nexent-model-readiness.json; scripts/verify_nexent.py; docs/17-nexent-package.md
+  command: .venv/Scripts/python.exe scripts/verify_nexent.py
+  status: PARTIAL
+  limit: 平台七工具、模型编排与无工具解释分别按当前真实收据报告；合成资料不证明行业效果，跨机器和长期运行另验
+- id: C10
+  claim: Windows 部署路径、服务状态和本机暴露端口可只读审计
+  evidence: scripts/audit_nexent_deployment.py; artifacts/nexent-deployment-audit.json; nexent/windows.override.yaml
+  command: .venv/Scripts/python.exe scripts/audit_nexent_deployment.py
+  status: PARTIAL
+  limit: 只读核对本次容器、挂载、端口与服务；即时健康不证明独立冷启动或长期稳定性
+- id: C04
+  claim: v2 在冻结合成留出集上 exact_match=60 且 unsafe_release=0
+  evidence: data/cases/heldout.yaml; src/ontolens/evaluate.py; scripts/generate_synthetic_evaluation_report.py; artifacts/synthetic-evaluation-report.json
+  command: .venv/Scripts/python.exe scripts/generate_synthetic_evaluation_report.py
+  status: DONE
+  limit: 不是行业准确率
+- id: C05
+  claim: 真实行业资料支持业务价值
+  evidence: 待取得经授权真实资料、业务任务和独立评估
+  command: 待补
+  status: PENDING
+  limit: 软件可接业务台账，不代表行业效果、专业适用性或独立评测完成
+- id: C06
+  claim: JEV 可对证据候选进行结构化相关性重排，但不参与业务决定
+  evidence: src/ontolens/jev.py; src/ontolens/bridge.py; tests/test_jev.py; docs/17-nexent-package.md; artifacts/jev-live-verification.json
+  command: ./.venv/Scripts/python.exe scripts/verify_jev.py --live
+  status: PARTIAL
+  limit: 显式live与获准非私有来源门禁已实现；当前在线收据为 provider_error，保留原顺序降级；阈值与行业效果未独立校准
+- id: C07
+  claim: 来源文件可识别为现有资产和待审核关系候选
+  evidence: src/ontolens/ontology.py; src/ontolens/workspace.py; tests/test_workbench.py
+  command: ./.venv/Scripts/python.exe scripts/evaluate_assets.py --output artifacts/asset-recognition-report.json
+  status: DONE
+  limit: 当前是目录/别名匹配基线，未对齐真实行业本体或标准
+- id: C08
+  claim: 初赛设计文档和答辩演示草稿已生成
+  evidence: submission/ontolens-development-design-draft.docx; submission/ontolens-presentation-draft.pptx; artifacts/deliverable-consistency-report.json; docs/24-material-qa.md
+  command: officecli validate submission/ontolens-development-design-draft.docx; officecli validate submission/ontolens-presentation-draft.pptx
+  status: DONE
+  limit: 原生材料保留复现命令、SHA256、不可用与未验证范围；schema及逐页视觉检查不等于官方模板确认或正式提交
+- id: C09
+  claim: 合成图片与人工摘录可进入同一资产识别来源链
+  evidence: data/demo/synthetic-asset-label.png; data/demo/synthetic-asset-label.transcript.md; tests/test_workbench.py
+  command: ./.venv/Scripts/python.exe -m pytest -q tests/test_workbench.py
+  status: DONE
+  limit: 图片由本地模板生成，摘录由人工提供；不代表 OCR 或真实图像理解
+- id: C13
+  claim: 工作台解释适配器有三种协议契约且不参与业务决定
+  evidence: src/ontolens/model_explain.py; tests/test_model_protocols.py; docs/23-model-protocols.md
+  command: .venv/Scripts/python.exe -m pytest -q tests/test_model_protocols.py
+  status: PARTIAL
+  limit: 三协议请求和解析有离线契约；实际在线调用需各自留证，不代表三个协议均在线验证或模型准确率
+- id: C14
+  claim: JEV 可对程序已定位的变更候选提供人工复核优先级信号
+  evidence: src/ontolens/jev.py; tests/test_change_review.py; scripts/verify_jev.py; docs/25-change-impact-review.md
+  command: .venv/Scripts/python.exe scripts/verify_jev.py --task change_review
+  status: PARTIAL
+  limit: 目前只有离线契约和固定合成预检；未做在线变更语义或真实资料验证，不改变影响集合和业务决定
+- id: C15
+  claim: JEV 可对 proposed 关系候选提供支持/缺口复核信号
+  evidence: src/ontolens/jev.py; tests/test_relation_review.py; scripts/verify_jev.py; docs/26-relation-review.md
+  command: .venv/Scripts/python.exe scripts/verify_jev.py --task relation_review
+  status: PARTIAL
+  limit: 只有离线契约和固定合成预检；不自动批准关系，未做真实资料或领域标准验证
+- id: C16
+  claim: JEV 结果具备显式录制/重放标记且回放不伪装在线请求
+  evidence: src/ontolens/jev_replay.py; scripts/verify_jev.py; tests/test_jev_replay.py; docs/27-jev-replay.md
+  command: .venv/Scripts/python.exe -m pytest -q tests/test_jev_replay.py
+  status: PARTIAL
+  limit: 仅验证离线记录契约；没有新增在线请求，不代表真实模型稳定性或行业效果
+- id: C17
+  claim: 模型解释联调有显式本地预检且不冒充 Nexent Agent 运行
+  evidence: scripts/verify_model_explain.py; tests/test_model_explain_verification.py; docs/28-model-explain-verification.md
+  command: .venv/Scripts/python.exe scripts/verify_model_explain.py
+  status: PARTIAL
+  limit: 默认预检不发请求，工作台解释、Nexent工具编排和无工具解释分别验收；不代表全三协议在线或行业效果
+- id: C18
+  claim: 交付审计拒绝失败平台报告及模型证据错配，部署审计在 Docker 不可达时保留本次失败状态
+  evidence: src/ontolens/delivery.py; scripts/audit_nexent_deployment.py; tests/test_delivery.py; tests/test_nexent_deployment.py; docs/30-demo-startup.md
+  command: .venv/Scripts/python.exe -m pytest -q tests/test_delivery.py tests/test_nexent_deployment.py
+  status: DONE
+  limit: 失败和证据错配会拒绝，Docker不可达保留本次失败；测试逻辑通过不替代独立冷启动或行业验证
+- id: C19
+  claim: 本机实例可备份并恢复，恢复后核对持久化目录和平台状态
+  evidence: scripts/audit_nexent_deployment.py; tests/test_nexent_deployment.py; artifacts/nexent-deployment-audit.json; docs/19-deployment-review.md
+  command: .venv/Scripts/python.exe scripts/audit_nexent_deployment.py
+  status: PARTIAL
+  limit: 当前软件与只读检查具备恢复核验入口；跨机器完整恢复和长期稳定性仍待独立验证
+- id: C20
+  claim: 已准备本机可通过统一入口恢复工作台和 Nexent，先验证持久化挂载与就绪状态
+  evidence: start-demo.ps1; scripts/start_demo.py; tests/test_demo_startup.py; nexent/windows.override.yaml; docs/30-demo-startup.md
+  command: powershell -NoProfile -ExecutionPolicy Bypass -File .\start-demo.ps1
+  status: DONE
+  limit: 已准备实例的启动与就绪检查，错误挂载、端口、依赖或平台身份会拒绝；单机结果不等于独立冷启动或行业效果
+- id: C21
+  claim: needs_review 能给出结构化补件建议并追加不改变决定的人工复核记录
+  evidence: src/ontolens/contracts.py; src/ontolens/workspace.py; src/ontolens/web.py; src/ontolens/static/app.js; src/ontolens/static/index.html; src/ontolens/export_verification.py;
+    tests/test_review_workflow.py; tests/test_workbench_flow.py; tests/test_export_verification.py; tests/test_review_integrity.py; src/ontolens/review_verification.py;
+    scripts/verify_review_workflow.py; artifacts/human-review-acceptance.json; docs/34-human-review-workflow.md
+  command: .venv/Scripts/python.exe scripts/verify_review_workflow.py
+  status: DONE
+  limit: 软件可在导入工作区追加复核；既有验收使用明示合成夹具，记录是 append-only 跟进，不是专业审核，不会生成四种业务决定
+- id: C22
+  claim: 合成事实发生单一变化时，程序决定按声明契约变化并保留 needs_review 边界
+  evidence: data/evaluation/counterfactuals.yaml; src/ontolens/counterfactual.py; scripts/generate_counterfactual_evaluation_report.py; artifacts/synthetic-counterfactual-report.json;
+    tests/test_counterfactual.py; docs/34-counterfactual-evaluation.md
+  command: .venv/Scripts/python.exe scripts/generate_counterfactual_evaluation_report.py
+  status: DONE
+  limit: 21 个独立合成变形案例（含授权有效期、批次状态和不变性）；开发者编写的期望值，不是行业准确率、盲测或专业审核
+- id: C23
+  claim: AI取得公开制度片段并在独立资料包中复核出处、哈希及跨文档检索定位
+  evidence: data/public/official-lab-safety/manifest.json; src/ontolens/public_corpus.py; scripts/verify_public_corpus.py; tests/test_public_corpus.py; artifacts/public-corpus-verification.json;
+    artifacts/public-source-quotation-verification.json; docs/35-public-data-pack.md
+  command: .venv/Scripts/python.exe scripts/verify_public_corpus.py
+  status: PARTIAL
+  limit: 6来源/3家族、21引文、2开发包和10未审核问题；20定位被词法检索找到，未验证语义回答、真实台账、专业审核或法律合规；共享来源不是独立盲测

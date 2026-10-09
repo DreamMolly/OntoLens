@@ -1,5 +1,5 @@
 {
-  "schema_version": "peiwu-public-corpus-verification-1",
+  "schema_version": "ontolens-public-corpus-verification-1",
   "scope": "public_documents_with_synthetic_ledger",
   "passed": true,
   "integrity_passed": true,
@@ -22,7 +22,7 @@
     "Workspace search returns at most 30 lexical matches; no model semantics are evaluated."
   ],
   "data_hashes": {
-    "manifest.json": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
+    "manifest.json": "f37e6ad452cc40002ef62e7b009096a5edeca524568fc99c48f436d291498c26",
     "excerpts/PUB-MOE-2023.txt": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
     "excerpts/PUB-MOE-2024.txt": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
     "excerpts/PUB-MOE-2013.txt": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
@@ -836,11 +836,11 @@
       ]
     }
   ],
-  "generated_at": "2026-10-08T06:22:10.122918+00:00",
+  "generated_at": "2026-10-09T11:41:47.259586+00:00",
   "corpus_path": "F:\\Projects\\2026ICT\\data\\public\\official-lab-safety",
   "code_input_hashes": {
-    "src/peiwu/public_corpus.py": "94bcacfe4fcc4b39435d86023cd06bb42e0835122c42dcc5d65cfcc27721ec58",
-    "src/peiwu/workspace.py": "64e2ad9182a64ffa957be521e1d6c1c10271e0d374b8259799139f6b446e9378",
-    "scripts/verify_public_corpus.py": "a35e95c02ed8bf63ec8d9cceb265a462d267af895f7d4e8e2f1ea0d6cf340781"
+    "src/ontolens/public_corpus.py": "3f61aff55087eab73050224e22961459833b56545bf160c1246d5d8f8e1d0381",
+    "src/ontolens/workspace.py": "3d6d5e3b5a6b8d0398e553c6ddf82fc6f3237949f8b6a29c2e6df3794aeaf9e0",
+    "scripts/verify_public_corpus.py": "751881e63a4db38d51f7a43e1231bfbf9e90fb294a0d65b4b11b85198505fc4a"
   }
 }

@@ -50,7 +50,7 @@ def check_review_records(run: dict, issue) -> dict:
                 "decision", "action", "approved_quantity", "reason_code", "status")):
             fail("review_wrote_decision")
 
-        modern = record.get("schema_version") == "peiwu-review-1"
+        modern = record.get("schema_version") == "ontolens-review-1"
         if modern:
             counts["structured_record_count"] += 1
             identity = record.get("id")

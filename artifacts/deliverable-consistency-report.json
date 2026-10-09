@@ -4,18 +4,18 @@
   "checks": {
     "validation": {
       "passed": true,
-      "pytest_passed": 464,
-      "report_sha256": "e5b49392255f8b7b3d096d68acdf050fb1f02030412f947bf7040b3e155ee72a",
-      "run_dir": "artifacts/source-validation/20261009-094214-e5337f3f"
+      "pytest_passed": 466,
+      "report_sha256": "16dfce55711f5190c54f7cfbff69035adee638584612f6752ff4f338da71e8dd",
+      "run_dir": "artifacts/source-validation/20261009-123037-12b1b37d"
     },
     "materials": {
       "passed": true,
-      "word_pytest_passed": 464,
-      "ppt_pytest_passed": 464
+      "word_pytest_passed": 466,
+      "ppt_pytest_passed": 466
     },
     "package": {
       "passed": true,
-      "sha256": "9db87c630c2068b7ff0f85c7d93b5df47261a9d4a7945d759c7b8600695befb0"
+      "sha256": "f7285840dc70772e31490c29029eec8f0b07de972c6593851b7e3a42e43e17a1"
     },
     "integration": {
       "passed": true,
@@ -40,28 +40,28 @@
       "passed": true,
       "ready": true,
       "issue_codes": [],
-      "report_sha256": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a"
+      "report_sha256": "f36831dca702f9c14a964915bf94d8640459925404c761737676df3b637fa13a"
     },
     "model_readiness": {
       "passed": true,
       "status": "model_bound_synthetic_run_verified_deployment_ready_pending_real_data",
       "model_ids": [
-        1
+        2
       ],
-      "models_visible": 1,
-      "agent_run_sha256": "96fad14bd5cea47b93c42c62f591e6f376ac273679021f68724c532fc926ffd2"
+      "models_visible": 2,
+      "agent_run_sha256": "562d591cfa47bedece6ff63564ecb8b8da518bfd94b10ea527cc7d682d8d4d91"
     }
   },
   "goal_complete": false,
   "files": {
-    "submission/peiwu-development-design-draft.docx": "3fb909b8d2618294770077855968854034ae255035bc83e14c6a5ae9d888e4de",
-    "submission/peiwu-presentation-draft.pptx": "dc8bbfa8cefbf52889c4ca8e6f0e10d7c3986166a492bbc324bae6aeab9722ef",
-    "submission/evidence-matrix.yaml": "714c669366b43f4d950cf5e75df5febb3d8301bf7563bda72f84e0cd8d0d1cf1",
-    "artifacts/nexent-integration-report.json": "7cadc615e78375d48e0a0cbace1d2c9e319166505fb5b2e01723c2d74c0d7378",
-    "artifacts/nexent-deployment-audit.json": "b4ddbbca401f0ab237e3a75cceb20c33bfe4fd5330d8f2edc1018c5b0611a44a",
-    "artifacts/nexent-model-readiness.json": "68dccae7acf2a7d43e053deb248845749c612850e3ea74b0fbb50f1fc5b19ba0",
-    "artifacts/nexent-agent-run-20260924.json": "96fad14bd5cea47b93c42c62f591e6f376ac273679021f68724c532fc926ffd2",
+    "submission/ontolens-development-design-draft.docx": "84926c206408162396ed84121280185591d70bff4a0499b75b5440003fad0e61",
+    "submission/ontolens-presentation-draft.pptx": "3990c6181eeffe24a045232f5133022d5751a5db52463e127055fbafed52da3c",
+    "submission/evidence-matrix.yaml": "45070baf6ae91cad3d4b2550b47b53e8538e2624359974c33de298d2857b12ad",
+    "artifacts/nexent-integration-report.json": "91b4496cdddd9f4b468ad7b6e5f6efb2796bd68bc20378d94b93675a91a1f9a6",
+    "artifacts/nexent-deployment-audit.json": "f36831dca702f9c14a964915bf94d8640459925404c761737676df3b637fa13a",
+    "artifacts/nexent-model-readiness.json": "cc6d0fcac03b039491b8dfe38b2bce842095bc3865287e2697932ae98540d712",
+    "artifacts/nexent-agent-run-current.json": "562d591cfa47bedece6ff63564ecb8b8da518bfd94b10ea527cc7d682d8d4d91",
     "artifacts/nexent-data-migration-report.json": "61577c4dff50af2a345df8a1c721c7f6a7d810c4aaa482a6dabe3075d212b486",
-    "artifacts/nexent-model-configuration-report.json": "43a18c483c5bd79473c41f4237ef9e9470a80dca3450c5c0d2ed2019be82e27e"
+    "artifacts/nexent-model-configuration-report.json": "61a155c403aa72819355b44e9a2e0a6c356d8198a17f117b3af845e1d54821c7"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "observed_at": "2026-10-09T09:45:21.830051+00:00",
+  "observed_at": "2026-10-09T12:35:00.168207+00:00",
   "scope": "isolated synthetic browser interaction; no live model calls; simulated viewports, not real device or screen-reader validation",
   "observations": [
     "five presets only fill fields; missing person yields decision null and references default unchecked",

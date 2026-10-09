@@ -1,0 +1,42 @@
+[
+  {
+    "index": 1,
+    "filename": "image-8-1.png",
+    "original_filename": "image-8-1.png",
+    "asset_kind": "bitmap",
+    "svg_renderable": true,
+    "pptx_native_supported": true,
+    "source_kind": "pptx_picture",
+    "source_ext": ".png",
+    "source_target": "ppt/media/image-8-1.png",
+    "content_type": "image/png",
+    "display_left_emu": 640800,
+    "display_top_emu": 1700784,
+    "display_width_emu": 10908000,
+    "display_height_emu": 3924000,
+    "display_width_in": 11.9291,
+    "display_height_in": 4.2913,
+    "display_ratio": 2.779817,
+    "pixel_width": 1440,
+    "pixel_height": 1230,
+    "pixel_ratio": 1.170732,
+    "occurrences": [
+      {
+        "slide_index": 8,
+        "shape_name": "Image 0",
+        "display_left_emu": 640800,
+        "display_top_emu": 1700784,
+        "display_width_emu": 10908000,
+        "display_height_emu": 3924000,
+        "display_width_in": 11.9291,
+        "display_height_in": 4.2913,
+        "display_ratio": 2.779817
+      }
+    ],
+    "usage_count": 1,
+    "display_ratio_variants": [
+      2.779817
+    ],
+    "source_namespace": "ontolens-presentation-draft"
+  }
+]

@@ -1,7 +1,7 @@
 {
   "format": "ontolens-ui-qa-1",
   "status": "passed",
-  "observed_at": "2026-10-09T09:45:07.808700+00:00",
+  "observed_at": "2026-10-09T12:34:41.740847+00:00",
   "scope": "Isolated synthetic Playwright fixtures; not live industry, real device or screen reader validation",
   "tests": 6,
   "failures": 0,
@@ -14,38 +14,38 @@
     "index.html": "04033fe3a861718c6b4633126eab44727ea681480e57e682aa5fdccc49ea4bc2",
     "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded"
   },
-  "test_sha256": "c67f827011eea47f9e13c579213256c2004d8020ccbed1ba2d45457cb7af6dfe",
+  "test_sha256": "ef84c3c1e382d42ca60edfea1a38d719af2ef53b3b37760e10fc295cc48dc89f",
   "validation_command": ".venv/Scripts/python.exe -m pytest -q",
   "cases": [
     {
       "name": "test_native_iso_authority_and_all_date_fields",
       "status": "passed",
-      "seconds": 4.256
+      "seconds": 3.119
     },
     {
       "name": "test_panel_dialog_grid_header_navigation_and_keyboard",
       "status": "passed",
-      "seconds": 3.364
+      "seconds": 3.653
     },
     {
       "name": "test_bounds_required_invalid_input_and_focus_recovery",
       "status": "passed",
-      "seconds": 3.477
+      "seconds": 2.97
     },
     {
       "name": "test_leap_year_month_year_and_timezone_safe_calendar_value",
       "status": "passed",
-      "seconds": 2.713
+      "seconds": 2.97
     },
     {
       "name": "test_mobile_dismissal_resize_scroll_screenshots_and_motion",
       "status": "passed",
-      "seconds": 3.378
+      "seconds": 3.707
     },
     {
       "name": "test_date_interactions_make_no_api_writes",
       "status": "passed",
-      "seconds": 2.904
+      "seconds": 2.982
     }
   ],
   "api_write_requests": 0

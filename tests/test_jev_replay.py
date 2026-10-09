@@ -6,13 +6,13 @@ from ontolens.jev_replay import build_record, replay_record
 def live_result():
     return {"status": "ready", "request_count": 1, "input_hash": "a" * 64,
             "model": "jev-1.13.0", "resolved_model": "jev-1.13.0",
-            "question_version": "peiwu-evidence-support-v2", "candidates": [{"jev_probability": 0.8}]}
+            "question_version": "ontolens-evidence-support-v2", "candidates": [{"jev_probability": 0.8}]}
 
 
 def test_record_and_replay_are_explicitly_distinguished():
     record = build_record(live_result(), "synthetic test")
     replay = replay_record(record)
-    assert record["format"] == "peiwu-jev-replay-1"
+    assert record["format"] == "ontolens-jev-replay-1"
     assert record["live_request_sent"] is True
     assert replay["status"] == "replay"
     assert replay["replay"] is True
@@ -33,4 +33,4 @@ def test_replay_rejects_invalid_record():
     with pytest.raises(ValueError):
         replay_record({"format": "wrong"})
     with pytest.raises(ValueError):
-        replay_record({"format": "peiwu-jev-replay-1", "recorded_result": {"status": "error", "request_count": 1}})
+        replay_record({"format": "ontolens-jev-replay-1", "recorded_result": {"status": "error", "request_count": 1}})

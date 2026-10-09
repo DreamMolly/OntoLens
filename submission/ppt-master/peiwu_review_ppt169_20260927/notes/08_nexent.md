@@ -1,1 +1,0 @@
-当前主包、命令和可见产品名称为 OntoLens。原 Nexent Agent peiwu_compliance_review、Skill peiwu-intake/peiwu-evidence/peiwu-decision 与服务 peiwu-local 仍是既有机器 ID，未重新登记，页面只采用产品名称和职责说明。新镜像收据 artifacts/operational-deployment-20261009-ontolens.json 为 passed、35 项检查通过，包含 ontolens 入口、配置、请求头、真实 Agent 2 解释及重启持久化；使用合成私有夹具，真实行业资料未使用。gpt-6-sol/model_id=2 延续既有中转配置；解释不能改判，外部冷启动与专业审核仍待验证。

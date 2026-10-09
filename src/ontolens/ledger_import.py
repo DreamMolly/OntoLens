@@ -17,7 +17,7 @@ from ontolens.catalog import HAZARD_CLASSES, LOT_STATUSES
 from ontolens.checker import decide
 
 GROUPS = ("people", "chemicals", "lots", "cabinets", "issues", "rules")
-SCHEMA = "peiwu-ledger-bundle-1"
+SCHEMA = "ontolens-ledger-bundle-1"
 MAX_FILE_BYTES = 2_000_000
 
 

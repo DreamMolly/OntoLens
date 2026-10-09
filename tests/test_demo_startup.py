@@ -46,7 +46,7 @@ def prepare_root(root: Path) -> None:
             else:
                 path.mkdir(parents=True, exist_ok=True)
     (data / "postgresql/data/PG_VERSION").write_text("15\n", encoding="ascii")
-    (root / ".runtime/peiwu-mcp-token.txt").write_text(TOKEN, encoding="utf-8")
+    (root / ".runtime/ontolens-mcp-token.txt").write_text(TOKEN, encoding="utf-8")
     (root / ".runtime/workbench.sqlite3").write_bytes(b"SQLite format 3\x00" + b"\x00" * 64)
     paths = root / "nexent/windows.paths.env.example"
     paths.write_text(
@@ -69,7 +69,7 @@ def prepare_root(root: Path) -> None:
     artifact.parent.mkdir(parents=True)
     artifact.write_text(json.dumps(report), encoding="utf-8")
     (root / "artifacts/nexent-model-readiness.json").write_text(json.dumps({
-        "agent_id": 1, "agent_name": "peiwu_compliance_review", "model_ids": [1],
+        "agent_id": 1, "agent_name": "ontolens_compliance_review", "model_ids": [1],
         "agent_available": True, "deployment_audit_ready": True,
     }), encoding="utf-8")
     (root / "artifacts/nexent-integration-report.json").write_text(json.dumps({
@@ -199,10 +199,10 @@ class FakeHost:
         if url.endswith("/api/status"):
             return {"mode": "synthetic_demo", "active_id": "demo-initial"}
         if url.endswith("/api/agent/list"):
-            return [{"agent_id": 1, "name": "peiwu_compliance_review", "model_ids": [1],
+            return [{"agent_id": 1, "name": "ontolens_compliance_review", "model_ids": [1],
                      "is_available": True}]
         if url.endswith("/api/mcp/list"):
-            return {"remote_mcp_server_list": [{"mcp_id": 1, "remote_mcp_server_name": "peiwu-local",
+            return {"remote_mcp_server_list": [{"mcp_id": 1, "remote_mcp_server_name": "ontolens-local",
                                                 "enabled": True}]}
         if "/api/mcp/healthcheck?" in url:
             return {"data": {"health_status": "healthy"}}
@@ -348,7 +348,7 @@ def test_nexent_api_model_binding_mismatch_never_reports_ready(tmp_path):
 
     def mismatched_agent(url, timeout):
         if url.endswith("/api/agent/list"):
-            return [{"agent_id": 1, "name": "peiwu_compliance_review", "model_ids": [2],
+            return [{"agent_id": 1, "name": "ontolens_compliance_review", "model_ids": [2],
                      "is_available": True}]
         return regular_get(url, timeout)
 

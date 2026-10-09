@@ -214,7 +214,7 @@ def test_invalid_account_names_and_short_password_rejected(tmp_path, username):
 
 def test_management_cli_creates_updates_and_lists_without_secrets(tmp_path):
     auth_file = tmp_path / "cli-accounts.json"
-    environment = dict(os.environ, PEIWU_ACCOUNT_PASSWORD=PASSWORD, PYTHONIOENCODING="utf-8")
+    environment = dict(os.environ, ONTOLENS_ACCOUNT_PASSWORD=PASSWORD, PYTHONIOENCODING="utf-8")
     prefix = [sys.executable, str(ROOT / "scripts/manage_access.py"), "--auth-file", str(auth_file)]
     for arguments in (["add", "local-admin", "--role", "admin"], ["set-role", "local-admin", "viewer"],
                       ["disable", "local-admin"], ["enable", "local-admin"], ["set-password", "local-admin"], ["list"]):

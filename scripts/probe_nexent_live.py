@@ -24,7 +24,7 @@ async def provision_explainer(client: httpx.AsyncClient) -> int:
         raise ValueError("duplicate_explainer")
     if existing:
         return existing[0]["agent_id"]
-    source = [a for a in agents if a.get("name") == "peiwu_compliance_review"]
+    source = [a for a in agents if a.get("name") == "ontolens_compliance_review"]
     if len(source) != 1 or not source[0].get("model_ids"):
         raise ValueError("synthetic_agent_model_missing")
     response = await client.post("agent/update", json={
@@ -50,7 +50,7 @@ async def provision_explainer(client: httpx.AsyncClient) -> int:
 
 async def probe(*, provision: bool, agent_run: bool) -> dict:
     runtime = NexentRuntime.from_environment(ROOT)
-    report = {"format": "peiwu-nexent-live-1", "started_at": observed_now(), "status": "failed",
+    report = {"format": "ontolens-nexent-live-1", "started_at": observed_now(), "status": "failed",
               "scope": "Current live Nexent requests using synthetic inputs only; not industry evaluation or professional review.",
               "historical_agent_run_used": False, "calls": []}
     try:
@@ -68,7 +68,7 @@ async def probe(*, provision: bool, agent_run: bool) -> dict:
             async def call(name: str, inputs: dict) -> dict:
                 started = observed_now()
                 response = await client.post("tool/validate", json={"name": name, "source": "mcp",
-                    "usage": "peiwu-local", "inputs": inputs, "params": {}})
+                    "usage": "ontolens-local", "inputs": inputs, "params": {}})
                 response.raise_for_status()
                 result = response.json()
                 if isinstance(result, str):
@@ -108,7 +108,7 @@ async def probe(*, provision: bool, agent_run: bool) -> dict:
             report["explanation"] = await runtime.explain_run(decision)
             if agent_run:
                 synthetic = NexentRuntime(runtime.base_url, token=runtime._token, timeout=420,
-                    agent_name="peiwu_compliance_review", allow_tools=True)
+                    agent_name="ontolens_compliance_review", allow_tools=True)
                 report["synthetic_agent_run"] = await synthetic.invoke(
                     "只核验现成合成示例，不访问其他资料。版本固定 demo-initial，日期2026-09-23。"
                     "申请为合成人员 stu01，批次 lot_eth，目标柜 cab_flam，100mL。"

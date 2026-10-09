@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import secrets
 import socket
 import subprocess
 import sys
@@ -25,7 +26,7 @@ def main() -> int:
     inputs = source_manifest(ROOT)
     environment = dict(os.environ)
     for name in list(environment):
-        if name.startswith(("ONTOLENS_", "PEIWU_", "TYPESAFE_", "MODEL_", "NEXENT_", "OPENAI_", "ANTHROPIC_")):
+        if name.startswith(("ONTOLENS_", "TYPESAFE_", "MODEL_", "NEXENT_", "OPENAI_", "ANTHROPIC_")):
             environment.pop(name)
     temp = run_dir / "tmp"
     temp.mkdir()
@@ -34,9 +35,16 @@ def main() -> int:
                         "TEMP": str(temp), "TMP": str(temp), "TMPDIR": str(temp),
                         "PIP_CACHE_DIR": str(ROOT / ".runtime/pip-cache"), "PYTHONIOENCODING": "utf-8",
                         "PLAYWRIGHT_BROWSERS_PATH": str(ROOT / ".runtime/playwright-browsers")})
-    with socket.socket() as listener:
-        listener.bind(("127.0.0.1", 0))
-        port = listener.getsockname()[1]
+    for _ in range(128):
+        with socket.socket() as listener:
+            try:
+                listener.bind(("127.0.0.1", 12000 + secrets.randbelow(48000)))
+            except OSError:
+                continue
+            port = listener.getsockname()[1]
+            break
+    else:
+        raise RuntimeError("Unable to allocate a browser-safe loopback port")
     url = f"http://127.0.0.1:{port}"
     creationflags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
     rows = []

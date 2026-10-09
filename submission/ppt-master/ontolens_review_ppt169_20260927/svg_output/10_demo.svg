@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1280" height="720" viewBox="0 0 1280 720" data-pptx-page-role="content" font-family="Microsoft YaHei, Arial">
+  <rect id="background" data-pptx-role="background" width="1280" height="720" fill="#F7F9FA" />
+  <g id="title" data-pptx-bounds="64 42 1152 101">
+    <text x="64" y="91" font-size="44" font-weight="bold" fill="#17384B">工作台上的六分钟演示</text>
+    <text x="66" y="133" font-size="24" fill="#526874">从空库导入台账，核验后打开原文并导出。</text>
+  </g>
+  <g id="workbench-evidence" data-pptx-bounds="64 158 595 503">
+    <image x="64" y="158" width="585.4" height="500" href="../images/image-8-1.png" preserveAspectRatio="xMidYMid meet" />
+  </g>
+  <g id="demo-sequence" data-pptx-bounds="716 177 500 410">
+    <line x1="738" y1="236" x2="738" y2="499" stroke="#CCD9DF" stroke-width="2" />
+    <circle cx="738" cy="218" r="18" fill="#087F8C" /><text x="738" y="224" text-anchor="middle" font-size="18" fill="#FFFFFF">1</text>
+    <text x="778" y="227" font-size="28" font-weight="bold" fill="#17384B">核验与回查</text>
+    <text x="778" y="270" font-size="24" fill="#243746"><tspan x="778">展示四种决定与停判，</tspan><tspan x="778" dy="36">点击定位查看完整原文。</tspan></text>
+    <circle cx="738" cy="367" r="18" fill="#087F8C" /><text x="738" y="373" text-anchor="middle" font-size="18" fill="#FFFFFF">2</text>
+    <text x="778" y="376" font-size="28" font-weight="bold" fill="#17384B">变化与复核</text>
+    <text x="778" y="419" font-size="24" fill="#243746"><tspan x="778">预览受影响的历史申请，</tspan><tspan x="778" dy="36">演示发布与回滚。</tspan></text>
+    <circle cx="738" cy="516" r="18" fill="#087F8C" /><text x="738" y="522" text-anchor="middle" font-size="18" fill="#FFFFFF">3</text>
+    <text x="778" y="525" font-size="28" font-weight="bold" fill="#17384B">平台工具回放</text>
+    <text x="778" y="568" font-size="24" fill="#243746">证据 → 关系 → 程序决定</text>
+  </g>
+  <g id="startup-note" data-pptx-bounds="716 600 500 66">
+    <text x="716" y="629" font-size="18" fill="#526874"><tspan x="716">业务演练运行 start-operational.ps1。</tspan><tspan x="716" dy="26">保留合成标签和专业审核未完成提示。</tspan></text>
+  </g>
+  <g id="footer" data-pptx-role="footer" data-pptx-bounds="64 672 1152 30" fill="#526874" font-size="16">
+    <text x="64" y="692">D1.1 当前首页结构示意 · 尚未核验</text><text x="1216" y="692" text-anchor="end">10</text>
+  </g>
+</svg>

@@ -1,157 +1,977 @@
 {
-  "schema_version": "peiwu-public-quotation-check-1",
-  "checked_at_utc": "2026-10-08T06:23:08.007288+00:00",
-  "manifest_sha256": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
-  "scope": "selected quotes compared with saved rendered markdown or pypdf page text; PDF whitespace and page headers normalized, no semantic/professional verification",
-  "quote_count": 21,
+  "format": "ontolens-public-source-quotation-verification-1",
+  "checked_at_utc": "2026-10-09T12:21:39.679581+00:00",
   "passed": true,
-  "quotes": [
+  "network_requests": 0,
+  "scope": "Offline literal comparison against hash-verified saved acquisitions only",
+  "limitations": [
+    "No current website availability, current legal validity, source authenticity or professional applicability certification",
+    "Two documents have saved rendered markdown only; no original HTTP bytes are available in their manifest",
+    "PDF comparisons use saved pypdf page text; extraction correctness is not independently re-evaluated",
+    "No real laboratory ledger or industry outcome evaluation is performed"
+  ],
+  "manifest_path": "data/public/official-lab-safety/manifest.json",
+  "manifest_sha256": "f37e6ad452cc40002ef62e7b009096a5edeca524568fc99c48f436d291498c26",
+  "documents_checked": 6,
+  "quotations_checked": 21,
+  "quotations_matched": 21,
+  "failures": [],
+  "documents": [
     {
       "source_id": "PUB-MOE-2023",
-      "locator": "L1",
-      "source_locator": "PDF第4—5页，第十条（二）",
-      "matched_normalized_original": true,
-      "quote_sha256": "6f02b408b742528816212bf5553e69f11debd82a3e1f6048aab8931d1c95e44a"
-    },
-    {
-      "source_id": "PUB-MOE-2023",
-      "locator": "L2",
-      "source_locator": "PDF第6页，第十一条（三）",
-      "matched_normalized_original": true,
-      "quote_sha256": "dd9bac049f27818d0b8213663607abc5eee3a3a8913dcf53474e89ac56be3e80"
-    },
-    {
-      "source_id": "PUB-MOE-2023",
-      "locator": "L3",
-      "source_locator": "PDF第9—10页，第二十四条首句",
-      "matched_normalized_original": true,
-      "quote_sha256": "623c15be83fd10dd9da649e3d56fda7e86b82150b71e20457efa0de833b6b26c"
-    },
-    {
-      "source_id": "PUB-MOE-2023",
-      "locator": "L4",
-      "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "14d6200f4cda26994ec180e9473a3d57fc63afc6e82a9c7f7b9692874a43cf63"
-    },
-    {
-      "source_id": "PUB-MOE-2023",
-      "locator": "L5",
-      "source_locator": "PDF第11页，第三十条",
-      "matched_normalized_original": true,
-      "quote_sha256": "a753f6b5e386d55e6e033e84fe11ead9ada7a241482d2da5c5f94da7a0047e05"
+      "title": "高等学校实验室安全规范",
+      "manifest_url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-original.pdf",
+          "sha256": "96f7c6e7ec93a09e9e4edd91e7038dd3d7a9c4c99fba0b097f62f1b6c380c920",
+          "artifact_kind": "original_pdf_bytes",
+          "actual_sha256": "96f7c6e7ec93a09e9e4edd91e7038dd3d7a9c4c99fba0b097f62f1b6c380c920",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Hash only; no text extraction"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+          "sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+          "artifact_kind": "pypdf_page_text",
+          "actual_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved pypdf page text; leading printed page number matching PDF page removed; whitespace removed"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-MOE-2023.txt",
+      "excerpt_sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "PDF第4—5页，第十条（二）",
+          "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+          "quote_sha256": "6f02b408b742528816212bf5553e69f11debd82a3e1f6048aab8931d1c95e44a",
+          "matched": true,
+          "primary_comparison_kind": "pypdf_page_text",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+              "artifact_kind": "pypdf_page_text",
+              "archive_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 89,
+              "normalization": "whitespace_removed",
+              "normalized_start": 1593,
+              "normalized_end": 1682,
+              "location_units": [
+                {
+                  "pdf_page": 4,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                },
+                {
+                  "pdf_page": 5,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                }
+              ],
+              "matched_quote_sha256": "6f02b408b742528816212bf5553e69f11debd82a3e1f6048aab8931d1c95e44a",
+              "pdf_pages": [
+                4,
+                5
+              ],
+              "declared_pdf_pages": [
+                4,
+                5
+              ],
+              "declared_pdf_page_range_matches": true
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "PDF第6页，第十一条（三）",
+          "quote": "（三）学校和二级单位根据实验需要，开展专业安全培训活动，并组织安全培训考试，新入职的教职工、新入学的学生均应参加并通过考试，对培训与考试进行有效记录。",
+          "quote_sha256": "dd9bac049f27818d0b8213663607abc5eee3a3a8913dcf53474e89ac56be3e80",
+          "matched": true,
+          "primary_comparison_kind": "pypdf_page_text",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+              "artifact_kind": "pypdf_page_text",
+              "archive_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 75,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2392,
+              "normalized_end": 2467,
+              "location_units": [
+                {
+                  "pdf_page": 6,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                }
+              ],
+              "matched_quote_sha256": "dd9bac049f27818d0b8213663607abc5eee3a3a8913dcf53474e89ac56be3e80",
+              "pdf_pages": [
+                6
+              ],
+              "declared_pdf_pages": [
+                6
+              ],
+              "declared_pdf_page_range_matches": true
+            }
+          ]
+        },
+        {
+          "locator": "L3",
+          "source_locator": "PDF第9—10页，第二十四条首句",
+          "quote": "第二十四条对危险化学品建立动态管理台账，实验室设置专用存放空间并科学有序存放，存放的危险化学品总量符合规定要求，并按照化学试剂性质分类规范存放，化学品（含配制试剂）标签应完整清晰。",
+          "quote_sha256": "623c15be83fd10dd9da649e3d56fda7e86b82150b71e20457efa0de833b6b26c",
+          "matched": true,
+          "primary_comparison_kind": "pypdf_page_text",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+              "artifact_kind": "pypdf_page_text",
+              "archive_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 90,
+              "normalization": "whitespace_removed",
+              "normalized_start": 3843,
+              "normalized_end": 3933,
+              "location_units": [
+                {
+                  "pdf_page": 9,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                },
+                {
+                  "pdf_page": 10,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                }
+              ],
+              "matched_quote_sha256": "623c15be83fd10dd9da649e3d56fda7e86b82150b71e20457efa0de833b6b26c",
+              "pdf_pages": [
+                9,
+                10
+              ],
+              "declared_pdf_pages": [
+                9,
+                10
+              ],
+              "declared_pdf_page_range_matches": true
+            }
+          ]
+        },
+        {
+          "locator": "L4",
+          "source_locator": "PDF第10页，第二十五条中剧毒化学品登记片段",
+          "quote": "剧毒化学品执行“五双”管理（即双人验收、双人保管、双人发货、双把锁、双本账），单独存放、不得与易燃、易爆、腐蚀性物品等一起存放，有专人管理并做好贮存、领取、发放情况登记，登记资料至少保存1年，",
+          "quote_sha256": "14d6200f4cda26994ec180e9473a3d57fc63afc6e82a9c7f7b9692874a43cf63",
+          "matched": true,
+          "primary_comparison_kind": "pypdf_page_text",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+              "artifact_kind": "pypdf_page_text",
+              "archive_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 96,
+              "normalization": "whitespace_removed",
+              "normalized_start": 3967,
+              "normalized_end": 4063,
+              "location_units": [
+                {
+                  "pdf_page": 10,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                }
+              ],
+              "matched_quote_sha256": "14d6200f4cda26994ec180e9473a3d57fc63afc6e82a9c7f7b9692874a43cf63",
+              "pdf_pages": [
+                10
+              ],
+              "declared_pdf_pages": [
+                10
+              ],
+              "declared_pdf_page_range_matches": true
+            }
+          ]
+        },
+        {
+          "locator": "L5",
+          "source_locator": "PDF第11页，第三十条",
+          "quote": "第三十条高校应根据本规范，结合本校实际情况，制定各项具体实施办法。各类实验室要符合国家行业相关实验室标准。",
+          "quote_sha256": "a753f6b5e386d55e6e033e84fe11ead9ada7a241482d2da5c5f94da7a0047e05",
+          "matched": true,
+          "primary_comparison_kind": "pypdf_page_text",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-safety-2023-pages.json",
+              "artifact_kind": "pypdf_page_text",
+              "archive_sha256": "b32735559000912e7711c90677a754d48a143eb565e384a261ed4030aaf96adb",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 53,
+              "normalization": "whitespace_removed",
+              "normalized_start": 4549,
+              "normalized_end": 4602,
+              "location_units": [
+                {
+                  "pdf_page": 11,
+                  "removed_printed_page_number_lines": [
+                    3
+                  ]
+                }
+              ],
+              "matched_quote_sha256": "a753f6b5e386d55e6e033e84fe11ead9ada7a241482d2da5c5f94da7a0047e05",
+              "pdf_pages": [
+                11
+              ],
+              "declared_pdf_pages": [
+                11
+              ],
+              "declared_pdf_page_range_matches": true
+            }
+          ]
+        }
+      ]
     },
     {
       "source_id": "PUB-MOE-2024",
-      "locator": "L1",
-      "source_locator": "第二条",
-      "matched_normalized_original": true,
-      "quote_sha256": "08248f67b70183bc72f7101c9ba72305ae78f012f1c598616c60cabbd7d8b46e"
-    },
-    {
-      "source_id": "PUB-MOE-2024",
-      "locator": "L2",
-      "source_locator": "第十一条",
-      "matched_normalized_original": true,
-      "quote_sha256": "44055c7eb2fa803092f3ad902e4608a9ea466692e357597b7dad2cdd8fd59f90"
-    },
-    {
-      "source_id": "PUB-MOE-2024",
-      "locator": "L3",
-      "source_locator": "第十五条",
-      "matched_normalized_original": true,
-      "quote_sha256": "a07c7e62d624dc244718875dc7f675bf1f4d8d997cc9739ce9af214b3da30ad9"
-    },
-    {
-      "source_id": "PUB-MOE-2024",
-      "locator": "L4",
-      "source_locator": "第十六条",
-      "matched_normalized_original": true,
-      "quote_sha256": "9e39ed5aa253e3aa5dfdaf90a93d8337113eb825a311b98ebc771e5c37aca7f1"
-    },
-    {
-      "source_id": "PUB-MOE-2024",
-      "locator": "L5",
-      "source_locator": "第十七条",
-      "matched_normalized_original": true,
-      "quote_sha256": "1dc8a89061c0f469978f48135be9c9dc96b5b85bbcce095a7814f9a347dfe93d"
+      "title": "高等学校实验室安全分级分类管理办法（试行）",
+      "manifest_url": "http://www.moe.gov.cn/srcsite/A16/s7062/202404/t20240419_1126415.html",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/moe-2024.json",
+          "sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+          "artifact_kind": "browser_act_rendered_markdown",
+          "actual_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved rendered markdown; whitespace removed; no raw HTTP bytes inferred"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-MOE-2024.txt",
+      "excerpt_sha256": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第二条",
+          "quote": "第二条 本办法中的实验室，是指隶属于高校从事教学、科研等实验、实训活动的场所及其所属设施，以房间为管理单元。中试性质和工业化放大性质的试验场所及其所属设施不在本办法管理范围内，高校如涉及相关场所应根据相关法律法规及标准规范制定相关管理办法。",
+          "quote_sha256": "08248f67b70183bc72f7101c9ba72305ae78f012f1c598616c60cabbd7d8b46e",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/moe-2024.json",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 119,
+              "normalization": "whitespace_removed",
+              "normalized_start": 779,
+              "normalized_end": 898,
+              "location_units": [
+                {
+                  "saved_text_line": 22
+                }
+              ],
+              "matched_quote_sha256": "556d03d69b56574e86fba9ac7fe047bed3504f93e31c1830f1af91d15bbda871"
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第十一条",
+          "quote": "第十一条 实验室的用途如研究内容、危险源类型与数量等因素发生变化时，实验室应立即重新进行危险源辨识和安全风险评价，重新判定实验室安全类别及级别，如需变更应立即报告所属二级单位。二级单位应及时修正本单位实验室安全分级分类管理台账，同时报学校备案。高校应及时更新本校实验室安全分级分类管理台账，并定期对实验室分级分类情况进行复核。",
+          "quote_sha256": "44055c7eb2fa803092f3ad902e4608a9ea466692e357597b7dad2cdd8fd59f90",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/moe-2024.json",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 162,
+              "normalization": "whitespace_removed",
+              "normalized_start": 1809,
+              "normalized_end": 1971,
+              "location_units": [
+                {
+                  "saved_text_line": 33
+                }
+              ],
+              "matched_quote_sha256": "ba44b95094e0e684e7d3db31395d60beb0167e6a5209f0829a9b3badb14e1f78"
+            }
+          ]
+        },
+        {
+          "locator": "L3",
+          "source_locator": "第十五条",
+          "quote": "第十五条 学校党政主要负责人、学校实验室安全主管职能部门、二级单位、实验室等各级责任机构应根据学校、二级单位和本实验室实际情况，分级开展相应的安全检查工作。在重大隐患未完成整改前，不得在实验室中进行实验活动。",
+          "quote_sha256": "a07c7e62d624dc244718875dc7f675bf1f4d8d997cc9739ce9af214b3da30ad9",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/moe-2024.json",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 103,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2223,
+              "normalized_end": 2326,
+              "location_units": [
+                {
+                  "saved_text_line": 38
+                }
+              ],
+              "matched_quote_sha256": "28003e1f9466292e0d0e84cf95c4abd6c249e95c3f133a7bca0cd7c83fd1f62e"
+            }
+          ]
+        },
+        {
+          "locator": "L4",
+          "source_locator": "第十六条",
+          "quote": "第十六条 实验室负责人、实验室安全管理员和实验人员等应根据所在实验室类别和安全等级，接受相应等级的安全培训并开展相应的应急演练。",
+          "quote_sha256": "9e39ed5aa253e3aa5dfdaf90a93d8337113eb825a311b98ebc771e5c37aca7f1",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/moe-2024.json",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 63,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2326,
+              "normalized_end": 2389,
+              "location_units": [
+                {
+                  "saved_text_line": 39
+                }
+              ],
+              "matched_quote_sha256": "547f67c74073bb0cbc238823da67c7b39617c1b5532303a2ef3dee407b264c77"
+            }
+          ]
+        },
+        {
+          "locator": "L5",
+          "source_locator": "第十七条",
+          "quote": "第十七条 在实验室开展的科研项目、学生课题，或其他实验活动应进行相应等级的安全风险评估。涉及重要危险源的实验活动，二级单位应进行审查、备案，学校应不定期抽查。Ⅰ级/红色级、Ⅱ级/橙色级实验室应针对重要危险源制定相应的管理办法和应急管控措施，责任到人。",
+          "quote_sha256": "1dc8a89061c0f469978f48135be9c9dc96b5b85bbcce095a7814f9a347dfe93d",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/moe-2024.json",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "265f2d6ef4987298cdfb82a7a57096fcadff111eb9f90f660563ec6475500d4f",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 124,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2389,
+              "normalized_end": 2513,
+              "location_units": [
+                {
+                  "saved_text_line": 40
+                }
+              ],
+              "matched_quote_sha256": "16cf83323fad92a80d5200a48c084df967170ef852e4fa5be5e44d00461a1a60"
+            }
+          ]
+        }
+      ]
     },
     {
       "source_id": "PUB-MOE-2013",
-      "locator": "L1",
-      "source_locator": "第二项中全过程记录与账实核对片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "b09d9fc681e1ba36c73615394988d3290464ad36498721fa648d8ed4154dcd8d"
-    },
-    {
-      "source_id": "PUB-MOE-2013",
-      "locator": "L2",
-      "source_locator": "第三项中五双管理片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "696c2f8b8b563d077e9a7e0bc3852e0ac15f43a86a0f73e75a5eafba3f61d718"
+      "title": "关于进一步加强高等学校实验室危险化学品安全管理工作的通知",
+      "manifest_url": "http://www.moe.gov.cn/srcsite/A16/s7062/201305/t20130513_152275.html",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2013-original.html",
+          "sha256": "e98bac14dd072c6465c5059e63ef79c18847d887cf467eb8f3ad32f9ffdca78e",
+          "artifact_kind": "original_http_html_bytes",
+          "actual_sha256": "e98bac14dd072c6465c5059e63ef79c18847d887cf467eb8f3ad32f9ffdca78e",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "HTMLParser visible text; whitespace removed; script/style/noscript excluded"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2013.md",
+          "sha256": "a8c27a62724f2a1b199eb00df325c5ff587df30291326ec50656bf1538ea98ff",
+          "artifact_kind": "browser_act_rendered_markdown",
+          "actual_sha256": "a8c27a62724f2a1b199eb00df325c5ff587df30291326ec50656bf1538ea98ff",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved rendered markdown; whitespace removed; no raw HTTP bytes inferred"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-MOE-2013.txt",
+      "excerpt_sha256": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第二项中全过程记录与账实核对片段",
+          "quote": "要建立购置管理的规范，对使用情况和存量情况进行检查监督，使各类危险化学品在整个使用周期中处于受控状态，建立从请购、领用、使用、回收、销毁的全过程的记录和控制制度，确保物品台账与使用登记账、库存物资之间的账账相符、账实相符。",
+          "quote_sha256": "b09d9fc681e1ba36c73615394988d3290464ad36498721fa648d8ed4154dcd8d",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2013-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "e98bac14dd072c6465c5059e63ef79c18847d887cf467eb8f3ad32f9ffdca78e",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 111,
+              "normalization": "whitespace_removed",
+              "normalized_start": 873,
+              "normalized_end": 984,
+              "location_units": [
+                {
+                  "html_line": 159
+                }
+              ],
+              "matched_quote_sha256": "b09d9fc681e1ba36c73615394988d3290464ad36498721fa648d8ed4154dcd8d"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2013.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "a8c27a62724f2a1b199eb00df325c5ff587df30291326ec50656bf1538ea98ff",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 111,
+              "normalization": "whitespace_removed",
+              "normalized_start": 952,
+              "normalized_end": 1063,
+              "location_units": [
+                {
+                  "saved_text_line": 17
+                }
+              ],
+              "matched_quote_sha256": "b09d9fc681e1ba36c73615394988d3290464ad36498721fa648d8ed4154dcd8d"
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第三项中五双管理片段",
+          "quote": "对于危险化学品中的毒害品，要参照对剧毒化学品的管理要求，落实“五双”即“双人保管、双人领取、双人使用、双把锁、双本帐”的管理制度。",
+          "quote_sha256": "696c2f8b8b563d077e9a7e0bc3852e0ac15f43a86a0f73e75a5eafba3f61d718",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2013-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "e98bac14dd072c6465c5059e63ef79c18847d887cf467eb8f3ad32f9ffdca78e",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 65,
+              "normalization": "whitespace_removed",
+              "normalized_start": 1046,
+              "normalized_end": 1111,
+              "location_units": [
+                {
+                  "html_line": 160
+                }
+              ],
+              "matched_quote_sha256": "696c2f8b8b563d077e9a7e0bc3852e0ac15f43a86a0f73e75a5eafba3f61d718"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2013.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "a8c27a62724f2a1b199eb00df325c5ff587df30291326ec50656bf1538ea98ff",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 65,
+              "normalization": "whitespace_removed",
+              "normalized_start": 1125,
+              "normalized_end": 1190,
+              "location_units": [
+                {
+                  "saved_text_line": 18
+                }
+              ],
+              "matched_quote_sha256": "696c2f8b8b563d077e9a7e0bc3852e0ac15f43a86a0f73e75a5eafba3f61d718"
+            }
+          ]
+        }
+      ]
     },
     {
       "source_id": "PUB-MOE-2021",
-      "locator": "L1",
-      "source_locator": "三（三）末句",
-      "matched_normalized_original": true,
-      "quote_sha256": "ee64129a1e6972571c5d51c85a718d6e11b04ee040a672245f7b4b7692d2305b"
-    },
-    {
-      "source_id": "PUB-MOE-2021",
-      "locator": "L2",
-      "source_locator": "三（五）人员准入片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "5de65adb5bcc29a5f2288f7dd49e5fdaab513566ed7db31e0d924f5d35b1753a"
+      "title": "关于开展加强高校实验室安全专项行动的通知",
+      "manifest_url": "http://www.moe.gov.cn/srcsite/A16/s7062/202112/t20211224_589878.html",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2021-original.html",
+          "sha256": "b145ce9956020b06e2167ad199ae7dd555da5bd3440532536e91bcf900c1f7b0",
+          "artifact_kind": "original_http_html_bytes",
+          "actual_sha256": "b145ce9956020b06e2167ad199ae7dd555da5bd3440532536e91bcf900c1f7b0",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "HTMLParser visible text; whitespace removed; script/style/noscript excluded"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-moe-2021.md",
+          "sha256": "b566d7cf88f244691f77e08c4e35425313e97681137bd1a204855b2f294ad666",
+          "artifact_kind": "browser_act_rendered_markdown",
+          "actual_sha256": "b566d7cf88f244691f77e08c4e35425313e97681137bd1a204855b2f294ad666",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved rendered markdown; whitespace removed; no raw HTTP bytes inferred"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-MOE-2021.txt",
+      "excerpt_sha256": "2e8c6fea0c97aa180fb59ff5516506ae91ec436590df95334b0f17b0e4c96b7b",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "三（三）末句",
+          "quote": "实验室重大安全隐患排除前或排除过程中无法保证安全的，应停止实验活动，隐患排除后经审查通过方可恢复实验。",
+          "quote_sha256": "ee64129a1e6972571c5d51c85a718d6e11b04ee040a672245f7b4b7692d2305b",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2021-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "b145ce9956020b06e2167ad199ae7dd555da5bd3440532536e91bcf900c1f7b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 51,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2311,
+              "normalized_end": 2362,
+              "location_units": [
+                {
+                  "html_line": 169
+                }
+              ],
+              "matched_quote_sha256": "ee64129a1e6972571c5d51c85a718d6e11b04ee040a672245f7b4b7692d2305b"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2021.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "b566d7cf88f244691f77e08c4e35425313e97681137bd1a204855b2f294ad666",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 51,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2410,
+              "normalized_end": 2461,
+              "location_units": [
+                {
+                  "saved_text_line": 27
+                }
+              ],
+              "matched_quote_sha256": "ee64129a1e6972571c5d51c85a718d6e11b04ee040a672245f7b4b7692d2305b"
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "三（五）人员准入片段",
+          "quote": "建立实验人员安全准入制度，要求进入实验室的师生必须先进行实验室安全知识、安全技能和操作规范培训的必修课课程或培训并进行考核，未取得相应学分或未通过考核的人员不得进入实验室进行实验操作。",
+          "quote_sha256": "5de65adb5bcc29a5f2288f7dd49e5fdaab513566ed7db31e0d924f5d35b1753a",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2021-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "b145ce9956020b06e2167ad199ae7dd555da5bd3440532536e91bcf900c1f7b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 92,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2856,
+              "normalized_end": 2948,
+              "location_units": [
+                {
+                  "html_line": 173
+                }
+              ],
+              "matched_quote_sha256": "5de65adb5bcc29a5f2288f7dd49e5fdaab513566ed7db31e0d924f5d35b1753a"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-moe-2021.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "b566d7cf88f244691f77e08c4e35425313e97681137bd1a204855b2f294ad666",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 92,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2955,
+              "normalized_end": 3047,
+              "location_units": [
+                {
+                  "saved_text_line": 31
+                }
+              ],
+              "matched_quote_sha256": "5de65adb5bcc29a5f2288f7dd49e5fdaab513566ed7db31e0d924f5d35b1753a"
+            }
+          ]
+        }
+      ]
     },
     {
       "source_id": "PUB-LAW-2026",
-      "locator": "L1",
-      "source_locator": "第五条第二款人员培训片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "47cc196a1d9e19940ab0b3985b957a7bc9a2db3b471b7d442bd58e38c54680d9"
-    },
-    {
-      "source_id": "PUB-LAW-2026",
-      "locator": "L2",
-      "source_locator": "第四十一条第一款",
-      "matched_normalized_original": true,
-      "quote_sha256": "da5eb3d1c8fe00f3a51fceebc2079353c5bb1be6794664410a1f705ce65a5730"
-    },
-    {
-      "source_id": "PUB-LAW-2026",
-      "locator": "L3",
-      "source_locator": "第四十二条第一款",
-      "matched_normalized_original": true,
-      "quote_sha256": "e960987afab19ff3614748882a3227190cfd2d2baf1c6c0dc8dfc746b55b4d53"
-    },
-    {
-      "source_id": "PUB-LAW-2026",
-      "locator": "L4",
-      "source_locator": "第五十一条第一款",
-      "matched_normalized_original": true,
-      "quote_sha256": "c2a0b16e3a3518f66b22bd226951b979ff1f6a908d40c086897ed4da7fa7d078"
-    },
-    {
-      "source_id": "PUB-LAW-2026",
-      "locator": "L5",
-      "source_locator": "第一百二十七条",
-      "matched_normalized_original": true,
-      "quote_sha256": "eeecac5418500e8cf10fe609b7791f7b25c05fdb4fc55fcfd935765cd0aa0738"
+      "title": "中华人民共和国危险化学品安全法",
+      "manifest_url": "https://www.sz.msa.gov.cn/flfg/2215930.jhtml",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+          "sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+          "artifact_kind": "original_http_html_bytes",
+          "actual_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "HTMLParser visible text; whitespace removed; script/style/noscript excluded"
+        },
+        {
+          "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+          "sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+          "artifact_kind": "browser_act_rendered_markdown",
+          "actual_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved rendered markdown; whitespace removed; no raw HTTP bytes inferred"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-LAW-2026.txt",
+      "excerpt_sha256": "e1ceb5d6cba430390b0bada808a3c0df2b77aa888a52283fe810b8ec4e55617d",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第五条第二款人员培训片段",
+          "quote": "从业人员应当接受教育和培训，考核合格后上岗作业；对有资格要求的岗位，应当配备依法取得相应资格的人员。",
+          "quote_sha256": "47cc196a1d9e19940ab0b3985b957a7bc9a2db3b471b7d442bd58e38c54680d9",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 50,
+              "normalization": "whitespace_removed",
+              "normalized_start": 1370,
+              "normalized_end": 1420,
+              "location_units": [
+                {
+                  "html_line": 1285
+                }
+              ],
+              "matched_quote_sha256": "47cc196a1d9e19940ab0b3985b957a7bc9a2db3b471b7d442bd58e38c54680d9"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 50,
+              "normalization": "whitespace_removed",
+              "normalized_start": 2195,
+              "normalized_end": 2245,
+              "location_units": [
+                {
+                  "saved_text_line": 72
+                }
+              ],
+              "matched_quote_sha256": "47cc196a1d9e19940ab0b3985b957a7bc9a2db3b471b7d442bd58e38c54680d9"
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第四十一条第一款",
+          "quote": "第四十一条　危险化学品应当储存在专用仓库、专用场地或者专用储存室、储存专柜（以下统称专用储存场所）内，并由专人负责管理；剧毒化学品以及储存数量构成重大危险源的其他危险化学品，应当在专用储存场所内单独存放，实行双人收发、双人保管制度，收发记录的保存期限不得少于三年。",
+          "quote_sha256": "da5eb3d1c8fe00f3a51fceebc2079353c5bb1be6794664410a1f705ce65a5730",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 131,
+              "normalization": "whitespace_removed",
+              "normalized_start": 8809,
+              "normalized_end": 8940,
+              "location_units": [
+                {
+                  "html_line": 1285
+                }
+              ],
+              "matched_quote_sha256": "09482934c4a53acbc453538d708fed24eb8cb3fff234721465a3be5a83f9faa6"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 131,
+              "normalization": "whitespace_removed",
+              "normalized_start": 9634,
+              "normalized_end": 9765,
+              "location_units": [
+                {
+                  "saved_text_line": 177
+                }
+              ],
+              "matched_quote_sha256": "09482934c4a53acbc453538d708fed24eb8cb3fff234721465a3be5a83f9faa6"
+            }
+          ]
+        },
+        {
+          "locator": "L3",
+          "source_locator": "第四十二条第一款",
+          "quote": "第四十二条　储存危险化学品的单位应当建立危险化学品出入库核查、登记制度。",
+          "quote_sha256": "e960987afab19ff3614748882a3227190cfd2d2baf1c6c0dc8dfc746b55b4d53",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 35,
+              "normalization": "whitespace_removed",
+              "normalized_start": 8976,
+              "normalized_end": 9011,
+              "location_units": [
+                {
+                  "html_line": 1285
+                }
+              ],
+              "matched_quote_sha256": "9ad6e7520c64ae1dbad0323c41b41184a4845954d773f7b5a1d7c3bd033dda73"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 35,
+              "normalization": "whitespace_removed",
+              "normalized_start": 9801,
+              "normalized_end": 9836,
+              "location_units": [
+                {
+                  "saved_text_line": 179
+                }
+              ],
+              "matched_quote_sha256": "9ad6e7520c64ae1dbad0323c41b41184a4845954d773f7b5a1d7c3bd033dda73"
+            }
+          ]
+        },
+        {
+          "locator": "L4",
+          "source_locator": "第五十一条第一款",
+          "quote": "第五十一条　使用危险化学品的单位应当将其作业场所使用的化学品安全技术说明书和化学品安全标签提供给从业人员，并加强培训教育，告知从业人员正确使用的方法和在紧急情况下应当采取的措施。",
+          "quote_sha256": "c2a0b16e3a3518f66b22bd226951b979ff1f6a908d40c086897ed4da7fa7d078",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 88,
+              "normalization": "whitespace_removed",
+              "normalized_start": 10370,
+              "normalized_end": 10458,
+              "location_units": [
+                {
+                  "html_line": 1285
+                }
+              ],
+              "matched_quote_sha256": "ee1d4eae9e06dacec683ba4cc6d240bd0ccaf1f0d9d35fbc0afee92ae8a0ca3f"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 88,
+              "normalization": "whitespace_removed",
+              "normalized_start": 11195,
+              "normalized_end": 11283,
+              "location_units": [
+                {
+                  "saved_text_line": 199
+                }
+              ],
+              "matched_quote_sha256": "ee1d4eae9e06dacec683ba4cc6d240bd0ccaf1f0d9d35fbc0afee92ae8a0ca3f"
+            }
+          ]
+        },
+        {
+          "locator": "L5",
+          "source_locator": "第一百二十七条",
+          "quote": "第一百二十七条　本法自2026年5月1日起施行。",
+          "quote_sha256": "eeecac5418500e8cf10fe609b7791f7b25c05fdb4fc55fcfd935765cd0aa0738",
+          "matched": true,
+          "primary_comparison_kind": "original_http_html_bytes",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa-original.html",
+              "artifact_kind": "original_http_html_bytes",
+              "archive_sha256": "fc9736720649ccb41b97014574058e259b47d45470ecf62f0ebe0da3d6aeecf7",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 23,
+              "normalization": "whitespace_removed",
+              "normalized_start": 27875,
+              "normalized_end": 27898,
+              "location_units": [
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                },
+                {
+                  "html_line": 1285
+                }
+              ],
+              "matched_quote_sha256": "32f39c87457401c8e860c4ab5e48da521abab5d1e29e2def0d66caf02b53c6e0"
+            },
+            {
+              "local_archive": ".runtime/public-source-research/official-fetch-law-2026-szmsa.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "dbb3849efdd8062c9c2a757f3cfed3c7fea5b6fbae45ed62095b69d5535ee1b0",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 23,
+              "normalization": "whitespace_removed",
+              "normalized_start": 28700,
+              "normalized_end": 28723,
+              "location_units": [
+                {
+                  "saved_text_line": 445
+                }
+              ],
+              "matched_quote_sha256": "32f39c87457401c8e860c4ab5e48da521abab5d1e29e2def0d66caf02b53c6e0"
+            }
+          ]
+        }
+      ]
     },
     {
       "source_id": "PUB-WYU-2026",
-      "locator": "L1",
-      "source_locator": "第一项风险清单与台账片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "40ab826da1e9b09670a957dca0599d914eabae4e2d351392feb5898512dc0638"
-    },
-    {
-      "source_id": "PUB-WYU-2026",
-      "locator": "L2",
-      "source_locator": "第二项自查整改与备案片段",
-      "matched_normalized_original": true,
-      "quote_sha256": "e1dd439e69b753275a3ff7cac3ee22860a1b9d9401da22c60cab2cae9571596c"
+      "title": "关于做好2026年度实验安全检查工作的通知",
+      "manifest_url": "https://www.wyu.edu.cn/shebeichu/info/1003/3223.htm",
+      "acquisitions": [
+        {
+          "local_archive": ".runtime/public-source-research/wyu-notice-2026.md",
+          "sha256": "87bf0da632a77ae0734197d4f6e36e1d9d95f1fddeb9785a86a185fb63d6f2db",
+          "artifact_kind": "browser_act_rendered_markdown",
+          "actual_sha256": "87bf0da632a77ae0734197d4f6e36e1d9d95f1fddeb9785a86a185fb63d6f2db",
+          "hash_matches_manifest": true,
+          "text_extraction_method": "Saved rendered markdown; whitespace removed; no raw HTTP bytes inferred"
+        }
+      ],
+      "excerpt_path": "excerpts/PUB-WYU-2026.txt",
+      "excerpt_sha256": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
+      "excerpt_hash_matches_manifest": true,
+      "passages": [
+        {
+          "locator": "L1",
+          "source_locator": "第一项风险清单与台账片段",
+          "quote": "参照《高校实验室重要危险源主要风险清单（试行）》，以房间为单位，组织各实验室开展安全风险排查，填写主要风险点，形成实验室安全风险清单，摸清学院实验室风险情况底数，建立台账并动态调整，做到“一室一表，一院一台账”。",
+          "quote_sha256": "40ab826da1e9b09670a957dca0599d914eabae4e2d351392feb5898512dc0638",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/wyu-notice-2026.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "87bf0da632a77ae0734197d4f6e36e1d9d95f1fddeb9785a86a185fb63d6f2db",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 106,
+              "normalization": "whitespace_removed",
+              "normalized_start": 351,
+              "normalized_end": 457,
+              "location_units": [
+                {
+                  "saved_text_line": 12
+                }
+              ],
+              "matched_quote_sha256": "40ab826da1e9b09670a957dca0599d914eabae4e2d351392feb5898512dc0638"
+            }
+          ]
+        },
+        {
+          "locator": "L2",
+          "source_locator": "第二项自查整改与备案片段",
+          "quote": "参照《高等学校实验室安全检查项目表（2026年）》，全面开展自查自纠，建立安全隐患台账，对隐患及时整改，做好整改记录；参照《高等学校实验室安全分级分类管理办法（试行）》，更新学院实验室分级分类信息备案表。",
+          "quote_sha256": "e1dd439e69b753275a3ff7cac3ee22860a1b9d9401da22c60cab2cae9571596c",
+          "matched": true,
+          "primary_comparison_kind": "browser_act_rendered_markdown",
+          "comparisons": [
+            {
+              "local_archive": ".runtime/public-source-research/wyu-notice-2026.md",
+              "artifact_kind": "browser_act_rendered_markdown",
+              "archive_sha256": "87bf0da632a77ae0734197d4f6e36e1d9d95f1fddeb9785a86a185fb63d6f2db",
+              "matched": true,
+              "occurrences": 1,
+              "normalized_quote_characters": 102,
+              "normalization": "whitespace_removed",
+              "normalized_start": 503,
+              "normalized_end": 605,
+              "location_units": [
+                {
+                  "saved_text_line": 13
+                }
+              ],
+              "matched_quote_sha256": "e1dd439e69b753275a3ff7cac3ee22860a1b9d9401da22c60cab2cae9571596c"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

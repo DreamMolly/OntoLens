@@ -1,4 +1,4 @@
-"""Offline consistency checks for a detached peiwu-replay-1 export.
+"""Offline consistency checks for a detached ontolens-replay-1 export.
 
 This module deliberately has no dependency on the workspace or database. It
 contains a small detached replay of the frozen decision contract so a package
@@ -162,7 +162,7 @@ def verify_evidence_export(payload: Any) -> dict[str, Any]:
                 "scope": dict(scope), "checks": list(checks.values()), "issues": issues}
 
     checks["format"]["status"] = "passed"
-    if not isinstance(payload, dict) or payload.get("format") != "peiwu-replay-1":
+    if not isinstance(payload, dict) or payload.get("format") != "ontolens-replay-1":
         issue("format", "unsupported_export_format")
         return finish()
     run, version, sources = payload.get("run"), payload.get("version"), payload.get("sources")

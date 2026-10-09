@@ -19,7 +19,7 @@ from urllib.parse import parse_qsl, urlsplit
 from ontolens.workspace import Workspace
 
 
-SCHEMA_VERSION = "peiwu-public-corpus-1"
+SCHEMA_VERSION = "ontolens-public-corpus-1"
 SCOPE = "public_documents_with_synthetic_ledger"
 LABEL_STATUS = "developer_authored_unreviewed"
 ID_PATTERN = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.-]{0,99}\Z")
@@ -294,7 +294,7 @@ def verify_public_corpus(corpus: Path) -> dict:
     found = sum(result["required_locators_found"] for result in results)
     required_total = sum(len(question["required_evidence"]) for question in manifest["questions"])
     located_total = required_total - sum(len(result["missing_required_evidence"]) for result in results)
-    return {"schema_version": "peiwu-public-corpus-verification-1", "scope": SCOPE,
+    return {"schema_version": "ontolens-public-corpus-verification-1", "scope": SCOPE,
             "passed": found == len(results), "integrity_passed": True,
             "external_request_sent": False, "production_database_used": False,
             "business_checker_called": False, "synthetic_ledger_imported": False,

@@ -30,7 +30,7 @@ def corpus(tmp_path):
                           "passages": [{"locator": "L1", "source_locator": "Article 1", "quote": line}]})
     ledger_raw = b'{"notice":"synthetic fixture only"}\n'
     (tmp_path / "ledger.json").write_bytes(ledger_raw)
-    manifest = {"schema_version": "peiwu-public-corpus-1", "scope": "public_documents_with_synthetic_ledger",
+    manifest = {"schema_version": "ontolens-public-corpus-1", "scope": "public_documents_with_synthetic_ledger",
                 "documents": documents,
                 "synthetic_ledger": [{"id": "ledger", "path": "ledger.json", "kind": "synthetic",
                                       "sha256": hashlib.sha256(ledger_raw).hexdigest(), "notice": "Synthetic fixture"}],

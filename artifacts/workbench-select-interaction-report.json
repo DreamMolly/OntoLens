@@ -1,7 +1,7 @@
 {
   "format": "ontolens-ui-qa-1",
   "status": "passed",
-  "observed_at": "2026-10-09T09:45:07.729700+00:00",
+  "observed_at": "2026-10-09T12:34:41.655189+00:00",
   "scope": "Isolated synthetic Playwright fixtures; not live industry, real device or screen reader validation",
   "tests": 6,
   "failures": 0,
@@ -14,38 +14,38 @@
     "index.html": "04033fe3a861718c6b4633126eab44727ea681480e57e682aa5fdccc49ea4bc2",
     "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded"
   },
-  "test_sha256": "dda9b39de09198643b7a903376fd41231afb36a9d1fbfec9975c47e17a14e665",
+  "test_sha256": "5834709f37f64b7a50bb0b2d49933dc1aa22968bb6da59e581d7a937f2b58583",
   "validation_command": ".venv/Scripts/python.exe -m pytest -q",
   "cases": [
     {
       "name": "test_native_values_labels_and_presets_stay_synchronized",
       "status": "passed",
-      "seconds": 3.186
+      "seconds": 3.078
     },
     {
       "name": "test_pointer_keyboard_commit_escape_tab_and_aria",
       "status": "passed",
-      "seconds": 3.844
+      "seconds": 3.724
     },
     {
       "name": "test_typeahead_and_disabled_options_do_not_commit_until_enter",
       "status": "passed",
-      "seconds": 2.946
+      "seconds": 2.91
     },
     {
       "name": "test_async_sources_loading_failure_refresh_and_required_focus",
       "status": "passed",
-      "seconds": 3.007
+      "seconds": 3.054
     },
     {
       "name": "test_dismissals_sidebar_and_resize_preserve_values_without_api_writes",
       "status": "passed",
-      "seconds": 3.192
+      "seconds": 3.321
     },
     {
       "name": "test_mobile_flip_motion_reduced_motion_and_fast_reopen",
       "status": "passed",
-      "seconds": 4.315
+      "seconds": 4.682
     }
   ]
 }

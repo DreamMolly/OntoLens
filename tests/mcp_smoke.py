@@ -48,7 +48,7 @@ async def run(url):
             assets = await session.call_tool("asset_recognition", {"source_id": source_id})
             assert not assets.isError
             asset_payload = json.loads(assets.content[0].text)
-            assert asset_payload["schema"]["version"] == "peiwu-ontology-1"
+            assert asset_payload["schema"]["version"] == "ontolens-ontology-1"
             print("MCP SDK smoke: PASS — 7 tools, assets, decision_check, JEV fallback and offline citation check")
 
 

@@ -124,7 +124,7 @@ class Workspace:
                 return
             snapshot = {"catalog": {group: {} for group in GROUPS[:4]}, "issues": {},
                         "provenance": {}, "person_evidence": {}, "validity": {}, "rules": "",
-                        "mode": "imported_workspace", "schema_version": "peiwu-snapshot-1"}
+                        "mode": "imported_workspace", "schema_version": "ontolens-snapshot-1"}
             encoded = encode(snapshot)
             connection.execute("INSERT INTO versions VALUES(?,?,?,?,?,?)", (
                 "operational-initial", None, encoded, digest(encoded.encode()), "空业务工作区", timestamp()))
@@ -174,7 +174,7 @@ class Workspace:
             snapshot = {"catalog": {group: facts[group] for group in GROUPS[:4]},
                         "issues": facts["issues"], "rules": normalized,
                         "provenance": provenance, "person_evidence": {}, "validity": parsed["validity"],
-                        "mode": "imported_workspace", "schema_version": "peiwu-snapshot-1",
+                        "mode": "imported_workspace", "schema_version": "ontolens-snapshot-1",
                         "import_manifest": manifest, "import_bindings": bindings}
             patch = {"type": "ledger_bundle", "label": manifest["label"],
                      "operator": manifest["authorization"]["operator"],
@@ -245,7 +245,7 @@ class Workspace:
                  for index, line in enumerate(rule_text.splitlines(), 1)], "synthetic", True)
             snapshot = {"catalog": catalog, "issues": issues, "provenance": provenance,
                         "person_evidence": {}, "validity": {}, "rules": rule_text,
-                        "mode": "synthetic_demo", "schema_version": "peiwu-snapshot-1"}
+                        "mode": "synthetic_demo", "schema_version": "ontolens-snapshot-1"}
             encoded = encode(snapshot)
             connection.execute("INSERT INTO versions VALUES(?,?,?,?,?,?)", (
                 "demo-initial", None, encoded, digest(encoded.encode()), "初始合成快照", timestamp()))
@@ -739,7 +739,7 @@ class Workspace:
                 append_edge(edge)
 
         evidence_ids = list(dict.fromkeys(legacy_ids + [item["source_id"] for item in structured]))
-        record = {"schema_version": "peiwu-review-1", "id": identifier("review_"),
+        record = {"schema_version": "ontolens-review-1", "id": identifier("review_"),
                   "run_id": run_id, "version_id": run["version_id"],
                   "snapshot_hash": run["result"]["snapshot_hash"],
                   "request_sha256": digest(encode(run["request"]).encode("utf-8")),
@@ -929,7 +929,7 @@ class Workspace:
             source["raw_base64"] = base64.b64encode(source.pop("raw")).decode("ascii")
             source["raw_encoding"] = "base64"
             sources.append(source)
-        return {"format": "peiwu-replay-1", "run": run, "version": version,
+        return {"format": "ontolens-replay-1", "run": run, "version": version,
                 "sources": sources,
                 "mode": snapshot.get("mode", "synthetic_demo"),
                 "notice": "合成演示复现包；无人员身份或专业审核背书" if snapshot.get("mode") == "synthetic_demo" else "导入资料复现包；可核验字节、来源映射和程序结果，不验证身份、真实性或专业审核"}

@@ -234,7 +234,7 @@ def test_person_evidence_location_and_hash_are_checked(workspace):
     assert {"person_locator_unresolved", "person_source_hash_mismatch"} <= codes(report)
 
 
-@pytest.mark.parametrize("value", [None, [], {}, {"format": "peiwu-replay-1"}])
+@pytest.mark.parametrize("value", [None, [], {}, {"format": "ontolens-replay-1"}])
 def test_malformed_package_returns_a_failure_report(value):
     assert verify_evidence_export(value)["passed"] is False
 

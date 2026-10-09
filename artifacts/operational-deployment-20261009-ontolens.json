@@ -1,12 +1,12 @@
 {
   "format": "ontolens-operational-deployment-1",
   "status": "passed",
-  "started_at": "2026-10-09T09:35:39.163760+00:00",
+  "started_at": "2026-10-09T11:45:49.053177+00:00",
   "scope": "Actual new Docker app deployment and HTTP workflow using invented TEST FIXTURE private records; not real industry evaluation.",
-  "project": "ontolens-qa-18b8fd3bd7",
+  "project": "ontolens-qa-7eb1260e77",
   "port": 18769,
-  "image_tag": "ontolens:qa-20261009-public",
-  "volume": "ontolens-qa-18b8fd3bd7-state",
+  "image_tag": "ontolens:qa-final",
+  "volume": "ontolens-qa-7eb1260e77-state",
   "checks": {
     "unauthenticated_reads_denied": true,
     "fresh_operational_volume": true,
@@ -47,15 +47,15 @@
   "real_industry_data_used": false,
   "nexent": {
     "status": "ready",
-    "text": "当前程序状态为 `ready`，动作 `ALLOW`（原因：`ALLOWED`），证据数量为 6。资料性质尚未判定，不能据此判断是否为合成数据或真实数据。由于需要人工核对，下一步应等待人工核验；程序结果不代表已完成审核或可实际出库。",
+    "text": "当前状态为 `ready`，程序动作是 `ALLOW`，原因码为 `ALLOWED`，证据数量为 6；这表示程序决定允许，不代表已完成人工审核或可实际出库。\n\n`human_review_required=true`，仍需等待人工核对现有证据及程序结果。`synthetic=null`、`data_authenticity=not_assessed` 表示资料性质未判定、真实性未评估，不能据此认定为真实或非合成数据。",
     "provider": "nexent",
-    "observed_at": "2026-10-09T09:38:36.199844+00:00",
+    "observed_at": "2026-10-09T11:46:11.873307+00:00",
     "agent_id": 2,
     "tool_calls": {},
     "event_counts": {
       "agent_new_run": 1,
       "step_count": 1,
-      "model_output_thinking": 57,
+      "model_output_thinking": 93,
       "token_count": 1,
       "final_answer": 1
     },
@@ -70,31 +70,31 @@
   "source_sha256": {
     "src/ontolens/__init__.py": "a2724688d7c1223339b46a14306a81ba505659095018d95fdafa6fb4b7205ba2",
     "src/ontolens/__main__.py": "645e6ab65358d97e35588cb8fe43f3cf51b02f680252a8e234bc7fbacbc85e1f",
-    "src/ontolens/access.py": "1fc9254186e49234a93fac9db76c3072970f169f4c282eb713f7cec3be635077",
+    "src/ontolens/access.py": "4cc5732bdc2ca584fc42b9124ff9825033731b62cd58baf99b0b8b56452f292b",
     "src/ontolens/asset_evaluation.py": "780ea41916a58b7f159cb3e4fdff5c25b7c1e8aec52b0e216ecd091d1f386bc3",
     "src/ontolens/audit_context.py": "1a882bae7f5dd8b03fe569e71993a8cd96425c584e631f4c0b9317991d890e4f",
     "src/ontolens/bridge.py": "ac0834eb1a6c0bd64c7799a424692ec889292ca40a8fb47a4b6d18af8a4777fd",
     "src/ontolens/catalog.py": "64a12ad6b84ea26f9b039eb3509c640bf7b0bde005915e7fcfb47f58aab48860",
     "src/ontolens/checker.py": "7bc321d06c7965620fa32c0d7618bff7ab2ec7a188e73179e9fb1c811c9e9362",
     "src/ontolens/cli.py": "5dc5a22602573f673b3386e819c522ccf846dc8c705951fffb83f0b40182a034",
-    "src/ontolens/config.py": "f9ca222ec38ad3b938679e4a5be6d0a06d4943c282bd9e5abdac0ef11fc563a5",
+    "src/ontolens/config.py": "23177ad2341121eeaf48c4ecdb278c0b54c8e4380e94554289ad6a443e7146b8",
     "src/ontolens/contracts.py": "99a2c01d30d64bf59c2ebae905a8d1ebd2f8b0db44f0f084637f06f525a19943",
     "src/ontolens/counterfactual.py": "28150a8f3349f0c5dfd76f3597815945c7095b69d7b6e579d0b3fedd1367e75c",
-    "src/ontolens/delivery.py": "1bd33a916b131d63b2e3d85b3faea7108cdc9107bce2d3e1cbc785897b025305",
+    "src/ontolens/delivery.py": "bbeb8ce6a56442b67bd791e763beb063218635cc2f0986e4acfa5ae6fe751dcc",
     "src/ontolens/documents.py": "1658c1b3f4e739b11a20b079c1f5239fdbba8ea1332c924e240b222eb77c14d5",
     "src/ontolens/evaluate.py": "ef4ab5711dff1fc685dc9258ff96566b8dec1c16c06468b0572092259c89178b",
-    "src/ontolens/export_verification.py": "4813a5fed572eb01da8df7508ae6b891951dc67b8dffb9a1338562760441e394",
+    "src/ontolens/export_verification.py": "fb888a7462f7a59887b3660e34a0d5a7b395183d0c98af15dbb41b64287afc1e",
     "src/ontolens/gate.py": "46b42ed2808fb5eaf221e54a80e18b13fb8af3d43a84f1d2e7c87057be54d301",
-    "src/ontolens/jev.py": "3b43d5382278ad64ab34908e6dd36e0a7a1ec169418448df34b1933c2bfa3d0c",
-    "src/ontolens/jev_replay.py": "e67288838f6548ea46863fdbf357d83ac6b51a4422f72a2a310cefdbc0d82173",
-    "src/ontolens/ledger_import.py": "54483dbcaf5fca0e938f6f794fb1719b348eff5b704b59f5dc9e592760f17a6f",
+    "src/ontolens/jev.py": "f0cabb58d010aa29f59b822eb2bc4dad8cc0d8e787931d5178978e0e3ba6ba2d",
+    "src/ontolens/jev_replay.py": "e0a6e2d28b2ec5cf6487a2cb8d393bf205fa228c49a61dc895735c3bb288cf1e",
+    "src/ontolens/ledger_import.py": "9bea7c25aaa0a5cadf78c95eafa1fe1f26ca7c4a6f77f1734431e648da84629c",
     "src/ontolens/model_context.py": "b1a2544fd311fbad7cd899d2e53e5bd62f40b972093cbbb26ea686f6578b5f5b",
     "src/ontolens/model_explain.py": "a6f643ecabc29a02e8fa7c8156c1536ddf7c3c1892a1bd2af5acb4ad322c5590",
     "src/ontolens/models.py": "111d23637c9d8c65b8ded618e51173d70a4e2c6929ee6384e7c182c8b473751a",
-    "src/ontolens/nexent_runtime.py": "9c356a839579b74e43b942aeff0496367cbf6d2a15833e7506305b22d3d11f9b",
-    "src/ontolens/ontology.py": "5abc934cdf9673ed4f8ce5b4d1c5c94b4e212ef1e54cd15a94e09046d1000bea",
-    "src/ontolens/public_corpus.py": "1cc9479083c2a38320a8f8a757d5ad4e8938b5c918846a423ddddb1ee59485eb",
-    "src/ontolens/review_verification.py": "f646f3948a82e63ee6802ad3fb74cc1d62f01e33f6b09c199e153cb845cd2f79",
+    "src/ontolens/nexent_runtime.py": "e6f3592322eaaa2d5254f4332867eda2ac7ae6f5f160b6b835fcd819f70cc1c3",
+    "src/ontolens/ontology.py": "28bd7554e487f595968b16ced0f2436db711d1e6dfe78e048463d652ea47ed6d",
+    "src/ontolens/public_corpus.py": "3f61aff55087eab73050224e22961459833b56545bf160c1246d5d8f8e1d0381",
+    "src/ontolens/review_verification.py": "883cf6de0f046261bcef21130d5acec8ad63fa4cc760a371d8b7f5327050ecf8",
     "src/ontolens/rules.py": "7d7fa275ccc129846916586fdf1c6b8a1ef4d1bbbff51be6b3d3583cfbd37265",
     "src/ontolens/static/app.js": "c320b869de51c73cc3f0ec7dcfc6b52bafa7231a6d939b1884cfbd7ed7db23f7",
     "src/ontolens/static/date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded",
@@ -114,9 +114,8 @@
     "src/ontolens/static/ontolens-symbol-d1-48.png": "d8abd387ffdd49158bc5976f88e824469c1cf571867ae44d9d2c07e8d60b90d4",
     "src/ontolens/static/ontolens-symbol-d1-64.png": "50dd4376114149fbe551d6dd72529b06df50407eb2d637f93e1db736243792f4",
     "src/ontolens/static/style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924",
-    "src/ontolens/web.py": "70a185667db8de91f8699c65ce3cb18d9d5b7751b47642b53ea253d9f992ee19",
-    "src/ontolens/workspace.py": "c63dfc9434711d3a68b4530df8eabac3d932e8d38ecf1fd2d3c051412c0e63c1",
-    "src/peiwu/__init__.py": "05e4e7dc7c14c9342958fc28593e48b12fb66b8b4765dcfe76750e04e84aa4db",
+    "src/ontolens/web.py": "5077ed8fa909c723b9248d44b24a2d10794403bf174216dbde1f541ee65d4cb0",
+    "src/ontolens/workspace.py": "3d6d5e3b5a6b8d0398e553c6ddf82fc6f3237949f8b6a29c2e6df3794aeaf9e0",
     "data/cases/heldout.yaml": "ad43a331a74280408113da0ffdfa11a9aee35874cd222ca61f5a4ca1bb51b7e3",
     "data/cases/incidents.yaml": "079769764f9c757131d1fd39c07f48ae4454582d4c221d75ae810dcfc12074a3",
     "data/cases/regression.yaml": "9eec41c746d4eae2a4aee3c1a0903c2d7e49623ffa08781722c50552c5410863",
@@ -133,7 +132,7 @@
     "data/public/official-lab-safety/excerpts/PUB-MOE-2023.txt": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
     "data/public/official-lab-safety/excerpts/PUB-MOE-2024.txt": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
     "data/public/official-lab-safety/excerpts/PUB-WYU-2026.txt": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
-    "data/public/official-lab-safety/manifest.json": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
+    "data/public/official-lab-safety/manifest.json": "f37e6ad452cc40002ef62e7b009096a5edeca524568fc99c48f436d291498c26",
     "data/public/official-lab-safety/synthetic-ledgers/LEDGER-ADMISSION-DEMO.csv": "c4aee745038a14f76cf6dbc53ec3a5e31055d9c4bbb8332dd76f5847c752f04d",
     "data/public/official-lab-safety/synthetic-ledgers/LEDGER-VERSION-DEMO.csv": "1fd999a6b826aee0e29ed69a7b19c933671086f185795de17cb620846ee498ad",
     "data/rules/v1.yaml": "05d7a7e319d16f92fd1430160dfd4ee54b9f861c93b6428502bfbe4cea28bfc1",
@@ -141,44 +140,44 @@
     "data/rules/v3.yaml": "b72394da86f7aa461bd2ee2453b9944ed1b84fa000a6526ea9ab297c610f9e8c",
     "Dockerfile": "af619169197c4e7c024efe87a85cfeffe1a6e3b5addd7393ab2016d07ee95de7",
     ".dockerignore": "d655304e22e5add0a74043281d2edf8ddf27d385d8d581ee35f84872f4adfbab",
-    "pyproject.toml": "b28dfcb3a10fe35c5c5652ffb7cdd84a60c4c7502ae0691bd2e673cf0d1b6553",
-    "README.md": "2b36e8962d0fb714e91c52c06576a6afb0836b644066262ad7651d4470d82880"
+    "pyproject.toml": "c03a7de37cd05fff509cb876b687246523c4408530d2f192eb7bfe96f23af064",
+    "README.md": "adbe96aefeeecd575217414a86511e43e9896a776b895df69c44c9ca633a9455"
   },
   "runs": [
     {
       "action": "ALLOW",
-      "run_id": "run_2b8ef1451d4340719d2c",
-      "export_sha256": "e4ca14172e2ae5bf77c4874f05e9eef80525ce46d7cd277b6fce2eeebe0ceee7",
+      "run_id": "run_06abdeaa69464b99bec8",
+      "export_sha256": "b6f4ca60de48b07b6114e70a4ace2071aaac095b879cfca03963da73ca2f9358",
       "offline_verified": true
     },
     {
       "action": "DENY",
-      "run_id": "run_d89e4e741b0841c4acd3",
-      "export_sha256": "86537368867538ab627de0a11f3f369c550f2487adfe6f00b82b1d6881afa7a5",
+      "run_id": "run_c289199129294798a94f",
+      "export_sha256": "d90ca1bc4c45c4d6e189f7a7ceb53508e8e9b4e1610e26805a6e006f40c79455",
       "offline_verified": true
     },
     {
       "action": "LIMIT",
-      "run_id": "run_cda5e166b33f4aff8847",
-      "export_sha256": "53764fa23ee40187127d25d129d2c41173fbe96c37206b893a4126f54b47e0d6",
+      "run_id": "run_54afdacc731f42898e54",
+      "export_sha256": "6297ab4ce11bc39ecc8a962a14e96fc80ce8163a4b3c311427e4addbb8463181",
       "offline_verified": true
     },
     {
       "action": "ISOLATE",
-      "run_id": "run_9670cd19a61e4217add6",
-      "export_sha256": "12fce876981f3a144debf86edcfd3f3ad28453b4c03ef48764ecd201f6923b6b",
+      "run_id": "run_9dac4b7e7e0244d3b942",
+      "export_sha256": "5d3a873a558cf0b2668bdbe4697c00cd827c029db8e7ba04bcf20ce45e426f78",
       "offline_verified": true
     },
     {
       "action": null,
-      "run_id": "run_25653e2cce9e41e08241",
-      "export_sha256": "0e83bcef310b5acfc338e855cb18a14cf4e6159b8cf9a343393ebe9bbe8ea123",
+      "run_id": "run_585b9901cad44b25858f",
+      "export_sha256": "563f3e186a5110f4f1757edb12630e4aa72ddc0cc046ae75a3c59ba0cb950bb1",
       "offline_verified": true
     }
   ],
   "container": {
-    "id": "923c24ffd61c4ccb127114eb7dae2c374525ff37b02d479e00e1ba2d5b563fe9",
-    "image_id": "sha256:e4e79af2d4c55cdc3d4492657544e119234533e43df931a0c36266310a079ddb",
+    "id": "80b22f0ef47efb005e5ec9e3878f0c621f3a71b52cbcbd151704681983bd2b55",
+    "image_id": "sha256:34bda9c402d018efa8da3a26b4ec5ce1118315417867388ba3de17eb917881b8",
     "health": "healthy",
     "state": "running"
   },
@@ -198,54 +197,38 @@
     }
   },
   "isolated_container_stopped": true,
-  "observed_at": "2026-10-09T09:39:30.643854+00:00",
-  "refreshes": [
-    {
-      "started_at": "2026-10-09T09:37:27.175615+00:00",
-      "status": "passed",
-      "model_request_sent": true,
-      "static_sha256": {
-        "app.js": "c320b869de51c73cc3f0ec7dcfc6b52bafa7231a6d939b1884cfbd7ed7db23f7",
-        "date-controls.js": "790189234381a3bf33bf930c88067d925b44441c41fea58bb5817b154a48bded",
-        "index.html": "04033fe3a861718c6b4633126eab44727ea681480e57e682aa5fdccc49ea4bc2",
-        "style.css": "dff1c8b106999e30a5d826897720028525b295ee2fd19c56345db96604fe8924"
-      },
-      "state_preserved": true,
-      "observed_at": "2026-10-09T09:38:38.638444+00:00"
-    }
-  ],
+  "observed_at": "2026-10-09T11:47:03.118724+00:00",
   "image_source_sha256": {
-    "src/peiwu/__init__.py": "05e4e7dc7c14c9342958fc28593e48b12fb66b8b4765dcfe76750e04e84aa4db",
-    "src/ontolens/jev.py": "3b43d5382278ad64ab34908e6dd36e0a7a1ec169418448df34b1933c2bfa3d0c",
-    "src/ontolens/web.py": "70a185667db8de91f8699c65ce3cb18d9d5b7751b47642b53ea253d9f992ee19",
-    "src/ontolens/jev_replay.py": "e67288838f6548ea46863fdbf357d83ac6b51a4422f72a2a310cefdbc0d82173",
+    "src/ontolens/jev.py": "f0cabb58d010aa29f59b822eb2bc4dad8cc0d8e787931d5178978e0e3ba6ba2d",
+    "src/ontolens/web.py": "5077ed8fa909c723b9248d44b24a2d10794403bf174216dbde1f541ee65d4cb0",
+    "src/ontolens/jev_replay.py": "e0a6e2d28b2ec5cf6487a2cb8d393bf205fa228c49a61dc895735c3bb288cf1e",
     "src/ontolens/cli.py": "5dc5a22602573f673b3386e819c522ccf846dc8c705951fffb83f0b40182a034",
-    "src/ontolens/ledger_import.py": "54483dbcaf5fca0e938f6f794fb1719b348eff5b704b59f5dc9e592760f17a6f",
+    "src/ontolens/ledger_import.py": "9bea7c25aaa0a5cadf78c95eafa1fe1f26ca7c4a6f77f1734431e648da84629c",
     "src/ontolens/asset_evaluation.py": "780ea41916a58b7f159cb3e4fdff5c25b7c1e8aec52b0e216ecd091d1f386bc3",
     "src/ontolens/models.py": "111d23637c9d8c65b8ded618e51173d70a4e2c6929ee6384e7c182c8b473751a",
-    "src/ontolens/review_verification.py": "f646f3948a82e63ee6802ad3fb74cc1d62f01e33f6b09c199e153cb845cd2f79",
+    "src/ontolens/review_verification.py": "883cf6de0f046261bcef21130d5acec8ad63fa4cc760a371d8b7f5327050ecf8",
     "src/ontolens/__init__.py": "a2724688d7c1223339b46a14306a81ba505659095018d95fdafa6fb4b7205ba2",
     "src/ontolens/gate.py": "46b42ed2808fb5eaf221e54a80e18b13fb8af3d43a84f1d2e7c87057be54d301",
     "src/ontolens/model_context.py": "b1a2544fd311fbad7cd899d2e53e5bd62f40b972093cbbb26ea686f6578b5f5b",
     "src/ontolens/audit_context.py": "1a882bae7f5dd8b03fe569e71993a8cd96425c584e631f4c0b9317991d890e4f",
     "src/ontolens/evaluate.py": "ef4ab5711dff1fc685dc9258ff96566b8dec1c16c06468b0572092259c89178b",
-    "src/ontolens/export_verification.py": "4813a5fed572eb01da8df7508ae6b891951dc67b8dffb9a1338562760441e394",
+    "src/ontolens/export_verification.py": "fb888a7462f7a59887b3660e34a0d5a7b395183d0c98af15dbb41b64287afc1e",
     "src/ontolens/bridge.py": "ac0834eb1a6c0bd64c7799a424692ec889292ca40a8fb47a4b6d18af8a4777fd",
-    "src/ontolens/workspace.py": "c63dfc9434711d3a68b4530df8eabac3d932e8d38ecf1fd2d3c051412c0e63c1",
+    "src/ontolens/workspace.py": "3d6d5e3b5a6b8d0398e553c6ddf82fc6f3237949f8b6a29c2e6df3794aeaf9e0",
     "src/ontolens/documents.py": "1658c1b3f4e739b11a20b079c1f5239fdbba8ea1332c924e240b222eb77c14d5",
-    "src/ontolens/ontology.py": "5abc934cdf9673ed4f8ce5b4d1c5c94b4e212ef1e54cd15a94e09046d1000bea",
+    "src/ontolens/ontology.py": "28bd7554e487f595968b16ced0f2436db711d1e6dfe78e048463d652ea47ed6d",
     "src/ontolens/model_explain.py": "a6f643ecabc29a02e8fa7c8156c1536ddf7c3c1892a1bd2af5acb4ad322c5590",
-    "src/ontolens/delivery.py": "1bd33a916b131d63b2e3d85b3faea7108cdc9107bce2d3e1cbc785897b025305",
+    "src/ontolens/delivery.py": "bbeb8ce6a56442b67bd791e763beb063218635cc2f0986e4acfa5ae6fe751dcc",
     "src/ontolens/catalog.py": "64a12ad6b84ea26f9b039eb3509c640bf7b0bde005915e7fcfb47f58aab48860",
     "src/ontolens/counterfactual.py": "28150a8f3349f0c5dfd76f3597815945c7095b69d7b6e579d0b3fedd1367e75c",
-    "src/ontolens/nexent_runtime.py": "9c356a839579b74e43b942aeff0496367cbf6d2a15833e7506305b22d3d11f9b",
+    "src/ontolens/nexent_runtime.py": "e6f3592322eaaa2d5254f4332867eda2ac7ae6f5f160b6b835fcd819f70cc1c3",
     "src/ontolens/contracts.py": "99a2c01d30d64bf59c2ebae905a8d1ebd2f8b0db44f0f084637f06f525a19943",
     "src/ontolens/__main__.py": "645e6ab65358d97e35588cb8fe43f3cf51b02f680252a8e234bc7fbacbc85e1f",
     "src/ontolens/rules.py": "7d7fa275ccc129846916586fdf1c6b8a1ef4d1bbbff51be6b3d3583cfbd37265",
     "src/ontolens/checker.py": "7bc321d06c7965620fa32c0d7618bff7ab2ec7a188e73179e9fb1c811c9e9362",
-    "src/ontolens/access.py": "1fc9254186e49234a93fac9db76c3072970f169f4c282eb713f7cec3be635077",
-    "src/ontolens/config.py": "f9ca222ec38ad3b938679e4a5be6d0a06d4943c282bd9e5abdac0ef11fc563a5",
-    "src/ontolens/public_corpus.py": "1cc9479083c2a38320a8f8a757d5ad4e8938b5c918846a423ddddb1ee59485eb",
+    "src/ontolens/access.py": "4cc5732bdc2ca584fc42b9124ff9825033731b62cd58baf99b0b8b56452f292b",
+    "src/ontolens/config.py": "23177ad2341121eeaf48c4ecdb278c0b54c8e4380e94554289ad6a443e7146b8",
+    "src/ontolens/public_corpus.py": "3f61aff55087eab73050224e22961459833b56545bf160c1246d5d8f8e1d0381",
     "src/ontolens/static/ontolens-mark.svg": "cb7e40733f6553a8ba6f1f789d86b04c69d782be8c57d061640aa3d5778851de",
     "src/ontolens/static/app.js": "c320b869de51c73cc3f0ec7dcfc6b52bafa7231a6d939b1884cfbd7ed7db23f7",
     "src/ontolens/static/ontolens-symbol-d1-256.webp": "3b6aebfcc1ddb179c0d7d4342a0ded46d8162704229d7c2efb641e258eb93ab1",
@@ -271,7 +254,7 @@
     "data/demo/synthetic-asset-label.transcript.md": "cb3b6d8abddd355b810e5252b7f0e1300eb67717b02ade6ec867fd9f955aecdc",
     "data/demo/synthetic-asset-label.png": "aec2488c3d7a4dcb5b4907c2d91d03c89f3757b3ac2ef6708c8fdb21dc4b81b2",
     "data/demo/authorization-change.md": "98617e3762f5a934dfac57122c13acb488b2952e2b20c1dc4d9c82e7264d753f",
-    "data/public/official-lab-safety/manifest.json": "55e0356ec1e21bbf1f23fec78783e5865a2d30595b52f3cd9a391b163fcc085d",
+    "data/public/official-lab-safety/manifest.json": "f37e6ad452cc40002ef62e7b009096a5edeca524568fc99c48f436d291498c26",
     "data/public/official-lab-safety/synthetic-ledgers/LEDGER-ADMISSION-DEMO.csv": "c4aee745038a14f76cf6dbc53ec3a5e31055d9c4bbb8332dd76f5847c752f04d",
     "data/public/official-lab-safety/synthetic-ledgers/LEDGER-VERSION-DEMO.csv": "1fd999a6b826aee0e29ed69a7b19c933671086f185795de17cb620846ee498ad",
     "data/public/official-lab-safety/excerpts/PUB-WYU-2026.txt": "a7505bc025542e6ecf81554e9ccf6d851575f22b2ee6ad28c588f19899619d01",
@@ -286,16 +269,15 @@
     "data/cases/regression.yaml": "9eec41c746d4eae2a4aee3c1a0903c2d7e49623ffa08781722c50552c5410863",
     "data/cases/incidents.yaml": "079769764f9c757131d1fd39c07f48ae4454582d4c221d75ae810dcfc12074a3",
     "data/cases/heldout.yaml": "ad43a331a74280408113da0ffdfa11a9aee35874cd222ca61f5a4ca1bb51b7e3",
-    "pyproject.toml": "b28dfcb3a10fe35c5c5652ffb7cdd84a60c4c7502ae0691bd2e673cf0d1b6553",
-    "README.md": "2b36e8962d0fb714e91c52c06576a6afb0836b644066262ad7651d4470d82880"
+    "pyproject.toml": "c03a7de37cd05fff509cb876b687246523c4408530d2f192eb7bfe96f23af064",
+    "README.md": "adbe96aefeeecd575217414a86511e43e9896a776b895df69c44c9ca633a9455"
   },
-  "migration": {
+  "runtime": {
     "identity": {
       "package_name": "ontolens",
       "version": "0.4.0",
       "console_scripts": {
-        "ontolens": "ontolens.cli:main",
-        "peiwu": "ontolens.cli:main"
+        "ontolens": "ontolens.cli:main"
       },
       "web_module": "ontolens.web"
     },
@@ -311,7 +293,7 @@
       "8768",
       "--no-proxy-headers"
     ],
-    "canonical_environment": {
+    "environment": {
       "ONTOLENS_ROOT": "/app",
       "ONTOLENS_DB": "/state/workbench.sqlite3",
       "ONTOLENS_AUTH_FILE": "/config/accounts.json",
@@ -320,25 +302,22 @@
       "ONTOLENS_NEXENT_AGENT_ID": "2"
     },
     "csrf_header": "X-OntoLens-Token",
-    "image_readme_sha256_at_build": "2b36e8962d0fb714e91c52c06576a6afb0836b644066262ad7651d4470d82880",
-    "readme_matches_at_probe_start": true,
-    "readme_scope": "Image README bytes are build-time evidence; subsequent workspace README edits are outside this image receipt."
+    "image_readme_sha256_at_build": "adbe96aefeeecd575217414a86511e43e9896a776b895df69c44c9ca633a9455",
+    "readme_matches_at_probe_start": true
   },
   "restart": {
-    "container_id": "923c24ffd61c4ccb127114eb7dae2c374525ff37b02d479e00e1ba2d5b563fe9",
-    "started_at": "2026-10-09T09:39:22.997267326Z",
-    "unchanged_snapshot_sha256": "23765d11bc3e84f11266dfe493421af8cc367096041a03157eed472f32bb8785",
+    "container_id": "80b22f0ef47efb005e5ec9e3878f0c621f3a71b52cbcbd151704681983bd2b55",
+    "started_at": "2026-10-09T11:46:54.985484724Z",
+    "unchanged_snapshot_sha256": "2d61506b51f9b1561ae00590b6f79791db291e5917250505597e75b3099b2ddb",
     "endpoint_count": 9,
-    "source_file_count": 73
+    "source_file_count": 72
   },
   "build": {
     "status": "passed",
-    "image_tag": "ontolens:qa-20261009-public",
-    "image_id": "sha256:e4e79af2d4c55cdc3d4492657544e119234533e43df931a0c36266310a079ddb",
+    "image_tag": "ontolens:qa-final",
+    "image_id": "sha256:34bda9c402d018efa8da3a26b4ec5ce1118315417867388ba3de17eb917881b8",
     "base_image": "docker.m.daocloud.io/library/python@sha256:0dd364ba7e10242f07755449e3a3d0e35f9efd987952737b90def6709ab0c5ce",
-    "pip_index": "https://pypi.tuna.tsinghua.edu.cn/simple",
-    "dependency_layer_cached": false,
-    "wheel_sha256": "1608f4a6c7d94a9366dcd38630257d238493d327c4a1ae2f59b7bd4599274e4d"
+    "pip_index": "https://pypi.tuna.tsinghua.edu.cn/simple"
   },
   "limitations": [
     "Invented TEST FIXTURE records only; no real industry validation.",

@@ -66,7 +66,7 @@ def save_package(destination: Path, payload: bytes, backup_dir: Path) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=Path("artifacts/peiwu-nexent-agent.zip"))
+    parser.add_argument("--output", type=Path, default=Path("artifacts/ontolens-nexent-agent.zip"))
     args = parser.parse_args()
     destination = (ROOT / args.output).resolve()
     if not destination.is_relative_to(ROOT) or destination.suffix.lower() != ".zip":

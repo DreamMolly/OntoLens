@@ -4,7 +4,7 @@
   "configuration": {
     "configured": true,
     "protocol": "responses",
-    "model": "gpt-5.6-terra",
+    "model": "gpt-6-sol",
     "base_url_present": true,
     "api_key_present": true,
     "live_request_sent": false

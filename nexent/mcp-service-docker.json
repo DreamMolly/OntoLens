@@ -1,6 +1,6 @@
 {
-  "name": "peiwu-local",
+  "name": "ontolens-local",
   "transport": "streamable-http",
   "url": "http://host.docker.internal:8765/mcp/",
-  "headers": {"Authorization": "Bearer REPLACE_WITH_PEIWU_MCP_TOKEN"}
+  "headers": {"Authorization": "Bearer REPLACE_WITH_ONTOLENS_MCP_TOKEN"}
 }

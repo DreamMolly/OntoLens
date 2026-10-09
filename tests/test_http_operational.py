@@ -23,7 +23,7 @@ PRIVATE_MARKER = "PRIVATE_TEST_LEDGER_ORIGINAL_MUST_STAY_LOCAL"
 @pytest.fixture(autouse=True)
 def isolated_environment(monkeypatch):
     for key in list(os.environ):
-        if key.startswith(("PEIWU_", "TYPESAFE_", "MODEL_", "NEXENT_", "OPENAI_", "ANTHROPIC_")):
+        if key.startswith(("ONTOLENS_", "TYPESAFE_", "MODEL_", "NEXENT_", "OPENAI_", "ANTHROPIC_")):
             monkeypatch.delenv(key, raising=False)
     async def no_external_post(*args, **kwargs):
         pytest.fail("HTTP acceptance must never contact an external model or platform")
@@ -38,8 +38,8 @@ def app_factory(tmp_path, monkeypatch):
             for role in ("admin", "operator", "reviewer", "viewer"):
                 update_account(accounts, role + "-account", name="TEST " + role,
                                role=role, password=PASSWORD, create=True)
-            monkeypatch.setenv("PEIWU_AUTH_FILE", str(accounts))
-            monkeypatch.setenv("PEIWU_SESSION_DB", str(tmp_path / "access.sqlite3"))
+            monkeypatch.setenv("ONTOLENS_AUTH_FILE", str(accounts))
+            monkeypatch.setenv("ONTOLENS_SESSION_DB", str(tmp_path / "access.sqlite3"))
         return create_app(ROOT, tmp_path / "workbench.sqlite3", seed_demo=seed_demo)
     return factory
 
@@ -67,11 +67,11 @@ def business_files(stock=200):
 def login(client, role):
     response = client.post("/api/auth/login", json={"username": role + "-account", "password": PASSWORD})
     assert response.status_code == 200, response.text
-    return {"x-peiwu-token": response.json()["csrf_token"]}
+    return {"x-ontolens-token": response.json()["csrf_token"]}
 
 
 def local_headers(client):
-    return {"x-peiwu-token": client.get("/api/status").json()["csrf_token"]}
+    return {"x-ontolens-token": client.get("/api/status").json()["csrf_token"]}
 
 
 def upload(client, headers, files=None, **changes):
@@ -196,7 +196,7 @@ def test_http_auth_cookie_csrf_role_bound_identity_and_transactional_audit(app_f
         cookie = login_response.headers["set-cookie"].lower()
         assert "httponly" in cookie and "samesite=strict" in cookie
         assert "session_token" not in login_response.json()
-        operator_headers = {"x-peiwu-token": login_response.json()["csrf_token"]}
+        operator_headers = {"x-ontolens-token": login_response.json()["csrf_token"]}
         assert client.post("/api/check", json=check_request()).status_code == 403
         assert client.post("/api/check", headers={**operator_headers, "origin": "https://other.invalid"}, json=check_request()).status_code == 403
         imported = upload(client, operator_headers, operator="admin-account")
@@ -248,9 +248,9 @@ def test_private_http_explanation_sends_only_whitelisted_summary_and_cannot_chan
             captured.append({"url": endpoint, "body": json})
             return httpx.Response(200, request=httpx.Request("POST", endpoint),
                                   json={"choices": [{"message": {"content": "TEST provider suggests ALLOW (unverified text)"}}]})
-        monkeypatch.setenv("PEIWU_MODEL_BASE_URL", "https://fixture-provider.invalid/v1")
-        monkeypatch.setenv("PEIWU_MODEL_NAME", "fixture-model")
-        monkeypatch.setenv("PEIWU_MODEL_API_KEY", "fixture-key-only")
+        monkeypatch.setenv("ONTOLENS_MODEL_BASE_URL", "https://fixture-provider.invalid/v1")
+        monkeypatch.setenv("ONTOLENS_MODEL_NAME", "fixture-model")
+        monkeypatch.setenv("ONTOLENS_MODEL_API_KEY", "fixture-key-only")
         monkeypatch.setattr(httpx.AsyncClient, "post", provider_stub)
         response = client.post(url, headers=headers)
         assert response.status_code == 200, response.text
@@ -297,7 +297,7 @@ def test_nexent_unconfigured_is_503_and_connected_status_tracks_observed_state(a
             return {"connected": self.calls == 1, "model_ready": self.calls == 1,
                     "observed_at": "TEST observation " + str(self.calls)}
     platform = PlatformStub()
-    monkeypatch.setenv("PEIWU_NEXENT_BASE_URL", "https://fixture-platform.invalid")
+    monkeypatch.setenv("ONTOLENS_NEXENT_BASE_URL", "https://fixture-platform.invalid")
     monkeypatch.setattr(NexentRuntime, "from_environment", classmethod(lambda cls, root: platform))
     with TestClient(app_factory(seed_demo=False)) as client:
         assert client.get("/api/status").json()["nexent_connected"] is False

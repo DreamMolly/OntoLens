@@ -1,28 +1,27 @@
-# 模型解释协议边界
+# OntoLens 模型解释协议
 
-日期：2026-09-24。这里描述的是配伍本地工作台的可选“模型辅助解释”接口，不是 JEV，也不是 Nexent Agent 的模型绑定。
+本接口服务工作台的可选解释路由，与 JEV 重排和 Nexent 平台模型绑定分别配置、分别验收。
 
-## 支持的协议
+## 协议
 
-由 `PEIWU_MODEL_PROTOCOL` 选择，默认 `chat_completions`；兼容别名 `response`→`responses`、`message`→`messages`：
+由 `ONTOLENS_MODEL_PROTOCOL` 选择，默认 `chat_completions`：
 
-- `chat_completions`：发送到模型端点的 `/chat/completions`，使用 `messages`。
-- `responses`：发送到 `/responses`，使用 `input` 与 `output_text/output` 解析。
-- `messages`：发送到 Anthropic 风格 `/messages`，使用 `x-api-key`、`anthropic-version`、`system` 和用户消息。
+| 值 | 请求与响应 |
+| --- | --- |
+| `chat_completions` | `/chat/completions`，messages 与 choices |
+| `responses` | `/responses`，input 与 output_text/output |
+| `messages` | Anthropic 风格 `/messages`，system、用户消息、x-api-key 与 content |
 
-请求只包含当前运行的 request/result 上下文，提示要求引用来源且不得改判。响应只返回文本，异常时保留原决定和证据。
+`ONTOLENS_MODEL_BASE_URL`、`ONTOLENS_MODEL_NAME` 和 `ONTOLENS_MODEL_API_KEY` 只放本机配置。参数能力以实际供应商与模型契约为准。
 
 ## 信任边界
 
-- 三种协议只服务 `/api/runs/{run_id}/explain`，不被 MCP 工具用于决定。
-- JEV 仍只负责证据重排和复核优先级；`decision_check` 仍是唯一业务决定来源。
-- 本轮只做请求构造和响应解析的离线契约测试，没有向通用模型端点发送请求。
-- Nexent 源码目录包含 provider/model catalog 的配置能力，但当前 Agent 的 `model_ids` 仍为空；不能把本地适配器测试写成 Nexent Agent 模型编排通过。
+三协议只服务 `/api/runs/{run_id}/explain`，输出文本不写回决定、数量、规则或快照。私有或未获准来源只发送受控枚举与计数摘要；获准原文也须保留引用检查。服务失败或空解释不被记录为成功。
 
-## 复现
+离线契约测试覆盖构造与解析，不证明三个协议均在线可用。Nexent Agent 编排需要平台自身的模型绑定与真实运行收据，不能由本地适配器推定。
 
-~~~powershell
+```powershell
 .venv/Scripts/python.exe -m pytest -q tests/test_model_protocols.py
-~~~
+```
 
-配置真实模型时由队员补充端点、模型名和费用/权限；密钥只放在项目根目录 `.env` 或本机密钥管理，不写入仓库、ZIP、截图或材料。在线验证后还要记录协议、resolved model、请求限制和失败结果，不能用模型自报准确率。
+真实调用记录协议、模型、请求限制和失败状态，独立评测解释正确性与稳定性，不使用模型自报准确率。

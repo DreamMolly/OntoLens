@@ -1,23 +1,19 @@
-# OntoLens v0.4.0 业务容器部署
+# OntoLens v0.4.0 业务容器
 
-命名迁移后镜像实际运行 `ontolens.web:create_app`，使用 `ONTOLENS_*` 与 `X-OntoLens-Token`。新[隔离容器收据](../artifacts/operational-deployment-20261009-ontolens.json)中35项检查通过，覆盖命令入口、权限、完整业务流程、真实模型解释和restart持久化；下方30项是迁移前收据，不能当作新镜像证据。
+根 Dockerfile 与 Compose 定义面向带认证的空业务工作区，入口为 `ontolens.web:create_app`，配置为 `ONTOLENS_*`，请求头为 `X-OntoLens-Token`。账户、台账和权限说明见[业务部署](../docs/38-operational-deployment.md)。
 
-根Dockerfile与compose定义面向带认证的空业务工作区。2026-10-09 已用隔离业务卷实际 build、启动并完成业务流程、重建/重启持久化与模型解释检查，共30项通过；这不是Linux新机冷启动、长期负载或行业验证。命令仍是其他机器上的操作入口。完整账号/台账/隐私说明见[业务部署](../docs/38-operational-deployment.md)。
+## 账户准备
 
-当前容器使用 `ontolens.web:create_app` 主入口和 `ONTOLENS_*` 配置。已有 `PEIWU_*` 仍按[品牌与兼容说明](../docs/39-brand-compatibility.md)读取；迁移品牌不需要清空业务卷或更换账户。
-
-## 准备账户
-
-在源码根目录先安装源码环境，创建业务初始管理员。这个步骤写本机账户/会话文件，但不启动服务：
+从源码根目录安装项目环境并创建初始管理员，下面步骤不启动服务：
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\start-operational.ps1 -Bootstrap -CheckOnly
 .\.venv\Scripts\python.exe scripts/manage_access.py --auth-file .runtime/operational/accounts.json set-password admin
 ```
 
-密码只由本机initial-admin.txt或交互getpass管理，不进入.env模板、镜像或命令参数。确认更改成功后删除initial-admin.txt；accounts.json仅哈希，但仍按私有配置处理。
+初始密码仅在本机 `initial-admin.txt`，确认改密码并可登录后删除它。账户文件只有哈希也属于私有配置，密码不能进入镜像、环境模板或命令行。
 
-## 构建启动
+## 构建和启动
 
 ```powershell
 docker compose -f deploy/compose.yaml config
@@ -26,32 +22,30 @@ docker compose -f deploy/compose.yaml up -d ontolens
 docker compose -f deploy/compose.yaml ps
 ```
 
-浏览器打开127.0.0.1:8768登录。默认image tag为ontolens:0.4.0，build使用根Dockerfile和完整src/data。ONTOLENS_PORT可改变宿主端口。healthcheck访问auth/session只证明HTTP响应，不证明台账已发布/模型可用/行业核验通过。
+打开 `http://127.0.0.1:8768/` 登录，默认镜像 tag 为 `ontolens:0.4.0`，`ONTOLENS_PORT` 可调整宿主端口。容器非 root、drop ALL 能力、no-new-privileges，仅映射本机端口。健康检查只证明 HTTP 响应，不证明台账、模型或行业核验通过。
 
-业务workbench/access在ontolens-state命名volume，账户配置目录 `.runtime/operational` 整体只读bind到/config，实际读取/config/accounts.json；实际volume名由compose project生成。Linux部署要核对容器UID10001读accounts的受控权限与/state写权限，不以关闭认证或改root绕过权限失败。停止用 `docker compose -f deploy/compose.yaml stop ontolens`，不要把 `down -v` 当常规停止。
+工作库与会话库位于持久命名卷的 `/state`；`.runtime/operational` 账户目录只读挂载到 `/config`，读取 `/config/accounts.json`。Linux 核对 UID 10001 的读写权限，避免通过改 root 或关闭认证掩盖错误。日常停止使用 `docker compose -f deploy/compose.yaml stop ontolens`，不删除卷。
 
-## 账户与反代
+## 账户和外部入口
 
-主机manage_access修改账户后，目录bind可即时看到原子替换后的新文件；服务读取新的revision即撤销旧会话，不要求force-recreate。配置目录不通过Web静态暴露；/state仍是独立持久业务/会话库。
+主机管理账户后，目录挂载能读取原子替换的文件；revision 改变使既有会话失效，无需重建容器。配置目录不会作为静态文件暴露。
 
-对外服务使用TLS反向代理，设置 `ONTOLENS_COOKIE_SECURE=true` 与 `ONTOLENS_ALLOWED_HOSTS` 具体域名；维持loopback端口映射，代理处理实际外部入口。默认不信任proxy headers，Host/Origin必须按实际部署一致配置，不使用通配允许Host。
+外部访问经 TLS 反向代理，设置 `ONTOLENS_COOKIE_SECURE=true` 和具体 `ONTOLENS_ALLOWED_HOSTS`，保持本机端口映射。Host/Origin 和代理头按实际部署核对，不采用通配主机。
 
-## 可选Nexent联动
+## Nexent
 
-先准备实际Nexent环境和nexent_network，配置本地token/专用Agent，再执行：
+先准备 Nexent、`nexent_network` 和本机凭证：
 
 ```powershell
 docker compose -f deploy/compose.yaml -f deploy/compose.nexent.yaml up -d ontolens
 ```
 
-覆盖层连接外部nexent_network，容器内用nexent-web:3000；宿主Web本轮用13000。专用产品解释Agent无工具，只接结果摘要；当前就绪和生成按observed_at/实际调用验证，不加载历史报告。2026-10-09 当前配置收据记录 `gpt-6-sol` 绑定与Agent2无工具解释；容器业务流中的模型解释也通过。7 MCP调用与Agent1工具编排属于2026-10-08历史运行，不能并入本轮 `gpt-6-sol` 验收。
+容器访问 `nexent-web:3000`，宿主平台为 13000。Agent 为 `ontolens_compliance_review`，MCP 为 `ontolens-local`；业务解释实例 `ontolens_result_explainer` 无工具和 Skill，只接受受控结果摘要。当前 observed_at 与实际调用分别验证，模型不能改程序决定。
 
-## 备份与验收边界
+## 验证和备份
 
-停止后备份volume中的/state、主机accounts.json及关联SQLite文件，在独立实例恢复并验证active/来源/历史/账户。不要将volume、账户、初始密码、私有上传/导出或.env提交Git。
+[业务容器收据](../artifacts/operational-deployment-20261009-ontolens.json)列本次隔离业务、权限、导入、四决定、缺件、导出、非 root 和重建/重启持久化检查。平台工具与模型各看对应真实收据；合成夹具、单次请求和容器健康不证明行业效果或持续稳定。
 
-当前隔离容器30项检查已通过，实际build、业务流程、force-recreate、restart后数据/导出和会话持久化均有[验收收据](../artifacts/operational-deployment-20261009.json)。真实Linux新机安装、长时间运行、真实设备/领域评测和比赛正式提交各自保留未完成，不由Docker定义或healthcheck证明。
+停止后备份关联 `/state`、账户文件和 SQLite 辅助文件，在独立实例恢复并检查 active、来源、历史与会话。卷、账户、密码、私有资料/导出和 `.env` 不进入 Git。独立 Linux 新机、长期负载、实际恢复、真实资料评测和正式提交仍有单独验收。
 
-## 基础镜像与网络
-
-根Dockerfile的PYTHON_IMAGE默认python:3.11-slim。默认registry不可获取时，可以受控来源传 `docker compose -f deploy/compose.yaml build --build-arg PYTHON_IMAGE=<镜像地址/摘要> ontolens`，不改产品源码。镜像tag不是不可变证据；实际来源/digest/build与运行验收分别记新收据。2026-10-09隔离验收镜像为 `ontolens:qa-20261009-final`，镜像ID及源码哈希记录在部署收据；README和材料的后续文字修订不属于当时镜像内容，新机器应重新构建并生成自己的运行收据。
+默认基础镜像为 `python:3.11-slim`，可通过 `PYTHON_IMAGE` 构建参数选择受控源。tag 不是不可变证据，实际镜像 ID、构建输入和运行结果以收据为准；每台机器重新构建并生成自己的运行证据。

@@ -1,7 +1,7 @@
 services:
   nexent-elasticsearch:
     volumes:
-      - "${PEIWU_NEXENT_ES_DATA:-${ROOT_DIR}/elasticsearch}:/usr/share/elasticsearch/data"
+      - "${ONTOLENS_NEXENT_ES_DATA:-${ROOT_DIR}/elasticsearch}:/usr/share/elasticsearch/data"
   nexent-postgresql:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -t 15 -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]

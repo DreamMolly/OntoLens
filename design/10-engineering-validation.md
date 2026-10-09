@@ -17,7 +17,7 @@ MUST保留核验/来源/候选/回滚/关闭来源语义，业务发布明确“
 publish/rollback用expected_active/note；业务admin confirm_publish:true，synthetic兼容confirm_demo。review四状态/引用tuple保留，认证actor覆盖网页随填reviewer。
 review_status 四值 MUST 保留 queued/in_review/evidence_requested/closed_no_decision；引用为 source_id/locator/sha256/quote/unresolved，不允许客户端注入 action。
 JEV payload增加live显式授权；/api/runs/{id}/explain遵守private摘要，/orchestrate为tool-free Nexent；GET /api/integrations/nexent当前观察，均不改/api/check。
-客户端 MUST 保留 CSRF token、`X-OntoLens-Token`、同源调用和安全textContent输出；服务端继续兼容旧 `X-Peiwu-Token`，同请求中新头存在时优先且空值不会退回旧头，见[品牌与兼容说明](../docs/39-brand-compatibility.md)。凭证只在受控本地配置，不写HTML/素材/公开收据。
+客户端 MUST 保留 CSRF token、`X-OntoLens-Token`、同源调用和安全textContent输出；空请求头与不匹配的写入令牌 MUST 拒绝。凭证只在受控本地配置，不写HTML/素材/公开收据。
 
 ## 11 工程与性能预算
 
@@ -93,12 +93,10 @@ ResizeObserver监听main应避免读写反馈循环，布局类型只在真实�
 
 ## v0.4.0业务新增验收
 
-公开评审命名更新后，464项完整回归、七阶段及158项输入指纹匹配；新容器35项检查见 `artifacts/operational-deployment-20261009-ontolens.json`，日志快照为 `artifacts/source-validation/20261009-094214-e5337f3f/`。新增回归验证新旧模块同一对象、配置优先级、双请求头和新启动入口；当前代码位于 `src/ontolens`，旧路径只由兼容层/历史档案使用。下方456/30为迁移前阶段，不作为新镜像验收。
-
 create_app新库默认operational不seed；Workspace类默认seed保留脚本兼容，validator/tests显式synthetic，不对业务库写入smoke。
 必须补验auth/session/logout/角色403/会话撤销/CSRF/actor审计，六表原始+规范化导入/失败拒绝，admin confirm_publish/CAS回滚，private模型摘要、JEV获准live、Nexenttool-free/observed_at。
 选择控件增强按07验证native value/form/required/disabled、keyboard/typeahead/Escape/outsideclick/anchorflip/reduced，不只测效果；当前专项 6/6 通过，覆盖 9 个 single select，收据见[选择器交互报告](../artifacts/workbench-select-interaction-report.json)。该收据为隔离 synthetic fixture，不替代30项合同中尚未逐场景验证的组合。
-专项68/45/旧新组合105和6HTTP流程重叠，不加总。2026-10-09完整七阶段 `456 passed`、所有阶段exit 0、隔离容器build/业务流/重启持久化及材料审计均通过；证据见[本地验收](../artifacts/local-validation-report.json)、[容器验收](../artifacts/operational-deployment-20261009.json)和[材料QA](../docs/24-material-qa.md)。以上均为软件/合成验收，不证明真实行业适用性。
+专项与全量检查有重叠，不加总；完整软件、容器业务与材料分别验收。结果见[本地验收](../artifacts/local-validation-report.json)、[容器验收](../artifacts/operational-deployment-20261009-ontolens.json)和[材料QA](../docs/24-material-qa.md)。以上均为软件/合成验收，不证明真实行业适用性。
 
 ## D1.1-8 日期控件专项验收
 
@@ -111,10 +109,10 @@ create_app新库默认operational不seed；Workspace类默认seed保留脚本兼
 | Date-05 | 320/390px、向上翻转、滚动/缩放重定位和无横溢出 | 通过 |
 | Date-06 | 160ms进入、100ms退出、快速中断和 reduced-motion | 通过 |
 
-日期控件主实现文件为 `src/ontolens/static/date-controls.js`，功能编号为 D1.1-8；页面 `style.css`/`index.html` 当前使用 `D1.1-16` 查询串仅做缓存失效。专项交付收据为[日期交互报告](../artifacts/workbench-date-interaction-report.json)，测试使用隔离合成工作区，品牌迁移后必须更新实际文件指纹，不证明真实业务日期适用性。
+日期控件主实现文件为 `src/ontolens/static/date-controls.js`，功能编号为 D1.1-8；页面 `style.css`/`index.html` 当前使用 `D1.1-16` 查询串仅做缓存失效。专项交付收据为[日期交互报告](../artifacts/workbench-date-interaction-report.json)，测试使用隔离合成工作区，收据必须与实际文件指纹一致，不证明真实业务日期适用性。
 
 ## 2026-10-09 CSS Zoom 修复验证
 
 隔离 Chromium 探针复现 1440px 视口在 200% CSS zoom 时 `scrollWidth=1470`：证据示意图容器在布局切换瞬间收缩，而固定 116px 的绝对定位 `.map-core` 仍向两边绘制。中心节点与图片现按容器比例限制宽度并保留方形比例，最大尺寸和正常桌面外观保持一致，不依靠页面裁剪掩盖溢出。
 
-修复后同一探针 `scrollWidth=clientWidth=1440`、越界节点和页面错误均为空。最终 `tests/browser_smoke.py` 已通过，覆盖决策、证据、导出、上传、检索、发布/回滚、指标、草稿/历史/来源身份、reduced-motion、响应式触点；[交互报告](../artifacts/workbench-interaction-report.json)记录五档模拟视口无全页溢出及 CSS 200% zoom 无溢出。日期与选择器各6项专项亦通过。旧的候选定位器失败是早期运行记录，不代表最终 smoke 状态。浏览器 UI 原生缩放、真实设备、实际读屏仍未验；CSS zoom与模拟视口不等于这三类验证。
+修复后同一探针 `scrollWidth=clientWidth=1440`、越界节点和页面错误均为空。最终 `tests/browser_smoke.py` 已通过，覆盖决策、证据、导出、上传、检索、发布/回滚、指标、草稿/历史/来源身份、reduced-motion、响应式触点；[交互报告](../artifacts/workbench-interaction-report.json)记录五档模拟视口无全页溢出及 CSS 200% zoom 无溢出。日期与选择器各6项专项亦通过。浏览器 UI 原生缩放、真实设备、实际读屏仍未验；CSS zoom与模拟视口不等于这三类验证。

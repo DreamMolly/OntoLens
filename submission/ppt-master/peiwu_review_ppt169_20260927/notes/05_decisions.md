@@ -1,1 +1,0 @@
-这些是迁移后真实 Nexent 平台工具回放中的合成样例，统一使用 demo-initial、v2 和 2026 年 9 月 23 日的核验日期。正常的 stu01 100 mL 得到 ALLOW；stu03 因当日已有未归还的 OXIDIZER 得到 DENY；stu01 申请 300 mL 时按规则限到 250 mL；过期批次进入 ISOLATE。未知人员没有业务决定，只有 needs_review 和空的 decision，这不是第五种决定。

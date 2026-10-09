@@ -13,7 +13,7 @@ import secrets
 import sqlite3
 import time
 
-SCHEMA = "peiwu-access-1"
+SCHEMA = "ontolens-access-1"
 ROLES = ("admin", "operator", "reviewer", "viewer")
 PASSWORD_ITERATIONS = 600_000
 SESSION_TTL_SECONDS = 8 * 60 * 60

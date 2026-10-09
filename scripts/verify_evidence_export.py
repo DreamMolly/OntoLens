@@ -11,7 +11,7 @@ from ontolens.export_verification import verify_evidence_export_file
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Check package consistency and recalculate frozen decisions offline; no authenticity claim")
-    parser.add_argument("input", type=Path, help="Path to a peiwu-replay-1 JSON export")
+    parser.add_argument("input", type=Path, help="Path to a ontolens-replay-1 JSON export")
     args = parser.parse_args()
     report = verify_evidence_export_file(args.input)
     print(json.dumps(report, ensure_ascii=True, indent=2))

@@ -1,103 +1,45 @@
-# 格物镜 · OntoLens Nexent 参赛配置包
+# OntoLens Nexent 配置包
 
-2026-09-26 部署记录（历史）：数据已冷拷贝并切换到项目 F 盘，逻辑备份恢复 MCP、Agent 和三个 Skill，模型已重新健康检查并绑定，data-process 已补齐。部署审计及迁移后七工具、四种决定、引用和导出复测均通过。一次 Agent/run 仍是历史合成证据，不代表真实资料或独立冷启动。
+模板位于 `nexent/`，固定上游版本见 `nexent/upstream.json`。核心工作台可独立运行；Nexent 接入需要实际平台、模型配置与 MCP 联通。
 
-2026-09-23 用户确认报名完成。本页说明报名后如何把本地工作台接入 Nexent；队员姓名、导师和审核人仍不写入仓库。
+## 内容
 
-当前产品名称为格物镜 · OntoLens，主包及新配置使用 `ontolens` / `ONTOLENS_*`。模板中的 `peiwu_compliance_review`、`peiwu-local`、`peiwu-*` Skills 和原档案名保留为既有平台互通标识；不重新创建同一 Agent 来改品牌。兼容范围见[品牌与兼容说明](39-brand-compatibility.md)，当前模型与部署范围见[业务部署](38-operational-deployment.md)。
+- `agent.json`：`ontolens_compliance_review`、七工具和三项 Skill；模型 ID 不固化。
+- `mcp-service.local.json` / `mcp-service-docker.json`：同机或 Docker 地址与凭证占位。
+- `skills/ontolens-intake/SKILL.md`：申请与可信事实边界。
+- `skills/ontolens-evidence/SKILL.md`：来源、定位与关系路径。
+- `skills/ontolens-decision/SKILL.md`：程序决定及候选预览。
+- `package.ps1` / `scripts/build_nexent_package.py`：生成 `artifacts/ontolens-nexent-agent.zip`，内含 Agent JSON 与 `skills/<name>.zip`。
 
-## 已交付文件
+## 准备与导入
 
-- nexent/agent.json：按当前固定 Nexent 的 agent_id / agent_info / mcp_info 格式维护，agent_info 用字符串形式的 ID 索引；模型 ID 故意留空。
-- nexent/mcp-service.local.json：同机运行模板。
-- nexent/mcp-service-docker.json：Nexent 在 Docker 中运行的模板。
-- nexent/skills/peiwu-intake/SKILL.md：输入边界。
-- nexent/skills/peiwu-evidence/SKILL.md：证据与关系路径。
-- nexent/skills/peiwu-decision/SKILL.md：确定性决定与变更预览。
-- nexent/package.ps1：调用 scripts/build_nexent_package.py，打包为 artifacts/peiwu-nexent-agent.zip；ZIP 内含 agent.json 与 skills/<name>.zip，各子包内为 SKILL.md。相同输入产生相同 ZIP，旧包保留到 .runtime/package-backups，不删除文件。
+1. 启动独立工作台；同机 MCP 为 `http://127.0.0.1:8765/mcp/`。Docker 平台使用 `host.docker.internal`，工作台非回环绑定须有 `ONTOLENS_MCP_TOKEN`。
+2. 添加 `ontolens-local` MCP 服务，使用完整 `Authorization: Bearer <令牌>`；模板占位符不能用于实际调用。
+3. 扫描平台工具目录，确认七工具可用；只刷新 MCP 计数不足以导入 Agent。
+4. 构建并导入 ZIP，三项 Skill 一起绑定。`scripts/import_nexent_agent.py` 默认检查，显式 `--apply` 才写入；同名内容冲突拒绝覆盖，不重复创建。
+5. 在模型管理页填写真实 provider、模型与端点，健康检查后绑定返回的 model_id，见[模型配置](29-nexent-model-inputs.md)。
+6. 用明确合成申请实际运行，先查来源与关系，再调用 `decision_check`；保留模型、工具轨迹和结果。
 
-## 导入前
+```powershell
+.venv/Scripts/python.exe scripts/build_nexent_package.py
+.venv/Scripts/python.exe scripts/import_nexent_agent.py
+.venv/Scripts/python.exe scripts/verify_nexent.py
+```
 
-已经安装并迁移的本机实例，日常只运行 `powershell -NoProfile -ExecutionPolicy Bypass -File .\start-demo.ps1`。脚本固定正确的数据目录，复用令牌与既有 Agent 配置；不需重新导入或绑定模型。`-CheckOnly` 可先验证路径和资源条件，详见 `30-demo-startup.md`。下面的导入步骤用于新环境准备。
+已经准备好的本机环境用 `start-demo.ps1` / `-CheckOnly` 恢复或预检，方法见[日常启动](30-demo-startup.md)。新环境须独立验证，不能使用其他机器的 ready 状态。
 
-本地启动：
+## 可选 JEV
 
-~~~powershell
-.\.venv\Scripts\python.exe -m pip install -e ".[workbench,test]"
-$env:ONTOLENS_WORKSPACE_MODE = "synthetic"
-.\start-workbench.ps1
-~~~
+JEV 只用于获准文本的相关性、引用支撑、变更影响和关系候选复核，不参加四种决定计算。`TYPESAFE_API_KEY`、`TYPESAFE_MODEL` 和端点只放本机配置。在线调用要求显式许可，私有或未获准来源不发送；模型概率不认证事实。
 
-同机 Nexent 使用 http://127.0.0.1:8765/mcp/。如果 Nexent 在 Docker 容器里，使用 host.docker.internal 地址，并在工作台进程中设置同一个令牌：
+```powershell
+.venv/Scripts/python.exe scripts/verify_jev.py
+.venv/Scripts/python.exe scripts/verify_jev.py --task citation_review
+.venv/Scripts/python.exe scripts/verify_jev.py --live
+```
 
-~~~powershell
-$env:ONTOLENS_MCP_TOKEN = "本机生成的随机令牌"
-.\start-workbench.ps1 -BindHost 0.0.0.0
-~~~
+默认预检不发请求；真实调用、录制回放和离线测试分别标明。引用不完整不请求模型，解释不改决定。独立语义评测与阈值校准见[评测协议](13-evaluation-protocol.md)。
 
-容器配置不能使用示例中的占位符。不要把令牌提交到仓库、截图或 PPT。
+## 验收
 
-## Nexent 导入顺序
-
-1. 按本机/容器模板在 Nexent MCP 仓库添加 peiwu-local；URL 使用对应地址。Authorization 必须是完整的 Bearer 加令牌，不是裸令牌。模板不是实际密钥文件。
-2. 测试七个工具：asset_recognition、evidence_lookup、graph_query、candidate_suggestions、evidence_rerank_jev、decision_check、candidate_review。JEV 未配置时，evidence_rerank_jev 应返回 unavailable，不影响其他工具。
-3. 在工具配置页执行“扫描/更新工具”（后端 GET /api/tool/scan_tool），使七工具进入工具目录；仅刷新 MCP 工具计数不足以导入 Agent。运行 nexent/package.ps1，然后导入 ZIP。单独 JSON 不携带 Skill 文件。重试前检查已有 Agent/Skill，不能重复创建。
-4. 为 `peiwu_compliance_review` 绑定实际可用模型，不在可移植包里填写假 ID。2026-10-09 配置收据记录 `gpt-6-sol` / `model_id=2` 的实际绑定，当前 Agent2 无工具解释的边界见 `38-operational-deployment.md`；`artifacts/nexent-model-readiness.json` 的 `model_id=1` 和 `artifacts/nexent-agent-run-20260924.json` 属于较早历史。字段清单见 `29-nexent-model-inputs.md`。思考强度控件是否可用必须以所选模型的实际 capability profile 为准，不由模型名称猜测；真实行业资料、独立审核和持续运行仍待验。
-5. 保存并调试一条申请：先查证据，再查关系，再调用 decision_check。
-6. 保留 Nexent 版本、模型标识、工具调用日志和截图，作为初赛材料的可复现记录。
-
-## 可选 JEV 证据重排
-
-可用 `.venv/Scripts/python.exe scripts/import_nexent_agent.py` 检查包与现有 Agent/Skill。只有显式 --apply 才可能创建缺少的 Agent；已有内容一致则复用，同名冲突不覆盖。真实环境重跑报告见 docs/20-repeatable-nexent-import.md。
-
-社区用法拓展见 docs/21-jev-community-research.md。已实现引用字面核验、变更影响、关系候选和录制/重放的离线契约；普通相关性重排的代表性在线记录见 `artifacts/jev-live-verification.json`，复核预检分别见 `scripts/verify_jev.py --task change_review`、`--task relation_review`。这些语义仍未在真实资料上在线验证，详见 docs/22-citation-review.md、docs/25-change-impact-review.md、docs/26-relation-review.md 与 docs/27-jev-replay.md。
-
-JEV 只用于“哪些来源片段更支持当前问题”的结构化 Noul 判断。它不读取或修改最终决定，不参与 ALLOW、DENY、LIMIT、ISOLATE 的计算。
-
-JEV 只接收已发布快照中 external_model_allowed=true 的文本片段。私有资料、未发布上传资料和图片二进制不会发送到 TypeSafe。公开资料是否可外发仍由资料授权决定，不能因为页面可访问就默认开启。
-
-~~~powershell
-.\.venv\Scripts\python.exe -m pip install -e ".[jev]"
-$env:TYPESAFE_API_KEY = "本机 TypeSafe 密钥"
-$env:TYPESAFE_MODEL = "jev-1.13.0"
-$env:TYPESAFE_BASE_URL = "https://api.typesafe.ai"
-~~~
-
-可选的 TYPESAFE_BASE_URL 用于自定义服务端点；为兼容旧环境，代码也会读取 TYPESAFE_ENDPOINT。密钥只放在本机环境变量或密钥管理中，不提交仓库。JEV 的 Noul 只返回支持关系概率，没有独立置信度；正式使用前要用独立资料评测阈值。
-`scripts/verify_jev.py` 会读取项目根目录被忽略的 `.env`，但不覆盖已有的非空进程环境变量；因此可以直接运行下面的预检或显式 `--live` 命令。
-工作台的可选解释接口另有 `ONTOLENS_MODEL_PROTOCOL`：`chat_completions` 发送 `/chat/completions`，`responses` 发送 `/responses`，`messages` 发送 Anthropic 风格 `/messages`。这是格物镜工作台的解释适配器，不等于 Nexent Agent 已完成模型编排；Nexent 的模型仍需在平台中绑定并单独验证。旧 `PEIWU_MODEL_PROTOCOL` 继续兼容，优先级见[品牌与兼容说明](39-brand-compatibility.md)。
-
-不消耗额度的预检：
-
-~~~powershell
-.\.venv\Scripts\python.exe scripts/verify_jev.py
-.\.venv\Scripts\python.exe scripts/verify_jev.py --task citation_review
-~~~
-
-确认密钥和端点后，显式发送一条合成查询：
-
-~~~powershell
-.\.venv\Scripts\python.exe scripts/verify_jev.py --live
-~~~
-
-TYPESAFE_JEV_REVIEW_THRESHOLD 的默认值是 0.75，只用于界面标记高优先级证据，不会自动批准候选或改变四种业务决定。阈值必须以后续独立资料评测校准。
-
-引用模式对同一片段分别提出支持和矛盾问题；代码仅生成 conflicting_signals、possible_contradiction、weak_support、support_signal 复核提示，始终需要人工审核。字面校验失败、重复引用或引用数量超过 limit 时不发送请求，不能截断后漏检。`--task citation_review --live` 只允许脚本固定的合成陈述与内置来源，不接受自定义查询；该模式尚未在线验证。
-
-## 复现验收
-
-验收输出必须包含：
-
-- Nexent Agent 配置版本和模型标识。
-- MCP 服务 URL、工具列表和测试结果。
-- 申请输入、工作台快照 ID、决定 JSON、reason_code 和 source_id/locator。
-- needs_review 或 tool_error 的失败演示。
-- 合成演示标签、审核人空缺说明和没有真实出库的说明。
-
-2026-09-24 已通过运行中 Nexent 的 AgentImportRequest 校验并实际导入 ZIP，Agent ID 为 1；三个 Skill 已绑定。`.venv/Scripts/python.exe scripts/verify_nexent.py` 通过真实平台 /api/tool/validate 验证七工具、四种决定、needs_review、来源引用和重复决定，并保存版本/配置/调用结果到 artifacts/nexent-integration-report.json。此脚本不调用模型，不等价于模型驱动编排。
-
-交付材料同步检查：`.venv/Scripts/python.exe scripts/audit_deliverables.py`。该命令核对最近一次 `validate_local.py` 的七项退出码、Word/PPT 测试数、Agent ZIP SHA256、当前平台/部署报告和证据矩阵边界；不把一致性检查写成模型或行业效果。
-
-2026-09-26 平台部署修项已完成：关键持久化路径改为项目内 Windows F 盘绑定，Elasticsearch green，data-process 运行，部署审计退出 0。旧错误挂载源未删除，恢复前空库另有备份；详见 `19-deployment-review.md`。长期运行和独立冷启动仍需另行验证。
-
-导出问题已定位为宿主机 IDM 返回“204 Intercepted by the IDM Advanced Integration”；容器内部 Web 导出一直正常。收紧端口后，宿主机导出已连续复测返回 200。脚本只对明确的 IDM 拦截启用容器内 Web 读取，未知空响应直接失败；不修改 IDM 设置、不绕过 Nexent 身份校验。平台实际导出包另存 artifacts/nexent-agent-export.zip，不能与源码构建包混淆。详见 `19-deployment-review.md`。
+Nexent 平台证据包含版本、MCP 服务、Skill、模型、申请、快照、决定、引用与失败场景。工具验证、Agent 模型编排和无工具解释各报实际结果；软件数字、容器部署、真实行业效果和专业审核也分别验收。

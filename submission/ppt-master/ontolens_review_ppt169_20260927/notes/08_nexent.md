@@ -1,0 +1,1 @@
+Nexent Agent 为 ontolens_compliance_review，MCP 服务为 ontolens-local；三项 Skill 为 ontolens-intake、ontolens-evidence、ontolens-decision，职责是申请输入、证据链和确定性判定。实际模型、工具轨迹与结果见 artifacts/nexent-integration-report.json、artifacts/nexent-model-readiness.json；辅助解释实例 ontolens_result_explainer 不绑定工具和 Skill。模型解释不能改判，容器业务与重启持久化看对应收据；合成夹具不证明真实行业效果，专业审核与独立新机仍待验证。

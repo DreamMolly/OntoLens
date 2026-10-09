@@ -29,7 +29,7 @@ def local_file(root: Path, name: str) -> Path:
 
 
 def source_manifest(root: Path) -> dict[str, str]:
-    patterns = ("src/ontolens/**/*.py", "src/ontolens/static/*", "src/peiwu/**/*.py", "scripts/*.py", "tests/*.py",
+    patterns = ("src/ontolens/**/*.py", "src/ontolens/static/*", "scripts/*.py", "tests/*.py",
                 "data/**/*", "pyproject.toml", "requirements.txt", "start-workbench.ps1", "start-demo.ps1",
                 "setup-local.ps1", "setup-local.sh", "start-workbench.sh", "start-demo.sh",
                 ".env.example", ".gitignore", ".gitattributes", "design.md", "design/02-foundations.md",
@@ -92,8 +92,8 @@ def deck_text(path: Path) -> str:
 
 
 def material_counts(root: Path, expected: int) -> dict:
-    document = word_text(local_file(root, "submission/peiwu-development-design-draft.docx"))
-    deck = deck_text(local_file(root, "submission/peiwu-presentation-draft.pptx"))
+    document = word_text(local_file(root, "submission/ontolens-development-design-draft.docx"))
+    deck = deck_text(local_file(root, "submission/ontolens-presentation-draft.pptx"))
     counts = re.findall(r"(?:阶段回归|全量回归)\s+(\d+) passed", document)
     deck_counts = re.findall(r"(?:阶段回归|全量回归)\s+(\d+) passed", deck)
     if counts != [str(expected)] or deck_counts != [str(expected)]:
@@ -107,7 +107,7 @@ def material_counts(root: Path, expected: int) -> dict:
 
 
 def package_matches(root: Path) -> str:
-    package = local_file(root, "artifacts/peiwu-nexent-agent.zip")
+    package = local_file(root, "artifacts/ontolens-nexent-agent.zip")
     agent = local_file(root, "nexent/agent.json").read_bytes()
     config = json.loads(agent)
     skills = {name for info in config["agent_info"].values() for name in info.get("skill_names", [])}
@@ -300,7 +300,7 @@ def audit(root: Path) -> dict:
                                                        "models_visible": readiness["models_visible"],
                                                        "agent_run_sha256": agent_run_hash}
         evidence_files = [
-            "submission/peiwu-development-design-draft.docx", "submission/peiwu-presentation-draft.pptx",
+            "submission/ontolens-development-design-draft.docx", "submission/ontolens-presentation-draft.pptx",
             "submission/evidence-matrix.yaml", "artifacts/nexent-integration-report.json",
             "artifacts/nexent-deployment-audit.json", "artifacts/nexent-model-readiness.json",
         ]
