@@ -586,24 +586,63 @@ async function refreshVersions() {
 async function refreshEvaluation() {
   const report = await api("/evaluation");
   const content = byId("evaluation-content");
-  content.replaceChildren(element("p", report.label, "field-note"));
-  const metrics = element("div", null, "metric-grid");
+  const comparison = element("section", null, "benchmark-comparison");
+  const metrics = element("div", null, "benchmark-grid");
+  const errors = [["unsafe_release", "不安全放行"], ["over_issue", "超量批准"], ["over_block", "误拒绝"]];
   for (const version of ["v1", "v2"]) {
-    const card = element("div", null, "metric");
+    const result = report[version];
+    const total = result.total;
+    const matched = result.exact_match;
+    const card = element("article", null, "benchmark-card benchmark-" + version);
+    const bar = element("meter", null, "benchmark-meter");
+    bar.max = total;
+    bar.value = matched;
+    bar.setAttribute("aria-label", version + " 决定与预期一致");
+    const counts = element("dl", null, "benchmark-errors");
+    for (const [key, label] of errors) {
+      const count = result[key];
+      const item = element("div", null, "benchmark-error" + (count > 0 ? " has-errors" : ""));
+      item.append(element("dt", label), element("dd", String(count)));
+      counts.append(item);
+    }
     card.append(
-      element("span", version + " · 决定与预期一致"),
-      element("strong", report[version].exact_match + " / " + report[version].total),
-      element("small", "不安全放行 " + report[version].unsafe_release + " 条 · 超量批准 " + report[version].over_issue + " 条 · 误拒绝 " + report[version].over_block + " 条 · 合成样本"),
+      element("h3", version, "benchmark-version"),
+      element("strong", matched + " / " + total, "benchmark-score"),
+      bar,
+      counts,
     );
     metrics.append(card);
   }
-  content.append(metrics);
+  comparison.append(element("h2", "决定与预期一致"), metrics);
+  const gates = element("section", null, "benchmark-gates");
+  gates.append(element("h2", "候选发布门禁"));
+  const gateCards = element("div", null, "benchmark-gate-list");
+  const checkLabels = {
+    no_heldout_id_leak: "留出案例隔离",
+    regression_unchanged: "已有案例回归一致",
+    incidents_exact_match: "历史事件修正",
+    heldout_exact_match: "留出案例结果一致",
+    heldout_unsafe_not_increased: "留出集不安全放行未增加",
+  };
   for (const name of ["v2_gate", "v3_gate"]) {
-    const detail = element("details");
-    detail.append(element("summary", report[name].candidate + " 候选门禁：" + (report[name].accepted ? "通过" : "拒绝（预期）")), element("pre", JSON.stringify(report[name], null, 2)));
-    content.append(detail);
+    const gate = report[name];
+    const detail = element("details", null, "benchmark-gate");
+    const summary = element("summary");
+    summary.append(element("strong", gate.baseline + " → " + gate.candidate),
+      element("span", gate.accepted ? "通过" : "未通过", "benchmark-gate-status"));
+    const rows = element("ul", null, "benchmark-checks");
+    for (const [key, passed] of Object.entries(gate.checks)) {
+      const row = element("li", null, passed ? "benchmark-check-passed" : "benchmark-check-failed");
+      row.append(element("span", checkLabels[key] || key), element("strong", passed ? "通过" : "未通过"));
+      rows.append(row);
+    }
+    const raw = element("details", null, "benchmark-raw");
+    raw.append(element("summary", "查看原始报告"), element("pre", JSON.stringify(gate, null, 2)));
+    detail.append(summary, rows, raw);
+    gateCards.append(detail);
   }
-  content.append(element("p", "此基准没有验证上传资料的语义、本体算法或真实行业有效性。", "field-note"));
+  gates.append(gateCards);
+  content.replaceChildren(comparison, gates);
 }
 
 async function refreshHistory() {
