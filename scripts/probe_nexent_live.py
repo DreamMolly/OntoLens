@@ -15,6 +15,30 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPLAINER_NAME = "ontolens_result_explainer"
 
 
+def agent_run_checks(run: dict, decision: dict) -> dict[str, bool]:
+    def observed(name: str) -> bool:
+        count = run["tool_calls"].get(name)
+        return type(count) is int and count > 0
+
+    text = run["text"].strip()
+    lines = text.splitlines()
+    if lines and lines[0] in {"```json", "```"} and lines[-1] == "```":
+        text = "\n".join(lines[1:-1])
+    try:
+        answer = json.loads(text)
+    except json.JSONDecodeError:
+        answer = None
+    expected = {key: decision[key] for key in ("status", "decision", "mode", "version_id", "snapshot_hash")}
+    expected["evidence_count"] = len(decision["evidence"])
+    return {
+        "model_request_completed": run["status"] == "ready" and run["model_request_sent"] is True,
+        "skill_read_observed": observed("read_skill_md"),
+        "required_mcp_calls_observed": all(observed(name) for name in ("evidence_lookup", "graph_query", "decision_check")),
+        "answer_matches_program_result": isinstance(answer, dict)
+        and type(answer.get("evidence_count")) is int and answer == expected,
+    }
+
+
 async def provision_explainer(client: httpx.AsyncClient) -> int:
     response = await client.get("agent/list")
     response.raise_for_status()
@@ -112,11 +136,13 @@ async def probe(*, provision: bool, agent_run: bool) -> dict:
                 report["synthetic_agent_run"] = await synthetic.invoke(
                     "只核验现成合成示例，不访问其他资料。版本固定 demo-initial，日期2026-09-23。"
                     "申请为合成人员 stu01，批次 lot_eth，目标柜 cab_flam，100mL。"
+                    "先用 read_skill_md 读取 ontolens-decision。"
                     "必须先调用 evidence_lookup(query='stu01',version_id='demo-initial') 与 "
                     "graph_query(requester_id='stu01',lot_id='lot_eth',cabinet_id='cab_flam',version_id='demo-initial')，"
                     "然后调用 decision_check，request_id='NEXENT-LIVE-SYNTHETIC'，其余参数如上。"
-                    "最终只输出decision_check返回的status、decision、mode和证据数量；不能自行改判。"
-                    "注明本轮实际模型与工具调用使用合成输入，不代表行业验证或人工审核。")
+                    "最终只返回一个 JSON 对象，字段为 status、decision、mode、version_id、snapshot_hash、"
+                    "evidence_count。将 decision_check 的字段原样复制，evidence_count 是 evidence 数组长度。"
+                    "不得自行改判，不要添加正文。")
             final = await workbench.get("status")
             final.raise_for_status()
             if final.json()["active_id"] != active_before:
@@ -124,9 +150,8 @@ async def probe(*, provision: bool, agent_run: bool) -> dict:
             report["active_version_unchanged"] = True
             good = report["seven_tools_verified"] and report["explanation"]["status"] == "ready"
             if agent_run:
-                result = report["synthetic_agent_run"]
-                good = good and result["status"] == "ready" and all(
-                    result["tool_calls"].get(name, 0) > 0 for name in ("evidence_lookup", "graph_query", "decision_check"))
+                report["agent_run_checks"] = agent_run_checks(report["synthetic_agent_run"], decision)
+                good = good and all(report["agent_run_checks"].values())
             report["status"] = "passed" if good else "incomplete"
     except (httpx.HTTPError, ValueError, KeyError, TypeError) as error:
         report["error_code"] = type(error).__name__
@@ -145,7 +170,8 @@ def main() -> int:
         parser.error("Use artifacts/nexent-live-*.json")
     report = asyncio.run(probe(provision=args.provision_explainer, agent_run=args.agent_run))
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({k: report.get(k) for k in ("status", "observed_at", "seven_tools_verified", "error_code")}))
+    print(json.dumps({k: report.get(k) for k in (
+        "status", "observed_at", "seven_tools_verified", "agent_run_checks", "error_code")}))
     return 0 if report["status"] == "passed" else 1
 
 

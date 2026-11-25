@@ -38,13 +38,13 @@ stu01 授权仅保留 ACID。
 
 平台就绪时，先在 Nexent 对同一组**合成**输入运行 Agent，在执行轨迹打开 Skill 读取、`evidence_lookup`、`graph_query` 和 `decision_check`。向评审展示工具返回的 `action`、`version_id`、`snapshot_hash`，再到工作台看同一生效快照和来源。发布和回滚由工作台操作。平台不可用时仍可完成上面的工作台演练，并将 [2026-10-09 Agent 运行收据](../artifacts/nexent-agent-run-current.json)标为历史记录。
 
-在已完成绑定的演练环境中，[统一启动入口](../docs/30-demo-startup.md)准备工作台与平台。端口和实例确认后，可用下列命令请求一次带模型的合成联调，其中工作台在本机 8765 端口，Nexent 地址按本机配置读取。
+在已完成绑定的演练环境中，[统一启动入口](../docs/30-demo-startup.md)准备工作台与平台。工作台在本机 8765 端口，并需先保留一个源自 `demo-initial` 的合成变更候选，供候选工具检查。Nexent 地址按本机配置读取。
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/probe_nexent_live.py --agent-run --output artifacts/nexent-live-competition-rehearsal.json
 ```
 
-验收时核对本次收据的 `observed_at`、`synthetic_agent_run` 和工具计数，再打开平台轨迹确认 `read_skill_md` 实际发生。单独的工具测试与 Agent 调用轨迹分别留证。
+验收时核对本次收据的 `observed_at` 和 `agent_run_checks`。开启 `--agent-run` 后，脚本要求本轮成功返回、出现 Skill 读取及三个 MCP 调用，且 Agent 答复与独立 `decision_check` 的决定、版本、快照哈希和证据数一致。缺项或不一致会使退出码非零。评审可以打开平台轨迹核对实际读取的 Skill，单独的工具测试与 Agent 调用轨迹分别留证。
 
 | 赛题能力 | 当前可展示 | 还缺的验收 |
 | --- | --- | --- |
