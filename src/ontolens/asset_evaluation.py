@@ -9,7 +9,7 @@ import yaml
 from ontolens.workspace import Workspace
 
 
-def _scores(predicted: set[tuple], expected: set[tuple]) -> dict[str, int | float]:
+def score_matches(predicted: set[tuple], expected: set[tuple]) -> dict[str, int | float]:
     correct = len(predicted & expected)
     precision = correct / len(predicted) if predicted else (1.0 if not expected else 0.0)
     recall = correct / len(expected) if expected else (1.0 if not predicted else 0.0)
@@ -41,9 +41,9 @@ def evaluate_asset_recognition(root: Path, fixture: Path) -> dict[str, Any]:
             expected_entities = {tuple(item) for item in case["expected_entities"]}
             expected_relations = {tuple(item) for item in case["expected_relations"]}
             expected_schema = {tuple(item) for item in case["expected_schema_candidates"]}
-            entity_score = _scores(entities, expected_entities)
-            relation_score = _scores(relations, expected_relations)
-            schema_score = _scores(schema, expected_schema)
+            entity_score = score_matches(entities, expected_entities)
+            relation_score = score_matches(relations, expected_relations)
+            schema_score = score_matches(schema, expected_schema)
             case_reports.append({"id": case["id"], "entities": entity_score,
                                  "relations": relation_score, "schema_candidates": schema_score})
             all_entities.append((entities, expected_entities))
@@ -54,7 +54,7 @@ def evaluate_asset_recognition(root: Path, fixture: Path) -> dict[str, Any]:
         # match in another. Preserve each case's identity when micro-averaging.
         predicted = {(case_index, *entry) for case_index, item in enumerate(items) for entry in item[0]}
         expected = {(case_index, *entry) for case_index, item in enumerate(items) for entry in item[1]}
-        return _scores(predicted, expected)
+        return score_matches(predicted, expected)
     return {
         "fixture_version": payload.get("version"), "scope": payload.get("scope"),
         "aggregation": "micro_per_case",

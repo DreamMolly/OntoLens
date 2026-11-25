@@ -156,3 +156,9 @@ claims:
   command: .venv/Scripts/python.exe -m pytest -q tests/test_workbench.py -k 'ocr or local_engine'
   status: PARTIAL
   limit: 实跑合成 PNG 识别出 FLAMMABLE，批次号含相似字符误读；保留原图、坐标、未核验标记和人工摘录路径，未开展独立数据评测
+- id: C26
+  claim: 可复跑同一组合成资产的多模态识别及相似编号误关联对照
+  evidence: scripts/evaluate_multimodal.py; tests/test_multimodal_evaluation.py; submission/demo-runbook.md
+  command: .venv/Scripts/python.exe scripts/evaluate_multimodal.py
+  status: DONE
+  limit: 四种输入加一个对照，分别匹配 2/2、2/2、1/2、2/2、1/1；开发者标签、共享资产，未测独立行业样本

@@ -117,6 +117,8 @@ docker compose -f deploy/compose.yaml up -d --build
 
 在运行工作台的 Python 环境中安装可选依赖 `python -m pip install -e ".[workbench,ocr]"`。然后在“原始资料”选择 PNG 或 JPEG，勾选“运行本机 OCR”并留空人工摘录。OCR 使用依赖随附的本地模型。识别文本按行保留像素坐标、原图及 SHA256，可在“识别资产”中查看目录匹配结果。片段标为未核验，遇到误读时回看原图并使用人工摘录。图标语义和扫描 PDF 的识别需要另行验收。
 
+运行 `python scripts/evaluate_multimodal.py` 可复现同一组资产在线索文本、CSV、OCR 和人工摘录中的识别差异。报告按入口记录原文定位、漏检和额外识别项。
+
 ### 合成演练
 
 从仓库根目录启动独立演练库：
