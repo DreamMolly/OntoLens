@@ -11,6 +11,7 @@ import httpx
 from fastapi import FastAPI, File, Form, Query, Request, UploadFile
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
+from starlette.concurrency import run_in_threadpool
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
 from ontolens import __version__
@@ -21,6 +22,7 @@ from ontolens.catalog import HAZARD_CLASSES
 from ontolens.config import env_value
 from ontolens.contracts import CandidateRequest, CheckRequest, EvidenceRerankRequest, LoginRequest, ReviewRecordRequest, SwitchRequest
 from ontolens.documents import MAX_UPLOAD, parse_document
+from ontolens.image_ocr import extract_image_text
 from ontolens.jev import JevReranker
 from ontolens.ledger_import import GROUPS, MAX_FILE_BYTES
 from ontolens.model_context import explanation_view
@@ -280,12 +282,21 @@ def create_app(root: Path | None = None, database: Path | None = None, *, seed_d
     @app.post("/api/documents", status_code=201)
     async def upload(file: UploadFile = File(...), kind: Literal["synthetic", "public", "private"] = Form(...),
                      transcript: str = Form(default="", max_length=150_000),
-                     allow_external_model: bool = Form(default=False)):
+                     allow_external_model: bool = Form(default=False), ocr: bool = Form(default=False)):
         raw = await file.read(MAX_UPLOAD + 1)
         title = (file.filename or "upload.txt").replace("\\", "/").split("/")[-1][:180]
         media, chunks = parse_document(title, raw, transcript)
+        if ocr:
+            if not media.startswith("image/") or transcript.strip():
+                raise WorkspaceError("本机 OCR 仅接受没有人工摘录的 PNG 或 JPEG")
+            chunks = await run_in_threadpool(extract_image_text, raw)
         result = workspace.import_document(title, media, raw, chunks, kind, allow_external_model)
-        result["notice"] = "只保存来源，不自动提取成已审核事实" if chunks else "未发现文本，需人工摘录或配置 OCR"
+        if ocr and chunks:
+            result["notice"] = f"保存了 {len(chunks)} 条本机 OCR 片段，待人工核对。"
+        elif chunks:
+            result["notice"] = "只保存来源，不自动提取成已审核事实"
+        else:
+            result["notice"] = "未发现文本，请补充人工摘录或对图片启用本机 OCR"
         return result
 
     @app.get("/api/evidence")

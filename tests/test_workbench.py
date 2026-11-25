@@ -141,6 +141,59 @@ def test_image_with_manual_transcript_becomes_source_bound_assets(client):
     assert assets["relations"] == []
 
 
+def test_requested_image_ocr_reuses_asset_pipeline_without_changing_snapshot(client, monkeypatch):
+    image = ROOT / "data/demo/synthetic-asset-label.png"
+    raw = image.read_bytes()
+    locator = "OCR1 [2,3–85,22]（未核验）"
+    calls = []
+
+    def recognize(received):
+        calls.append(received)
+        return [{"locator": locator, "text": "lot_eth FLAMMABLE"}]
+
+    monkeypatch.setattr("ontolens.web.extract_image_text", recognize)
+    before = client.get("/api/status").json()["active_id"]
+    response = client.post("/api/documents", data={"kind": "private", "ocr": "true"}, files={
+        "file": (image.name, raw, "image/png")})
+    assert response.status_code == 201, response.text
+    assert calls == [raw]
+    doc = response.json()
+    assert doc["external_model_allowed"] is False
+    assert client.get(f"/api/documents/{doc['id']}/file").content == raw
+    assets = client.get(f"/api/documents/{doc['id']}/assets").json()
+    assert {(entity["id"], entity["locator"]) for entity in assets["entities"]} >= {
+        ("lot_eth", locator), ("FLAMMABLE", locator)}
+    assert client.get("/api/status").json()["active_id"] == before
+
+
+@pytest.mark.parametrize("filename,transcript", [("test.md", ""), ("synthetic-asset-label.png", "人工摘录")])
+def test_ocr_rejects_conflicting_input_before_persisting_source(client, filename, transcript):
+    raw = ((ROOT / "data/demo" / filename).read_bytes() if transcript else b"lot_eth")
+    before = client.get("/api/documents").json()
+    response = client.post("/api/documents", data={"kind": "synthetic", "ocr": "true", "transcript": transcript},
+                           files={"file": (filename, raw)})
+    assert response.status_code == 400
+    assert client.get("/api/documents").json() == before
+
+
+def test_optional_local_engine_reads_synthetic_image(client, monkeypatch):
+    pytest.importorskip("rapidocr")
+    pytest.importorskip("onnxruntime")
+    pytest.importorskip("PIL")
+
+    def forbid_network(*args, **kwargs):
+        pytest.fail("local OCR attempted an outbound connection")
+
+    monkeypatch.setattr("socket.socket.connect", forbid_network)
+    image = ROOT / "data/demo/synthetic-asset-label.png"
+    response = client.post("/api/documents", data={"kind": "synthetic", "ocr": "true"}, files={
+        "file": (image.name, image.read_bytes(), "image/png")})
+    assert response.status_code == 201, response.text
+    assets = client.get("/api/documents/" + response.json()["id"] + "/assets").json()
+    assert any(entity["id"] == "FLAMMABLE" and entity["locator"].startswith("OCR")
+               and "未核验" in entity["locator"] for entity in assets["entities"])
+
+
 def test_candidate_suggestions_are_proposed_and_source_bound(client):
     document = client.post("/api/documents", data={"kind": "synthetic"}, files={
         "file": ("authorization.md", "stu01 授权仅保留 ACID，生效: 2026-10-01\n", "text/plain")}).json()

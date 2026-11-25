@@ -364,7 +364,7 @@ def main():
         page.locator('[data-view="history"]').click()
         expect(page.locator("#run-list .list-card")).to_have_count(7)
         page.locator('[data-view="setup"]').click()
-        expect(page.locator("#view-setup")).to_contain_text("尚未实现")
+        expect(page.locator("#view-setup")).to_contain_text("可选本机识别，结果待人工核对")
         expect(page.locator("#model-status")).to_contain_text("未配置")
 
         page.set_viewport_size({"width": 390, "height": 844})

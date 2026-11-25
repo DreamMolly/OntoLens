@@ -150,3 +150,9 @@ claims:
   command: .venv/Scripts/python.exe scripts/verify_public_corpus.py
   status: PARTIAL
   limit: 1 条人工登记的候选，本地核验本体版本、关系、出处与摘录哈希；待领域审核及发布影响验收，候选没有业务决定
+- id: C25
+  claim: PNG 和 JPEG 可用本机 OCR 提取待核对片段并进入同一资产识别流程
+  evidence: src/ontolens/image_ocr.py; src/ontolens/web.py; tests/test_workbench.py; data/demo/synthetic-asset-label.png
+  command: .venv/Scripts/python.exe -m pytest -q tests/test_workbench.py -k 'ocr or local_engine'
+  status: PARTIAL
+  limit: 实跑合成 PNG 识别出 FLAMMABLE，批次号含相似字符误读；保留原图、坐标、未核验标记和人工摘录路径，未开展独立数据评测

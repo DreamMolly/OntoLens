@@ -665,6 +665,7 @@ byId("upload-form").addEventListener("submit", (event) => {
     if (!file || file.size > 4 * 1024 * 1024) throw new Error("请选择不超过 4 MiB 的来源文件");
     const form = new FormData();
     form.append("file", file); form.append("kind", byId("source-kind").value); form.append("transcript", byId("transcript").value); form.append("allow_external_model", byId("source-external").checked ? "true" : "false");
+    form.append("ocr", byId("source-ocr").checked ? "true" : "false");
     const result = await api("/documents", { method: "POST", body: form });
     await refreshSources();
     message("已导入 " + result.title + "。" + result.notice);

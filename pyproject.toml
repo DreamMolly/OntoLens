@@ -8,6 +8,7 @@ dependencies = ["PyYAML"]
 [project.optional-dependencies]
 workbench = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "python-multipart>=0.0.20", "pypdf>=5,<7", "httpx>=0.27,<1", "mcp>=1.20,<2"]
 jev = ["typesafe-sdk==0.7.1"]
+ocr = ["rapidocr==3.10.0", "onnxruntime>=1.24,<2", "Pillow>=11,<13"]
 test = ["pytest>=8", "httpx>=0.27,<1", "playwright>=1.50,<2"]
 
 [project.scripts]
