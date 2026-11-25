@@ -2,6 +2,22 @@
   "schema_version": "ontolens-public-corpus-1",
   "scope": "public_documents_with_synthetic_ledger",
   "collected_at_utc": "2026-10-08T06:21:42.831919+00:00",
+  "alignment_candidates": [
+    {
+      "id": "MOE-2023-ART10-TRAINING-PREREQUISITE",
+      "status": "proposed",
+      "ontology_version": "ontolens-ontology-1",
+      "relation": "authorized_for",
+      "mapping_kind": "prerequisite_only",
+      "source_id": "PUB-MOE-2023",
+      "locator": "L1",
+      "review_checks": [
+        "核对校内准入制度及该申请涉及的场所和人员范围。",
+        "核对培训与考核记录是否覆盖该人员及场所。",
+        "另查本校类别授权和有效期。实验操作准入不能直接证明领用授权。"
+      ]
+    }
+  ],
   "documents": [
     {
       "id": "PUB-MOE-2023",

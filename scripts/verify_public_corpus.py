@@ -27,13 +27,17 @@ def main(argv=None):
                   "integrity_passed": False, "error": str(exc), "external_request_sent": False,
                   "production_database_used": False, "business_checker_called": False}
     report["generated_at"] = datetime.now(timezone.utc).isoformat()
-    report["corpus_path"] = str(args.corpus.resolve())
+    corpus_path = args.corpus.resolve()
+    report["corpus_path"] = (corpus_path.relative_to(ROOT).as_posix()
+                             if corpus_path.is_relative_to(ROOT) else str(corpus_path))
     report["code_input_hashes"] = {
         path: hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
-        for path in ("src/ontolens/public_corpus.py", "src/ontolens/workspace.py", "scripts/verify_public_corpus.py")}
+        for path in ("src/ontolens/public_corpus.py", "src/ontolens/ontology.py",
+                     "src/ontolens/workspace.py", "scripts/verify_public_corpus.py")}
     destination = ROOT / "artifacts/public-corpus-verification.json"
     destination.parent.mkdir(parents=True, exist_ok=True)
-    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n", encoding="utf-8")
+    destination.write_text(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False) + "\n",
+                           encoding="utf-8", newline="\r\n")
     print(json.dumps({"passed": report["passed"], "report": str(destination),
                       "counts": report.get("counts"), "error": report.get("error")}, ensure_ascii=True))
     return 0 if report["passed"] else 1

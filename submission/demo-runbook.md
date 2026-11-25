@@ -2,6 +2,57 @@
 
 只在独立演练库操作，明示资料性质；不要对日常业务库运行写入 smoke，不执行真实出库。账户身份不等于专业资质，正式模板个人字段仍由队员确认。
 
+## 评审主线：同一申请，三个核验结果
+
+评审也可从仓库根目录直接运行以下命令。它使用本机隔离的合成数据执行这条演练，输出目录中保留三次核验的 `report.json`、发布前后两份证据包及离线校验结果。程序无需启动浏览器或 Nexent。
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verify_competition_demo.py
+```
+
+用合成授权变更演示知识快照如何影响可追溯决策。先按[合成演练](../README.md#合成演练)启动，使用一个新的演练库路径。打开工作台，确认显示“合成演示空间”，当前生效快照为 `demo-initial`。预先保存 UTF-8 文件 `review-demo-policy.md`，内容如下。
+
+```text
+# 合成授权调整
+stu01 授权仅保留 ACID。
+```
+
+| 顺序 | 屏幕操作 | 核对什么 |
+| --- | --- | --- |
+| 1. 记录基线 | 在“核验申请”点“正常申请”，将日期设为 `2026-09-23`，执行“核验并记录证据” | 得到 `ALLOW`。打开人员授权证据，记下原始快照并下载第一份证据包 |
+| 2. 上传变更 | 在“原始资料”选择合成来源并导入上述文件 | 可以回查 `L2` 原文。此时仍是 `demo-initial` |
+| 3. 预览影响 | 在“数据版本”选择 `stu01`，只勾选 `ACID`，选择上传文件及 `L2`，填写变更说明并创建候选 | 第一步保存的申请在影响预览中由 `ALLOW` 变为 `DENY`，原因是 `CLASS_NOT_AUTHORIZED` |
+| 4. 发布并重算 | 核对来源和预览，勾选合成确认，点“发布演示版本”并确认。保留原申请字段，在“核验申请”重跑 | 当前快照切换，结果显示“本次打回”。旧记录仍引用原快照。下载第二份证据包 |
+| 5. 回滚再重算 | 在“数据版本”确认回滚到 `demo-initial`，回到“核验申请”再跑一次 | 结果恢复 `ALLOW`。运行记录中仍可查看新快照下的 `DENY` |
+
+把两份下载的证据包分别传给离线核验器。以下文件名是示例，替换为实际文件路径。
+
+```powershell
+.\.venv\Scripts\python.exe scripts/verify_evidence_export.py "before.json"
+.\.venv\Scripts\python.exe scripts/verify_evidence_export.py "after.json"
+```
+
+两份导出都应返回 `passed: true`。这一段验证的是合成授权事实经人工确认后进入新快照，并影响后续核验。关系类型、属性和行业标准的对齐需要独立演示和验收。
+
+## Nexent 同台展示
+
+平台就绪时，先在 Nexent 对同一组**合成**输入运行 Agent，在执行轨迹打开 Skill 读取、`evidence_lookup`、`graph_query` 和 `decision_check`。向评审展示工具返回的 `action`、`version_id`、`snapshot_hash`，再到工作台看同一生效快照和来源。发布和回滚由工作台操作。平台不可用时仍可完成上面的工作台演练，并将 [2026-10-09 Agent 运行收据](../artifacts/nexent-agent-run-current.json)标为历史记录。
+
+在已完成绑定的演练环境中，[统一启动入口](../docs/30-demo-startup.md)准备工作台与平台。端口和实例确认后，可用下列命令请求一次带模型的合成联调，其中工作台在本机 8765 端口，Nexent 地址按本机配置读取。
+
+```powershell
+.\.venv\Scripts\python.exe scripts/probe_nexent_live.py --agent-run --output artifacts/nexent-live-competition-rehearsal.json
+```
+
+验收时核对本次收据的 `observed_at`、`synthetic_agent_run` 和工具计数，再打开平台轨迹确认 `read_skill_md` 实际发生。单独的工具测试与 Agent 调用轨迹分别留证。
+
+| 赛题能力 | 当前可展示 | 还缺的验收 |
+| --- | --- | --- |
+| 异构资产认知 | 台账与文本来源，图片加人工摘录，资产及关系候选回指原文 | 自动图文抽取和独立标注评估 |
+| 低资源本体与动态更新 | 目录、别名、关系与 schema 候选，[公开制度映射候选](public-data-demo.md#展示一条本体映射候选)，以及上面的合成事实发布流程 | 领域审核、映射上线后的版本治理与决策影响验证 |
+| 跨资料决策与追溯 | 固定快照核验、缺件复核、原文定位、离线重算 | 经授权业务资料的盲评与错误放行、误拒统计 |
+| Nexent 平台 | MCP 工具、Skill 导入包、历史模型轨迹 | 当前环境从导入到实际 Agent 调用的复验 |
+
 ## A. 业务空库与登录
 
 按 `docs/38-operational-deployment.md` 首次准备账户和独立数据库；业务入口 `powershell -NoProfile -ExecutionPolicy Bypass -File .\start-operational.ps1 -Bootstrap`，默认 `http://127.0.0.1:8768/`，Nexent 本机宿主 `http://127.0.0.1:13000/`、容器内部 3000。Bootstrap 会创建账户/会话文件，不能称无写入。初始密码只在本机读取，不截图或提交。准备过的历史合成工作台恢复仍用 start-demo.ps1，实际端口以启动收据为准。

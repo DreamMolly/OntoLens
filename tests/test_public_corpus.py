@@ -90,6 +90,49 @@ def test_missing_retrieval_fails_fixture_but_still_requires_review(corpus):
     assert "required_public_evidence_not_retrieved" in result["missing_conditions"]
 
 
+@pytest.fixture
+def alignment_corpus(corpus):
+    root, manifest = corpus
+    mapping = {
+        "id": "training-prerequisite", "status": "proposed", "ontology_version": "ontolens-ontology-1",
+        "relation": "authorized_for", "mapping_kind": "prerequisite_only",
+        "source_id": "a", "locator": "L1",
+        "review_checks": ["Verify training evidence", "Verify local authorization separately"],
+    }
+    manifest["alignment_candidates"] = [mapping]
+    save(root, manifest)
+    return root, manifest, mapping
+
+
+def test_alignment_candidate_resolves_claim_to_version_and_evidence(alignment_corpus):
+    root, manifest, mapping = alignment_corpus
+    report = verify_public_corpus(root)
+    assert report["passed"]
+    candidate, = report["alignment_candidates"]
+    assert candidate == {**mapping, "source_locator": "Article 1", "url": "https://www.example.org/a",
+                         "sha256": manifest["documents"][0]["excerpt_sha256"],
+                         "quote": "storage needs safety review", "decision": None}
+    assert report["business_checker_called"] is False
+    assert report["independent_review_completed"] is False
+
+
+@pytest.mark.parametrize("field,value", [
+    ("relation", "unregistered"),
+    ("locator", "L99"),
+    ("ontology_version", "outdated"),
+    ("mapping_kind", "equivalent"),
+    ("status", "published"),
+    ("decision", {"action": "ALLOW"}),
+    ("review_checks", []),
+])
+def test_alignment_candidate_rejects_broken_or_publishable_records(alignment_corpus, field, value):
+    root, manifest, mapping = alignment_corpus
+    mapping[field] = value
+    save(root, manifest)
+    with pytest.raises(PublicCorpusError, match="alignment"):
+        load_public_corpus(root)
+
+
 @pytest.mark.parametrize("mutation,match", [
     (lambda m: m["documents"].append(m["documents"][0].copy()), "duplicate id"),
     (lambda m: m["documents"][0].update(excerpt_path="../outside.txt"), "relative contained"),
@@ -176,7 +219,8 @@ def test_cli_writes_only_dedicated_report_in_test_root(corpus, tmp_path, monkeyp
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     test_project = tmp_path / "cli-project"
-    for relative in ("src/ontolens/public_corpus.py", "src/ontolens/workspace.py", "scripts/verify_public_corpus.py"):
+    for relative in ("src/ontolens/public_corpus.py", "src/ontolens/ontology.py",
+                     "src/ontolens/workspace.py", "scripts/verify_public_corpus.py"):
         destination = test_project / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes((project / relative).read_bytes())
@@ -184,7 +228,7 @@ def test_cli_writes_only_dedicated_report_in_test_root(corpus, tmp_path, monkeyp
     assert module.main(["--corpus", str(root)]) == 0
     report_path = test_project / "artifacts/public-corpus-verification.json"
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    assert report["passed"] and len(report["code_input_hashes"]) == 3
+    assert report["passed"] and "src/ontolens/ontology.py" in report["code_input_hashes"]
     assert report["data_hashes"]["manifest.json"] == hashlib.sha256((root / "manifest.json").read_bytes()).hexdigest()
     assert list((test_project / "artifacts").iterdir()) == [report_path]
     (root / "a.txt").write_bytes(b"tampered\n")

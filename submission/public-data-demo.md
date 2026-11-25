@@ -28,4 +28,16 @@
 | 台账是否真实 | CSV中 kind=synthetic；manifest明确没有实际校内人员或库存记录 |
 | 是否自动改规则 | public-corpus报告 business_checker_called=false、synthetic_ledger_imported=false；冻结规则另有独立合成回归 |
 
+## 展示一条本体映射候选
+
+在核验报告展开 `alignment_candidates`。候选将《高等学校实验室安全规范》第十条（二）的培训与考核要求关联到 `ontolens-ontology-1` 中的 `authorized_for`。映射类型是 `prerequisite_only`，供审核人员判断实验操作准入证据是否应纳入核验。类别授权和有效期仍需依据校内制度单独核对。 [教育部发布页](https://www.moe.gov.cn/srcsite/A16/moe_784/202302/t20230220_1045998.html)
+
+演示时依次打开三处。
+
+1. **概念**。在 `src/ontolens/ontology.py` 查看 `Person → authorized_for → HazardClass`，再看候选绑定的本体版本。
+2. **来源**。用报告中的 `PUB-MOE-2023#L1`、原文条号、PDF 页码和摘录 SHA256 回查。报告由核验器按索引找到原文片段并补齐这些字段。
+3. **复核**。读出 `review_checks`，核对校内制度、场所、人员、考核记录和类别授权。该候选保持 `proposed`，`decision=null`。核验器会拒绝未知关系、错误定位、过版本记录和带决定的候选。
+
+这一步属于公开制度对齐的待审示例。评委随后可按[合成授权演练](demo-runbook.md#评审主线同一申请三个核验结果)检查人工发布如何影响决定。两段使用各自的来源和数据，公开制度候选尚未经过专业审核或发布验收。
+
 若要演示人工补件，在工作台点击“资料缺失”，逐条选择本次查看的引用，追加跟进记录，再导出复现包。人工记录不改变原核验结果；验收命令见 `docs/34-human-review-workflow.md`。

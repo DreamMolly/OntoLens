@@ -167,7 +167,9 @@ $env:ONTOLENS_LOAD_ENV = 'false'
 
 ## 演示与材料
 
-评审可以按以下顺序查看同一份申请：正常核验、超量/冲突/异常批次、缺件复核、打开原文、版本变更与回滚、导出离线重算。所有演练资料均注明性质。
+评审可先跑[同一申请的发布与回滚演练](submission/demo-runbook.md#评审主线同一申请三个核验结果)。合成授权变化使固定申请依次得到 `ALLOW`、`DENY`、`ALLOW`，发布前后的证据包可分别离线重算。平台同台演示时，从 Nexent 执行轨迹核对 Skill 读取、MCP 工具和返回的快照。所有演练资料均注明性质。
+
+安装快速开始中的依赖后，可在仓库根目录运行 `python scripts/verify_competition_demo.py` 自动复现。请使用已安装项目依赖的虚拟环境，运行结果保存在 `.runtime/competition-demo/` 下的新目录。
 
 | 入口 | 内容 |
 | --- | --- |

@@ -22,7 +22,7 @@
     "Workspace search returns at most 30 lexical matches; no model semantics are evaluated."
   ],
   "data_hashes": {
-    "manifest.json": "f37e6ad452cc40002ef62e7b009096a5edeca524568fc99c48f436d291498c26",
+    "manifest.json": "49cb814206a03c6e2f9a0858094d44d5b0089fe06afe53e9f00fbf7d866ab351",
     "excerpts/PUB-MOE-2023.txt": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
     "excerpts/PUB-MOE-2024.txt": "f38c919e800632facc8fd3b15389a360a2b69b325b59ff9179eabb8d279feb09",
     "excerpts/PUB-MOE-2013.txt": "44e2382a685881eb70af3008825da64191425e9dae6d27c06793a163d105cbe2",
@@ -44,6 +44,27 @@
     "retrieved_required_locators": 20
   },
   "developer_fixture_locator_recall": 1.0,
+  "alignment_candidates": [
+    {
+      "id": "MOE-2023-ART10-TRAINING-PREREQUISITE",
+      "status": "proposed",
+      "ontology_version": "ontolens-ontology-1",
+      "relation": "authorized_for",
+      "mapping_kind": "prerequisite_only",
+      "source_id": "PUB-MOE-2023",
+      "locator": "L1",
+      "review_checks": [
+        "核对校内准入制度及该申请涉及的场所和人员范围。",
+        "核对培训与考核记录是否覆盖该人员及场所。",
+        "另查本校类别授权和有效期。实验操作准入不能直接证明领用授权。"
+      ],
+      "source_locator": "PDF第4—5页，第十条（二）",
+      "quote": "（二）安全教育培训与准入制度：进入实验室学习或工作的所有人员应先进行安全知识、安全技能和操作规范培训，掌握设备设施、防护用品正确使用的技能，考核合格后方可进入实验室进行实验操作。",
+      "sha256": "1b6c0b1fc0279c7fee0d111b07316530c6512b7765664ffb87c19e7e89cd835c",
+      "url": "http://www.moe.gov.cn/srcsite/A16/moe_784/202302/W020230220303827581190.pdf",
+      "decision": null
+    }
+  ],
   "questions": [
     {
       "question_id": "PUB-Q01",
@@ -836,11 +857,12 @@
       ]
     }
   ],
-  "generated_at": "2026-10-09T11:41:47.259586+00:00",
-  "corpus_path": "F:\\Projects\\2026ICT\\data\\public\\official-lab-safety",
+  "generated_at": "2026-11-25T06:13:02.650581+00:00",
+  "corpus_path": "data/public/official-lab-safety",
   "code_input_hashes": {
-    "src/ontolens/public_corpus.py": "3f61aff55087eab73050224e22961459833b56545bf160c1246d5d8f8e1d0381",
+    "src/ontolens/public_corpus.py": "36da50c4832e6d8e9440bd90002bd809c13c56387c11e1ca758ebe04ac674118",
+    "src/ontolens/ontology.py": "28bd7554e487f595968b16ced0f2436db711d1e6dfe78e048463d652ea47ed6d",
     "src/ontolens/workspace.py": "3d6d5e3b5a6b8d0398e553c6ddf82fc6f3237949f8b6a29c2e6df3794aeaf9e0",
-    "scripts/verify_public_corpus.py": "751881e63a4db38d51f7a43e1231bfbf9e90fb294a0d65b4b11b85198505fc4a"
+    "scripts/verify_public_corpus.py": "7b6ad72e9b32ea2f61add459350d44a183d8bf122e357a4a2a310e20b403fbc6"
   }
 }

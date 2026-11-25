@@ -16,6 +16,7 @@ from pathlib import Path, PureWindowsPath
 from tempfile import TemporaryDirectory
 from urllib.parse import parse_qsl, urlsplit
 
+from ontolens.ontology import schema
 from ontolens.workspace import Workspace
 
 
@@ -112,6 +113,34 @@ class PublicCorpus:
     manifest_sha256: str
     raw_excerpts: dict[str, bytes]
     data_hashes: dict[str, str]
+    alignment_candidates: list[dict]
+
+
+def _resolve_alignments(records, documents, passages):
+    ontology = schema()
+    relations = {relation["identifier"] for relation in ontology["relations"]}
+    fields = {"id", "status", "ontology_version", "relation", "mapping_kind",
+              "source_id", "locator", "review_checks"}
+    candidates = []
+    for record in _records(records, "alignment_candidates"):
+        _require(record.keys() == fields, "alignment candidate must contain only the declared fields")
+        _require(record["status"] == "proposed" and record["mapping_kind"] == "prerequisite_only",
+                 "alignment candidate must remain a proposed prerequisite")
+        _require(record["ontology_version"] == ontology["version"], "alignment ontology version mismatch")
+        relation = _text(record["relation"], "alignment relation")
+        _require(relation in relations, "alignment references an unknown relation")
+        source_id = _text(record["source_id"], "alignment source_id")
+        locator = _text(record["locator"], "alignment locator")
+        passage = passages.get((source_id, locator))
+        _require(passage is not None, "alignment references an unknown source or locator")
+        checks = record["review_checks"]
+        _require(isinstance(checks, list) and bool(checks), "alignment requires manual review checks")
+        for check in checks:
+            _text(check, "alignment review check")
+        document = documents[source_id]
+        candidates.append({**record, "source_locator": passage["source_locator"], "quote": passage["quote"],
+                           "sha256": document["excerpt_sha256"], "url": document["url"], "decision": None})
+    return candidates
 
 
 def load_public_corpus(corpus: Path) -> PublicCorpus:
@@ -130,7 +159,7 @@ def load_public_corpus(corpus: Path) -> PublicCorpus:
     bundles = _records(manifest.get("bundles"), "bundles")
     questions = _records(manifest.get("questions"), "questions")
     document_map = {item["id"]: item for item in documents}
-    raw_excerpts, paths, passage_keys = {}, set(), set()
+    raw_excerpts, paths, passage_map = {}, set(), {}
     data_hashes = {"manifest.json": hashlib.sha256(raw_manifest).hexdigest()}
     for document in documents:
         source_id = document["id"]
@@ -165,7 +194,7 @@ def load_public_corpus(corpus: Path) -> PublicCorpus:
             _require(passage.get("locator") == f"L{number}", "passage locators must be consecutive physical line numbers")
             _text(passage.get("source_locator"), "source_locator")
             _require(passage.get("quote") == line, f"quote mismatch: {source_id}#L{number}")
-            passage_keys.add((source_id, passage["locator"]))
+            passage_map[(source_id, passage["locator"])] = passage
         raw_excerpts[source_id] = raw
         data_hashes[path.relative_to(root).as_posix()] = digest
     ledger_map = {}
@@ -213,10 +242,12 @@ def load_public_corpus(corpus: Path) -> PublicCorpus:
             _require(isinstance(source_id, str) and isinstance(locator, str), "evidence source and locator must be strings")
             key = (source_id, locator)
             _require(key not in keys, "duplicate required evidence")
-            _require(key in passage_keys and source_id in bundle_map[bundle_id], "evidence outside bundle or unknown locator")
+            _require(key in passage_map and source_id in bundle_map[bundle_id], "evidence outside bundle or unknown locator")
             keys.add(key)
         _require(len({source_id for source_id, _ in keys}) >= 2, "required evidence must span different documents")
-    return PublicCorpus(root, manifest, data_hashes["manifest.json"], raw_excerpts, data_hashes)
+    alignments = _resolve_alignments(manifest["alignment_candidates"], document_map, passage_map) \
+        if "alignment_candidates" in manifest else []
+    return PublicCorpus(root, manifest, data_hashes["manifest.json"], raw_excerpts, data_hashes, alignments)
 
 
 class _PublicOnlyWorkspace(Workspace):
@@ -316,4 +347,5 @@ def verify_public_corpus(corpus: Path) -> dict:
                        "questions": len(results), "questions_all_required_locators_found": found,
                        "required_locators": required_total, "retrieved_required_locators": located_total},
             "developer_fixture_locator_recall": located_total / required_total,
+            "alignment_candidates": loaded.alignment_candidates,
             "questions": results}

@@ -144,3 +144,9 @@ claims:
   command: .venv/Scripts/python.exe scripts/verify_public_corpus.py
   status: PARTIAL
   limit: 6来源/3家族、21引文、2开发包和10未审核问题；20定位被词法检索找到，未验证语义回答、真实台账、专业审核或法律合规；共享来源不是独立盲测
+- id: C24
+  claim: 公开制度中的培训与考核要求可登记为授权关系的待审前置条件
+  evidence: data/public/official-lab-safety/manifest.json; artifacts/public-corpus-verification.json; tests/test_public_corpus.py; submission/public-data-demo.md
+  command: .venv/Scripts/python.exe scripts/verify_public_corpus.py
+  status: PARTIAL
+  limit: 1 条人工登记的候选，本地核验本体版本、关系、出处与摘录哈希；待领域审核及发布影响验收，候选没有业务决定
