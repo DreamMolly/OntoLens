@@ -69,3 +69,194 @@ main[data-work-layout=wide] #check-workspace.inspecting{grid-template-columns:32
 @media(prefers-reduced-motion:reduce){.date-panel{transition:none!important}}
 /* Keep pane widths safe before ResizeObserver applies the new layout state. */
 @container workspace (max-width:819px){#main-workspace .workspace-grid,#main-workspace #check-workspace,#main-workspace #check-workspace.inspecting{grid-template-columns:minmax(0,1fr)}#main-workspace #check-workspace.inspecting>.request-panel,#main-workspace #check-workspace.inspecting>.result-panel,#main-workspace #check-workspace.inspecting>.inspector-docked{grid-column:1;grid-row:auto}}
+
+/* Verification workbench visual hierarchy */
+:root {
+  --graph-ink: #12283b;
+  --graph-light: #e6f2ff;
+  --panel-depth: 0 3px 8px #182b3a06, 0 16px 32px #182b3a07;
+}
+
+@media (min-width: 761px) {
+  .app-sidebar {
+    background: radial-gradient(ellipse at top left, #284353, transparent 65%), var(--nav-surface);
+  }
+
+  .app-sidebar .nav-item.active {
+    background: linear-gradient(100deg, #386793, var(--nav-active));
+  }
+}
+
+.scope-banner {
+  border-radius: 0 8px 8px 0;
+}
+
+.skip-link:not(:focus) {
+  clip-path: inset(50%);
+}
+
+#view-check > .heading {
+  padding: 7px 0 4px;
+  align-items: center;
+}
+
+#view-check .version-stamp {
+  padding: 8px 12px;
+  border: 1px solid #d5e0ea;
+  border-radius: 8px;
+  background: #f8fbff;
+}
+
+#view-check .version-stamp code {
+  display: block;
+  margin-top: 2px;
+  color: #234b75;
+}
+
+.overview-card {
+  min-height: 98px;
+  border-color: #e0e4e2;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px #182b3a05;
+}
+
+.overview-card strong {
+  font-size: 29px;
+  font-weight: 700;
+  color: #192d3c;
+}
+
+.overview-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+}
+
+#check-workspace > .panel {
+  border-radius: 14px;
+  box-shadow: var(--panel-depth);
+}
+
+#check-workspace .result-panel {
+  border-color: #c6d8e6;
+}
+
+#check-workspace .request-panel .presets button.selected {
+  box-shadow: inset 0 -2px var(--accent);
+}
+
+#check-workspace #check-form .primary:not(:disabled) {
+  background: linear-gradient(100deg, #285fa1, #244b7b);
+  box-shadow: 0 3px 8px #244b7b29;
+}
+
+#check-workspace #check-form .primary:not(:disabled):hover {
+  background: #1c426d;
+}
+
+#empty-result .evidence-map {
+  isolation: isolate;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at center, #2b5a78 0%, transparent 65%),
+    linear-gradient(145deg, #19364d, var(--graph-ink));
+}
+
+#empty-result .map-lines {
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+#empty-result .map-lines pattern circle {
+  fill: #a9c6e2;
+  opacity: .32;
+}
+
+#empty-result .map-links {
+  stroke: #9ec8e9;
+  stroke-opacity: .61;
+}
+
+#empty-result .map-node {
+  width: 25%;
+  border-color: #6688a2;
+  border-radius: 8px;
+  background: #1c3a51;
+  color: var(--graph-light);
+  box-shadow: 0 3px 10px #0d203473;
+}
+
+#empty-result .map-left {
+  left: 2.5%;
+}
+
+#empty-result .map-right {
+  right: 2.5%;
+}
+
+#empty-result .map-core {
+  border-color: #aac9e6;
+  box-shadow: 0 0 0 8px #82b8e82b, 0 12px 30px #0c223b8c;
+}
+
+#empty-result .map-caption span:first-child {
+  font-weight: 600;
+}
+
+#check-workspace .result-context,
+#check-workspace .decision-banner {
+  border-radius: 10px;
+}
+
+#check-workspace .decision-banner {
+  box-shadow: inset 0 0 0 1px currentColor;
+  background-image: linear-gradient(115deg, #ffffff66, transparent 65%);
+}
+
+#check-workspace .evidence-chain {
+  gap: 12px;
+}
+
+#check-workspace .evidence-node {
+  padding: 10px;
+  border: 1px solid #e0e7ed;
+  border-radius: 10px;
+  background: #fcfdff;
+}
+
+#check-workspace .evidence-node.unresolved {
+  border-color: #dac594;
+  background: #fffbf2;
+}
+
+#check-workspace .evidence-node .relation-select {
+  background: #edf3f9;
+  color: #244a6e;
+}
+
+#check-workspace .evidence-node.unresolved .relation-select {
+  background: var(--warning-soft);
+  color: var(--orange);
+}
+
+@media (max-width: 760px) {
+  #view-check > .heading {
+    padding-top: 0;
+  }
+
+  .overview-card {
+    min-height: 86px;
+  }
+
+  .overview-card strong {
+    font-size: 26px;
+  }
+
+  #empty-result .evidence-map {
+    height: 222px;
+  }
+
+  #empty-result .map-node {
+    width: 29%;
+  }
+}
